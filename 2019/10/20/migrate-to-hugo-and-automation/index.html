@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/2019/10/06/c-using-vscode-and-tcc/><link rel=next href=https://blog.batkiz.com/2019/10/24/sth-about-hosts-tool-2/><link rel=canonical href=https://blog.batkiz.com/2019/10/20/migrate-to-hugo-and-automation/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>博客迁移至 Hugo 并实现自动化 | not b@tk1z</title><meta name=title content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><link rel=stylesheet href=/css/main.min.css><meta name=twitter:card content="summary"><meta name=twitter:title content="博客迁移至 Hugo 并实现自动化"><meta name=twitter:description content="好久不见！ 自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"博客迁移至 Hugo 并实现自动化","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/2019\/10\/20\/migrate-to-hugo-and-automation\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","wordcount":2091,"url":"https:\/\/blog.batkiz.com\/2019\/10\/20\/migrate-to-hugo-and-automation\/","datePublished":"2019-10-20T22:01:44\x2b08:00","dateModified":"2019-10-20T22:01:44\x2b08:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":""}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/2019/10/06/c-using-vscode-and-tcc/><link rel=next href=https://blog.batkiz.com/2019/10/24/sth-about-hosts-tool-2/><link rel=canonical href=https://blog.batkiz.com/2019/10/20/migrate-to-hugo-and-automation/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>博客迁移至 Hugo 并实现自动化 | not b@tk1z</title><meta name=title content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><link rel=stylesheet href=/css/main.min.css><meta name=twitter:card content="summary"><meta name=twitter:title content="博客迁移至 Hugo 并实现自动化"><meta name=twitter:description content="好久不见！ 自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"博客迁移至 Hugo 并实现自动化","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/2019\/10\/20\/migrate-to-hugo-and-automation\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","wordcount":2104,"url":"https:\/\/blog.batkiz.com\/2019\/10\/20\/migrate-to-hugo-and-automation\/","datePublished":"2019-10-20T22:01:44\x2b08:00","dateModified":"2019-10-20T22:01:44\x2b08:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":""}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a>
@@ -43,7 +43,7 @@
 - hello
 - world
 - etc
-</code></pre><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化</h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制</h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对于已通过 <code>hugo new site .</code> 生成出来的文件夹 <code>git init</code> 并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore>/archetypes/
+</code></pre><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化</h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制</h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore>/archetypes/
 /data/
 /layouts/
 /public/
@@ -70,14 +70,17 @@ jobs:
       # 新建站点
       - name: new site
         run: |
-          mkdir $HOME/blog
-          cd $HOME/blog
-          hugo new site .
+          hugo new site $HOME/blog
 
       # 获取主题
       - name: get theme
         run: |
           git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left
+
+      # 获取 username.github.io 以保持 commit 记录
+      - name: get username.github.io
+        run: |
+          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public
 
       # 获取内容文件
       - uses: actions/checkout@v1
@@ -107,12 +110,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           cd $HOME/blog/public
-          git init
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
-          git commit -m &quot;auto publish by GitHub Actions&quot;
-          git push --force --quiet &quot;https://$USER:$GH_TOKEN@$GH_REF&quot; master:master
+          git commit -m &quot;Auto Update: `date +'%Y-%m-%d %H:%M:%S'`&quot;
+          git push &quot;https://$USER:$GH_TOKEN@$GH_REF&quot; master:master
 </code></pre><p>感谢 <a href=https://github.com/peaceiris/actions-hugo rel="nofollow noreferrer" target=_blank>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=结语>结语</h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
 <span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
 <span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
