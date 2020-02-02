@@ -6,7 +6,7 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>xatuctf2019 校赛 writeup</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2019-04-19>19 April 2019</time></span></div></header><div class=post-content><p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333</p><h2 id=web>WEB</h2><h3 id=flag>你能读到flag吗</h3><p>题目：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php> <span style=color:#75715e>&lt;?php</span>
+<span class=post-time>on <time datetime=2019-04-19>19 April 2019</time></span></div></header><div class=post-content><p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333</p><h2 id=web>WEB</h2><h3 id=你能读到flag吗>你能读到flag吗</h3><p>题目：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php> <span style=color:#75715e>&lt;?php</span>
 <span style=color:#a6e22e>error_reporting</span>(<span style=color:#ae81ff>0</span>);
 <span style=color:#a6e22e>show_source</span>(<span style=color:#66d9ef>__FILE__</span>);
 
@@ -48,7 +48,7 @@ ZERO -> 0
 得到一长长长长长长长长长长长长长长长长长长长长长串 0 和 1。</p><p>每八位二进制转 ASCII 即可获得 flag。</p><h3 id=easy-rsa>easy RSA</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
 e = 65537
 c = 1736476276571471518318904802453151397043836796931780608028216447791913603812271065838523639504410549594365173220377575243217983329182149750696526310732151
-</code></pre></div><p><a href=https://github.com/3summer/CTF-RSA-tool>https://github.com/3summer/CTF-RSA-tool</a></p><h2 id=misc>MISC</h2><h3 id=heading>这个容易，就是有点累</h3><p>一个压缩了几千层的 zip 包，可以直接上十六进制查看器(winhex, hxd, 010 editor等)打开，Ctrl + F flag 即可得到。</p><p>据写脚本解压的小伙伴称他们跑了一个多小时（</p><p>压缩脚本如下</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e>#!/bin/bash
+</code></pre></div><p><a href=https://github.com/3summer/CTF-RSA-tool>https://github.com/3summer/CTF-RSA-tool</a></p><h2 id=misc>MISC</h2><h3 id=这个容易就是有点累>这个容易，就是有点累</h3><p>一个压缩了几千层的 zip 包，可以直接上十六进制查看器(winhex, hxd, 010 editor等)打开，Ctrl + F flag 即可得到。</p><p>据写脚本解压的小伙伴称他们跑了一个多小时（</p><p>压缩脚本如下</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e>#!/bin/bash
 </span><span style=color:#75715e></span>
 name1<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>cat /dev/urandom | sed <span style=color:#e6db74>&#39;s/[^a-zA-Z0-9]//g&#39;</span> | strings -n <span style=color:#ae81ff>6</span> | head -n 1<span style=color:#e6db74>`</span>
 name2<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.zip&#34;</span>
@@ -74,7 +74,7 @@ zip -m $name flag
     <span style=color:#66d9ef>return</span> fib_k<span style=color:#f92672>*</span><span style=color:#f92672>*</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> fib_k_1<span style=color:#f92672>*</span><span style=color:#f92672>*</span><span style=color:#ae81ff>2</span> <span style=color:#66d9ef>if</span> n <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> (<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> fib_k_1 <span style=color:#f92672>+</span> fib_k) <span style=color:#f92672>*</span> fib_k
 
 <span style=color:#66d9ef>print</span>(hex(Fibonacci_recursion_fast(<span style=color:#ae81ff>1234</span>)))
-</code></pre></div><p>md5 一下，再转小写提交。</p><h2 id=reverse>REVERSE</h2><h3 id=snake>Snake</h3><p>贪吃蛇，玩到 70 分就出 flag</p><h3 id=sstas-python->ssta's Python 教室</h3><p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># encoding: utf-8</span>
+</code></pre></div><p>md5 一下，再转小写提交。</p><h2 id=reverse>REVERSE</h2><h3 id=snake>Snake</h3><p>贪吃蛇，玩到 70 分就出 flag</p><h3 id=sstas-python-教室>ssta&rsquo;s Python 教室</h3><p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># encoding: utf-8</span>
 
 <span style=color:#f92672>from</span> base64 <span style=color:#f92672>import</span> b32encode
 <span style=color:#f92672>import</span> codecs

@@ -6,7 +6,7 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>博客迁移至 Hugo 并实现自动化</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2019-10-20>20 October 2019</time></span></div></header><div class=post-content><p>好久不见！</p><p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p><p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p><p>下面是过程复现与总结。</p><h2 id=hugo>Hugo</h2><p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p><p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p><ul><li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li><li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li><li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li><li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li></ul><p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p><h2 id=heading>开始迁移</h2><p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p><h3 id=heading-1>链接</h3><p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p><p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p><p>解决很简单，修改为相同的即可。</p><h3 id=rss>RSS</h3><p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p><p>解决方法：在 <code>config.toml</code> 中加入下列内容</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>outputs</span>]
+<span class=post-time>on <time datetime=2019-10-20>20 October 2019</time></span></div></header><div class=post-content><p>好久不见！</p><p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p><p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p><p>下面是过程复现与总结。</p><h2 id=hugo>Hugo</h2><p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p><p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p><ul><li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li><li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li><li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li><li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li></ul><p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p><h2 id=开始迁移>开始迁移</h2><p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p><h3 id=链接>链接</h3><p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p><p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p><p>解决很简单，修改为相同的即可。</p><h3 id=rss>RSS</h3><p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p><p>解决方法：在 <code>config.toml</code> 中加入下列内容</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>outputs</span>]
   <span style=color:#a6e22e>home</span> = [<span style=color:#e6db74>&#34;Atom&#34;</span>, <span style=color:#e6db74>&#34;HTML&#34;</span>]
 
 [<span style=color:#a6e22e>outputFormats</span>.<span style=color:#a6e22e>Atom</span>]
@@ -43,79 +43,79 @@
 - hello
 - world
 - etc
-</code></pre></div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=heading-2>版本控制与自动化</h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=heading-3>版本控制</h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore data-lang=gitignore>/archetypes/
+</code></pre></div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化</h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制</h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore data-lang=gitignore>/archetypes/
 /data/
 /layouts/
 /public/
 /resources/
 /static/
 /themes/
-</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p><ul><li><code>content/</code>，这个是文章所在的文件夹</li><li><code>config.toml</code>，这个是 hugo 的配置文件</li></ul><p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p><h3 id=heading-4>自动化</h3><p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p><p>下面是 GitHub Actions 的 workflow，详情请看注释。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>name: blog
+</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p><ul><li><code>content/</code>，这个是文章所在的文件夹</li><li><code>config.toml</code>，这个是 hugo 的配置文件</li></ul><p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p><h3 id=自动化>自动化</h3><p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p><p>下面是 GitHub Actions 的 workflow，详情请看注释。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#66d9ef>name</span>: blog
 
-on: [push]
+<span style=color:#66d9ef>on</span>: [push]
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    <span style=color:#66d9ef>name</span>: Build
+    <span style=color:#66d9ef>runs-on</span>: ubuntu-latest
     steps:
       <span style=color:#75715e># 使用预编译的 Hugo 二进制文件</span>
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2</span><span style=color:#ae81ff>.2</span>
+      - <span style=color:#66d9ef>name</span>: Setup Hugo
+        <span style=color:#66d9ef>uses</span>: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2</span><span style=color:#ae81ff>.2</span>
         with:
-          hugo-version: <span style=color:#e6db74>&#34;latest&#34;</span>
+          <span style=color:#66d9ef>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
           <span style=color:#75715e># 使用 Hugo-extended 版本</span>
-          extended: <span style=color:#66d9ef>true</span>
+          <span style=color:#66d9ef>extended</span>: <span style=color:#66d9ef>true</span>
 
       <span style=color:#75715e># 新建站点</span>
-      - name: new site
-        run: <span style=color:#e6db74>|
+      - <span style=color:#66d9ef>name</span>: new site
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>hugo new site $HOME/blog</span>
 
       <span style=color:#75715e># 获取主题</span>
-      - name: get theme
-        run: <span style=color:#e6db74>|
+      - <span style=color:#66d9ef>name</span>: get theme
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
 
       <span style=color:#75715e># 获取 username.github.io 以保持 commit 记录</span>
-      - name: get username.github.io
-        run: <span style=color:#e6db74>|
+      - <span style=color:#66d9ef>name</span>: get username.github.io
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
 
       <span style=color:#75715e># 获取内容文件</span>
-      - uses: actions/checkout@v1
+      - <span style=color:#66d9ef>uses</span>: actions/checkout@v1
         with:
-          fetch-depth: <span style=color:#ae81ff>1</span>
+          <span style=color:#66d9ef>fetch-depth</span>: <span style=color:#ae81ff>1</span>
 
       <span style=color:#75715e># 将内容文件复制进入站点内</span>
-      - name: copy in
-        run: <span style=color:#e6db74>|
+      - <span style=color:#66d9ef>name</span>: copy in
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
       <span style=color:#75715e># build</span>
-      - name: build
-        run: <span style=color:#e6db74>|
+      - <span style=color:#66d9ef>name</span>: build
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>cd $HOME/blog</span>
           HUGO_ENV=production hugo --gc --minify
 
       <span style=color:#75715e># 将生成出的站点推向 username.github.io</span>
-      - name: publish
+      - <span style=color:#66d9ef>name</span>: publish
         env:
-          USER: batkiz
-          EMAIL: batkiz@outlook.com
-          GH_REF: github.com/batkiz/batkiz.github.io.git
+          <span style=color:#66d9ef>USER</span>: batkiz
+          <span style=color:#66d9ef>EMAIL</span>: batkiz@outlook.com
+          <span style=color:#66d9ef>GH_REF</span>: github.com/batkiz/batkiz.github.io.git
           <span style=color:#75715e># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: <span style=color:#e6db74>|
+          <span style=color:#66d9ef>GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
 </span><span style=color:#e6db74>         </span><span style=color:#e6db74> </span><span style=color:#e6db74>cd $HOME/blog/public</span>
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
           git commit -m <span style=color:#e6db74>&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
           git push <span style=color:#e6db74>&#34;https://$USER:$GH_TOKEN@$GH_REF&#34;</span> master:master
-</code></pre></div><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=heading-5>结语</h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+</code></pre></div><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=结语>结语</h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
 <span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
 <span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
 <span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/ class=prev rel=prev title="使用 VS Code 与 TinyCC 学习 C 语言"><i class="iconfont icon-dajiantou"></i>&nbsp;使用 VS Code 与 TinyCC 学习 C 语言</a>
