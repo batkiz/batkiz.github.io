@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 05 Jan 2020 00:53:07 +0800</lastBuildDate><item><title>用 C# 设置 Hugo Aliases</title><link>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</link><pubDate>Sun, 05 Jan 2020 00:53:07 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</guid><description>2020 年新年好！ 相信细心的读者已经注意到了，本博客的文章链接已经全部从 blog.batkiz.com/:year/:month/:day/:filename/ 调整为了 blog.batkiz.com/posts/:year/:filename/ 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出</description><content type="html"><![CDATA[<p>2020 年新年好！</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>用 C# 设置 Hugo Aliases</title><link>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</link><pubDate>Sun, 05 Jan 2020 00:53:07 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</guid><description>2020 年新年好！ 相信细心的读者已经注意到了，本博客的文章链接已经全部从 blog.batkiz.com/:year/:month/:day/:filename/ 调整为了 blog.batkiz.com/posts/:year/:filename/ 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出</description><content type="html"><![CDATA[<p>2020 年新年好！</p>
 <p>相信细心的读者已经注意到了，本博客的文章链接已经全部从 <code>blog.batkiz.com/:year/:month/:day/:filename/</code> 调整为了 <code>blog.batkiz.com/posts/:year/:filename/</code> 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出现在文章的 url 中对“人”非常之不友好。比如我曾想直接输入文章链接访问文章时，日期极大地为我原本就不太好的记忆力增加了负担。另一方面，具体而完整的时间对于读者也是不必要的，几乎没有人会关注文章是在几月几号几点写的，作为读者，更关注的点在于内容，在 url 中隐藏掉具体的时间，只给出一个年份，在我看来是某种程度上的平衡。</p>
 <p>其实这个想法早在将博客生成器由 hexo 切换到 hugo 时就有了，但是由于兼容性的问题（我在煎蛋等平台上的投稿有到我文章的链接），我不能让原本的文章给 404 掉，所以当时只能忍辱负重，继续使用含有完整日期的 url。（见<a href="/posts/2019/migrate-to-hugo-and-automation/">此文</a>）</p>
 <p>而在某天晚上我刷牙洗漱时，我突然想到，能否将 url 更改的同时，设置以带有完整日期链接的访问跳转到新的链接。经过一番搜索，我找到了名为 <a href="https://gohugo.io/content-management/urls/#aliases">Aliases</a> 的功能，这正是我要找的！</p>
@@ -48,7 +48,7 @@
         {
             <span style="color:#66d9ef">string</span> text = File.ReadAllText(path);
             <span style="color:#66d9ef">string</span> time = GetLine(text, <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">return</span> time.Substring(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span><span style="color:#ae81ff">0</span>).Replace(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>);
+            <span style="color:#66d9ef">return</span> time.Substring(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">10</span>).Replace(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>);
         };
 
         <span style="color:#66d9ef">static</span> Func&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; GetAlias = (path)
@@ -131,7 +131,7 @@
 <h2 id="开发过程">开发过程</h2>
 <p>这里记录一些写 go 语言时的小技巧</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// TODO
-</span><span style="color:#75715e"></span><span style="color:#75715e">// （其实大家都知道 TODO 列表里的事情永远都不会办的对吧
+</span><span style="color:#75715e">// （其实大家都知道 TODO 列表里的事情永远都不会办的对吧
 </span></code></pre></div><p>事实上这个在闲暇之余写的小软件已经完全地满足了我自己的需求，我甚至有点就此封存、甩手不干的冲动。</p>
 <p>但说实话，这个小软件还有很多缺点：</p>
 <ul>
@@ -265,7 +265,7 @@ jobs:
     steps:
       <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
       - <span style="color:#66d9ef">name</span>: Setup Hugo
-        <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2</span><span style="color:#ae81ff">.2</span>
+        <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2.2</span>
         with:
           <span style="color:#66d9ef">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
           <span style="color:#75715e"># 使用 Hugo-extended 版本</span>
@@ -274,17 +274,17 @@ jobs:
       <span style="color:#75715e"># 新建站点</span>
       - <span style="color:#66d9ef">name</span>: new site
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">hugo new site $HOME/blog</span>
+</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
 
       <span style="color:#75715e"># 获取主题</span>
       - <span style="color:#66d9ef">name</span>: get theme
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
+</span><span style="color:#e6db74">          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
 
       <span style="color:#75715e"># 获取 username.github.io 以保持 commit 记录</span>
       - <span style="color:#66d9ef">name</span>: get username.github.io
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
+</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
 
       <span style="color:#75715e"># 获取内容文件</span>
       - <span style="color:#66d9ef">uses</span>: actions/checkout@v1
@@ -294,14 +294,14 @@ jobs:
       <span style="color:#75715e"># 将内容文件复制进入站点内</span>
       - <span style="color:#66d9ef">name</span>: copy in
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
       <span style="color:#75715e"># build</span>
       - <span style="color:#66d9ef">name</span>: build
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">cd $HOME/blog</span>
+</span><span style="color:#e6db74">          cd $HOME/blog</span>
           HUGO_ENV=production hugo --gc --minify
 
       <span style="color:#75715e"># 将生成出的站点推向 username.github.io</span>
@@ -313,7 +313,7 @@ jobs:
           <span style="color:#75715e"># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
           <span style="color:#66d9ef">GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">cd $HOME/blog/public</span>
+</span><span style="color:#e6db74">          cd $HOME/blog/public</span>
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
@@ -343,6 +343,7 @@ jobs:
 <li><a href="https://sp4rta.github.io">sp4rta</a></li>
 <li><a href="https://ruinsyi.github.io">ruinsyi</a></li>
 <li><a href="https://jdao.online">Tnze</a></li>
+<li><a href="https://makiras.org/">Makira</a></li>
 </ul>
 ]]></content></item><item><title>使用 VS Code 与 TinyCC 学习 C 语言</title><link>https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/</link><pubDate>Sun, 06 Oct 2019 15:56:43 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/</guid><description>本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。 VS Code 下载安装 VS Code。 安装下列扩展 C/C++ ms-vscode.cpptools TCC Compiler lihram.vscode-tcc-compiler 使用 于任意路径新建 tmp 文件夹，使用 VS Code 打开</description><content type="html"><![CDATA[<p>本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。</p>
 <h2 id="vs-code">VS Code</h2>
@@ -355,12 +356,12 @@ jobs:
 <h2 id="使用">使用</h2>
 <p>于任意路径新建 <code>tmp</code> 文件夹，使用 VS Code 打开。</p>
 <p>新建 <code>hello.c</code> 文件，并写入下列内容</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello World.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">你好世界。</span><span style="color:#e6db74">&#34;</span>);
+    printf(<span style="color:#e6db74">&#34;Hello World.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    printf(<span style="color:#e6db74">&#34;你好世界。&#34;</span>);
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><p>保存后按下 <code>F1</code> 键，输入 <code>tcc</code>，找到 <code>TCC: Run</code> 项，回车，可看到下面的 terminal 被唤起，并输出下列信息</p>
@@ -471,16 +472,16 @@ git config --global https.proxy <span style="color:#e6db74">&#39;http://127.0.0.
 <p>刚开始我试着仅仅浏览 Twitter 上的时间线并复制文本。但显然，当一个讨论贴达到了一定规模时，Twitter 限制了你能看到的推文数。所以从数据集中我仅能得到 285 个回复。</p>
 <p>接下来是使用 Twitter 开发者 API，虽然被限制严重，但允许更多的搜索粒度。</p>
 <p>通过 Python 和 Tweepy 及请求间的 5 分钟睡眠，我能够从请求中得到 763 条直接回复于我的推文。这花了 <strong>362 分钟</strong>，或言 <strong>6 个小时</strong>。更短的睡眠时间可能也行，但我睡后留下它自己跑，所以也没多大关系。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tweepy<span style="color:#f92672">.</span>Cursor(api<span style="color:#f92672">.</span>search, q<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">to:olafurw</span><span style="color:#e6db74">&#34;</span>, since_id<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1087438169585434624</span><span style="color:#e6db74">&#39;</span>, tweet_mode<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">extended</span><span style="color:#e6db74">&#39;</span>)<span style="color:#f92672">.</span>pages():
-  repliesFile <span style="color:#f92672">=</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">replies.txt</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tweepy<span style="color:#f92672">.</span>Cursor(api<span style="color:#f92672">.</span>search, q<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;to:olafurw&#34;</span>, since_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1087438169585434624&#39;</span>, tweet_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;extended&#39;</span>)<span style="color:#f92672">.</span>pages():
+  repliesFile <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;replies.txt&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>)
 
   <span style="color:#66d9ef">for</span> tweet <span style="color:#f92672">in</span> page:
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>in_reply_to_status_id_str <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>screen_name <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>id_str <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>full_text<span style="color:#f92672">.</span>encode(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">utf-8</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>in_reply_to_status_id_str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>screen_name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>id_str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>full_text<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
 
-    repliesFile<span style="color:#f92672">.</span>write(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--==--</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--==--</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
 
   repliesFile<span style="color:#f92672">.</span>flush()
   repliesFile<span style="color:#f92672">.</span>close()
@@ -624,8 +625,8 @@ $a <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>$_RE
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
 
 s<span style="color:#f92672">=</span>requests<span style="color:#f92672">.</span>session()
-body <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello</span><span style="color:#e6db74">&#34;</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">file_get_contents(</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">flag.php</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>}
-r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>post(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">http://192.168.1.5:23114/read.php</span><span style="color:#e6db74">&#34;</span>, data<span style="color:#f92672">=</span>body)
+body <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;hello&#34;</span>:<span style="color:#e6db74">&#34;file_get_contents(&#39;flag.php&#39;)&#34;</span>}
+r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#34;http://192.168.1.5:23114/read.php&#34;</span>, data<span style="color:#f92672">=</span>body)
 
 <span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>content)
 </code></pre></div><h3 id="phpdecode">phpdecode</h3>
@@ -642,7 +643,7 @@ r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>post
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b64decode
 <span style="color:#f92672">from</span> binascii <span style="color:#f92672">import</span> hexlify, unhexlify
 
-code <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=</span><span style="color:#e6db74">&#34;</span>
+code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&#34;</span>
 
 <span style="color:#66d9ef">print</span>(unhexlify(hexlify(b64decode(code))[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
 </code></pre></div><h2 id="pwn">PWN</h2>
@@ -721,7 +722,7 @@ zip -m $name flag
     k <span style="color:#f92672">=</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">else</span> n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
     fib_k <span style="color:#f92672">=</span> Fibonacci_recursion_fast(k)
     fib_k_1 <span style="color:#f92672">=</span> Fibonacci_recursion_fast(k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-    <span style="color:#66d9ef">return</span> fib_k<span style="color:#f92672">*</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> fib_k_1<span style="color:#f92672">*</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">else</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> fib_k_1 <span style="color:#f92672">+</span> fib_k) <span style="color:#f92672">*</span> fib_k
+    <span style="color:#66d9ef">return</span> fib_k<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> fib_k_1<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">else</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> fib_k_1 <span style="color:#f92672">+</span> fib_k) <span style="color:#f92672">*</span> fib_k
 
 <span style="color:#66d9ef">print</span>(hex(Fibonacci_recursion_fast(<span style="color:#ae81ff">1234</span>)))
 </code></pre></div><p>md5 一下，再转小写提交。</p>
@@ -739,7 +740,7 @@ zip -m $name flag
     <span style="color:#66d9ef">return</span> b32encode(s)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rot13</span>(s):
-    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>encode(s, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">rot13</span><span style="color:#e6db74">&#39;</span>)
+    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>encode(s, <span style="color:#e6db74">&#39;rot13&#39;</span>)
     <span style="color:#75715e"># return s.encode(&#39;rot13&#39;)</span>
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse</span>(s):
@@ -749,15 +750,15 @@ zip -m $name flag
     <span style="color:#66d9ef">return</span> s[<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>:] <span style="color:#f92672">+</span> s[:<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>]
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-    flag <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">******************************</span><span style="color:#e6db74">&#39;</span>
+    flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;******************************&#39;</span>
     cipher <span style="color:#f92672">=</span> reverse(b32(rot13(reverseSomeByte(flag))))
     <span style="color:#66d9ef">print</span>(cipher)
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">=== WELCOME TO XATUCTF2019 ===</span><span style="color:#e6db74">&#39;</span>)
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN</span><span style="color:#e6db74">&#39;</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;=== WELCOME TO XATUCTF2019 ===&#39;</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN&#39;</span>
 
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">__main__</span><span style="color:#e6db74">&#39;</span>:
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
     ffllaagg <span style="color:#f92672">=</span> main()
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">FLAG is right here. Can you get it?</span><span style="color:#e6db74">&#39;</span>, ffllaagg)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;FLAG is right here. Can you get it?&#39;</span>, ffllaagg)
 </code></pre></div><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
 自己写的不完善的脚本如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
@@ -768,14 +769,14 @@ zip -m $name flag
     <span style="color:#66d9ef">return</span> b32decode(s)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rot13</span>(s):
-    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>decode(s, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">rot13</span><span style="color:#e6db74">&#39;</span>)
+    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>decode(s, <span style="color:#e6db74">&#39;rot13&#39;</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse</span>(s):
     <span style="color:#66d9ef">return</span> s[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
 
-cipher <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN</span><span style="color:#e6db74">&#39;</span>
+cipher <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN&#39;</span>
 
-<span style="color:#66d9ef">print</span>(rot13(b32(reverse(cipher))<span style="color:#f92672">.</span>decode(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ASCII</span><span style="color:#e6db74">&#34;</span>)))
+<span style="color:#66d9ef">print</span>(rot13(b32(reverse(cipher))<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;ASCII&#34;</span>)))
 </code></pre></div><p>前六位移到最后即可。</p>
 <hr>
 <p>自己没做出来的题就没写 wp 23333</p>
@@ -807,22 +808,22 @@ $env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
 <p>下面是一份我写的 mainfest，附上注释，希望能给人点方便。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;homepage&#34;</span>: <span style="color:#e6db74">&#34;https://oldj.github.io/SwitchHosts/&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">此</span><span style="color:#960050;background-color:#1e0010">处</span><span style="color:#960050;background-color:#1e0010">为</span><span style="color:#960050;background-color:#1e0010">软</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">主</span><span style="color:#960050;background-color:#1e0010">页</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">此处为软件主页</span>
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;3.3.12.5349&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">版</span><span style="color:#960050;background-color:#1e0010">本</span><span style="color:#960050;background-color:#1e0010">号</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">版本号</span>
     <span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;MIT&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">软</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">所</span><span style="color:#960050;background-color:#1e0010">使</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">协</span><span style="color:#960050;background-color:#1e0010">议</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">软件所使用的协议</span>
     <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts! is an App for hosts management &amp; switching.&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">对</span><span style="color:#960050;background-color:#1e0010">软</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">描</span><span style="color:#960050;background-color:#1e0010">述</span><span style="color:#960050;background-color:#1e0010">信</span><span style="color:#960050;background-color:#1e0010">息</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">对软件的描述信息</span>
     <span style="color:#f92672">&#34;architecture&#34;</span>: {
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">对</span><span style="color:#960050;background-color:#1e0010">于</span><span style="color:#960050;background-color:#1e0010">分</span><span style="color:#960050;background-color:#1e0010">架</span><span style="color:#960050;background-color:#1e0010">构</span><span style="color:#960050;background-color:#1e0010">进</span><span style="color:#960050;background-color:#1e0010">行</span><span style="color:#960050;background-color:#1e0010">分</span><span style="color:#960050;background-color:#1e0010">发</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">软</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">以</span><span style="color:#960050;background-color:#1e0010">以</span> <span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span> <span style="color:#960050;background-color:#1e0010">对</span><span style="color:#960050;background-color:#1e0010">其</span><span style="color:#960050;background-color:#1e0010">区</span><span style="color:#960050;background-color:#1e0010">分</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">如</span><span style="color:#960050;background-color:#1e0010">果</span><span style="color:#960050;background-color:#1e0010">并</span><span style="color:#960050;background-color:#1e0010">不</span><span style="color:#960050;background-color:#1e0010">分</span><span style="color:#960050;background-color:#1e0010">架</span><span style="color:#960050;background-color:#1e0010">构</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">直</span><span style="color:#960050;background-color:#1e0010">接</span> <span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">l</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">h</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">对于分架构进行分发的软件，可以以</span> <span style="color:#960050;background-color:#1e0010">architecture</span> <span style="color:#960050;background-color:#1e0010">对其区分，如果并不分架构，可直接</span> <span style="color:#960050;background-color:#1e0010">url</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">hash</span>
         <span style="color:#f92672">&#34;64bit&#34;</span>: {
             <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-x64_v3.3.12.5349.zip&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">软</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">包</span><span style="color:#960050;background-color:#1e0010">下</span><span style="color:#960050;background-color:#1e0010">载</span><span style="color:#960050;background-color:#1e0010">链</span><span style="color:#960050;background-color:#1e0010">接</span>
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">软件包下载链接</span>
             <span style="color:#f92672">&#34;hash&#34;</span>: <span style="color:#e6db74">&#34;037fbc3b7bba4c9f43e105f00f68733397c1b3099e52eb57308a6659482d3fd0&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">文</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">的</span> <span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">h</span> <span style="color:#960050;background-color:#1e0010">值</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">通</span><span style="color:#960050;background-color:#1e0010">过</span> <span style="color:#960050;background-color:#1e0010">G</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#960050;background-color:#1e0010">F</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">H</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">2</span><span style="color:#960050;background-color:#1e0010">5</span><span style="color:#960050;background-color:#1e0010">6</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">m</span> <span style="color:#960050;background-color:#1e0010">来</span><span style="color:#960050;background-color:#1e0010">获</span><span style="color:#960050;background-color:#1e0010">得</span>
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">文件的</span> <span style="color:#960050;background-color:#1e0010">hash</span> <span style="color:#960050;background-color:#1e0010">值，可通过</span> <span style="color:#960050;background-color:#1e0010">Get-FileHash/sha256sum</span> <span style="color:#960050;background-color:#1e0010">来获得</span>
             <span style="color:#f92672">&#34;extract_dir&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts!-win32-x64&#34;</span>
-            <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">解</span><span style="color:#960050;background-color:#1e0010">压</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">文</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">夹</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">指</span><span style="color:#960050;background-color:#1e0010">程</span><span style="color:#960050;background-color:#1e0010">序</span><span style="color:#960050;background-color:#1e0010">压</span><span style="color:#960050;background-color:#1e0010">缩</span><span style="color:#960050;background-color:#1e0010">包</span><span style="color:#960050;background-color:#1e0010">内</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">文</span><span style="color:#960050;background-color:#1e0010">件</span><span style="color:#960050;background-color:#1e0010">夹</span>
+            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">解压的文件夹，指程序压缩包内的文件夹</span>
         },
         <span style="color:#f92672">&#34;32bit&#34;</span>: {
             <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-ia32_v3.3.12.5349.zip&#34;</span>,
@@ -831,19 +832,19 @@ $env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
         }
     },
     <span style="color:#f92672">&#34;bin&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts!.exe&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">执</span><span style="color:#960050;background-color:#1e0010">行</span><span style="color:#960050;background-color:#1e0010">文</span><span style="color:#960050;background-color:#1e0010">件</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">可执行文件</span>
     <span style="color:#f92672">&#34;shortcuts&#34;</span>: [
         [
             <span style="color:#e6db74">&#34;SwitchHosts!.exe&#34;</span>,
             <span style="color:#e6db74">&#34;SwitchHosts!&#34;</span>
         ]
     ],
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">此</span><span style="color:#960050;background-color:#1e0010">处</span><span style="color:#960050;background-color:#1e0010">为</span><span style="color:#960050;background-color:#1e0010">将</span><span style="color:#960050;background-color:#1e0010">其</span><span style="color:#960050;background-color:#1e0010">快</span><span style="color:#960050;background-color:#1e0010">捷</span><span style="color:#960050;background-color:#1e0010">方</span><span style="color:#960050;background-color:#1e0010">式</span><span style="color:#960050;background-color:#1e0010">加</span><span style="color:#960050;background-color:#1e0010">入</span><span style="color:#960050;background-color:#1e0010">开</span><span style="color:#960050;background-color:#1e0010">始</span><span style="color:#960050;background-color:#1e0010">菜</span><span style="color:#960050;background-color:#1e0010">单</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">配</span><span style="color:#960050;background-color:#1e0010">置</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">此处为将其快捷方式加入开始菜单的配置</span>
     <span style="color:#f92672">&#34;checkver&#34;</span>: {
         <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases&#34;</span>,
         <span style="color:#f92672">&#34;re&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts-win32-x64_v([\\d.]+).zip&#34;</span>
     },
-    <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">自</span><span style="color:#960050;background-color:#1e0010">动</span><span style="color:#960050;background-color:#1e0010">检</span><span style="color:#960050;background-color:#1e0010">查</span><span style="color:#960050;background-color:#1e0010">更</span><span style="color:#960050;background-color:#1e0010">新</span><span style="color:#960050;background-color:#1e0010">所</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">不</span><span style="color:#960050;background-color:#1e0010">过</span><span style="color:#960050;background-color:#1e0010">我</span><span style="color:#960050;background-color:#1e0010">这</span><span style="color:#960050;background-color:#1e0010">里</span><span style="color:#960050;background-color:#1e0010">好</span><span style="color:#960050;background-color:#1e0010">像</span><span style="color:#960050;background-color:#1e0010">是</span><span style="color:#960050;background-color:#1e0010">有</span><span style="color:#960050;background-color:#1e0010">点</span><span style="color:#960050;background-color:#1e0010">小</span><span style="color:#960050;background-color:#1e0010">问</span><span style="color:#960050;background-color:#1e0010">题</span><span style="color:#960050;background-color:#1e0010">的</span>
+    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">自动检查更新所用，不过我这里好像是有点小问题的</span>
     <span style="color:#f92672">&#34;autoupdate&#34;</span>: {
         <span style="color:#f92672">&#34;architecture&#34;</span>: {
             <span style="color:#f92672">&#34;64bit&#34;</span>: {
@@ -1288,9 +1289,9 @@ Isn<span style="color:#e6db74">&#39;t it a terrible day?$
 <hr>
 <p>如果使用的是 cmd，则编辑 <code>clink.lua</code>，寻找</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lua" data-lang="lua"><span style="color:#66d9ef">if</span> env <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span>
-    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">λ</span><span style="color:#e6db74">&#34;</span>
+    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;λ&#34;</span>
 <span style="color:#66d9ef">else</span>
-    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">..</span>env<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">) λ</span><span style="color:#e6db74">&#34;</span>
+    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;(&#34;</span><span style="color:#f92672">..</span>env<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;) λ&#34;</span>
 <span style="color:#66d9ef">end</span>
 </code></pre></div><p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
 ]]></content></item><item><title>a-short-introduction-to-markdown</title><link>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</link><pubDate>Thu, 29 Mar 2018 21:14:10 +0000</pubDate><guid>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</guid><description>markdown 是什么 Markdown 是一种 轻量级标记语言，创始人为 约翰·格鲁伯（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成</description><content type="html"><![CDATA[<h2 id="markdown-是什么">markdown 是什么</h2>
@@ -1444,7 +1445,7 @@ npm install
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">deploy:
   <span style="color:#66d9ef">type</span>: git
   <span style="color:#66d9ef">repo</span>: &lt;git-source<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74"> </span><span style="color:#e6db74"> </span><span style="color:#e6db74">branch: master</span>
+</span><span style="color:#e6db74">  branch: master</span>
 </code></pre></div><ul>
 <li><code>repo</code>项可以用ssh或者https，视个人情况而定</li>
 </ul>
@@ -1695,18 +1696,18 @@ telegram的第三方客户端，1520上在用，电脑上没怎么用</p>
                 ://+//////-yyyyyyo
             .++ .:/++++++/-.+sss/<span style="color:#e6db74">`</span>
           .:++o:  /++++++++/:--:/-
-         o:+o+:++.<span style="color:#e6db74">`</span>..<span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span>.-/oo+++++/
+         o:+o+:++.<span style="color:#e6db74">`</span>..<span style="color:#e6db74">```</span>.-/oo+++++/
         .:+o:+o/.          <span style="color:#e6db74">`</span>+sssoo+/
    .++/+:+oo+o:<span style="color:#e6db74">`</span>             /sssooo.
   /+++//+:<span style="color:#e6db74">`</span>oo+o               /::--:.
   <span style="color:#ae81ff">\+</span>/+o+++<span style="color:#e6db74">`</span>o++o               ++////.
    .++.o+++oo+:<span style="color:#e6db74">`</span>             /dddhhh.
         .+.o+oo:.          <span style="color:#e6db74">`</span>oddhhhh+
-         <span style="color:#ae81ff">\+</span>.++o+o<span style="color:#e6db74">`</span><span style="color:#e6db74">`</span>-<span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span>.:ohdhhhhh+
+         <span style="color:#ae81ff">\+</span>.++o+o<span style="color:#e6db74">``</span>-<span style="color:#e6db74">````</span>.:ohdhhhhh+
           <span style="color:#e6db74">`</span>:o+++ <span style="color:#e6db74">`</span>ohhhhhhhhyo++os:
             .o:<span style="color:#e6db74">`</span>.syhhhhhhh/.oo++o<span style="color:#e6db74">`</span>
                 /osyyyyyyo++ooo+++/
-                    <span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span><span style="color:#e6db74">`</span> +oo+++o<span style="color:#ae81ff">\</span>
+                    <span style="color:#e6db74">`````</span> +oo+++o<span style="color:#ae81ff">\</span>
                            <span style="color:#e6db74">`</span>oo++.
 </code></pre></div><h3 id="git">Git</h3>
 <p>版本控制~</p>
