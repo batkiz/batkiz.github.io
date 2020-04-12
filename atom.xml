@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>用 C# 设置 Hugo Aliases</title><link>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</link><pubDate>Sun, 05 Jan 2020 00:53:07 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</guid><description>2020 年新年好！ 相信细心的读者已经注意到了，本博客的文章链接已经全部从 blog.batkiz.com/:year/:month/:day/:filename/ 调整为了 blog.batkiz.com/posts/:year/:filename/ 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出</description><content type="html"><![CDATA[<p>2020 年新年好！</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description><content type="html"><![CDATA[<p>原文： <a href="https://www.superhighway98.com/seo">How SEO Ruined the Internet</a></p>
+<p>翻译：<a href="https://github.com/batkiz">batkiz</a></p>
+<p>译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调整网站，以提高网站在有关搜索引擎内排名的方式。</p>
+<hr>
+<p>在 1998 年到 2003 年的那段时间，在 Google 上搜索是非常神奇的。我还记得输入像是“oil mother&rsquo;s milk,”这样一个模糊的概念，然后就被导航到了 <a href="https://www.wired.com/2000/07/gold/">Thomas Gold 的一篇访谈</a>。（Thomas Gold 是一位天文物理学家，提出了石油会因为地壳压力重新沉积的理论。）</p>
+<p>现如今，如果你在寻找技术性的、具体的、学术性的或是一般非商业的信息，那么你拥有了该死的好运气。世界上最好的信息检索系统像是变成了 <a href="https://www.informationweek.com/digg-dogged-by-allegations-of-manipulation-/d/d-id/1046783">2006 年代的 Digg</a> 一样：由一小部分商业玩家控制的流行流行指数。他们称自己为“SEO”。</p>
+<p>拥有着卓越技术的 SEO 专家们通常使网站更快、更安全、更易访问。“黑帽” SEO 则显然是坏蛋。他们以破坏规则的方式来提升自己网站的排名（例如侵入一个网站，在其中添加到自己网站的链接）。然而，黑帽们只是 SEO 世界中的小小罪犯。还存在着看似是好家伙，实际上却是披着羊皮的狼的 “白帽” SEO。</p>
+<p>这些网络营销者的策略十分简单：以集权压制竞争。他们躲藏在合理与伪善的大旗之下，如同极权政体一般，他们为了达到目的不择手段。下面是他们使用的一些手段：</p>
+<h2 id="编辑历史">编辑历史</h2>
+<p>你重新读一篇文章时，你可能会发现其标题或是链接被改动过，这是一个非常普遍的行为。SEO 专家会“优化”旧文章来使它们更为市场化（并为读者推荐更新、更商业化的内容）。当我回看十年前我写的文章时，文章已经变得面目全非：夹杂着我从未写过的内容，承载着我从未表达的含义。</p>
+<h2 id="删除过去">删除过去</h2>
+<p>在大型知名网站上，“内容修剪”是一个非常有效的 SEO 策略。相比于将具有历史意义的内容归档，许多网站会选择将它们删除，返回 410 状态码。<em>永久性的丢失</em>。这样做是为了优化“抓取配额”，使 Google 关注当下更为流行的内容。结果便是互联网上不再有制度记忆（<a href="https://en.wikipedia.org/wiki/Institutional_memory">institutional memory</a>或是可信度了。</p>
+<h2 id="导演叙事">导演叙事</h2>
+<p>给我一个现代新闻编辑室，我会给你展示一个指导写手们的内容策略专家。但是，当记者们因必须写自己感到不舒服的专题而感到压力，或是被强迫以特定的角度解读问题，”SEO 最佳实践“就像是一个宣传机构了。这是<em>有线新闻效应</em>，黑幕背后的人可以随意修改台本，将所有的事都推送为”爆炸新闻“！</p>
+<h2 id="提供有选择的错觉">提供”有选择的“错觉</h2>
+<p>一少部分出版公司手握着上百家的年浏览量以数十亿计的媒体网站。当你搜索”最好的手机“时，你可能会看到来自 TechRadar, Android Central, T3, Tom&rsquo;s Guide, Anandtech, iMore 或是 Top Ten Reviews 的搜索结果。不论你点击了哪个结果，你其实都毫无选择：上述的所有都隶属于一下公司之下。</p>
+<h2 id="囤积财富">囤积财富</h2>
+<p>链接就是网络中的货币。没有链接的话，搜索引擎将无法分辨哪个页面更为有价值。不幸的是，许多网站不允许其他网站引用他们的内容，或是为每一个链接都加上 <a href="https://zh.wikipedia.org/wiki/Nofollow"><code>ref=&quot;nofollow&quot;</code> 属性</a>（即告诉搜索引擎不要抓取这条链接）。这使得整个网络世界都变的更为贫瘠了。</p>
+<hr>
+<p>SEO 是一个零和游戏，有赢家必定就有输家。SEO 促进了装神弄鬼、链接失效、整合、垄断与颠覆，我们都成为了输家。我还记得在互联网上非常容易找到逻辑、事实与理性的时代。在那之后，有人把它优化掉了。</p>
+]]></content></item><item><title>用 C# 设置 Hugo Aliases</title><link>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</link><pubDate>Sun, 05 Jan 2020 00:53:07 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/set-hugo-aliases-with-csharp/</guid><description>2020 年新年好！ 相信细心的读者已经注意到了，本博客的文章链接已经全部从 blog.batkiz.com/:year/:month/:day/:filename/ 调整为了 blog.batkiz.com/posts/:year/:filename/ 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出</description><content type="html"><![CDATA[<p>2020 年新年好！</p>
 <p>相信细心的读者已经注意到了，本博客的文章链接已经全部从 <code>blog.batkiz.com/:year/:month/:day/:filename/</code> 调整为了 <code>blog.batkiz.com/posts/:year/:filename/</code> 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出现在文章的 url 中对“人”非常之不友好。比如我曾想直接输入文章链接访问文章时，日期极大地为我原本就不太好的记忆力增加了负担。另一方面，具体而完整的时间对于读者也是不必要的，几乎没有人会关注文章是在几月几号几点写的，作为读者，更关注的点在于内容，在 url 中隐藏掉具体的时间，只给出一个年份，在我看来是某种程度上的平衡。</p>
 <p>其实这个想法早在将博客生成器由 hexo 切换到 hugo 时就有了，但是由于兼容性的问题（我在煎蛋等平台上的投稿有到我文章的链接），我不能让原本的文章给 404 掉，所以当时只能忍辱负重，继续使用含有完整日期的 url。（见<a href="/posts/2019/migrate-to-hugo-and-automation/">此文</a>）</p>
 <p>而在某天晚上我刷牙洗漱时，我突然想到，能否将 url 更改的同时，设置以带有完整日期链接的访问跳转到新的链接。经过一番搜索，我找到了名为 <a href="https://gohugo.io/content-management/urls/#aliases">Aliases</a> 的功能，这正是我要找的！</p>
@@ -124,9 +144,9 @@
 ]]></content></item><item><title>写在 hosts-tool-go 0.1.0 之际</title><link>https://blog.batkiz.com/posts/2019/sth-about-hosts-tool-2/</link><pubDate>Thu, 24 Oct 2019 23:59:34 +0800</pubDate><guid>https://blog.batkiz.com/posts/2019/sth-about-hosts-tool-2/</guid><description>不知不觉，自 第一个 commit 算起，时间已经过去了四个多月。实际的开始开发时间自然要更早一些。host-tool-go 也慢慢变得更加可用，版本号也刷到</description><content type="html"><![CDATA[<p>不知不觉，自 <a href="https://github.com/batkiz/hosts-tool-go/commit/e460d9ce228172e33f8504960a1bb917d5b311a9">第一个 commit</a> 算起，时间已经过去了四个多月。实际的开始开发时间自然要更早一些。host-tool-go 也慢慢变得更加可用，版本号也刷到了 0.1.0。</p>
 <p>到现在，在 <a href="https://blog.batkiz.com/2019/06/17/sth-about-hosts-tool/">上一篇文章</a> 中所计划的三个功能也已一一实现：</p>
 <ul>
-<li><input checked="" disabled="" type="checkbox">local hosts 功能，暂定是搞个 <code>local</code> 文件和 config 文件放一块</li>
-<li><input checked="" disabled="" type="checkbox">home 功能，<code>hosts-tool-go home NAME</code> 来直接浏览器打开这个 hosts 源</li>
-<li><input checked="" disabled="" type="checkbox">无任何命令行参数附加打开时搞出一个交互式的命令行</li>
+<li><input checked="" disabled="" type="checkbox"> local hosts 功能，暂定是搞个 <code>local</code> 文件和 config 文件放一块</li>
+<li><input checked="" disabled="" type="checkbox"> home 功能，<code>hosts-tool-go home NAME</code> 来直接浏览器打开这个 hosts 源</li>
+<li><input checked="" disabled="" type="checkbox"> 无任何命令行参数附加打开时搞出一个交互式的命令行</li>
 </ul>
 <h2 id="开发过程">开发过程</h2>
 <p>这里记录一些写 go 语言时的小技巧</p>
@@ -146,12 +166,12 @@
 <h2 id="roadmap">ROADMAP</h2>
 <p>按照惯例，文章最后我会列出目前所规划的一些东西，具体如下：</p>
 <ul>
-<li><input disabled="" type="checkbox">启动时自动请求 admin/root 权限，省的每次都 <code>sudo</code> 了</li>
-<li><input disabled="" type="checkbox">使用 goroutine 并行进行各个源的更新</li>
-<li><input disabled="" type="checkbox">组织代码存放目录与 <code>package</code> 信息</li>
-<li><input disabled="" type="checkbox">重构代码</li>
-<li><input disabled="" type="checkbox">添加单元测试</li>
-<li><input disabled="" type="checkbox">完善错误处理（Go 2 释出之后）</li>
+<li><input disabled="" type="checkbox"> 启动时自动请求 admin/root 权限，省的每次都 <code>sudo</code> 了</li>
+<li><input disabled="" type="checkbox"> 使用 goroutine 并行进行各个源的更新</li>
+<li><input disabled="" type="checkbox"> 组织代码存放目录与 <code>package</code> 信息</li>
+<li><input disabled="" type="checkbox"> 重构代码</li>
+<li><input disabled="" type="checkbox"> 添加单元测试</li>
+<li><input disabled="" type="checkbox"> 完善错误处理（Go 2 释出之后）</li>
 </ul>
 <hr>
 <p>by <em>batkiz</em> ，2019 年 10 月 24 日夜。</p>
@@ -429,9 +449,9 @@ jobs:
 <h2 id="roadmap">ROADMAP</h2>
 <p>下面是一些想起来了但暂时没动力写的功能</p>
 <ul>
-<li><input disabled="" type="checkbox">local hosts 功能，暂定是搞个 <code>local</code> 文件和 config 文件放一块</li>
-<li><input disabled="" type="checkbox">home 功能，<code>hosts-tool-go home NAME</code> 来直接浏览器打开这个 hosts 源</li>
-<li><input disabled="" type="checkbox">无任何命令行参数附加打开时搞出一个交互式的命令行</li>
+<li><input disabled="" type="checkbox"> local hosts 功能，暂定是搞个 <code>local</code> 文件和 config 文件放一块</li>
+<li><input disabled="" type="checkbox"> home 功能，<code>hosts-tool-go home NAME</code> 来直接浏览器打开这个 hosts 源</li>
+<li><input disabled="" type="checkbox"> 无任何命令行参数附加打开时搞出一个交互式的命令行</li>
 </ul>
 <p>慢慢摸咯，想起来时再写 23333</p>
 ]]></content></item><item><title>为 Git 配置代理</title><link>https://blog.batkiz.com/posts/2019/git-behind-proxy/</link><pubDate>Sun, 26 May 2019 16:39:16 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/git-behind-proxy/</guid><description>加速境外 git 服务托管网站速度。 操作 首先确保本地已开启 ss 或 ssr。 而后命令行执行如下命令。 git config --global http.proxy &amp;#39;http://127.0.0.1:1080&amp;#39; git config --global https.proxy &amp;#39;http://127.0.0.1:1080&amp;#39; 原理 在大多数 git 代理相关文章中，均配</description><content type="html"><![CDATA[<p>加速境外 git 服务托管网站速度。</p>
