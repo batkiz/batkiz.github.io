@@ -1,4 +1,83 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description><content type="html"><![CDATA[<p>原文： <a href="https://www.superhighway98.com/seo">How SEO Ruined the Internet</a></p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>Hugo 自动化 CI V2</title><link>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</link><pubDate>Mon, 13 Apr 2020 11:19:09 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</guid><description>改进了一下自动化发布博客的 CI，代码在下面。 如果想拿去用的话只需要修改 env 下的值就行了。 name: blog on: [push] # 各种信息在此处设置 env: # config.toml 里 theme 的值 THEME_NAME: left # 主题的</description><content type="html"><![CDATA[<p>改进了一下自动化发布博客的 CI，代码在下面。</p>
+<p>如果想拿去用的话只需要修改 env 下的值就行了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">name</span>: blog
+
+<span style="color:#66d9ef">on</span>: [push]
+
+<span style="color:#75715e"># 各种信息在此处设置</span>
+<span style="color:#66d9ef">env</span>:
+  <span style="color:#75715e"># config.toml 里 theme 的值</span>
+  <span style="color:#66d9ef">THEME_NAME</span>: left
+  <span style="color:#75715e"># 主题的 github 链接</span>
+  <span style="color:#66d9ef">THEME_REPO</span>: https://github.com/batkiz/left.git
+  <span style="color:#75715e"># github username</span>
+  <span style="color:#66d9ef">USER_NAME</span>: batkiz
+  <span style="color:#75715e"># github email</span>
+  <span style="color:#66d9ef">EMAIL</span>: batkiz@outlook.com
+  <span style="color:#75715e"># GitHub token</span>
+  <span style="color:#66d9ef">GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
+
+<span style="color:#66d9ef">jobs</span>:
+  <span style="color:#66d9ef">build</span>:
+    <span style="color:#66d9ef">name</span>: Build
+    <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
+    <span style="color:#66d9ef">steps</span>:
+      <span style="color:#75715e"># 获取 repo 内文件</span>
+      - <span style="color:#66d9ef">uses</span>: actions/checkout@v2
+      <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
+      - <span style="color:#66d9ef">name</span>: Setup Hugo
+        <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2.2</span>
+        <span style="color:#66d9ef">with</span>:
+          <span style="color:#66d9ef">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
+          <span style="color:#66d9ef">extended</span>: <span style="color:#66d9ef">true</span>
+
+      <span style="color:#75715e"># 新建站点</span>
+      - <span style="color:#66d9ef">name</span>: new site
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
+
+      <span style="color:#75715e"># 获取主题</span>
+      - <span style="color:#66d9ef">name</span>: get theme
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          git clone --depth=1 $THEME_REPO $HOME/blog/themes/$THEME_NAME</span>
+
+      <span style="color:#75715e"># 获取 $user.github.io 以保持 commit 记录</span>
+      - <span style="color:#66d9ef">name</span>: get username.github.io
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/$USER_NAME/$USER_NAME.github.io.git $HOME/blog/public</span>
+
+      <span style="color:#75715e"># 将内容文件复制进入站点内</span>
+      - <span style="color:#66d9ef">name</span>: copy in
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+          /bin/cp -rf config.toml $HOME/blog/config.toml
+          /bin/cp -rf content/ $HOME/blog/content/
+
+      <span style="color:#75715e"># build</span>
+      - <span style="color:#66d9ef">name</span>: build
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          cd $HOME/blog</span>
+          HUGO_ENV=production hugo --gc --minify
+
+      <span style="color:#75715e"># 将生成出的站点推向 user.github.io</span>
+      <span style="color:#75715e"># 由于使用了 actions/checkout@v2，所以不再需要设置 github token</span>
+      - <span style="color:#66d9ef">name</span>: publish
+        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          git config --global user.name $USER_NAME</span>
+          git config --global user.email $EMAIL
+          cd $HOME/blog/public
+          git add .
+          git commit -m <span style="color:#e6db74">&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
+          git push <span style="color:#e6db74">&#34;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&#34;</span> master:master
+</code></pre></div><p>附赠本人用于存放 blog 内容仓库的gitignore</p>
+<pre><code class="language-gitignore" data-lang="gitignore">/archetypes/
+/data/
+/layouts/
+/public/
+/resources/
+/static/
+/themes/
+</code></pre>]]></content></item><item><title>SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description><content type="html"><![CDATA[<p>原文： <a href="https://www.superhighway98.com/seo">How SEO Ruined the Internet</a></p>
 <p>翻译：<a href="https://github.com/batkiz">batkiz</a></p>
 <p>译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调整网站，以提高网站在有关搜索引擎内排名的方式。</p>
 <hr>

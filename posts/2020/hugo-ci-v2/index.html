@@ -1,0 +1,91 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/><link rel=canonical href=https://blog.batkiz.com/posts/2020/hugo-ci-v2/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>Hugo 自动化 CI V2 | not b@tk1z</title><meta name=title content="Hugo 自动化 CI V2 | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><link rel=stylesheet href=/css/main.min.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugo 自动化 CI V2"><meta name=twitter:description content="改进了一下自动化发布博客的 CI，代码在下面。 如果想拿去用的话只需要修改 env 下的值就行了。 name: blog on: [push] # 各种信息在此处设置 env: # config.toml 里 theme 的值 THEME_NAME: left # 主题的"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hugo 自动化 CI V2","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/posts\/2020\/hugo-ci-v2\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","wordcount":338,"url":"https:\/\/blog.batkiz.com\/posts\/2020\/hugo-ci-v2\/","datePublished":"2020-04-13T11:19:09\x2b08:00","dateModified":"2020-04-13T11:19:09\x2b08:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":""}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;</div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><div class=container><div class=navbar-header><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;<a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=mobile-menu><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>Hugo 自动化 CI V2</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
+<span class=post-time>on <time datetime=2020-04-13>13 April 2020</time></span></div></header><div class=post-content><p>改进了一下自动化发布博客的 CI，代码在下面。</p><p>如果想拿去用的话只需要修改 env 下的值就行了。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#66d9ef>name</span>: blog
+
+<span style=color:#66d9ef>on</span>: [push]
+
+<span style=color:#75715e># 各种信息在此处设置</span>
+<span style=color:#66d9ef>env</span>:
+  <span style=color:#75715e># config.toml 里 theme 的值</span>
+  <span style=color:#66d9ef>THEME_NAME</span>: left
+  <span style=color:#75715e># 主题的 github 链接</span>
+  <span style=color:#66d9ef>THEME_REPO</span>: https://github.com/batkiz/left.git
+  <span style=color:#75715e># github username</span>
+  <span style=color:#66d9ef>USER_NAME</span>: batkiz
+  <span style=color:#75715e># github email</span>
+  <span style=color:#66d9ef>EMAIL</span>: batkiz@outlook.com
+  <span style=color:#75715e># GitHub token</span>
+  <span style=color:#66d9ef>GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
+
+<span style=color:#66d9ef>jobs</span>:
+  <span style=color:#66d9ef>build</span>:
+    <span style=color:#66d9ef>name</span>: Build
+    <span style=color:#66d9ef>runs-on</span>: ubuntu-latest
+    <span style=color:#66d9ef>steps</span>:
+      <span style=color:#75715e># 获取 repo 内文件</span>
+      - <span style=color:#66d9ef>uses</span>: actions/checkout@v2
+      <span style=color:#75715e># 使用预编译的 Hugo 二进制文件</span>
+      - <span style=color:#66d9ef>name</span>: Setup Hugo
+        <span style=color:#66d9ef>uses</span>: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2.2</span>
+        <span style=color:#66d9ef>with</span>:
+          <span style=color:#66d9ef>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
+          <span style=color:#66d9ef>extended</span>: <span style=color:#66d9ef>true</span>
+
+      <span style=color:#75715e># 新建站点</span>
+      - <span style=color:#66d9ef>name</span>: new site
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          hugo new site $HOME/blog</span>
+
+      <span style=color:#75715e># 获取主题</span>
+      - <span style=color:#66d9ef>name</span>: get theme
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          git clone --depth=1 $THEME_REPO $HOME/blog/themes/$THEME_NAME</span>
+
+      <span style=color:#75715e># 获取 $user.github.io 以保持 commit 记录</span>
+      - <span style=color:#66d9ef>name</span>: get username.github.io
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          git clone --no-checkout https://github.com/$USER_NAME/$USER_NAME.github.io.git $HOME/blog/public</span>
+
+      <span style=color:#75715e># 将内容文件复制进入站点内</span>
+      - <span style=color:#66d9ef>name</span>: copy in
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+          /bin/cp -rf config.toml $HOME/blog/config.toml
+          /bin/cp -rf content/ $HOME/blog/content/
+
+      <span style=color:#75715e># build</span>
+      - <span style=color:#66d9ef>name</span>: build
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          cd $HOME/blog</span>
+          HUGO_ENV=production hugo --gc --minify
+
+      <span style=color:#75715e># 将生成出的站点推向 user.github.io</span>
+      <span style=color:#75715e># 由于使用了 actions/checkout@v2，所以不再需要设置 github token</span>
+      - <span style=color:#66d9ef>name</span>: publish
+        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
+</span><span style=color:#e6db74>          git config --global user.name $USER_NAME</span>
+          git config --global user.email $EMAIL
+          cd $HOME/blog/public
+          git add .
+          git commit -m <span style=color:#e6db74>&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
+          git push <span style=color:#e6db74>&#34;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&#34;</span> master:master
+</code></pre></div><p>附赠本人用于存放 blog 内容仓库的gitignore</p><pre><code class=language-gitignore data-lang=gitignore>/archetypes/
+/data/
+/layouts/
+/public/
+/resources/
+/static/
+/themes/
+</code></pre></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
+<span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
+<span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/ class=prev rel=prev title="SEO 是如何毁掉互联网的"><i class="iconfont icon-dajiantou"></i>&nbsp;SEO 是如何毁掉互联网的</a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2020</span>
+<span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
+<span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=/js/vendor_no_gallery.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript async src="https://lib.baomitu.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({"HTML-CSS":{preferredFont:"TeX",availableFonts:["STIX","TeX"],linebreaks:{automatic:true},EqnChunk:(MathJax.Hub.Browser.isMobile?10:50)},tex2jax:{inlineMath:[["$","$"],["\\(","\\)"]],processEscapes:true,ignoreClass:"tex2jax_ignore|dno",skipTags:['script','noscript','style','textarea','pre','code']},TeX:{noUndefined:{attributes:{mathcolor:"red",mathbackground:"#FFEEEE",mathsize:"90%"}},Macros:{href:"{}"}},messageStyle:"none"});MathJax.Hub.Queue(function(){var all=MathJax.Hub.getAllJax(),i;for(i=0;i<all.length;i+=1){all[i].SourceElement().parentNode.className+=' has-jax';}});</script><style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style><link href=https://lib.baomitu.com/prism/1.17.1/themes/prism-tomorrow.min.css rel=stylesheet><script src=https://lib.baomitu.com/prism/1.17.1/components/prism-core.min.js></script><script src=https://lib.baomitu.com/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://lib.baomitu.com/prism/1.17.1/components/></script></div></body></html>
