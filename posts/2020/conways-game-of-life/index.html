@@ -1,0 +1,336 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/posts/2020/hugo-ci-v2/><link rel=canonical href=https://blog.batkiz.com/posts/2020/conways-game-of-life/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>Conway's Game of Life | not b@tk1z</title><meta name=title content="Conway's Game of Life | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><link rel=stylesheet href=/css/main.min.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Conway's Game of Life"><meta name=twitter:description content="R.I.P John Conway. 由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Conway\x27s Game of Life","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/posts\/2020\/conways-game-of-life\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","wordcount":1871,"url":"https:\/\/blog.batkiz.com\/posts\/2020\/conways-game-of-life\/","datePublished":"2020-04-17T20:55:58\x2b08:00","dateModified":"2020-04-17T20:55:58\x2b08:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":""}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;</div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><div class=container><div class=navbar-header><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-sun"></i></a>&nbsp;<a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=mobile-menu><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>Conway's Game of Life</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
+<span class=post-time>on <time datetime=2020-04-17>17 April 2020</time></span></div></header><div class=post-content><p>R.I.P John Conway.</p><p>由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了出来，在此写一篇文章，就当是为了纪念 Conway 吧。</p><h2 id=题目>题目</h2><p>Given a 2D array and a number of generations, compute n timesteps of <a href=http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life>Conway&rsquo;s Game of Life</a>.</p><p>The rules of the game are:</p><ol><li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li><li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li><li>Any live cell with two or three live neighbours lives on to the next generation.</li><li>Any dead cell with exactly three live neighbours becomes a live cell.</li></ol><p>Each cell&rsquo;s neighborhood is the 8 cells immediately around it (i.e. <a href=https://en.wikipedia.org/wiki/Moore_neighborhood>Moore Neighborhood</a>). The universe is infinite in both the x and y dimensions and all cells are initially dead - except for those specified in the arguments. The return value should be a 2d array cropped around all of the living cells. (If there are no living cells, then return <code>[[]]</code>.)</p><p>题目其实就是生命游戏的定义：</p><p>在一个无限大的棋盘上，我们以 <code>1</code> 代表存活的生命，以 <code>0</code> 代表死去的生命或 <code>无</code>。</p><p>其上的生命遵循上面的四条规则存活、死去、或是产生下一代。</p><h2 id=思路>思路</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] GetGeneration(<span style=color:#66d9ef>int</span>[,] cells, <span style=color:#66d9ef>int</span> generation)
+</code></pre></div><p>可以看到函数接收了二维数组与一个整数，分别代表了其上的生命与要演化的代数。</p><p>首先我们要认识清楚，棋盘的大小是<strong>无限的</strong>，而不仅仅是接收的二维数组的大小。当然，题中也给出了计算邻居的规则，我们在处理时，要将接收到的数组扩大一圈。</p><p>新建一个长宽各自 +2 的矩形，再把目前的矩形放在其正中间，最后返回这个矩形。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] NewBoard(<span style=color:#66d9ef>int</span>[,] cells)
+{
+    <span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+
+    <span style=color:#66d9ef>var</span> newBoard = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hang + <span style=color:#ae81ff>2</span>, lie + <span style=color:#ae81ff>2</span>];
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hang + <span style=color:#ae81ff>2</span>; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lie + <span style=color:#ae81ff>2</span>; j++)
+        {
+            newBoard[i, j] = <span style=color:#ae81ff>0</span>;
+        }
+    }
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>1</span>; i &lt; hang + <span style=color:#ae81ff>1</span>; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>1</span>; j &lt; lie + <span style=color:#ae81ff>1</span>; j++)
+        {
+            newBoard[i, j] = cells[i - <span style=color:#ae81ff>1</span>, j - <span style=color:#ae81ff>1</span>];
+        }
+    }
+
+    <span style=color:#66d9ef>return</span> newBoard;
+}
+</code></pre></div><p>相应的，在返回最终的结果时，棋盘除了有生命存在的一个矩形之外，也要裁剪掉多出的全为 0 的行与列。</p><p>这里是分别从上下、左右遍历了数组，获取了其存在 1 的最外层的坐标，然后把它裁剪了下来，返回了最精简的数组。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] cropped(<span style=color:#66d9ef>int</span>[,] cells)
+{
+    <span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+    <span style=color:#66d9ef>var</span> (hStart, lStart, hEnd, lEnd, hLen, lLen) = (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>);
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hang; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lie; j++)
+        {
+            <span style=color:#66d9ef>if</span> (cells[i, j] != <span style=color:#ae81ff>0</span>)
+            {
+                hStart = i;
+                i = hang;
+                <span style=color:#66d9ef>break</span>;
+            }
+        }
+    }
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = hang - <span style=color:#ae81ff>1</span>; i &gt;= <span style=color:#ae81ff>0</span>; i--)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = lie - <span style=color:#ae81ff>1</span>; j &gt;= <span style=color:#ae81ff>0</span>; j--)
+        {
+            <span style=color:#66d9ef>if</span> (cells[i, j] != <span style=color:#ae81ff>0</span>)
+            {
+                hEnd = i;
+                i = <span style=color:#ae81ff>0</span>;
+                <span style=color:#66d9ef>break</span>;
+            }
+        }
+    }
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; lie; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; hang; j++)
+        {
+            <span style=color:#66d9ef>if</span> (cells[j, i] != <span style=color:#ae81ff>0</span>)
+            {
+                lStart = i;
+                i = lie;
+                <span style=color:#66d9ef>break</span>;
+            }
+        }
+    }
+
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = lie - <span style=color:#ae81ff>1</span>; i &gt;= <span style=color:#ae81ff>0</span>; i--)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = hang - <span style=color:#ae81ff>1</span>; j &gt;= <span style=color:#ae81ff>0</span>; j--)
+        {
+            <span style=color:#66d9ef>if</span> (cells[j, i] != <span style=color:#ae81ff>0</span>)
+            {
+                lEnd = i;
+                i = <span style=color:#ae81ff>0</span>;
+                <span style=color:#66d9ef>break</span>;
+            }
+        }
+    }
+
+    hLen = hEnd - hStart + <span style=color:#ae81ff>1</span>;
+    lLen = lEnd - lStart + <span style=color:#ae81ff>1</span>;
+
+    <span style=color:#66d9ef>var</span> newCell = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hLen, lLen];
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hLen; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lLen; j++)
+        {
+            newCell[i, j] = cells[hStart + i, lStart + j];
+        }
+    }
+
+    <span style=color:#66d9ef>return</span> newCell;
+}
+</code></pre></div><p>确定了最先与最后的步骤，就要处理中间的过程了。</p><p>为了确定某一个坐标下的生物在下一轮中是死是活，只需要获取它有多少存活的邻居，再用给出的四条规则来判定就能得出了。</p><p>首先是获取某一特定坐标的生物有多少活着的邻居，仅需遍历它八个邻居的位置并确定是否存活即可。值得注意的是，对于最外层、邻居不足八个的生物要做特殊的处理，以防数组越界。由于我懒得确定是否越界，就用了一个邪道玩法，如果出现了数组越界的 Exception 就忽略掉它继续访问下一个地址。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> GetLiveNeighbors(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y, <span style=color:#66d9ef>int</span>[,] ceil)
+{
+    <span style=color:#66d9ef>var</span> val = <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>int</span>[] neighbors = { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, -<span style=color:#ae81ff>1</span> };
+
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>3</span>; i++)
+    {
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; <span style=color:#ae81ff>3</span>; j++)
+        {
+            <span style=color:#66d9ef>if</span> (!(neighbors[i] == <span style=color:#ae81ff>0</span> &amp;&amp; neighbors[j] == <span style=color:#ae81ff>0</span>))
+            {
+                <span style=color:#66d9ef>int</span> r = (x + neighbors[i]);
+                <span style=color:#66d9ef>int</span> c = (y + neighbors[j]);
+
+                <span style=color:#66d9ef>try</span>
+                {
+                    <span style=color:#66d9ef>if</span> (ceil[r, c] == <span style=color:#ae81ff>1</span>)
+                    {
+                        val += <span style=color:#ae81ff>1</span>;
+                    }
+                }
+                <span style=color:#66d9ef>catch</span> (System.Exception)
+                {
+                    val += <span style=color:#ae81ff>0</span>;
+                    <span style=color:#66d9ef>continue</span>;
+                }
+            }
+        }
+    }
+
+    <span style=color:#66d9ef>return</span> val;
+}
+</code></pre></div><p>下面则是确定某一坐标下的生物在下一轮中是死是活。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+<span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+<span style=color:#66d9ef>var</span> newGen = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hang + <span style=color:#ae81ff>2</span>, lie + <span style=color:#ae81ff>2</span>];
+<span style=color:#66d9ef>var</span> biggerCells = NewBoard(cells);
+
+<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> x = <span style=color:#ae81ff>0</span>; x &lt; hang + <span style=color:#ae81ff>2</span>; x++)
+{
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> y = <span style=color:#ae81ff>0</span>; y &lt; lie + <span style=color:#ae81ff>2</span>; y++)
+    {
+        <span style=color:#66d9ef>var</span> n = GetLiveNeighbors(x, y, biggerCells);
+        <span style=color:#66d9ef>var</span> c = biggerCells[x, y];
+
+        newGen[x, y] = ((c == <span style=color:#ae81ff>1</span>) &amp;&amp; (n == <span style=color:#ae81ff>2</span> || n == <span style=color:#ae81ff>3</span>) || (c == <span style=color:#ae81ff>0</span>) &amp;&amp; n == <span style=color:#ae81ff>3</span>) ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>;
+    }
+}
+
+<span style=color:#66d9ef>var</span> result = cropped(newGen);
+</code></pre></div><p>至于代数，一个递归就能解决问题了。在此不作赘述。</p><h2 id=完整代码>完整代码</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>using</span> System;
+<span style=color:#66d9ef>using</span> System.Linq;
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ConwayLife</span>
+{
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] GetGeneration(<span style=color:#66d9ef>int</span>[,] cells, <span style=color:#66d9ef>int</span> generation)
+    {
+        <span style=color:#66d9ef>if</span> (generation &lt;= <span style=color:#ae81ff>0</span>)
+        {
+            <span style=color:#66d9ef>return</span> cells;
+        }
+
+        <span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+        <span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+
+        <span style=color:#66d9ef>var</span> newGen = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hang + <span style=color:#ae81ff>2</span>, lie + <span style=color:#ae81ff>2</span>];
+
+        <span style=color:#66d9ef>var</span> biggerCells = NewBoard(cells);
+
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> x = <span style=color:#ae81ff>0</span>; x &lt; hang + <span style=color:#ae81ff>2</span>; x++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> y = <span style=color:#ae81ff>0</span>; y &lt; lie + <span style=color:#ae81ff>2</span>; y++)
+            {
+                <span style=color:#66d9ef>var</span> n = GetLiveNeighbors(x, y, biggerCells);
+                <span style=color:#66d9ef>var</span> c = biggerCells[x, y];
+
+                newGen[x, y] = ((c == <span style=color:#ae81ff>1</span>) &amp;&amp; (n == <span style=color:#ae81ff>2</span> || n == <span style=color:#ae81ff>3</span>) || (c == <span style=color:#ae81ff>0</span>) &amp;&amp; n == <span style=color:#ae81ff>3</span>) ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>;
+            }
+        }
+
+        <span style=color:#66d9ef>var</span> result = cropped(newGen);
+
+        <span style=color:#66d9ef>return</span> GetGeneration(result, generation - <span style=color:#ae81ff>1</span>);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> GetLiveNeighbors(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y, <span style=color:#66d9ef>int</span>[,] ceil)
+    {
+        <span style=color:#66d9ef>var</span> val = <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>int</span>[] neighbors = { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, -<span style=color:#ae81ff>1</span> };
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>3</span>; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; <span style=color:#ae81ff>3</span>; j++)
+            {
+                <span style=color:#66d9ef>if</span> (!(neighbors[i] == <span style=color:#ae81ff>0</span> &amp;&amp; neighbors[j] == <span style=color:#ae81ff>0</span>))
+                {
+                    <span style=color:#66d9ef>int</span> r = (x + neighbors[i]);
+                    <span style=color:#66d9ef>int</span> c = (y + neighbors[j]);
+
+                    <span style=color:#66d9ef>try</span>
+                    {
+                        <span style=color:#66d9ef>if</span> (ceil[r, c] == <span style=color:#ae81ff>1</span>)
+                        {
+                            val += <span style=color:#ae81ff>1</span>;
+                        }
+                    }
+                    <span style=color:#66d9ef>catch</span> (System.Exception)
+                    {
+                        val += <span style=color:#ae81ff>0</span>;
+                        <span style=color:#66d9ef>continue</span>;
+                    }
+                }
+            }
+        }
+
+        <span style=color:#66d9ef>return</span> val;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] cropped(<span style=color:#66d9ef>int</span>[,] cells)
+    {
+        <span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+        <span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+        <span style=color:#66d9ef>var</span> (hStart, lStart, hEnd, lEnd, hLen, lLen) = (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>);
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hang; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lie; j++)
+            {
+                <span style=color:#66d9ef>if</span> (cells[i, j] != <span style=color:#ae81ff>0</span>)
+                {
+                    hStart = i;
+                    i = hang;
+                    <span style=color:#66d9ef>break</span>;
+                }
+            }
+        }
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = hang - <span style=color:#ae81ff>1</span>; i &gt;= <span style=color:#ae81ff>0</span>; i--)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = lie - <span style=color:#ae81ff>1</span>; j &gt;= <span style=color:#ae81ff>0</span>; j--)
+            {
+                <span style=color:#66d9ef>if</span> (cells[i, j] != <span style=color:#ae81ff>0</span>)
+                {
+                    hEnd = i;
+                    i = <span style=color:#ae81ff>0</span>;
+                    <span style=color:#66d9ef>break</span>;
+                }
+            }
+        }
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; lie; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; hang; j++)
+            {
+                <span style=color:#66d9ef>if</span> (cells[j, i] != <span style=color:#ae81ff>0</span>)
+                {
+                    lStart = i;
+                    i = lie;
+                    <span style=color:#66d9ef>break</span>;
+                }
+            }
+        }
+
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = lie - <span style=color:#ae81ff>1</span>; i &gt;= <span style=color:#ae81ff>0</span>; i--)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = hang - <span style=color:#ae81ff>1</span>; j &gt;= <span style=color:#ae81ff>0</span>; j--)
+            {
+                <span style=color:#66d9ef>if</span> (cells[j, i] != <span style=color:#ae81ff>0</span>)
+                {
+                    lEnd = i;
+                    i = <span style=color:#ae81ff>0</span>;
+                    <span style=color:#66d9ef>break</span>;
+                }
+            }
+        }
+
+        hLen = hEnd - hStart + <span style=color:#ae81ff>1</span>;
+        lLen = lEnd - lStart + <span style=color:#ae81ff>1</span>;
+
+        <span style=color:#66d9ef>var</span> newCell = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hLen, lLen];
+
+        Console.WriteLine(<span style=color:#e6db74>$&#34;h {hLen} l {lLen}&#34;</span>);
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hLen; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lLen; j++)
+            {
+                newCell[i, j] = cells[hStart + i, lStart + j];
+            }
+        }
+
+        <span style=color:#66d9ef>return</span> newCell;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span>[,] NewBoard(<span style=color:#66d9ef>int</span>[,] cells)
+    {
+        <span style=color:#66d9ef>var</span> hang = cells.GetLength(<span style=color:#ae81ff>0</span>);
+        <span style=color:#66d9ef>var</span> lie = cells.GetLength(<span style=color:#ae81ff>1</span>);
+
+        <span style=color:#66d9ef>var</span> newBoard = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[hang + <span style=color:#ae81ff>2</span>, lie + <span style=color:#ae81ff>2</span>];
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hang + <span style=color:#ae81ff>2</span>; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; lie + <span style=color:#ae81ff>2</span>; j++)
+            {
+                newBoard[i, j] = <span style=color:#ae81ff>0</span>;
+            }
+        }
+
+        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>1</span>; i &lt; hang + <span style=color:#ae81ff>1</span>; i++)
+        {
+            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>1</span>; j &lt; lie + <span style=color:#ae81ff>1</span>; j++)
+            {
+                newBoard[i, j] = cells[i - <span style=color:#ae81ff>1</span>, j - <span style=color:#ae81ff>1</span>];
+            }
+        }
+
+        <span style=color:#66d9ef>return</span> newBoard;
+    }
+}
+</code></pre></div></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
+<span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
+<span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/hugo-ci-v2/ class=prev rel=prev title="Hugo 自动化 CI V2"><i class="iconfont icon-dajiantou"></i>&nbsp;Hugo 自动化 CI V2</a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2020</span>
+<span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
+<span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=/js/vendor_no_gallery.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript async src="https://lib.baomitu.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({"HTML-CSS":{preferredFont:"TeX",availableFonts:["STIX","TeX"],linebreaks:{automatic:true},EqnChunk:(MathJax.Hub.Browser.isMobile?10:50)},tex2jax:{inlineMath:[["$","$"],["\\(","\\)"]],processEscapes:true,ignoreClass:"tex2jax_ignore|dno",skipTags:['script','noscript','style','textarea','pre','code']},TeX:{noUndefined:{attributes:{mathcolor:"red",mathbackground:"#FFEEEE",mathsize:"90%"}},Macros:{href:"{}"}},messageStyle:"none"});MathJax.Hub.Queue(function(){var all=MathJax.Hub.getAllJax(),i;for(i=0;i<all.length;i+=1){all[i].SourceElement().parentNode.className+=' has-jax';}});</script><style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style><link href=https://lib.baomitu.com/prism/1.17.1/themes/prism-tomorrow.min.css rel=stylesheet><script src=https://lib.baomitu.com/prism/1.17.1/components/prism-core.min.js></script><script src=https://lib.baomitu.com/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://lib.baomitu.com/prism/1.17.1/components/></script></div></body></html>
