@@ -6,7 +6,7 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>一些 powershell 脚本</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2020-05-13>13 May 2020</time></span></div></header><div class=post-content><p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 <a href=https://github.com/batkiz/dotfiles>batkiz/dotfiles</a>。</p><p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p><h2 id=在-pwsh-中使用-wsl-中的-nvim>在 pwsh 中使用 wsl 中的 nvim</h2><p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps1 data-lang=ps1><span style=color:#66d9ef>function</span> dos2nix {
+<span class=post-time>on <time datetime=2020-05-13>13 May 2020</time></span></div></header><div class=post-content><p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 <a href=https://github.com/batkiz/dotfiles>batkiz/dotfiles</a>。</p><p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p><h2 id=在-pwsh-中使用-wsl-中的-nvim>在 pwsh 中使用 wsl 中的 nvim</h2><p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#66d9ef>function</span> dos2nix {
     <span style=color:#66d9ef>param</span>($dosPath)
 
     $path = $dosPath.Replace(<span style=color:#e6db74>&#39;\&#39;</span>, <span style=color:#e6db74>&#39;/&#39;</span>)
@@ -38,7 +38,7 @@
 
     wsl -d debian -e nvim $Path
 }
-</code></pre></div><h2 id=which>which</h2><p>获取某个可执行文件的路径。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps1 data-lang=ps1><span style=color:#66d9ef>function</span> which {
+</code></pre></div><h2 id=which>which</h2><p>获取某个可执行文件的路径。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#66d9ef>function</span> which {
     $results = New-Object System.Collections.Generic.List<span style=color:#66d9ef>[System.Object]</span>;
     <span style=color:#66d9ef>foreach</span> ($command <span style=color:#66d9ef>in</span> $args) {
         $path = (Get-Command $command).Source
@@ -48,14 +48,14 @@
     }
     <span style=color:#66d9ef>return</span> $results;
 }
-</code></pre></div><h2 id=ls>ls</h2><p>*nix 中的 <code>ls</code> 样式，可惜没搞出来着色。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps1 data-lang=ps1><span style=color:#66d9ef>function</span> ListDirectory {
+</code></pre></div><h2 id=ls>ls</h2><p>*nix 中的 <code>ls</code> 样式，可惜没搞出来着色。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#66d9ef>function</span> ListDirectory {
     Get-ChildItem $args | Format-Wide Name -AutoSize
 }
 
 Set-Alias -Name ls -Value ListDirectory
 Set-Alias -Name ll -Value Get-ChildItem
 Set-Alias -Name l -Value Get-ChildItem
-</code></pre></div><p>related: <a href=https://github.com/JRJurman/PowerLS>powerls</a></p><h2 id=nali>nali</h2><p>接收一个域名或 ip（<code>-Query</code>），返回其 ip 和地理位置信息。</p><p>默认是获取本地的 ip 和位置，语言可以切换英文或中文（默认是中文）。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps1 data-lang=ps1><span style=color:#66d9ef>function</span> nali {
+</code></pre></div><p>related: <a href=https://github.com/JRJurman/PowerLS>powerls</a></p><h2 id=nali>nali</h2><p>接收一个域名或 ip（<code>-Query</code>），返回其 ip 和地理位置信息。</p><p>默认是获取本地的 ip 和位置，语言可以切换英文或中文（默认是中文）。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#66d9ef>function</span> nali {
     <span style=color:#66d9ef>param</span> (
         $Query = <span style=color:#e6db74>&#39;&#39;</span>,
         [<span style=color:#66d9ef>Alias</span>(<span style=color:#e6db74>&#39;l&#39;</span>)]
