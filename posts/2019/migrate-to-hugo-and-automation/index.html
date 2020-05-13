@@ -39,7 +39,7 @@
     }
 &lt;/<span style=color:#f92672>style</span>&gt;
 </code></pre></div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p><p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{partial &#34;mathjax.html&#34; .}}
-</code></pre></div><h3 id=frontmatter>frontmatter</h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>tags:
+</code></pre></div><h3 id=frontmatter>frontmatter</h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#66d9ef>tags</span>:
 - hello
 - world
 - etc
@@ -54,62 +54,62 @@
 
 <span style=color:#66d9ef>on</span>: [push]
 
-jobs:
-  build:
+<span style=color:#66d9ef>jobs</span>:
+  <span style=color:#66d9ef>build</span>:
     <span style=color:#66d9ef>name</span>: Build
     <span style=color:#66d9ef>runs-on</span>: ubuntu-latest
-    steps:
-      <span style=color:#75715e># 使用预编译的 Hugo 二进制文件</span>
+    <span style=color:#66d9ef>steps</span>:
+      <span style=color:#75715e># 使用预编译的 Hugo 二进制文件</span>
       - <span style=color:#66d9ef>name</span>: Setup Hugo
         <span style=color:#66d9ef>uses</span>: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2.2</span>
-        with:
+        <span style=color:#66d9ef>with</span>:
           <span style=color:#66d9ef>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
-          <span style=color:#75715e># 使用 Hugo-extended 版本</span>
+          <span style=color:#75715e># 使用 Hugo-extended 版本</span>
           <span style=color:#66d9ef>extended</span>: <span style=color:#66d9ef>true</span>
 
-      <span style=color:#75715e># 新建站点</span>
+      <span style=color:#75715e># 新建站点</span>
       - <span style=color:#66d9ef>name</span>: new site
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          hugo new site $HOME/blog</span>
+</span><span style=color:#e6db74>          hugo new site $HOME/blog</span>
 
-      <span style=color:#75715e># 获取主题</span>
+      <span style=color:#75715e># 获取主题</span>
       - <span style=color:#66d9ef>name</span>: get theme
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
+</span><span style=color:#e6db74>          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
 
-      <span style=color:#75715e># 获取 username.github.io 以保持 commit 记录</span>
+      <span style=color:#75715e># 获取 username.github.io 以保持 commit 记录</span>
       - <span style=color:#66d9ef>name</span>: get username.github.io
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
+</span><span style=color:#e6db74>          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
 
-      <span style=color:#75715e># 获取内容文件</span>
+      <span style=color:#75715e># 获取内容文件</span>
       - <span style=color:#66d9ef>uses</span>: actions/checkout@v1
-        with:
+        <span style=color:#66d9ef>with</span>:
           <span style=color:#66d9ef>fetch-depth</span>: <span style=color:#ae81ff>1</span>
 
-      <span style=color:#75715e># 将内容文件复制进入站点内</span>
+      <span style=color:#75715e># 将内容文件复制进入站点内</span>
       - <span style=color:#66d9ef>name</span>: copy in
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+</span><span style=color:#e6db74>          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
-      <span style=color:#75715e># build</span>
+      <span style=color:#75715e># build</span>
       - <span style=color:#66d9ef>name</span>: build
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          cd $HOME/blog</span>
+</span><span style=color:#e6db74>          cd $HOME/blog</span>
           HUGO_ENV=production hugo --gc --minify
 
-      <span style=color:#75715e># 将生成出的站点推向 username.github.io</span>
+      <span style=color:#75715e># 将生成出的站点推向 username.github.io</span>
       - <span style=color:#66d9ef>name</span>: publish
-        env:
+        <span style=color:#66d9ef>env</span>:
           <span style=color:#66d9ef>USER</span>: batkiz
           <span style=color:#66d9ef>EMAIL</span>: batkiz@outlook.com
           <span style=color:#66d9ef>GH_REF</span>: github.com/batkiz/batkiz.github.io.git
-          <span style=color:#75715e># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
+          <span style=color:#75715e># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
           <span style=color:#66d9ef>GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
         <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          cd $HOME/blog/public</span>
+</span><span style=color:#e6db74>          cd $HOME/blog/public</span>
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .

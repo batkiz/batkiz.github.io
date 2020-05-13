@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>Conway's Game of Life</title><link>https://blog.batkiz.com/posts/2020/conways-game-of-life/</link><pubDate>Fri, 17 Apr 2020 20:55:58 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/conways-game-of-life/</guid><description>R.I.P John Conway. 由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了</description><content type="html"><![CDATA[<p>R.I.P John Conway.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2019 15:47:30 +0800</lastBuildDate><item><title>一些 powershell 脚本</title><link>https://blog.batkiz.com/posts/2020/some-pwsh-scripts/</link><pubDate>Wed, 13 May 2020 21:34:09 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/some-pwsh-scripts/</guid><description>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 batkiz/dotfiles。 由于主要是为了满足个人使用，所以没怎么做错误处理之类的。 在 pwsh 中</description><content type="html"><![CDATA[<p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 <a href="https://github.com/batkiz/dotfiles">batkiz/dotfiles</a>。</p>
+<p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p>
+<h2 id="在-pwsh-中使用-wsl-中的-nvim">在 pwsh 中使用 wsl 中的 nvim</h2>
+<p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#66d9ef">function</span> dos2nix {
+    <span style="color:#66d9ef">param</span>($dosPath)
+
+    $path = $dosPath.Replace(<span style="color:#e6db74">&#39;\&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>)
+
+    <span style="color:#66d9ef">if</span> ($path <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#39;[a-zA-Z]:.*&#39;</span>) {
+        $drive = $path.split(<span style="color:#e6db74">&#39;:&#39;</span>)[0].ToLower()
+        $filePath = $path.split(<span style="color:#e6db74">&#39;:&#39;</span>)[1]
+
+        $nixPath = <span style="color:#e6db74">&#39;/mnt/&#39;</span> + $drive + $filePath
+    }
+    <span style="color:#66d9ef">else</span> {
+        $nixPath = $path
+    }
+
+    $nixPath
+}
+
+<span style="color:#66d9ef">function</span> vim {
+    <span style="color:#66d9ef">param</span> (
+        $Path = <span style="color:#e6db74">&#39;.&#39;</span>
+    )
+
+    <span style="color:#66d9ef">if</span> ($Path <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;.&#39;</span>) {
+        $Path = <span style="color:#e6db74">&#39;.&#39;</span>
+    }
+    <span style="color:#66d9ef">else</span> {
+        $Path = dos2nix -dosPath $Path
+    }
+
+    wsl -d debian -e nvim $Path
+}
+</code></pre></div><h2 id="which">which</h2>
+<p>获取某个可执行文件的路径。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#66d9ef">function</span> which {
+    $results = New-Object System.Collections.Generic.List<span style="color:#66d9ef">[System.Object]</span>;
+    <span style="color:#66d9ef">foreach</span> ($command <span style="color:#66d9ef">in</span> $args) {
+        $path = (Get-Command $command).Source
+        <span style="color:#66d9ef">if</span> ($path) {
+            $results.Add($path);
+        }
+    }
+    <span style="color:#66d9ef">return</span> $results;
+}
+</code></pre></div><h2 id="ls">ls</h2>
+<p>*nix 中的 <code>ls</code> 样式，可惜没搞出来着色。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#66d9ef">function</span> ListDirectory {
+    Get-ChildItem $args | Format-Wide Name -AutoSize
+}
+
+Set-Alias -Name ls -Value ListDirectory
+Set-Alias -Name ll -Value Get-ChildItem
+Set-Alias -Name l -Value Get-ChildItem
+</code></pre></div><p>related: <a href="https://github.com/JRJurman/PowerLS">powerls</a></p>
+<h2 id="nali">nali</h2>
+<p>接收一个域名或 ip（<code>-Query</code>），返回其 ip 和地理位置信息。</p>
+<p>默认是获取本地的 ip 和位置，语言可以切换英文或中文（默认是中文）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#66d9ef">function</span> nali {
+    <span style="color:#66d9ef">param</span> (
+        $Query = <span style="color:#e6db74">&#39;&#39;</span>,
+        [<span style="color:#66d9ef">Alias</span>(<span style="color:#e6db74">&#39;l&#39;</span>)]
+        $Lang = <span style="color:#e6db74">&#39;zh&#39;</span>
+    )
+
+    <span style="color:#66d9ef">if</span> ($Lang.ToLower() <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;en&#39;</span> ) {
+        $Lang = <span style="color:#e6db74">&#39;en&#39;</span>
+    }
+    <span style="color:#66d9ef">else</span> {
+        $Lang = <span style="color:#e6db74">&#39;zh-CN&#39;</span>
+    }
+
+    $ApiUrl = <span style="color:#e6db74">&#34;http://ip-api.com/json/{0}?lang={1}&#34;</span> <span style="color:#f92672">-f</span> $Query, $Lang
+
+    $info = (Invoke-WebRequest $ApiUrl).Content | ConvertFrom-Json
+
+    $printInfo = <span style="color:#e6db74">&#34;{0}</span><span style="color:#ae81ff">`t</span><span style="color:#e6db74">[{1} @ {2}, {3}]&#34;</span> <span style="color:#f92672">-f</span> $info.query, $info.isp, $info.city, $info.country
+
+    $printInfo
+}
+</code></pre></div><p>related: <a href="https://github.com/batkiz/nali-go">batkiz/nali-go</a></p>
+]]></content></item><item><title>Conway's Game of Life</title><link>https://blog.batkiz.com/posts/2020/conways-game-of-life/</link><pubDate>Fri, 17 Apr 2020 20:55:58 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/conways-game-of-life/</guid><description>R.I.P John Conway. 由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了</description><content type="html"><![CDATA[<p>R.I.P John Conway.</p>
 <p>由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了出来，在此写一篇文章，就当是为了纪念 Conway 吧。</p>
 <h2 id="题目">题目</h2>
 <p>Given a 2D array and a number of generations, compute n timesteps of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway&rsquo;s Game of Life</a>.</p>
@@ -673,7 +757,7 @@
 </code></pre></div><h3 id="frontmatter">frontmatter</h3>
 <p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p>
 <p>Hugo 中的 tags 的形式应为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">tags:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">tags</span>:
 - hello
 - world
 - etc
@@ -705,62 +789,62 @@
 
 <span style="color:#66d9ef">on</span>: [push]
 
-jobs:
-  build:
+<span style="color:#66d9ef">jobs</span>:
+  <span style="color:#66d9ef">build</span>:
     <span style="color:#66d9ef">name</span>: Build
     <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
-    steps:
-      <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
+    <span style="color:#66d9ef">steps</span>:
+      <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
       - <span style="color:#66d9ef">name</span>: Setup Hugo
         <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2.2</span>
-        with:
+        <span style="color:#66d9ef">with</span>:
           <span style="color:#66d9ef">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
-          <span style="color:#75715e"># 使用 Hugo-extended 版本</span>
+          <span style="color:#75715e"># 使用 Hugo-extended 版本</span>
           <span style="color:#66d9ef">extended</span>: <span style="color:#66d9ef">true</span>
 
-      <span style="color:#75715e"># 新建站点</span>
+      <span style="color:#75715e"># 新建站点</span>
       - <span style="color:#66d9ef">name</span>: new site
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
+</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
 
-      <span style="color:#75715e"># 获取主题</span>
+      <span style="color:#75715e"># 获取主题</span>
       - <span style="color:#66d9ef">name</span>: get theme
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
+</span><span style="color:#e6db74">          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
 
-      <span style="color:#75715e"># 获取 username.github.io 以保持 commit 记录</span>
+      <span style="color:#75715e"># 获取 username.github.io 以保持 commit 记录</span>
       - <span style="color:#66d9ef">name</span>: get username.github.io
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
+</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
 
-      <span style="color:#75715e"># 获取内容文件</span>
+      <span style="color:#75715e"># 获取内容文件</span>
       - <span style="color:#66d9ef">uses</span>: actions/checkout@v1
-        with:
+        <span style="color:#66d9ef">with</span>:
           <span style="color:#66d9ef">fetch-depth</span>: <span style="color:#ae81ff">1</span>
 
-      <span style="color:#75715e"># 将内容文件复制进入站点内</span>
+      <span style="color:#75715e"># 将内容文件复制进入站点内</span>
       - <span style="color:#66d9ef">name</span>: copy in
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
-      <span style="color:#75715e"># build</span>
+      <span style="color:#75715e"># build</span>
       - <span style="color:#66d9ef">name</span>: build
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          cd $HOME/blog</span>
+</span><span style="color:#e6db74">          cd $HOME/blog</span>
           HUGO_ENV=production hugo --gc --minify
 
-      <span style="color:#75715e"># 将生成出的站点推向 username.github.io</span>
+      <span style="color:#75715e"># 将生成出的站点推向 username.github.io</span>
       - <span style="color:#66d9ef">name</span>: publish
-        env:
+        <span style="color:#66d9ef">env</span>:
           <span style="color:#66d9ef">USER</span>: batkiz
           <span style="color:#66d9ef">EMAIL</span>: batkiz@outlook.com
           <span style="color:#66d9ef">GH_REF</span>: github.com/batkiz/batkiz.github.io.git
-          <span style="color:#75715e"># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
+          <span style="color:#75715e"># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
           <span style="color:#66d9ef">GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
         <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          cd $HOME/blog/public</span>
+</span><span style="color:#e6db74">          cd $HOME/blog/public</span>
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
@@ -803,7 +887,7 @@ jobs:
 <h2 id="使用">使用</h2>
 <p>于任意路径新建 <code>tmp</code> 文件夹，使用 VS Code 打开。</p>
 <p>新建 <code>hello.c</code> 文件，并写入下列内容</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
@@ -1178,7 +1262,7 @@ zip -m $name flag
 <p>贪吃蛇，玩到 70 分就出 flag</p>
 <h3 id="sstas-python-教室">ssta&rsquo;s Python 教室</h3>
 <p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># encoding: utf-8</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># encoding: utf-8</span>
 
 <span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32encode
 <span style="color:#f92672">import</span> codecs
@@ -1188,7 +1272,7 @@ zip -m $name flag
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rot13</span>(s):
     <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>encode(s, <span style="color:#e6db74">&#39;rot13&#39;</span>)
-    <span style="color:#75715e"># return s.encode(&#39;rot13&#39;)</span>
+    <span style="color:#75715e"># return s.encode(&#39;rot13&#39;)</span>
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse</span>(s):
     <span style="color:#66d9ef">return</span> s[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
@@ -1208,7 +1292,7 @@ zip -m $name flag
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;FLAG is right here. Can you get it?&#39;</span>, ffllaagg)
 </code></pre></div><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
 自己写的不完善的脚本如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
 <span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32decode
 <span style="color:#f92672">import</span> codecs
 
@@ -1889,10 +1973,10 @@ npm install
 <li>由于我们使用的是GitHub的服务，因此<code>url</code>项应该是<code>https://username.github.io</code>，<code>username</code>是你自己的GitHub用户名，需要注意的是<strong><code>https</code></strong>。</li>
 <li><code>deploy</code>项应形如</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">deploy:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">deploy</span>:
   <span style="color:#66d9ef">type</span>: git
   <span style="color:#66d9ef">repo</span>: &lt;git-source<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">  branch: master</span>
+</span><span style="color:#e6db74">  branch: master</span>
 </code></pre></div><ul>
 <li><code>repo</code>项可以用ssh或者https，视个人情况而定</li>
 </ul>
@@ -2154,8 +2238,8 @@ telegram的第三方客户端，1520上在用，电脑上没怎么用</p>
           <span style="color:#e6db74">`</span>:o+++ <span style="color:#e6db74">`</span>ohhhhhhhhyo++os:
             .o:<span style="color:#e6db74">`</span>.syhhhhhhh/.oo++o<span style="color:#e6db74">`</span>
                 /osyyyyyyo++ooo+++/
-                    <span style="color:#e6db74">`````</span> +oo+++o<span style="color:#ae81ff">\</span>
-                           <span style="color:#e6db74">`</span>oo++.
+                    <span style="color:#e6db74">`````</span> +oo+++o<span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                           <span style="color:#e6db74">`</span>oo++.
 </code></pre></div><h3 id="git">Git</h3>
 <p>版本控制~</p>
 <h3 id="sourcetree">SourceTree</h3>

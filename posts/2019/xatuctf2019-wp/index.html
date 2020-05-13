@@ -74,7 +74,7 @@ zip -m $name flag
     <span style=color:#66d9ef>return</span> fib_k<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> fib_k_1<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#66d9ef>if</span> n <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> (<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> fib_k_1 <span style=color:#f92672>+</span> fib_k) <span style=color:#f92672>*</span> fib_k
 
 <span style=color:#66d9ef>print</span>(hex(Fibonacci_recursion_fast(<span style=color:#ae81ff>1234</span>)))
-</code></pre></div><p>md5 一下，再转小写提交。</p><h2 id=reverse>REVERSE</h2><h3 id=snake>Snake</h3><p>贪吃蛇，玩到 70 分就出 flag</p><h3 id=sstas-python-教室>ssta&rsquo;s Python 教室</h3><p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># encoding: utf-8</span>
+</code></pre></div><p>md5 一下，再转小写提交。</p><h2 id=reverse>REVERSE</h2><h3 id=snake>Snake</h3><p>贪吃蛇，玩到 70 分就出 flag</p><h3 id=sstas-python-教室>ssta&rsquo;s Python 教室</h3><p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># encoding: utf-8</span>
 
 <span style=color:#f92672>from</span> base64 <span style=color:#f92672>import</span> b32encode
 <span style=color:#f92672>import</span> codecs
@@ -84,7 +84,7 @@ zip -m $name flag
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>rot13</span>(s):
     <span style=color:#66d9ef>return</span> codecs<span style=color:#f92672>.</span>encode(s, <span style=color:#e6db74>&#39;rot13&#39;</span>)
-    <span style=color:#75715e># return s.encode(&#39;rot13&#39;)</span>
+    <span style=color:#75715e># return s.encode(&#39;rot13&#39;)</span>
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>reverse</span>(s):
     <span style=color:#66d9ef>return</span> s[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
@@ -103,7 +103,7 @@ zip -m $name flag
     ffllaagg <span style=color:#f92672>=</span> main()
     <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#39;FLAG is right here. Can you get it?&#39;</span>, ffllaagg)
 </code></pre></div><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
-自己写的不完善的脚本如下</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># -*- encoding: utf-8 -*-</span>
+自己写的不完善的脚本如下</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># -*- encoding: utf-8 -*-</span>
 <span style=color:#f92672>from</span> base64 <span style=color:#f92672>import</span> b32decode
 <span style=color:#f92672>import</span> codecs
 
