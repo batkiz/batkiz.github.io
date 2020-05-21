@@ -15,7 +15,7 @@
 <p>当一个 bucket 只有 20 个软件时（指我的 backit），维护者完全有精力隔三岔五地看一眼整个的 checkver 的 log，但当一个 bucket 有 200 个时，就完全不一样了。就比如现在的 main bucket 经常会出现更新滞后的情况，毕竟更新脚本跑起来也是需要时间的。（有兴趣的可以比较一下 <a href="https://github.com/batkiz/backit">batkiz/backit</a> 与 <a href="https://github.com/ScoopInstaller/Main">ScoopInstaller/Main</a> 里 ffsend 的更新时间。）</p>
 <h3 id="功能停滞">功能停滞</h3>
 <p>人手过少带来的另一个问题就是 scoop 本身的功能更新几乎停滞，今年以来在 master 分支上仅仅有两个 commit<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>，几近停滞。新功能的添加也是如此，一个仅 download 的命令<a href="https://github.com/lukesampson/scoop/issues/1804">早在 2017 年就被 issue 提出</a>，而在 2019/12/06 的 PR 为 scoop 添加了此功能，一直未被合并，今年 5 月又被离奇关闭<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>。让人不得不担心 scoop 项目的发展。</p>
-<h2 id="没有明确的-roadmap">没有明确的 roadmap</h2>
+<h3 id="没有明确的-roadmap">没有明确的 roadmap</h3>
 <p>scoop 项目至今已经发展了 7 年，却仍没有一个明确的 roadmap，功能的更新也毫无规划。官方的几位开发者除了偶尔对 scoop 进行更新外，每天在忙的就是处理 bucket 里的各种 issue，审批望不到尽头的 PR。</p>
 <h3 id="shim-带来的问题">shim 带来的问题</h3>
 <p>scoop 的一个功能特性就是防止 <em>Path pollution from installing lots of programs</em><sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>，由于 windows 上并没有像 *nix 上一样强大的链接，这一点是靠所谓的 <em>shim</em> 实现的。shim 的作用基本就是对 example 生成一个非常小的 example.exe，读取 example.shim 内指定的源 example.exe 路径，（传递命令行参数并）将其启动。</p>
