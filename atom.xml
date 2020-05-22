@@ -938,11 +938,12 @@ Set-Alias -Name l -Value Get-ChildItem
 <p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p>
 <p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p>
 <p>see you later.</p>
-]]></content></item><item><title>关于</title><link>https://blog.batkiz.com/about/</link><pubDate>Sun, 20 Oct 2019 15:47:30 +0800</pubDate><guid>https://blog.batkiz.com/about/</guid><description>一帘新语随风去，半山明月踏江来。 about batkiz, 人造电子小猫咪。 会在 batkizc@telegram 碎碎念。 contact 由于对目前 GitHub pages 的几种评论系统都不太满意，故即日起（2019/10/7）关</description><content type="html"><![CDATA[<blockquote>
+]]></content></item><item><title>关于</title><link>https://blog.batkiz.com/about/</link><pubDate>Sun, 20 Oct 2019 15:47:30 +0800</pubDate><guid>https://blog.batkiz.com/about/</guid><description>一帘新语随风去，半山明月踏江来。 about batkiz, 人造电子小猫咪。 A full-stack bug maker, Google &amp;amp; StackOverflow powered wizard. 会在 batkizc@telegram 碎碎念。 contact 由于对目前 GitHub pages 的几种评论系统都不太满意，故即日起（20</description><content type="html"><![CDATA[<blockquote>
 <p>一帘新语随风去，半山明月踏江来。</p>
 </blockquote>
 <h2 id="about">about</h2>
 <p><em>batkiz</em>, 人造电子小猫咪。</p>
+<p>A full-stack bug maker, Google &amp; StackOverflow powered wizard.</p>
 <p>会在 <a href="https://t.me/batkizc">batkizc@telegram</a> 碎碎念。</p>
 <h2 id="contact">contact</h2>
 <p>由于对目前 GitHub pages 的几种评论系统都不太满意，故即日起（2019/10/7）关闭博客的评论系统，择日再开。</p>
