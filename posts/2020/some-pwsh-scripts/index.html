@@ -5,7 +5,7 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>一些 powershell 脚本</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2020-05-13>2020-05-13</time></span></div></header><div class=post-content><p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 <a href=https://github.com/batkiz/dotfiles>batkiz/dotfiles</a>。</p><p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p><h2 id=在-pwsh-中使用-wsl-中的-nvim>在 pwsh 中使用 wsl 中的 nvim<a href=#在-pwsh-中使用-wsl-中的-nvim class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p><pre><code class=language-powershell>function dos2nix {
+<span class=post-time>on <time datetime="May 13, 2020">May 13, 2020</time></span></div></header><div class=post-content><p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 <a href=https://github.com/batkiz/dotfiles>batkiz/dotfiles</a>。</p><p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p><h2 id=在-pwsh-中使用-wsl-中的-nvim>在 pwsh 中使用 wsl 中的 nvim<a href=#在-pwsh-中使用-wsl-中的-nvim class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p><pre><code class=language-powershell>function dos2nix {
     param($dosPath)
 
     $path = $dosPath.Replace('\', '/')
@@ -78,7 +78,7 @@ Set-Alias -Name l -Value Get-ChildItem
 }
 </code></pre><p>related: <a href=https://github.com/batkiz/nali-go>batkiz/nali-go</a></p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
 <span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
-<span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
+<span>如无特殊声明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
 <span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/conways-game-of-life/ class=prev rel=prev title="Conway's Game of Life"><i class="iconfont icon-dajiantou"></i>&nbsp;Conway's Game of Life</a>
 <a href=https://blog.batkiz.com/posts/2020/talk-about-scoop/ class=next rel=next title="在 winget 到来之际，再谈谈 scoop">在 winget 到来之际，再谈谈 scoop&nbsp;<i class="iconfont icon-xiaojiantou"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2017 - 2020</span>
