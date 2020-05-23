@@ -5,63 +5,63 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>初探 Scoop</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2018-12-31>2018-12-31</time></span></div></header><div class=post-content><h2 id=缘起>缘起<a href=#缘起 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Linux 用的多了，不免会觉得有一个靠谱好用的包管理器是一件令人身心愉悦的事。许多人也便顺理成章地想要在 Windows 系统上来一个包管理器。</p><p>只是一方面微软已然在大力推介其 Microsoft Store，另一方面命令行形式的包管理器对于大多数人也是极为不友好的。如此这般，一个官方的包管理器自然无望。</p><p>好在开源社区里从来不缺人造轮子。于是我们现在有了两个选择：<a href=https://chocolatey.org>Chocolatey</a> 与 <a href=https://scoop.sh>Scoop</a>，一个 <em>package manager</em> ，一个 <em>command-line installer</em> 。</p><p>既然本文标题为 scoop，那么显然 choco 已不是我们主要要讨论的了，至于最初我为什么选择了 scoop 而非 Choco，原因早已不记得了。或许是因为 choco 分为开源版与商业版，抑或是我尚未真正想要使用 Windows 上的“包管理器”来管理我的所有软件——虽然我不必与各种流氓软件斗智斗勇，但我还是非常享受各种软件的安装过程中的自定义，<code>Add to PATH</code>, <code>添加到右键菜单</code>。当然，最主要的原因还是 Windows 并没有一个统一的命令行形式的安装软件接口，因此对于普通的软件，还是要无止境地 next——这又和不用包管理器又有什么区别呢？</p><p>让我们把视线转到 Linux 平台，apt 等包管理器自动进行了软件的依赖分析与解压、配置的过程。Windows 系统之上与之理念相似的便是所谓“绿色软件”——解压即可使用。这也正是 scoop 所做的，利用所写的 mainfest，将解压、配置环境变量等自动化处理。另一方面，Windows 之上大多数软件并无所谓依赖的东西，最多便是一个 VC runtime，这也使得 scoop 的工作量更少了。</p><h2 id=使用>使用<a href=#使用 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Scoop 默认是安装在你的用户文件夹下的，这样自然有着许多好处，例如不需要管理员权限。但如果你想要将其改变，可以在安装之前更改掉 scoop path</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#66d9ef>[environment]</span>::setEnvironmentVariable(<span style=color:#e6db74>&#39;SCOOP&#39;</span>,<span style=color:#e6db74>&#39;C:\soft\Scoop&#39;</span>,<span style=color:#e6db74>&#39;User&#39;</span>)
-$env:SCOOP=<span style=color:#e6db74>&#39;C:\soft\Scoop&#39;</span>
-</code></pre></div><p>其中的 <code>C:\soft\Scoop</code> 自然可以换成你想要的路径。
-而后便是执行官网之上的那一行命令</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>iex (new-object net.webclient).downloadstring(<span style=color:#e6db74>&#39;https://get.scoop.sh&#39;</span>)
-</code></pre></div><p>——若是报错，便将 execution policy 更改一下</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-</code></pre></div><p>而后再添加上 extras, versions 之类的 bucket，便可愉快的使用了。</p><p>个人推荐先</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps data-lang=ps><span style=color:#a6e22e>scoop</span> <span style=color:#a6e22e>install</span> <span style=color:#a6e22e>sudo</span> <span style=color:#a6e22e>7zip</span> <span style=color:#a6e22e>aria2</span>
-</code></pre></div><p>来获得更好的体验。</p><p>其后的使用无非便是 <code>scoop help</code> 中所列举的东西了</p><h2 id=mainfest>mainfest<a href=#mainfest class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>经过一段时间的使用后，你可能会想要将自己在用的许多软件迁移到 scoop 中，但问题也随之而来。</p><p>Scoop 的用户群体并不算是很大，因此许多软件并不会官方提供 <code>scoop install</code> 这样的安装方式。</p><p>放弃自然也是不行的，那么不如自己动手丰衣足食，来自己写一个 mainfest 吧！</p><p>Scoop 的 mainfest 是一个 json 文件，好处很明显，这样一来其应用描述非常简洁。但坏处也肯定是有的，比如说，不支持注释。好在还有着官方的文档供我们查阅。</p><p>下面是一份我写的 mainfest，附上注释，希望能给人点方便。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-    <span style=color:#f92672>&#34;homepage&#34;</span>: <span style=color:#e6db74>&#34;https://oldj.github.io/SwitchHosts/&#34;</span>,
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>此处为软件主页</span>
-    <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;3.3.12.5349&#34;</span>,
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>版本号</span>
-    <span style=color:#f92672>&#34;license&#34;</span>: <span style=color:#e6db74>&#34;MIT&#34;</span>,
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>软件所使用的协议</span>
-    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;SwitchHosts! is an App for hosts management &amp; switching.&#34;</span>,
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>对软件的描述信息</span>
-    <span style=color:#f92672>&#34;architecture&#34;</span>: {
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>对于分架构进行分发的软件，可以以</span> <span style=color:#960050;background-color:#1e0010>architecture</span> <span style=color:#960050;background-color:#1e0010>对其区分，如果并不分架构，可直接</span> <span style=color:#960050;background-color:#1e0010>url</span> <span style=color:#960050;background-color:#1e0010>&amp;</span> <span style=color:#960050;background-color:#1e0010>hash</span>
-        <span style=color:#f92672>&#34;64bit&#34;</span>: {
-            <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-x64_v3.3.12.5349.zip&#34;</span>,
-            <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>软件包下载链接</span>
-            <span style=color:#f92672>&#34;hash&#34;</span>: <span style=color:#e6db74>&#34;037fbc3b7bba4c9f43e105f00f68733397c1b3099e52eb57308a6659482d3fd0&#34;</span>,
-            <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>文件的</span> <span style=color:#960050;background-color:#1e0010>hash</span> <span style=color:#960050;background-color:#1e0010>值，可通过</span> <span style=color:#960050;background-color:#1e0010>Get-FileHash/sha256sum</span> <span style=color:#960050;background-color:#1e0010>来获得</span>
-            <span style=color:#f92672>&#34;extract_dir&#34;</span>: <span style=color:#e6db74>&#34;SwitchHosts!-win32-x64&#34;</span>
-            <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>解压的文件夹，指程序压缩包内的文件夹</span>
+<span class=post-time>on <time datetime=2018-12-31>2018-12-31</time></span></div></header><div class=post-content><h2 id=缘起>缘起<a href=#缘起 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Linux 用的多了，不免会觉得有一个靠谱好用的包管理器是一件令人身心愉悦的事。许多人也便顺理成章地想要在 Windows 系统上来一个包管理器。</p><p>只是一方面微软已然在大力推介其 Microsoft Store，另一方面命令行形式的包管理器对于大多数人也是极为不友好的。如此这般，一个官方的包管理器自然无望。</p><p>好在开源社区里从来不缺人造轮子。于是我们现在有了两个选择：<a href=https://chocolatey.org>Chocolatey</a> 与 <a href=https://scoop.sh>Scoop</a>，一个 <em>package manager</em> ，一个 <em>command-line installer</em> 。</p><p>既然本文标题为 scoop，那么显然 choco 已不是我们主要要讨论的了，至于最初我为什么选择了 scoop 而非 Choco，原因早已不记得了。或许是因为 choco 分为开源版与商业版，抑或是我尚未真正想要使用 Windows 上的“包管理器”来管理我的所有软件——虽然我不必与各种流氓软件斗智斗勇，但我还是非常享受各种软件的安装过程中的自定义，<code>Add to PATH</code>, <code>添加到右键菜单</code>。当然，最主要的原因还是 Windows 并没有一个统一的命令行形式的安装软件接口，因此对于普通的软件，还是要无止境地 next——这又和不用包管理器又有什么区别呢？</p><p>让我们把视线转到 Linux 平台，apt 等包管理器自动进行了软件的依赖分析与解压、配置的过程。Windows 系统之上与之理念相似的便是所谓“绿色软件”——解压即可使用。这也正是 scoop 所做的，利用所写的 mainfest，将解压、配置环境变量等自动化处理。另一方面，Windows 之上大多数软件并无所谓依赖的东西，最多便是一个 VC runtime，这也使得 scoop 的工作量更少了。</p><h2 id=使用>使用<a href=#使用 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Scoop 默认是安装在你的用户文件夹下的，这样自然有着许多好处，例如不需要管理员权限。但如果你想要将其改变，可以在安装之前更改掉 scoop path</p><pre><code class=language-powershell>[environment]::setEnvironmentVariable('SCOOP','C:\soft\Scoop','User')
+$env:SCOOP='C:\soft\Scoop'
+</code></pre><p>其中的 <code>C:\soft\Scoop</code> 自然可以换成你想要的路径。
+而后便是执行官网之上的那一行命令</p><pre><code class=language-powershell>iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+</code></pre><p>——若是报错，便将 execution policy 更改一下</p><pre><code class=language-powershell>Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+</code></pre><p>而后再添加上 extras, versions 之类的 bucket，便可愉快的使用了。</p><p>个人推荐先</p><pre><code class=language-ps>scoop install sudo 7zip aria2
+</code></pre><p>来获得更好的体验。</p><p>其后的使用无非便是 <code>scoop help</code> 中所列举的东西了</p><h2 id=mainfest>mainfest<a href=#mainfest class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>经过一段时间的使用后，你可能会想要将自己在用的许多软件迁移到 scoop 中，但问题也随之而来。</p><p>Scoop 的用户群体并不算是很大，因此许多软件并不会官方提供 <code>scoop install</code> 这样的安装方式。</p><p>放弃自然也是不行的，那么不如自己动手丰衣足食，来自己写一个 mainfest 吧！</p><p>Scoop 的 mainfest 是一个 json 文件，好处很明显，这样一来其应用描述非常简洁。但坏处也肯定是有的，比如说，不支持注释。好在还有着官方的文档供我们查阅。</p><p>下面是一份我写的 mainfest，附上注释，希望能给人点方便。</p><pre><code class=language-json>{
+    &quot;homepage&quot;: &quot;https://oldj.github.io/SwitchHosts/&quot;,
+    // 此处为软件主页
+    &quot;version&quot;: &quot;3.3.12.5349&quot;,
+    // 版本号
+    &quot;license&quot;: &quot;MIT&quot;,
+    // 软件所使用的协议
+    &quot;description&quot;: &quot;SwitchHosts! is an App for hosts management &amp; switching.&quot;,
+    // 对软件的描述信息
+    &quot;architecture&quot;: {
+    // 对于分架构进行分发的软件，可以以 architecture 对其区分，如果并不分架构，可直接 url &amp; hash
+        &quot;64bit&quot;: {
+            &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-x64_v3.3.12.5349.zip&quot;,
+            // 软件包下载链接
+            &quot;hash&quot;: &quot;037fbc3b7bba4c9f43e105f00f68733397c1b3099e52eb57308a6659482d3fd0&quot;,
+            // 文件的 hash 值，可通过 Get-FileHash/sha256sum 来获得
+            &quot;extract_dir&quot;: &quot;SwitchHosts!-win32-x64&quot;
+            // 解压的文件夹，指程序压缩包内的文件夹
         },
-        <span style=color:#f92672>&#34;32bit&#34;</span>: {
-            <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-ia32_v3.3.12.5349.zip&#34;</span>,
-            <span style=color:#f92672>&#34;hash&#34;</span>: <span style=color:#e6db74>&#34;41e7a2a0cf8261a3fcccfce4cd8d8efc893f3f472dcccd8c3e76623e19f5cf5d&#34;</span>,
-            <span style=color:#f92672>&#34;extract_dir&#34;</span>: <span style=color:#e6db74>&#34;SwitchHosts!-win32-ia32&#34;</span>
+        &quot;32bit&quot;: {
+            &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v3.3.12/SwitchHosts-win32-ia32_v3.3.12.5349.zip&quot;,
+            &quot;hash&quot;: &quot;41e7a2a0cf8261a3fcccfce4cd8d8efc893f3f472dcccd8c3e76623e19f5cf5d&quot;,
+            &quot;extract_dir&quot;: &quot;SwitchHosts!-win32-ia32&quot;
         }
     },
-    <span style=color:#f92672>&#34;bin&#34;</span>: <span style=color:#e6db74>&#34;SwitchHosts!.exe&#34;</span>,
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>可执行文件</span>
-    <span style=color:#f92672>&#34;shortcuts&#34;</span>: [
+    &quot;bin&quot;: &quot;SwitchHosts!.exe&quot;,
+    // 可执行文件
+    &quot;shortcuts&quot;: [
         [
-            <span style=color:#e6db74>&#34;SwitchHosts!.exe&#34;</span>,
-            <span style=color:#e6db74>&#34;SwitchHosts!&#34;</span>
+            &quot;SwitchHosts!.exe&quot;,
+            &quot;SwitchHosts!&quot;
         ]
     ],
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>此处为将其快捷方式加入开始菜单的配置</span>
-    <span style=color:#f92672>&#34;checkver&#34;</span>: {
-        <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://github.com/oldj/SwitchHosts/releases&#34;</span>,
-        <span style=color:#f92672>&#34;re&#34;</span>: <span style=color:#e6db74>&#34;SwitchHosts-win32-x64_v([\\d.]+).zip&#34;</span>
+    // 此处为将其快捷方式加入开始菜单的配置
+    &quot;checkver&quot;: {
+        &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases&quot;,
+        &quot;re&quot;: &quot;SwitchHosts-win32-x64_v([\\d.]+).zip&quot;
     },
-    <span style=color:#960050;background-color:#1e0010>//</span> <span style=color:#960050;background-color:#1e0010>自动检查更新所用，不过我这里好像是有点小问题的</span>
-    <span style=color:#f92672>&#34;autoupdate&#34;</span>: {
-        <span style=color:#f92672>&#34;architecture&#34;</span>: {
-            <span style=color:#f92672>&#34;64bit&#34;</span>: {
-                <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-x64_v$version.zip&#34;</span>
+    // 自动检查更新所用，不过我这里好像是有点小问题的
+    &quot;autoupdate&quot;: {
+        &quot;architecture&quot;: {
+            &quot;64bit&quot;: {
+                &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-x64_v$version.zip&quot;
             },
-            <span style=color:#f92672>&#34;32bit&#34;</span>: {
-                <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-ia32_v$version.zip&#34;</span>
+            &quot;32bit&quot;: {
+                &quot;url&quot;: &quot;https://github.com/oldj/SwitchHosts/releases/download/v$majorVersion.$minorVersion.$patchVersion/SwitchHosts-win32-ia32_v$version.zip&quot;
             }
         }
     }
 }
-</code></pre></div><p>上面的这份已被收入 <a href=https://github.com/lukesampson/scoop-extras/pull/1519>extras bucket</a> 中，不过上面的<a href=https://github.com/lukesampson/scoop-extras/pull/1519#issuecomment-447215864>检查更新的配置貌似还有点小问题</a>。</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+</code></pre><p>上面的这份已被收入 <a href=https://github.com/lukesampson/scoop-extras/pull/1519>extras bucket</a> 中，不过上面的<a href=https://github.com/lukesampson/scoop-extras/pull/1519#issuecomment-447215864>检查更新的配置貌似还有点小问题</a>。</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
 <span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
 <span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><i class="iconfont icon-icon-tag"></i>Tag:
 <span class=tag><a href=https://blog.batkiz.com/tags/windows/>#windows</a></span></section><section><a href=javascript:window.history.back();>Back</a></span> ·
@@ -70,4 +70,4 @@ $env:SCOOP=<span style=color:#e6db74>&#39;C:\soft\Scoop&#39;</span>
 <span itemprop=copyrightYear>2017 - 2020</span>
 <span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
 <span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a>
-& <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=/js/dynamic.to.top.min.min.js async></script><script src=/js/main.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js></script><link href=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css rel=stylesheet><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/prism-core.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/></script></div></body></html>
+& <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=/js/dynamic.to.top.min.min.js async></script><script src=/js/main.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js></script><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-svg.js></script><style type=text/css>@import '//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-solarizedlight.min.css';@import url('//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css') screen and (prefers-color-scheme:dark)</style><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/prism-core.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/></script></div></body></html>

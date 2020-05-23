@@ -5,116 +5,116 @@
 <a class=menu-item href=/tags/>Tags</a>
 <a class=menu-item href=/about>About</a>
 <a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>博客迁移至 Hugo 并实现自动化</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
-<span class=post-time>on <time datetime=2019-10-20>2019-10-20</time></span></div></header><div class=post-content><p>好久不见！</p><p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p><p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p><p>下面是过程复现与总结。</p><h2 id=hugo>Hugo<a href=#hugo class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p><p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p><ul><li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li><li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li><li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li><li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li></ul><p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p><h2 id=开始迁移>开始迁移<a href=#开始迁移 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p><h3 id=链接>链接<a href=#链接 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p><p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p><p>解决很简单，修改为相同的即可。</p><h3 id=rss>RSS<a href=#rss class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p><p>解决方法：在 <code>config.toml</code> 中加入下列内容</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>outputs</span>]
-  <span style=color:#a6e22e>home</span> = [<span style=color:#e6db74>&#34;Atom&#34;</span>, <span style=color:#e6db74>&#34;HTML&#34;</span>]
+<span class=post-time>on <time datetime=2019-10-20>2019-10-20</time></span></div></header><div class=post-content><p>好久不见！</p><p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p><p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p><p>下面是过程复现与总结。</p><h2 id=hugo>Hugo<a href=#hugo class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p><p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p><ul><li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li><li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li><li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li><li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li></ul><p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p><h2 id=开始迁移>开始迁移<a href=#开始迁移 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p><h3 id=链接>链接<a href=#链接 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p><p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p><p>解决很简单，修改为相同的即可。</p><h3 id=rss>RSS<a href=#rss class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p><p>解决方法：在 <code>config.toml</code> 中加入下列内容</p><pre><code class=language-toml>[outputs]
+  home = [&quot;Atom&quot;, &quot;HTML&quot;]
 
-[<span style=color:#a6e22e>outputFormats</span>.<span style=color:#a6e22e>Atom</span>]
-  <span style=color:#a6e22e>mediatype</span> = <span style=color:#e6db74>&#34;application/rss&#34;</span>
-  <span style=color:#a6e22e>baseName</span> = <span style=color:#e6db74>&#34;atom&#34;</span>
-</code></pre></div><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p><p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p><p>为解决此问题，我试着看了看源码，但看不懂（</p><p>接着我试了试 Google，感谢 <a href=https://github.com/kaushalmodi/hugo-atom-feed>kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p><h3 id=mathjax>mathjax<a href=#mathjax class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>虽然我平时很少输入数学公式，但这个功能也不能少！</p><p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p><p>接下来仍然是 Google。</p><p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p><p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/javascript&#34;</span> <span style=color:#a6e22e>async</span>
-    <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;</span>&gt;
-        <span style=color:#a6e22e>MathJax</span>.<span style=color:#a6e22e>Hub</span>.<span style=color:#a6e22e>Config</span>({
-            <span style=color:#e6db74>&#34;HTML-CSS&#34;</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>preferredFont</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;TeX&#34;</span>, <span style=color:#a6e22e>availableFonts</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;STIX&#34;</span>, <span style=color:#e6db74>&#34;TeX&#34;</span>], <span style=color:#a6e22e>linebreaks</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>automatic</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> }, <span style=color:#a6e22e>EqnChunk</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>MathJax</span>.<span style=color:#a6e22e>Hub</span>.<span style=color:#a6e22e>Browser</span>.<span style=color:#a6e22e>isMobile</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>10</span> <span style=color:#f92672>:</span> <span style=color:#ae81ff>50</span>) },
-            <span style=color:#a6e22e>tex2jax</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>inlineMath</span><span style=color:#f92672>:</span> [[<span style=color:#e6db74>&#34;$&#34;</span>, <span style=color:#e6db74>&#34;$&#34;</span>], [<span style=color:#e6db74>&#34;\\(&#34;</span>, <span style=color:#e6db74>&#34;\\)&#34;</span>]], <span style=color:#a6e22e>processEscapes</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>ignoreClass</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;tex2jax_ignore|dno&#34;</span>, <span style=color:#a6e22e>skipTags</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;script&#39;</span>, <span style=color:#e6db74>&#39;noscript&#39;</span>, <span style=color:#e6db74>&#39;style&#39;</span>, <span style=color:#e6db74>&#39;textarea&#39;</span>, <span style=color:#e6db74>&#39;pre&#39;</span>, <span style=color:#e6db74>&#39;code&#39;</span>] },
-            <span style=color:#a6e22e>TeX</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>noUndefined</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>attributes</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>mathcolor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;red&#34;</span>, <span style=color:#a6e22e>mathbackground</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;#FFEEEE&#34;</span>, <span style=color:#a6e22e>mathsize</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;90%&#34;</span>} }, <span style=color:#a6e22e>Macros</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>href</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;{}&#34;</span> } },
-            <span style=color:#a6e22e>messageStyle</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;none&#34;</span>
+[outputFormats.Atom]
+  mediatype = &quot;application/rss&quot;
+  baseName = &quot;atom&quot;
+</code></pre><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p><p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p><p>为解决此问题，我试着看了看源码，但看不懂（</p><p>接着我试了试 Google，感谢 <a href=https://github.com/kaushalmodi/hugo-atom-feed>kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p><h3 id=mathjax>mathjax<a href=#mathjax class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>虽然我平时很少输入数学公式，但这个功能也不能少！</p><p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p><p>接下来仍然是 Google。</p><p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p><p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p><pre><code class=language-html>&lt;script type=&quot;text/javascript&quot; async
+    src=&quot;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+        MathJax.Hub.Config({
+            &quot;HTML-CSS&quot;: {preferredFont: &quot;TeX&quot;, availableFonts: [&quot;STIX&quot;, &quot;TeX&quot;], linebreaks: { automatic: true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+            tex2jax: {inlineMath: [[&quot;$&quot;, &quot;$&quot;], [&quot;\\(&quot;, &quot;\\)&quot;]], processEscapes: true, ignoreClass: &quot;tex2jax_ignore|dno&quot;, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+            TeX: {noUndefined: { attributes: { mathcolor: &quot;red&quot;, mathbackground: &quot;#FFEEEE&quot;, mathsize: &quot;90%&quot;} }, Macros: { href: &quot;{}&quot; } },
+            messageStyle: &quot;none&quot;
         });
 
-        <span style=color:#a6e22e>MathJax</span>.<span style=color:#a6e22e>Hub</span>.<span style=color:#a6e22e>Queue</span>(<span style=color:#66d9ef>function</span> () {
-            <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>all</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>MathJax</span>.<span style=color:#a6e22e>Hub</span>.<span style=color:#a6e22e>getAllJax</span>(), <span style=color:#a6e22e>i</span>;
-            <span style=color:#66d9ef>for</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>all</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>) {
-                <span style=color:#a6e22e>all</span>[<span style=color:#a6e22e>i</span>].<span style=color:#a6e22e>SourceElement</span>().<span style=color:#a6e22e>parentNode</span>.<span style=color:#a6e22e>className</span> <span style=color:#f92672>+=</span> <span style=color:#e6db74>&#39;has-jax&#39;</span>;
+        MathJax.Hub.Queue(function () {
+            var all = MathJax.Hub.getAllJax(), i;
+            for (i = 0; i &lt; all.length; i += 1) {
+                all[i].SourceElement().parentNode.className += 'has-jax';
             }
         });
-    &lt;/<span style=color:#f92672>script</span>&gt;
+    &lt;/script&gt;
 
-&lt;<span style=color:#f92672>style</span>&gt;
-    <span style=color:#f92672>code</span>.<span style=color:#a6e22e>has-jax</span> {
-        <span style=color:#66d9ef>font</span>: <span style=color:#66d9ef>inherit</span>;
-        <span style=color:#66d9ef>font-size</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>%</span>;
-        <span style=color:#66d9ef>background</span>: <span style=color:#66d9ef>inherit</span>;
-        <span style=color:#66d9ef>border</span>: <span style=color:#66d9ef>inherit</span>;
-        <span style=color:#66d9ef>color</span>: <span style=color:#ae81ff>#515151</span>;
+&lt;style&gt;
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
     }
-&lt;/<span style=color:#f92672>style</span>&gt;
-</code></pre></div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p><p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{partial &#34;mathjax.html&#34; .}}
-</code></pre></div><h3 id=frontmatter>frontmatter<a href=#frontmatter class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#66d9ef>tags</span>:
+&lt;/style&gt;
+</code></pre><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p><p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p><pre><code class=language-html>{{partial &quot;mathjax.html&quot; .}}
+</code></pre><h3 id=frontmatter>frontmatter<a href=#frontmatter class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><pre><code class=language-yml>tags:
 - hello
 - world
 - etc
-</code></pre></div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化<a href=#版本控制与自动化 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制<a href=#版本控制 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore data-lang=gitignore>/archetypes/
+</code></pre><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化<a href=#版本控制与自动化 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制<a href=#版本控制 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore>/archetypes/
 /data/
 /layouts/
 /public/
 /resources/
 /static/
 /themes/
-</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p><ul><li><code>content/</code>，这个是文章所在的文件夹</li><li><code>config.toml</code>，这个是 hugo 的配置文件</li></ul><p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p><h3 id=自动化>自动化<a href=#自动化 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p><p>下面是 GitHub Actions 的 workflow，详情请看注释。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#66d9ef>name</span>: blog
+</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p><ul><li><code>content/</code>，这个是文章所在的文件夹</li><li><code>config.toml</code>，这个是 hugo 的配置文件</li></ul><p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p><h3 id=自动化>自动化<a href=#自动化 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p><p>下面是 GitHub Actions 的 workflow，详情请看注释。</p><pre><code class=language-yml>name: blog
 
-<span style=color:#66d9ef>on</span>: [push]
+on: [push]
 
-<span style=color:#66d9ef>jobs</span>:
-  <span style=color:#66d9ef>build</span>:
-    <span style=color:#66d9ef>name</span>: Build
-    <span style=color:#66d9ef>runs-on</span>: ubuntu-latest
-    <span style=color:#66d9ef>steps</span>:
-      <span style=color:#75715e># 使用预编译的 Hugo 二进制文件</span>
-      - <span style=color:#66d9ef>name</span>: Setup Hugo
-        <span style=color:#66d9ef>uses</span>: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2.2</span>
-        <span style=color:#66d9ef>with</span>:
-          <span style=color:#66d9ef>hugo-version</span>: <span style=color:#e6db74>&#34;latest&#34;</span>
-          <span style=color:#75715e># 使用 Hugo-extended 版本</span>
-          <span style=color:#66d9ef>extended</span>: <span style=color:#66d9ef>true</span>
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # 使用预编译的 Hugo 二进制文件
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.2
+        with:
+          hugo-version: &quot;latest&quot;
+          # 使用 Hugo-extended 版本
+          extended: true
 
-      <span style=color:#75715e># 新建站点</span>
-      - <span style=color:#66d9ef>name</span>: new site
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          hugo new site $HOME/blog</span>
+      # 新建站点
+      - name: new site
+        run: |
+          hugo new site $HOME/blog
 
-      <span style=color:#75715e># 获取主题</span>
-      - <span style=color:#66d9ef>name</span>: get theme
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span>
+      # 获取主题
+      - name: get theme
+        run: |
+          git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left
 
-      <span style=color:#75715e># 获取 username.github.io 以保持 commit 记录</span>
-      - <span style=color:#66d9ef>name</span>: get username.github.io
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span>
+      # 获取 username.github.io 以保持 commit 记录
+      - name: get username.github.io
+        run: |
+          git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public
 
-      <span style=color:#75715e># 获取内容文件</span>
-      - <span style=color:#66d9ef>uses</span>: actions/checkout@v1
-        <span style=color:#66d9ef>with</span>:
-          <span style=color:#66d9ef>fetch-depth</span>: <span style=color:#ae81ff>1</span>
+      # 获取内容文件
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
 
-      <span style=color:#75715e># 将内容文件复制进入站点内</span>
-      - <span style=color:#66d9ef>name</span>: copy in
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          rm -rf $HOME/blog/config.toml $HOME/blog/content/</span>
+      # 将内容文件复制进入站点内
+      - name: copy in
+        run: |
+          rm -rf $HOME/blog/config.toml $HOME/blog/content/
           /bin/cp -rf config.toml $HOME/blog/config.toml
           /bin/cp -rf content/ $HOME/blog/content/
 
-      <span style=color:#75715e># build</span>
-      - <span style=color:#66d9ef>name</span>: build
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          cd $HOME/blog</span>
+      # build
+      - name: build
+        run: |
+          cd $HOME/blog
           HUGO_ENV=production hugo --gc --minify
 
-      <span style=color:#75715e># 将生成出的站点推向 username.github.io</span>
-      - <span style=color:#66d9ef>name</span>: publish
-        <span style=color:#66d9ef>env</span>:
-          <span style=color:#66d9ef>USER</span>: batkiz
-          <span style=color:#66d9ef>EMAIL</span>: batkiz@outlook.com
-          <span style=color:#66d9ef>GH_REF</span>: github.com/batkiz/batkiz.github.io.git
-          <span style=color:#75715e># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span>
-          <span style=color:#66d9ef>GH_TOKEN</span>: ${{ secrets.GH_TOKEN }}
-        <span style=color:#66d9ef>run</span>: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>          cd $HOME/blog/public</span>
+      # 将生成出的站点推向 username.github.io
+      - name: publish
+        env:
+          USER: batkiz
+          EMAIL: batkiz@outlook.com
+          GH_REF: github.com/batkiz/batkiz.github.io.git
+          # 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          cd $HOME/blog/public
           git config --global user.name $USER
           git config --global user.email $EMAIL
           git add .
-          git commit -m <span style=color:#e6db74>&#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;</span>
-          git push <span style=color:#e6db74>&#34;https://$USER:$GH_TOKEN@$GH_REF&#34;</span> master:master
-</code></pre></div><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=结语>结语<a href=#结语 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+          git commit -m &quot;Auto Update: `date +'%Y-%m-%d %H:%M:%S'`&quot;
+          git push &quot;https://$USER:$GH_TOKEN@$GH_REF&quot; master:master
+</code></pre><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=结语>结语<a href=#结语 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
 <span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
 <span>如无特殊说明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><a href=javascript:window.history.back();>Back</a></span> ·
 <span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/ class=prev rel=prev title="使用 VS Code 与 TinyCC 学习 C 语言"><i class="iconfont icon-dajiantou"></i>&nbsp;使用 VS Code 与 TinyCC 学习 C 语言</a>
@@ -122,4 +122,4 @@
 <span itemprop=copyrightYear>2017 - 2020</span>
 <span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
 <span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a>
-& <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=/js/dynamic.to.top.min.min.js async></script><script src=/js/main.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js></script><link href=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css rel=stylesheet><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/prism-core.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/></script></div></body></html>
+& <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=/js/dynamic.to.top.min.min.js async></script><script src=/js/main.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js></script><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script><script type=text/javascript id=MathJax-script async src=https://cdnjs.loli.net/ajax/libs/mathjax/3.0.5/es5/tex-svg.js></script><style type=text/css>@import '//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-solarizedlight.min.css';@import url('//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css') screen and (prefers-color-scheme:dark)</style><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/prism-core.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/></script></div></body></html>
