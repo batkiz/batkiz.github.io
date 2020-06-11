@@ -691,8 +691,11 @@ namespace AddAliasToBlogPosts
 
 </code></pre>
 <p>最后，感谢 MSDN 与 StackOverflow。</p>
-]]></content></item><item><title>在 powershell 中无缝调用 wsl 中的 neovim</title><link>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</link><pubDate>Sat, 30 Nov 2019 16:04:34 +0800</pubDate><guid>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</guid><description>注：标题中的 neovim 亦可换为 vim 在如今的 Windows 中，wsl 无疑能够极大提升我的开发体验。vim 则是任何人都绕不开的 TUI 编辑器。 不可否认，zsh/bash/f</description><content type="html"><![CDATA[<blockquote>
-<p>注：标题中的 neovim 亦可换为 vim</p>
+]]></content></item><item><title>在 powershell 中无缝调用 wsl 中的 neovim</title><link>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</link><pubDate>Sat, 30 Nov 2019 16:04:34 +0800</pubDate><guid>https://blog.batkiz.com/posts/2019/using-wsl-nvim-in-powershell/</guid><description>注1：neovim 亦可换为 vim 注2：最新版本的 pwsh 脚本请点此获取 在如今的 Windows 中，wsl 无疑能够极大提升我的开发体验。vim 则是任何人都绕不开的 TUI 编</description><content type="html"><![CDATA[<blockquote>
+<p>注1：neovim 亦可换为 vim</p>
+</blockquote>
+<blockquote>
+<p>注2：最新版本的 pwsh 脚本请<a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/">点此获取</a></p>
 </blockquote>
 <p>在如今的 Windows 中，wsl 无疑能够极大提升我的开发体验。vim 则是任何人都绕不开的 TUI 编辑器。</p>
 <p>不可否认，zsh/bash/fish 等 Linux 下的终端非常便捷好用，但我也是非常喜欢 powershell 的。在 <a href="/2019/09/24/oh-my-powershell/">之前的文章</a> 中，我对 powershell 进行了很多自定义配置，我也越来越离不开 powershell 了。</p>
