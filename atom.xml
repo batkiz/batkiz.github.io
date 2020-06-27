@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Thu, 21 May 2020 15:56:06 +0800</lastBuildDate><item><title>在 winget 到来之际，再谈谈 scoop</title><link>https://blog.batkiz.com/posts/2020/talk-about-scoop/</link><pubDate>Thu, 21 May 2020 15:56:06 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/talk-about-scoop/</guid><description>Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多</description><content type="html"><![CDATA[<p>Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多说：windows 终于迎来了受官方支持的命令行安装工具。此前虽然有 choco, scoop 等，但都只是第三方工具而已，如今微软第一方下场，无疑给开发者们带来了极大的鼓舞。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sat, 27 Jun 2020 20:58:36 +0800</lastBuildDate><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</guid><description>问题起源 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所以</description><content type="html"><![CDATA[<h2 id="问题起源">问题起源</h2>
+<p>在几天之前，我的<a href="https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123">命令行翻译程序</a>挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。</p>
+<p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 <a href="http://nlp.xmu.edu.cn/">厦门大学自然语言处理实验室</a> 提供的 <a href="http://nmt.xmu.edu.cn/">云译 CloudTranslation</a> 的公开 <a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html">API</a>。</p>
+<h2 id="解决过程">解决过程</h2>
+<p>就当我读完短短的 API Doc 后准备开始写段小脚本时，悲剧发生了：它竟然乱码了！</p>
+<p><img src="https://s1.ax1x.com/2020/06/27/NckFpV.png" alt="图中的 Content 与 RawContent 都是乱码的"></p>
+<p>然后我也很不能相信，于是又回去读了读文档，看到<a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html#_4">其中</a>清楚地写着：</p>
+<blockquote>
+<p>返回格式： UTF-8 编码纯文本</p>
+</blockquote>
+<p>WHAT THE F@XK? 我的 Windows 系统一直都是默认 unicode 的，而当前 pwsh 的活动代码页也是 <code>65001</code>。换言之，这个接口的返回值乱码绝对不是本地是 gbk/gb2312 这种低级错误。那问题出在哪呢？</p>
+<p>为了确定它返回的编码确实是 utf-8，我看了看它的 headers，以防出现他本身发送的是 gbk/gb2312 这种乌龙。</p>
+<p><em>通过 <a href="http://www.mytju.com/classCode/tools/messyCodeRecover.asp">乱码恢复</a> 确定了乱码文字现在的编码是 iso-8859-1，其本身确实是 utf-8 的。</em></p>
+<p><img src="https://s1.ax1x.com/2020/06/27/NcARqe.png" alt="看起来并没有问题"></p>
+<p>打眼一看确实没啥问题，但我注意到了其中并没有指定 charset/encoding 信息。</p>
+<p>以防万一，我又在 wsl 中用 curl 对比执行了一下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/27/NcAYvT.png" alt="完 全 正 常"></p>
+<p>此时我已经基本确定，乱码是因为 headers 中缺了东西导致的，但为什么会导致这种问题呢？我想让他不乱码难道就只能通过 wsl 来调用 API 了么？</p>
+<p>然后通过我<del>西安市 top3 的信息检索能力</del>的 Google 技术，找到了这个 StackOverflow 回答：</p>
+<blockquote>
+<p>The problem is that Spotify is (unwisely) not returning the encoding it&rsquo;s using in its headers. PowerShell obeys the standard by assuming ISO-8859-1, but unfortunately the site is using UTF-8. <a href="https://stackoverflow.com/a/47961370/8553961">src</a></p>
+</blockquote>
+<p>即一则网站未按规范在 headers 中指定编码信息；二则 powershell 遇到未指定编码的内容时，会假设其编码为 ISO-8859-1，问题就这样出现了。</p>
+<p>想要解决也很简单，把内容从 ISO-8859-1 编码转换回 utf-8 即可。</p>
+<h2 id="等等还有一个问题">等等，还有一个问题</h2>
+<p>命令行中的问题解决了，浏览器中的呢？</p>
+<p>如果在浏览器中打开 <a href="https://nmt.xmu.edu.cn/nmt?lang=en_zh-cn&amp;src=Neural%20Machine%20Translation">此示例</a>，浏览器中的内容会是 <em>绁炵粡鏈哄櫒缈昏瘧</em>，是被错误以 gbk 解码而出现的乱码，这个问题在 chromium 与 firefox 上都会出现。</p>
+<p>然而在开发者工具的 network 中查看时，其响应会是正常的。时间与才学所限没能细看 chromium/firefox 的源代码，希望有朋友知道的话能指教一二（可看关于页中我的联系方式）。</p>
+]]></content></item><item><title>在 winget 到来之际，再谈谈 scoop</title><link>https://blog.batkiz.com/posts/2020/talk-about-scoop/</link><pubDate>Thu, 21 May 2020 15:56:06 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/talk-about-scoop/</guid><description>Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多</description><content type="html"><![CDATA[<p>Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多说：windows 终于迎来了受官方支持的命令行安装工具。此前虽然有 choco, scoop 等，但都只是第三方工具而已，如今微软第一方下场，无疑给开发者们带来了极大的鼓舞。</p>
 <p>winget 的使用体验我一直有在 <a href="https://t.me/batkizc">telegram 频道</a> 里更新，在这里不再多谈——winget 目前还没到 1.0 版本，现在只是 preview 而已，某些点今天谈完可能第二天就给更新了。或许到了 1.0 版本释出时我会再更一篇文章吧。</p>
 <h2 id="谈谈-scoop-现有的问题">谈谈 scoop 现有的问题</h2>
 <p>我在这里更想谈一谈 scoop 这个第三方的 <code>cli installer</code>。我一直一来都是一个 scoop 吹，本博客之前也曾介绍过 scoop<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，但经过了这一年多的使用，我也逐渐意识到了许多问题，这些问题或许不是“痛点”，但却总让人有股隔靴搔痒的无力感。</p>
