@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sat, 27 Jun 2020 20:58:36 +0800</lastBuildDate><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</guid><description>问题起源 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所以</description><content type="html"><![CDATA[<h2 id="问题起源">问题起源</h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Thu, 16 Jul 2020 22:26:33 +0800</lastBuildDate><item><title>无服务器实现 301 跳转（with Cloudflare）</title><link>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</link><pubDate>Thu, 16 Jul 2020 22:26:33 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</guid><description>原因 我想通过 git.batkiz.com 访问我的 Azure DevOps 主页，但其不支持 CNAME，同时我又不想通过服务器来 301 跳转，所以我就寻思着能不能找个方法白嫖。 下面是通过 Cloudflare 白嫖的教</description><content type="html"><![CDATA[<h2 id="原因">原因</h2>
+<p>我想通过 git.batkiz.com 访问我的 Azure DevOps 主页，但其不支持 CNAME，同时我又不想通过服务器来 301 跳转，所以我就寻思着能不能找个方法白嫖。</p>
+<p>下面是通过 Cloudflare 白嫖的教程。</p>
+<h2 id="完整步骤">完整步骤</h2>
+<h3 id="新建-workers">新建 workers</h3>
+<p>workers 即 Cloudflare 推出的 serverless 云函数。在 <a href="https://dash.cloudflare.com/">主页</a> 直接点击 workers 新建一个，名字随意，代码如下：</p>
+<pre><code class="language-js">async function handleRequest() {
+  return Response.redirect(someURLToRedirectTo, code);
+}
+addEventListener(&quot;fetch&quot;, async (event) =&gt; {
+  event.respondWith(handleRequest());
+});
+/**
+ * @param {Request} url where to redirect the response
+ * @param {number?=301|302} type permanent or temporary redirect
+ */
+const someURLToRedirectTo = &quot;https://batkiz.visualstudio.com/&quot;;
+const code = 301;
+</code></pre>
+<p>部署好之后即可通过其 <code>workers.dev</code> 域名访问了，其会在访问时 301 跳转到指定页。</p>
+<p>可是 <code>workers.dev</code> 的域名太长了，也与最初的需求（通过 git.batkiz.com 访问我的 Azure DevOps 主页）不符。因此需要通过某种手段把此域名 CNAME 到 git.batkiz.com 这个域名上。</p>
+<p>但云函数显然是没有 CNAME 这个说法的，所以需要借助其他路由来实现。</p>
+<h3 id="其他路由">其他路由</h3>
+<p>从 <a href="https://dash.cloudflare.com/">dash</a> 点进需要的域名设置，进入其 workers tab，选择添加路由即可。</p>
+<p>路由示例：<code>*git.batkiz.com/*</code>，选择匹配的 worker 即可。</p>
+<p>而后进入 dns 编辑页，给所用的域名（本例中为 git.batkiz.com）添加一个 A 记录，指向 <code>192.2.0.1</code>。</p>
+<p>然后就能用啦！</p>
+<hr>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://community.cloudflare.com/t/setup-workers-on-personal-domain/88012">Setup Workers on Personal Domain</a></li>
+<li><a href="https://developers.cloudflare.com/workers/about/routes/">https://developers.cloudflare.com/workers/about/routes/</a></li>
+</ol>
+]]></content></item><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</guid><description>问题起源 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所以</description><content type="html"><![CDATA[<h2 id="问题起源">问题起源</h2>
 <p>在几天之前，我的<a href="https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123">命令行翻译程序</a>挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。</p>
 <p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 <a href="http://nlp.xmu.edu.cn/">厦门大学自然语言处理实验室</a> 提供的 <a href="http://nmt.xmu.edu.cn/">云译 CloudTranslation</a> 的公开 <a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html">API</a>。</p>
 <h2 id="解决过程">解决过程</h2>
