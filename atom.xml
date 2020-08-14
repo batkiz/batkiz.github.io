@@ -1066,6 +1066,7 @@ jobs:
 <li><a href="https://1a23.com/">1A23 Studio</a></li>
 <li><a href="https://blog.cyanoxygen.xyz/">Reliena&rsquo;s Garage</a></li>
 <li><a href="https://miaotony.xyz/">MiaoTony’s Blog</a></li>
+<li><a href="https://sharzy.in">Sharzy&rsquo;s Random Blog</a></li>
 </ul>
 ]]></content></item><item><title>使用 VS Code 与 TinyCC 学习 C 语言</title><link>https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/</link><pubDate>Sun, 06 Oct 2019 15:56:43 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/c-using-vscode-and-tcc/</guid><description>本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。 VS Code 下载安装 VS Code。 安装下列扩展 C/C++ ms-vscode.cpptools TCC Compiler lihram.vscode-tcc-compiler 使用 于任意路径新建 tmp 文件夹，使用 VS Code 打开</description><content type="html"><![CDATA[<p>本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。</p>
 <h2 id="vs-code">VS Code</h2>
