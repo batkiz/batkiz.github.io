@@ -1041,28 +1041,33 @@ jobs:
 <p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p>
 <p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p>
 <p>see you later.</p>
-]]></content></item><item><title>关于</title><link>https://blog.batkiz.com/about/</link><pubDate>Sun, 20 Oct 2019 15:47:30 +0800</pubDate><guid>https://blog.batkiz.com/about/</guid><description>一帘新语随风去，半山明月踏江来。 about batkiz, 人造电子小猫咪。 A full-stack bug maker, Google &amp;amp; StackOverflow powered wizard. 会在 telegram @batkizc 碎碎念。 contact 由于对目前 GitHub pages 的几种评论系统都不太满意，故即日起（2</description><content type="html"><![CDATA[<blockquote>
+]]></content></item><item><title>关于</title><link>https://blog.batkiz.com/about/</link><pubDate>Sun, 20 Oct 2019 15:47:30 +0800</pubDate><guid>https://blog.batkiz.com/about/</guid><description>一帘新语随风去，半山明月踏江来。 about me 我的 id 叫做 batkiz，今年 17 岁（去年和明年也都是 17 岁），没有女朋友。生活健康而规律，饮食清淡，从不抽烟</description><content type="html"><![CDATA[<blockquote>
 <p>一帘新语随风去，半山明月踏江来。</p>
 </blockquote>
-<h2 id="about">about</h2>
-<p><em>batkiz</em>, 人造电子小猫咪。</p>
-<p>A full-stack bug maker, Google &amp; StackOverflow powered wizard.</p>
-<p>会在 telegram <a href="https://t.me/batkizc">@batkizc</a> 碎碎念。</p>
+<h2 id="about-me">about me</h2>
+<p>我的 id 叫做 <em>batkiz</em>，今年 17 岁（去年和明年也都是 17 岁），没有女朋友。生活健康而规律，饮食清淡，从不抽烟，偶尔会喝些啤酒。晚上熬夜不会超过凌晨一点半，每天要睡八到九个小时。偶尔会心情低落，但很快会调整回来。</p>
+<p>喜欢写代码但技术非常差，对很多技术都止于吹比，Google 和 StackOverflow 是我最喜欢的两个网站。文章则会偶尔水一篇出来。</p>
+<p>如果你想要关注我无趣的生活，可以关注 telegram channel <a href="https://t.me/batkizc">@batkizc</a> 。</p>
 <h2 id="contact">contact</h2>
 <p>由于对目前 GitHub pages 的几种评论系统都不太满意，故即日起（2019/10/7）关闭博客的评论系统，择日再开。</p>
 <p><em>关于评论的补充：我将在 <a href="https://github.blog/2020-05-06-new-from-satellite-2020-github-codespaces-github-discussions-securing-code-in-private-repositories-and-more/#discussions">GitHub Discussions</a> 对所有项目可用且 <a href="https://github.com/utterance/utterances">utterances</a> 提供对 GitHub Discussions 的支持后，开启本站的评论系统。<a href="https://t.me/batkizc/970">详情见此</a></em></p>
 <p>如有需要，请通过下列方式与我取得联系：</p>
 <ul>
 <li>email: i [at] batkiz [dot] com</li>
-<li>telegram: @batkiz</li>
 <li>github: <a href="https://github.com/batkiz">batkiz</a></li>
+<li>telegram: @batkiz</li>
+<li>telegram channel @batkizc 的附属频道</li>
 </ul>
+<h2 id="about-this-blog">about this blog</h2>
+<p>使用了 <a href="https://gohugo.io/">Hugo</a> 作为静态博客生成器，主题则是自己改过的 <a href="https://github.com/batkiz/left">left</a> 。</p>
+<p>本站的夜间模式是默认（且强制）跟随设备主题改变的。</p>
 <h2 id="links">links</h2>
+<p>下面是一些朋友的站点（按 <code>siteName.Length</code> 由小到大排序，长度相同的以首字母排序）。</p>
 <ul>
-<li><a href="https://sp4rta.github.io">sp4rta</a></li>
-<li><a href="https://ruinsyi.github.io">ruinsyi</a></li>
 <li><a href="https://jdao.online">Tnze</a></li>
 <li><a href="https://makiras.org/">Makira</a></li>
+<li><a href="https://sp4rta.github.io">sp4rta</a></li>
+<li><a href="https://ruinsyi.github.io">ruinsyi</a></li>
 <li><a href="https://1a23.com/">1A23 Studio</a></li>
 <li><a href="https://miaotony.xyz/">MiaoTony’s Blog</a></li>
 <li><a href="https://blog.cyanoxygen.xyz/">Reliena&rsquo;s Garage</a></li>
