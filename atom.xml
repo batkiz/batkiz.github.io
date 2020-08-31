@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Thu, 16 Jul 2020 22:26:33 +0800</lastBuildDate><item><title>无服务器实现 301 跳转（with Cloudflare）</title><link>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</link><pubDate>Thu, 16 Jul 2020 22:26:33 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</guid><description>原因 我想通过 git.batkiz.com 访问我的 Azure DevOps 主页，但其不支持 CNAME，同时我又不想通过服务器来 301 跳转，所以我就寻思着能不能找个方法白嫖。 下面是通过 Cloudflare 白嫖的教</description><content type="html"><![CDATA[<h2 id="原因">原因</h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Mon, 31 Aug 2020 12:57:22 +0800</lastBuildDate><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</guid><description>承接前文，这里是另一些可能有点用的 pwsh 脚本。 命令行代理 让命令行应用走代理，用法是 socks app command。也可以把 Set-CliProxy 与 Clear-CliProxy 单独拿出来用。 function socks { $Command = &amp;quot;$args&amp;quot; Set-CliProxy</description><content type="html"><![CDATA[<p>承接<a href="/posts/2020/some-pwsh-scripts/">前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p>
+<h2 id="命令行代理">命令行代理</h2>
+<p>让命令行应用走代理，用法是 <code>socks app command</code>。也可以把 <code>Set-CliProxy</code> 与 <code>Clear-CliProxy</code> 单独拿出来用。</p>
+<pre><code class="language-powershell">function socks {
+    $Command = &quot;$args&quot;
+
+    Set-CliProxy
+    Invoke-Expression $Command 2&gt;&amp;1 | out-default
+    Clear-CliProxy
+}
+
+function Set-CliProxy {
+    $proxy = 'http://127.0.0.1:43333'
+
+    $env:HTTP_PROXY = $proxy
+    $env:HTTPS_PROXY = $proxy
+}
+
+function Clear-CliProxy {
+    Remove-Item env:HTTP_PROXY
+    Remove-Item env:HTTPS_PROXY
+}
+</code></pre>
+<h2 id="time">time</h2>
+<p>为命令行应用计时，大概类似于 <em>*nix</em> 中的 <code>time</code>。用法是 <code>time app command</code>。</p>
+<p>仅仅计时的话可以用 <code>Measure-Command</code> 命令，但它没有输出，只有时间信息，所以写了个 function 封装一下。</p>
+<pre><code class="language-powershell">function time {
+    $Command = &quot;$args&quot;
+
+    $time = Measure-Command { Invoke-Expression $Command 2&gt;&amp;1 | out-default }
+
+    $info = &quot;{0:d2}:{1:d2}:{2:d2}.{3}&quot; -f $time.Hours, $time.Minutes, $time.Seconds, $time.Milliseconds
+
+    Write-Output $info
+}
+</code></pre>
+<h2 id="get-size">Get-Size</h2>
+<p>命令行里查看文件夹、文件的大小，按 M 显示。用法是 <code>Get-Size folder/file</code>。</p>
+<pre><code class="language-powershell">function Get-Size {
+    param([string]$pth)
+    &quot;{0:n2}&quot; -f ((Get-ChildItem -path $pth -recurse | measure-object -property length -sum).sum / 1mb) + &quot; M&quot;
+}
+</code></pre>
+<h2 id="翻译">翻译</h2>
+<p>命令行里的翻译程序，其实之前是想用 go 写一个的，但不如直接写个 pwsh 脚本简便。由于 api key 是扒的别人的，所以就在源码里删去了。</p>
+<pre><code class="language-powershell">function fy {
+    if ($args.Length -eq 0 ) {
+        Write-Output 'this is a cli translator, try `fy hello world`.'
+    }
+    else {
+        $query = &quot;&quot;
+        for ($i = 0; $i -lt $args.Count; $i++) {
+            $query += &quot; &quot;
+            $query += $args[$i]
+        }
+
+        $ApiUrl = &quot;redacted&quot;
+
+        $info = (Invoke-WebRequest $ApiUrl).Content | ConvertFrom-Json
+
+        Write-Host &quot;@&quot; $query  &quot;[&quot; $info.basic.phonetic &quot;]&quot;
+        Write-Host &quot;翻译：`t&quot; $info.translation
+        Write-Host &quot;词典：&quot;
+        for ($i = 0; $i -lt $info.basic.explains.Count; $i++) {
+            Write-Host &quot;`t&quot; $info.basic.explains[$i]
+        }
+        Write-Host &quot;网络：&quot;
+        for ($i = 0; $i -lt $info.web.Count; $i++) {
+            Write-Host &quot;`t&quot; $info.web[$i].key &quot;: &quot; -NoNewline
+            for ($j = 0; $j -lt $info.web[$i].value.Count; $j++) {
+                Write-Host $info.web[$i].value[$j] &quot;; &quot; -NoNewline
+            }
+            Write-Host &quot;&quot;
+        }
+    }
+}
+</code></pre>
+]]></content></item><item><title>无服务器实现 301 跳转（with Cloudflare）</title><link>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</link><pubDate>Thu, 16 Jul 2020 22:26:33 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/</guid><description>原因 我想通过 git.batkiz.com 访问我的 Azure DevOps 主页，但其不支持 CNAME，同时我又不想通过服务器来 301 跳转，所以我就寻思着能不能找个方法白嫖。 下面是通过 Cloudflare 白嫖的教</description><content type="html"><![CDATA[<h2 id="原因">原因</h2>
 <p>我想通过 git.batkiz.com 访问我的 Azure DevOps 主页，但其不支持 CNAME，同时我又不想通过服务器来 301 跳转，所以我就寻思着能不能找个方法白嫖。</p>
 <p>下面是通过 Cloudflare 白嫖的教程。</p>
 <h2 id="完整步骤">完整步骤</h2>

@@ -1,0 +1,79 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><link rel=prev href=https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/><link rel=canonical href=https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>一些 powershell 脚本 | 其二 | not b@tk1z</title><meta name=title content="一些 powershell 脚本 | 其二 | not b@tk1z"><link rel=stylesheet href=/font/iconfont.css><style type=text/css>@import '/css/light.min.css';@import url('/css/dark.min.css') screen and (prefers-color-scheme:dark)</style><meta name=twitter:card content="summary"><meta name=twitter:title content="一些 powershell 脚本 | 其二"><meta name=twitter:description content="承接前文，这里是另一些可能有点用的 pwsh 脚本。 命令行代理 让命令行应用走代理，用法是 socks app command。也可以把 Set-CliProxy 与 Clear-CliProxy 单独拿出来用。 function socks { $Command = &#34;$args&#34; Set-CliProxy"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"一些 powershell 脚本 | 其二","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.batkiz.com\/posts\/2020\/some-pwsh-scripts-2\/"},"image":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/cover.png","width":800,"height":600},"genre":"posts","keywords":"powershell","wordcount":474,"url":"https:\/\/blog.batkiz.com\/posts\/2020\/some-pwsh-scripts-2\/","datePublished":"2020-08-31T12:57:22\u002b08:00","dateModified":"2020-08-31T12:57:22\u002b08:00","publisher":{"@type":"Organization","name":"batkiz","logo":{"@type":"ImageObject","url":"https:\/\/blog.batkiz.com\/logo.png","width":127,"height":40}},"author":{"@type":"Person","name":"batkiz"},"description":""}</script></head><body><div class=wrapper><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><div class=container><div class=navbar-header><div><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=mobile-menu><a class=menu-item href=/posts/>Posts</a>
+<a class=menu-item href=/tags/>Tags</a>
+<a class=menu-item href=/about>About</a>
+<a class=menu-item href=/atom.xml>RSS</a></div></div></nav><main class=main><div class=container><article class=post-warp><header class=post-header><h1 class=post-title>一些 powershell 脚本 | 其二</h1><div class=post-meta>by <a href=https://blog.batkiz.com/ rel=author>batkiz</a>
+<span class=post-time>on <time datetime="August 31, 2020">August 31, 2020</time></span></div></header><div class=post-content><p>承接<a href=/posts/2020/some-pwsh-scripts/>前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p><h2 id=命令行代理>命令行代理<a href=#命令行代理 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>让命令行应用走代理，用法是 <code>socks app command</code>。也可以把 <code>Set-CliProxy</code> 与 <code>Clear-CliProxy</code> 单独拿出来用。</p><pre><code class=language-powershell>function socks {
+    $Command = &quot;$args&quot;
+
+    Set-CliProxy
+    Invoke-Expression $Command 2&gt;&amp;1 | out-default
+    Clear-CliProxy
+}
+
+function Set-CliProxy {
+    $proxy = 'http://127.0.0.1:43333'
+
+    $env:HTTP_PROXY = $proxy
+    $env:HTTPS_PROXY = $proxy
+}
+
+function Clear-CliProxy {
+    Remove-Item env:HTTP_PROXY
+    Remove-Item env:HTTPS_PROXY
+}
+</code></pre><h2 id=time>time<a href=#time class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>为命令行应用计时，大概类似于 <em>*nix</em> 中的 <code>time</code>。用法是 <code>time app command</code>。</p><p>仅仅计时的话可以用 <code>Measure-Command</code> 命令，但它没有输出，只有时间信息，所以写了个 function 封装一下。</p><pre><code class=language-powershell>function time {
+    $Command = &quot;$args&quot;
+
+    $time = Measure-Command { Invoke-Expression $Command 2&gt;&amp;1 | out-default }
+
+    $info = &quot;{0:d2}:{1:d2}:{2:d2}.{3}&quot; -f $time.Hours, $time.Minutes, $time.Seconds, $time.Milliseconds
+
+    Write-Output $info
+}
+</code></pre><h2 id=get-size>Get-Size<a href=#get-size class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>命令行里查看文件夹、文件的大小，按 M 显示。用法是 <code>Get-Size folder/file</code>。</p><pre><code class=language-powershell>function Get-Size {
+    param([string]$pth)
+    &quot;{0:n2}&quot; -f ((Get-ChildItem -path $pth -recurse | measure-object -property length -sum).sum / 1mb) + &quot; M&quot;
+}
+</code></pre><h2 id=翻译>翻译<a href=#翻译 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>命令行里的翻译程序，其实之前是想用 go 写一个的，但不如直接写个 pwsh 脚本简便。由于 api key 是扒的别人的，所以就在源码里删去了。</p><pre><code class=language-powershell>function fy {
+    if ($args.Length -eq 0 ) {
+        Write-Output 'this is a cli translator, try `fy hello world`.'
+    }
+    else {
+        $query = &quot;&quot;
+        for ($i = 0; $i -lt $args.Count; $i++) {
+            $query += &quot; &quot;
+            $query += $args[$i]
+        }
+
+        $ApiUrl = &quot;redacted&quot;
+
+        $info = (Invoke-WebRequest $ApiUrl).Content | ConvertFrom-Json
+
+        Write-Host &quot;@&quot; $query  &quot;[&quot; $info.basic.phonetic &quot;]&quot;
+        Write-Host &quot;翻译：`t&quot; $info.translation
+        Write-Host &quot;词典：&quot;
+        for ($i = 0; $i -lt $info.basic.explains.Count; $i++) {
+            Write-Host &quot;`t&quot; $info.basic.explains[$i]
+        }
+        Write-Host &quot;网络：&quot;
+        for ($i = 0; $i -lt $info.web.Count; $i++) {
+            Write-Host &quot;`t&quot; $info.web[$i].key &quot;: &quot; -NoNewline
+            for ($j = 0; $j -lt $info.web[$i].value.Count; $j++) {
+                Write-Host $info.web[$i].value[$j] &quot;; &quot; -NoNewline
+            }
+            Write-Host &quot;&quot;
+        }
+    }
+}
+</code></pre></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>batkiz</span></p><p class=copyright-item></p><p class=copyright-item><span>LICENSE:</span>
+<span>如无特殊声明，本博客文章均以 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a> 协议发布</span></p></div><div class=post-tags><section><i class="iconfont icon-icon-tag"></i>Tag:
+<span class=tag><a href=https://blog.batkiz.com/tags/powershell/>#powershell</a></span></section><section><a href=javascript:window.history.back();>Back</a></span> ·
+<span><a href=https://blog.batkiz.com/>Home</a></span></section></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/ class=prev rel=prev title="无服务器实现 301 跳转（with Cloudflare）"><i class="iconfont icon-dajiantou"></i>&nbsp;无服务器实现 301 跳转（with Cloudflare）</a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2020</span>
+<span class=author itemprop=copyrightHolder><a href=https://blog.batkiz.com/>batkiz</a> |</span>
+<span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a>
+& <a href=https://github.com/batkiz/left target=_blank rel="external nofollow noopener noreffer">left</a></span></div></footer><script src=https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=/js/dynamic.to.top.min.min.js async></script><script src=/js/main.min.js async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-111900041-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><style type=text/css>@import '//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-solarizedlight.min.css';@import url('//cdnjs.loli.net/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css') screen and (prefers-color-scheme:dark)</style><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/prism-core.min.js></script><script src=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdnjs.loli.net/ajax/libs/prism/1.20.0/components/></script></div></body></html>
