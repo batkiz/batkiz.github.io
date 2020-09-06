@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Mon, 31 Aug 2020 12:57:22 +0800</lastBuildDate><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</guid><description>承接前文，这里是另一些可能有点用的 pwsh 脚本。 命令行代理 让命令行应用走代理，用法是 socks app command。也可以把 Set-CliProxy 与 Clear-CliProxy 单独拿出来用。 function socks { $Command = &amp;quot;$args&amp;quot; Set-CliProxy</description><content type="html"><![CDATA[<p>承接<a href="/posts/2020/some-pwsh-scripts/">前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Sep 2020 13:30:29 +0800</lastBuildDate><item><title>博客主题新功能：repl 代码集成</title><link>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</link><pubDate>Sun, 06 Sep 2020 13:30:29 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</guid><description>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。 效果测试 使用方法 /* batkiz -&amp;gt; username(不</description><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
+<h2 id="效果测试">效果测试</h2>
+<div class="embed repl">
+    <iframe class="repl" height="400px" width="100%" src="https://repl.it/@batkiz/hello-repl?lite=true" scrolling="no"
+        frameborder="no" allowtransparency="true" allowfullscreen="true"
+        sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
+    </iframe>
+</div>
+<h2 id="使用方法">使用方法</h2>
+<pre><code><div class="embed repl">
+    <iframe class="repl" height="400px" width="100%" src="https://repl.it/@batkiz/hello-repl?lite=true" scrolling="no"
+        frameborder="no" allowtransparency="true" allowfullscreen="true"
+        sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
+    </iframe>
+</div>
+
+/*
+batkiz -&gt; username(不带 `@`)
+hello-repl -&gt; repl name
+*/
+</code></pre>
+<p>具体的代码则可以去我主题的代码仓库瞅一眼（毕竟非常简单）</p>
+]]></content></item><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</guid><description>承接前文，这里是另一些可能有点用的 pwsh 脚本。 命令行代理 让命令行应用走代理，用法是 socks app command。也可以把 Set-CliProxy 与 Clear-CliProxy 单独拿出来用。 function socks { $Command = &amp;quot;$args&amp;quot; Set-CliProxy</description><content type="html"><![CDATA[<p>承接<a href="/posts/2020/some-pwsh-scripts/">前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p>
 <h2 id="命令行代理">命令行代理</h2>
 <p>让命令行应用走代理，用法是 <code>socks app command</code>。也可以把 <code>Set-CliProxy</code> 与 <code>Clear-CliProxy</code> 单独拿出来用。</p>
 <pre><code class="language-powershell">function socks {
