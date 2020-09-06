@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Sep 2020 13:30:29 +0800</lastBuildDate><item><title>博客主题新功能：repl 代码集成</title><link>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</link><pubDate>Sun, 06 Sep 2020 13:30:29 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</guid><description>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。 效果测试 使用方法 /* batkiz -&amp;gt; username(不</description><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/atom.xml</link><description>not b@tk1z</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Sep 2020 13:30:29 +0800</lastBuildDate><item><title>博客主题新功能：repl 代码集成</title><link>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</link><pubDate>Sun, 06 Sep 2020 13:30:29 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</guid><description>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。 效果测试 使用方法 {{&amp;lt; repl &amp;quot;batkiz/hello-repl&amp;quot; &amp;gt;}} /* batkiz -&amp;gt; userna</description><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
 <h2 id="效果测试">效果测试</h2>
 <div class="embed repl">
     <iframe class="repl" height="400px" width="100%" src="https://repl.it/@batkiz/hello-repl?lite=true" scrolling="no"
@@ -7,12 +7,7 @@
     </iframe>
 </div>
 <h2 id="使用方法">使用方法</h2>
-<pre><code><div class="embed repl">
-    <iframe class="repl" height="400px" width="100%" src="https://repl.it/@batkiz/hello-repl?lite=true" scrolling="no"
-        frameborder="no" allowtransparency="true" allowfullscreen="true"
-        sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
-    </iframe>
-</div>
+<pre><code class="language-plain">{{&lt; repl &quot;batkiz/hello-repl&quot; &gt;}}
 
 /*
 batkiz -&gt; username(不带 `@`)
