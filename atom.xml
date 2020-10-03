@@ -1755,7 +1755,7 @@ Isn't it a terrible day?
 <p><img src="https://s1.ax1x.com/2018/10/18/iwGW24.jpg" alt="LSI-ADM3A-full-keyboard.jpg"></p>
 <p><code>vi</code> 是 BSD 上除了 <code>ed</code> 唯一捆绑安装的文本编辑器。在那时，Emacs 需要花费数百美元（这是在 GNU Emacs 出现之前），所以 <code>vi</code> 变得极其流行。但 <code>vi</code> 是 <code>ed</code> 的直接后代，这意味着如果没有 AT&amp;T 的源代码许可，源代码不能被改动。这使几个人创造了 <code>vi</code> 的开源版本。1987 年 STEVIE (ST Editor for VI Enthusiasts)（为 vi 爱好者的 ST 编辑器）出现了，Elvis 出现在 1990 年，<code>nvi</code> 则在 1994 年出现。这些克隆中的某些添加了额外的功能，例如语法高亮显示与分割窗口。因为很多 Elvis 用户的推动，Elvis 的许多功能被合并进了 Vim。</p>
 <h2 id="bram-moolenaar-与-vim">Bram Moolenaar 与 Vim</h2>
-<p>Vim，现在是&quot;Vi Improved&quot;的缩写，最初却意味着&quot;Vi Imitation&rdquo;（Vi 的模仿）。如同许多其他的 <code>vi</code> 克隆，Vim 最初是一个 <code>vi</code> 不能工作的平台上的移植。Bram Moolenaar，一个在荷兰芬洛的一个复印机公司工作的荷兰工程师，想要在他全新的 Amiga 2000 上拥有一个像 <code>vi</code> 一样的东西。Moolenaar 在大学时代已习惯于在 Unix 系统上使用 <code>vi</code>，且它现在“了如指掌”。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 所以在 1988 年，以已存在的 <code>vi</code> 克隆 STEVIE 作为起点，Moolenaar 开始着手于 Vim。</p>
+<p>Vim，现在是&quot;Vi Improved&quot;的缩写，最初却意味着&quot;Vi Imitation&quot;（Vi 的模仿）。如同许多其他的 <code>vi</code> 克隆，Vim 最初是一个 <code>vi</code> 不能工作的平台上的移植。Bram Moolenaar，一个在荷兰芬洛的一个复印机公司工作的荷兰工程师，想要在他全新的 Amiga 2000 上拥有一个像 <code>vi</code> 一样的东西。Moolenaar 在大学时代已习惯于在 Unix 系统上使用 <code>vi</code>，且它现在“了如指掌”。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 所以在 1988 年，以已存在的 <code>vi</code> 克隆 STEVIE 作为起点，Moolenaar 开始着手于 Vim。</p>
 <p>Moolenaar 已经有了 STEVIE，因为 STEVIE 已在一个叫 Fred Fish disk 的东西上出现了。Fred Fish 是一个美国程序员，每个月都会寄出一个软盘，其中是 Amiga 平台上可用的最好的开源软件的辑选。每个人都能要一份，只需付出邮费而已。Moolenaar 使用的版本是在 Fred Fish disk 256 上发布的版本。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>（很遗憾，看起来 Fred Fish disk 与 <a href="https://en.wikipedia.org/wiki/Freddi_Fish">Freddi Fish</a> 并没有什么关系。）</p>
 <p>Moolenaar 很喜欢 STEVIE 但很快就注意到很多 <code>vi</code> 命令缺失了。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup> 所以，在 Vim 的首个发布版本中，Moolenaar 将与 <code>vi</code> 的兼容作为首要工作。有人曾写了一系列的 <code>vi</code> 宏，在一个与 <code>vi</code> 正确兼容的编辑器上运行时，能解决一个 <a href="https://github.com/isaacs/.vim/tree/master/macros/maze">随机生成的迷宫</a>。Moolenaar 能使这些宏在 Vim 上工作。1991 年，Vim 在 Fred Fish disk 591 上第一次以&quot;Vi Imitation&quot;发布。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> Moolenaar 已经添加了一些功能（包括多级撤销，与对编译错误的&quot;quickfix&quot;模式），这意味着 Vim 已经超越了 <code>vi</code>。但 Vim 会保持&quot;Vi Imitation&quot;直到 1993 年通过 FTP 发布的 Vim 2.0。</p>
 <p>Moolenaar 在许多网上合作者的偶尔协助下，以稳健的步伐给 Vim 添加功能。Vim 2.0 引入了 <code>wrap</code> 选项与较长行内水平滚动的支持。Vim 3.0 添加了对分割窗口与缓冲区的支持，这些功能来自 <code>vi</code> 的克隆 <code>nvi</code>。Vim 现在也能将每个缓冲区存入一个交换文件，所以已更改的文本能在崩溃中幸免于难。Vimscript 在 Vim 5.0 中首次出现，一同出现的还有对语法高亮显示的支持。在这期间，Vim 的流行程度一直在增长。它被移植到 MS-DOS, Windows, Mac, 甚至 Unix，在其上 Vim 与最初的 <code>vi</code> 相竞争。</p>
@@ -1891,7 +1891,7 @@ Isn't it a terrible day?
 <p>正当网景努力在后来被称为“门户大战”的竞争中夺人眼球时，一种闻名为“博客”的现象正在互联网的其他地方悄然登场。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> Dave Winery 正是那些先驱者之一，他是一家叫 UserLand Software 的公司的 CEO，这家公司开发了早期的内容管理系统，能让非技术娴熟的人更容易地书写博客。Winer 经营着他名为 <a href="http://scripting.com/">Scripting News</a> 的个人博客，这也是网上现存的最古老的博客之一。在1997 年的 12 月 15 日，网景宣布 My Netscape Network 一年多以前，Winer 发布了一篇文章宣布博客现在已能通过 XML 与 HTML 一同获得。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup></p>
 <p>Dave Winer 的 XML 格式闻名为 Scripting News 格式。它可能与微软的 Channel Definition 格式（一个在 1997 年 3 月提交给 W3C 的“推送技术”标准）相似，但我并不能找到一个原始格式的文件来验证这个说法。[^12] 如同网景的 RSS，它组织了 Winer 的博客内容以便于其他的软件应用理解。当网景发布 RSS 0.90 时，Winer 与 UserLand Software 开始同时支持两种格式。但 Winer 相信网景的格式“极其劣质”且“失去了网络作者与读者需要的关键”。<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup> 它只能表现一列链接，反之，Scripting News 格式能够表现一系列的段落，每个都能包含一个或多个链接。</p>
 <p>1999 年 6 月，网景宣布 My Netscape Network 两个月后，Winer 介绍了 Scripting News 格式的新版本，称为 ScriptingNews 2.0b1。Winer 声称曾尝试与网景获得联系以指出 RSS 0.90 的不足但失败了，只好决定继续完善他自己的格式。<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup> Scripting News 格式的新版本在 <code>&lt;header&gt;</code> 元素中加入了几个新项目以使 Scripting News 格式与 RSS 同等。但这两种格式继续与 Scripting News 格式—— Winer 昵称其为“胖”聚合格式，能够包含整个段落，而非仅仅是链接——不同。</p>
-<p>网景在第二个月宣称 RSS 0.91 将会放出。这个更新的规范是一个大转变。 RSS 不再表示&quot;RDF Site Summary&rdquo;；它现在代表&quot;Rich Site Summary&rdquo;。所有的 RDF——已经几乎没有了的——被剥离。许多 Scripting News 标签被合并。在新规范的文本中，Libby 解释道：</p>
+<p>网景在第二个月宣称 RSS 0.91 将会放出。这个更新的规范是一个大转变。 RSS 不再表示&quot;RDF Site Summary&quot;；它现在代表&quot;Rich Site Summary&quot;。所有的 RDF——已经几乎没有了的——被剥离。许多 Scripting News 标签被合并。在新规范的文本中，Libby 解释道：</p>
 <blockquote>
 <p>RDF 引用被移除了。RSS 最初被构思为一个提供网站摘要的元数据格式。两件事变得明了了：第一个是提供者更想要一个聚合格式而非元数据格式。RDF 文件的结构非常严格，而且符合 RDF 的数据模型为了使其有效。这并不能很容易地被人所理解，而且非常难以创建有用的 RDF 文件。第二个问题是只有很少的工具可用于 RDF 部署，验证与处理。因为上述原因，我们决定附属于一个标准的 XML 途径。<sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup></p>
 </blockquote>
@@ -2290,7 +2290,7 @@ npm install
 <ul>
 <li><code>language</code>项，如非主题要求尽量留空，否则会发生一些奇奇怪怪的bug，另外简体中文也有<code>zh-CN</code>与<code>zh-Hans</code>两种描述，请按主题提供的文档来填写。</li>
 <li><code>timezone</code>项同上，建议留空。</li>
-<li>由于我们使用的是GitHub的服务，因此<code>url</code>项应该是<code>https://username.github.io</code>，<code>username</code>是你自己的GitHub用户名，需要注意的是<strong><code>https</code></strong>。</li>
+<li>由于我们使用的是GitHub的服务，因此<code>url</code>项应该是<code>https://username.github.io</code>，<code>username</code>是你自己的GitHub用户名，需要注意的是**<code>https</code>**。</li>
 <li><code>deploy</code>项应形如</li>
 </ul>
 <pre><code class="language-yml">deploy:
@@ -2455,7 +2455,7 @@ Windows 10预置浏览器
 <h3 id="zplayer-uwp">zPlayer UWP</h3>
 <p>🚀UWP
 采用vlc的解码器，Fluent Design界面，颜值爆表
-*现在需要付费了（*<del>好像不定时有限免活动</del></p>
+<em>现在需要付费了（</em><del>好像不定时有限免活动</del></p>
 <h3 id="网易云音乐">网易云音乐</h3>
 <p>🚀UWP
 良心的音乐软件，虽然最近以来因为版权饱受诟病，但还是能用的
