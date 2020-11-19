@@ -706,7 +706,7 @@ jobs:
       - uses: actions/checkout@v2
       # 使用预编译的 Hugo 二进制文件
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2.2.2
+        uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: &quot;latest&quot;
           extended: true
@@ -740,7 +740,7 @@ jobs:
           HUGO_ENV=production hugo --gc --minify
 
       # 将生成出的站点推向 user.github.io
-      # 由于使用了 actions/checkout@v2，所以不再需要设置 github token
+      # 注意设置 github token
       - name: publish
         run: |
           git config --global user.name $USER_NAME
