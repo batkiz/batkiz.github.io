@@ -1,0 +1,19 @@
+{
+    "name": "not b@tk1z",
+    "short_name": "not b@tk1z",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+
+        }
+
+    ],
+    "theme_color": "#fff",
+    "background_color": "#fff",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "start_url": "./?utm_source=homescreen"
+
+}
