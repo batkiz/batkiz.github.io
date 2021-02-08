@@ -12,38 +12,41 @@
   mediatype = &quot;application/rss&quot;
   baseName = &quot;atom&quot;
 </code></pre><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p><p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p><p>为解决此问题，我试着看了看源码，但看不懂（</p><p>接着我试了试 Google，感谢 <a href=https://github.com/kaushalmodi/hugo-atom-feed>kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p><h3 id=mathjax>mathjax
-<a href=#mathjax class=anchor-link>#</a></h3><p>虽然我平时很少输入数学公式，但这个功能也不能少！</p><p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p><p>接下来仍然是 Google。</p><p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p><p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p><pre><code class=language-html>&lt;script type=&quot;text/javascript&quot; async
-    src=&quot;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
-        MathJax.Hub.Config({
-            &quot;HTML-CSS&quot;: {preferredFont: &quot;TeX&quot;, availableFonts: [&quot;STIX&quot;, &quot;TeX&quot;], linebreaks: { automatic: true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-            tex2jax: {inlineMath: [[&quot;$&quot;, &quot;$&quot;], [&quot;\\(&quot;, &quot;\\)&quot;]], processEscapes: true, ignoreClass: &quot;tex2jax_ignore|dno&quot;, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
-            TeX: {noUndefined: { attributes: { mathcolor: &quot;red&quot;, mathbackground: &quot;#FFEEEE&quot;, mathsize: &quot;90%&quot;} }, Macros: { href: &quot;{}&quot; } },
-            messageStyle: &quot;none&quot;
-        });
+<a href=#mathjax class=anchor-link>#</a></h3><p>虽然我平时很少输入数学公式，但这个功能也不能少！</p><p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p><p>接下来仍然是 Google。</p><p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p><p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p><pre><code class=language-html>&lt;script
+  type=&quot;text/javascript&quot;
+  async
+  src=&quot;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;
+&gt;
+  MathJax.Hub.Config({
+      &quot;HTML-CSS&quot;: {preferredFont: &quot;TeX&quot;, availableFonts: [&quot;STIX&quot;, &quot;TeX&quot;], linebreaks: { automatic: true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: {inlineMath: [[&quot;$&quot;, &quot;$&quot;], [&quot;\\(&quot;, &quot;\\)&quot;]], processEscapes: true, ignoreClass: &quot;tex2jax_ignore|dno&quot;, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      TeX: {noUndefined: { attributes: { mathcolor: &quot;red&quot;, mathbackground: &quot;#FFEEEE&quot;, mathsize: &quot;90%&quot;} }, Macros: { href: &quot;{}&quot; } },
+      messageStyle: &quot;none&quot;
+  });
 
-        MathJax.Hub.Queue(function () {
-            var all = MathJax.Hub.getAllJax(), i;
-            for (i = 0; i &lt; all.length; i += 1) {
-                all[i].SourceElement().parentNode.className += 'has-jax';
-            }
-        });
-    &lt;/script&gt;
+  MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i &lt; all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += 'has-jax';
+      }
+  });
+&lt;/script&gt;
 
 &lt;style&gt;
-    code.has-jax {
-        font: inherit;
-        font-size: 100%;
-        background: inherit;
-        border: inherit;
-        color: #515151;
-    }
+  code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+  }
 &lt;/style&gt;
 </code></pre><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p><p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p><pre><code class=language-html>{{partial &quot;mathjax.html&quot; .}}
 </code></pre><h3 id=frontmatter>frontmatter
 <a href=#frontmatter class=anchor-link>#</a></h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><pre><code class=language-yml>tags:
-- hello
-- world
-- etc
+  - hello
+  - world
+  - etc
 </code></pre><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化>版本控制与自动化
 <a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%8c%96 class=anchor-link>#</a></h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制>版本控制
 <a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6 class=anchor-link>#</a></h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre><code class=language-gitignore>/archetypes/
