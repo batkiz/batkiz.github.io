@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-hans"><generator uri="https://gohugo.io/" version="0.80.0">Hugo</generator><title type="html">not b@tk1z</title><subtitle type="html">一帘新语随风去，半山明月踏江来。</subtitle><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/rss+xml" title="atom"/><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="HTML"/><updated>2021-02-08T14:32:45+00:00</updated><author><name>batkiz</name></author><id>https://blog.batkiz.com/atom.xml</id><entry><title type="html">博客主题新功能：repl 代码集成</title><link href="https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本 | 其二"/><link href="https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/?utm_source=atom_feed" rel="related" type="text/html" title="无服务器实现 301 跳转（with Cloudflare）"/><link href="https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/?utm_source=atom_feed" rel="related" type="text/html" title="powershell, headers 与乱码"/><link href="https://blog.batkiz.com/posts/2020/talk-about-scoop/?utm_source=atom_feed" rel="related" type="text/html" title="在 winget 到来之际，再谈谈 scoop"/><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本"/><id>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</id><published>2020-09-06T13:30:29+08:00</published><updated>2020-09-06T13:30:29+08:00</updated><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-hans"><generator uri="https://gohugo.io/" version="0.81.0">Hugo</generator><title type="html">not b@tk1z</title><subtitle type="html">一帘新语随风去，半山明月踏江来。</subtitle><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/rss+xml" title="atom"/><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="HTML"/><updated>2021-03-01T12:26:16+00:00</updated><author><name>batkiz</name></author><id>https://blog.batkiz.com/atom.xml</id><entry><title type="html">博客主题新功能：repl 代码集成</title><link href="https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本 | 其二"/><link href="https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/?utm_source=atom_feed" rel="related" type="text/html" title="无服务器实现 301 跳转（with Cloudflare）"/><link href="https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/?utm_source=atom_feed" rel="related" type="text/html" title="powershell, headers 与乱码"/><link href="https://blog.batkiz.com/posts/2020/talk-about-scoop/?utm_source=atom_feed" rel="related" type="text/html" title="在 winget 到来之际，再谈谈 scoop"/><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本"/><id>https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/</id><published>2020-09-06T13:30:29+08:00</published><updated>2020-09-06T13:30:29+08:00</updated><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
 <h2 id="效果测试">
     效果测试 
     <a href="#%e6%95%88%e6%9e%9c%e6%b5%8b%e8%af%95" class="anchor-link">#</a>
@@ -2535,7 +2535,7 @@ else
 end
 </code></pre>
 <p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">a-short-introduction-to-markdown</title><link href="https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/?utm_source=atom_feed" rel="related" type="text/html" title="如何使用Xbox手柄玩Minecraft"/><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2018/fuck-2017/?utm_source=atom_feed" rel="related" type="text/html" title="2017年总结"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><id>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</id><published>2018-03-29T21:14:10+00:00</published><updated>2018-03-29T21:14:10+00:00</updated><content type="html"><![CDATA[<h2 id="markdown-是什么">
+]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">a-short-introduction-to-markdown</title><link href="https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/?utm_source=atom_feed" rel="related" type="text/html" title="如何使用Xbox手柄玩Minecraft"/><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><id>https://blog.batkiz.com/posts/2018/a-short-introduction-to-markdown/</id><published>2018-03-29T21:14:10+00:00</published><updated>2018-03-29T21:14:10+00:00</updated><content type="html"><![CDATA[<h2 id="markdown-是什么">
     markdown 是什么 
     <a href="#markdown-%e6%98%af%e4%bb%80%e4%b9%88" class="anchor-link">#</a>
 </h2><blockquote>
@@ -2589,7 +2589,7 @@ $$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$
 <li><a href="https://github.com/guodongxiaren/README">Github Flavored Markdown 语法介绍</a></li>
 <li><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax basic tutorial and quick reference</a></li>
 </ul>
-]]></content></entry><entry><title type="html">如何使用Xbox手柄玩Minecraft</title><link href="https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2018/fuck-2017/?utm_source=atom_feed" rel="related" type="text/html" title="2017年总结"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><id>https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/</id><published>2018-03-06T15:23:26+00:00</published><updated>2018-03-06T15:23:26+00:00</updated><content type="html"><![CDATA[<p>前几天入手了一个 Xbox one 手柄，拿来 van ♂ 游戏，育碧的刺客信条原生滋瓷手柄，感觉不错。
+]]></content></entry><entry><title type="html">如何使用Xbox手柄玩Minecraft</title><link href="https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><id>https://blog.batkiz.com/posts/2018/how-to-play-minecrafet-with-xbox-controller/</id><published>2018-03-06T15:23:26+00:00</published><updated>2018-03-06T15:23:26+00:00</updated><content type="html"><![CDATA[<p>前几天入手了一个 Xbox one 手柄，拿来 van ♂ 游戏，育碧的刺客信条原生滋瓷手柄，感觉不错。
 <strong>但</strong> Java 版 Minecraft 却并未支持手柄，虽然 Minecraft for Windows 10 对手柄原生支持，但可惜我要玩的是我们自行搭建的 mod 服。因此只好寻求其他方法。</p>
 <h2 id="被枪毙的方案">
     被枪毙的方案 
@@ -2620,7 +2620,7 @@ $$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$
 <hr>
 <p>2018 年八月更新：
 买了个基岩版 MC，手柄体验完美！</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/game" term="game" label="game"/><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">RSS，今日头条与信息爆炸</title><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2018/fuck-2017/?utm_source=atom_feed" rel="related" type="text/html" title="2017年总结"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="related" type="text/html" title="robocode"/><id>https://blog.batkiz.com/posts/2018/rss-is-best/</id><published>2018-03-04T19:31:44+00:00</published><updated>2018-03-04T19:31:44+00:00</updated><content type="html"><![CDATA[<blockquote>
+]]></content><category scheme="https://blog.batkiz.com/tags/game" term="game" label="game"/><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">RSS，今日头条与信息爆炸</title><link href="https://blog.batkiz.com/posts/2018/rss-is-best/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="related" type="text/html" title="hexo blog"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><id>https://blog.batkiz.com/posts/2018/rss-is-best/</id><published>2018-03-04T19:31:44+00:00</published><updated>2018-03-04T19:31:44+00:00</updated><content type="html"><![CDATA[<blockquote>
 <p>献给 Aaron Swartz
 本文具有极其严重的个人主观性</p>
 </blockquote>
@@ -2682,7 +2682,7 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 </h3><p>虽然即刻并没有把自己当作 RSS 阅读器来宣传，但个人认为其足以作为一款优秀的 RSS 阅读器。</p>
 <p>最重要的是，其能用来关注一些传统的 RSS 所无能为力的源——比如微信公众号。</p>
 <p><em>早期即刻曾开放过 RSS 机器人，但后来因某些原因下线了。不过很多源早已在功能下线前被用户设立。</em></p>
-]]></content><category scheme="https://blog.batkiz.com/tags/rss" term="rss" label="RSS"/></entry><entry><title type="html">hexo blog</title><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2018/fuck-2017/?utm_source=atom_feed" rel="related" type="text/html" title="2017年总结"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="related" type="text/html" title="robocode"/><id>https://blog.batkiz.com/posts/2018/hexo-blog/</id><published>2018-02-10T20:46:23+00:00</published><updated>2018-02-10T20:46:23+00:00</updated><content type="html"><![CDATA[<p>本文为在 Manjaro 系统下对 hexo 博客搭建的复现。
+]]></content><category scheme="https://blog.batkiz.com/tags/rss" term="rss" label="RSS"/></entry><entry><title type="html">hexo blog</title><link href="https://blog.batkiz.com/posts/2018/hexo-blog/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><id>https://blog.batkiz.com/posts/2018/hexo-blog/</id><published>2018-02-10T20:46:23+00:00</published><updated>2018-02-10T20:46:23+00:00</updated><content type="html"><![CDATA[<p>本文为在 Manjaro 系统下对 hexo 博客搭建的复现。
 另，由于文章存在时效性，本文只作为参考，实际应以<a href="https://hexo.io/zh-cn/docs/index.html">Hexo 官方文档</a>为准。<del>这也正是我写这篇文章的原因=。=</del></p>
 <h2 id="准备工作">
     准备工作 
@@ -2784,45 +2784,7 @@ npm install
     <a href="#%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e" class="anchor-link">#</a>
 </h2><p>既然这玩意是搞的博客，就要记住博客最重要的还是内容，而非花里胡哨的东西，适度折腾。
 希望大家都能持续输出优质内容~</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/hexo" term="hexo" label="hexo"/></entry><entry><title type="html">2017年总结</title><link href="https://blog.batkiz.com/posts/2018/fuck-2017/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="related" type="text/html" title="robocode"/><id>https://blog.batkiz.com/posts/2018/fuck-2017/</id><published>2018-01-04T21:45:44+00:00</published><updated>2018-01-04T21:45:44+00:00</updated><content type="html"><![CDATA[<p><del>莫生气，万千傻逼随他去</del></p>
-<h2 id="上半年">
-    上半年 
-    <a href="#%e4%b8%8a%e5%8d%8a%e5%b9%b4" class="anchor-link">#</a>
-</h2><p>实不相瞒，现在回想一下，感觉上半年已经很遥远了（笑）
-<del>不过老同学们的音容笑貌还历历在目</del>
-所以先总结一下上半年吧，也是人生一个不小的转折点了</p>
-<ul>
-<li>有个愿望实现了，同时也放下了很多</li>
-<li>经历了高考</li>
-<li><del>然后不出意外的没考好然后鬼知道怎么回事就来到了这学校</del></li>
-</ul>
-<h2 id="下半年">
-    下半年 
-    <a href="#%e4%b8%8b%e5%8d%8a%e5%b9%b4" class="anchor-link">#</a>
-</h2><p>下半年就是最近的事咯
-<del>眼前就马上要期末了时间过的还真的是快呢</del></p>
-<ul>
-<li>进入了大学，还恰好是计科专业（笑）算是聊以慰藉吧</li>
-<li>开始了更多的学习，毕竟空余时间更多了（</li>
-<li>终于有了自己的电脑，学习、博客啥都有了=。=</li>
-</ul>
-<h2 id="整体来看">
-    整体来看 
-    <a href="#%e6%95%b4%e4%bd%93%e6%9d%a5%e7%9c%8b" class="anchor-link">#</a>
-</h2><ul>
-<li>终于入坑了 Ingress 这游戏，认识了很多有趣的人</li>
-<li>学无止境啊。自己要学的还真不少（</li>
-<li>对网安有了点兴趣，试着抱着大佬大腿打打 CTF 吧</li>
-</ul>
-<h2 id="有的没的">
-    有的没的 
-    <a href="#%e6%9c%89%e7%9a%84%e6%b2%a1%e7%9a%84" class="anchor-link">#</a>
-</h2><p>呐，生活肯定不是一帆风顺的，不顺心的事总是有很多，不过还是要调整自己咯。
-如今想想，自己差不多也没了棱角，不过也随和了很多（笑）</p>
-<hr>
-<p>差不多就这样吧</p>
-<p><em>附：系统更新失败了，辣鸡 M$</em></p>
-]]></content><category scheme="https://blog.batkiz.com/tags/%E6%80%BB%E7%BB%93" term="%E6%80%BB%E7%BB%93" label="总结"/></entry><entry><title type="html">将linux装入u盘之路</title><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="related" type="text/html" title="robocode"/><id>https://blog.batkiz.com/posts/2017/install-linux-in-upan/</id><published>2017-12-21T20:11:01+00:00</published><updated>2017-12-21T20:11:01+00:00</updated><content type="html"><![CDATA[<p><del>别名：a day wasted</del></p>
+]]></content><category scheme="https://blog.batkiz.com/tags/hexo" term="hexo" label="hexo"/></entry><entry><title type="html">将linux装入u盘之路</title><link href="https://blog.batkiz.com/posts/2017/install-linux-in-upan/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="related" type="text/html" title="我的电脑软件"/><id>https://blog.batkiz.com/posts/2017/install-linux-in-upan/</id><published>2017-12-21T20:11:01+00:00</published><updated>2017-12-21T20:11:01+00:00</updated><content type="html"><![CDATA[<p><del>别名：a day wasted</del></p>
 <p>因为这事浪费了我一天时间，我觉得还是有必要写篇文章警醒后来人的（</p>
 <h2 id="起因">
     起因 
@@ -2920,7 +2882,7 @@ npm install
 <del>不过以我 U 盘羸弱的性能估计是凉了</del>
 还没试验，就这样吧。</p>
 <p>以上</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/linux" term="linux" label="linux"/></entry><entry><title type="html">我的电脑软件</title><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="related" type="text/html" title="robocode"/><id>https://blog.batkiz.com/posts/2017/software-on-my-computer/</id><published>2017-11-01T07:40:44+00:00</published><updated>2017-11-01T07:40:44+00:00</updated><content type="html"><![CDATA[<p>时隔多时，我终于要从 Linux 平台回归 Windows，回想一番，把自己将要用的软件于此汇总一下。</p>
+]]></content><category scheme="https://blog.batkiz.com/tags/linux" term="linux" label="linux"/></entry><entry><title type="html">我的电脑软件</title><link href="https://blog.batkiz.com/posts/2017/software-on-my-computer/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/2017/software-on-my-computer/</id><published>2017-11-01T07:40:44+00:00</published><updated>2017-11-01T07:40:44+00:00</updated><content type="html"><![CDATA[<p>时隔多时，我终于要从 Linux 平台回归 Windows，回想一番，把自己将要用的软件于此汇总一下。</p>
 <p>也算是给自己一个备份归档。</p>
 <h2 id="浏览器">
     浏览器 
@@ -3264,60 +3226,4 @@ telegram 的第三方客户端，1520 上在用，电脑上没怎么用</p>
 <hr>
 <p>以上</p>
 <p>本文将持续更新=。=（大概</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">robocode</title><link href="https://blog.batkiz.com/posts/2017/robocode/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/2017/robocode/</id><published>2017-10-27T20:24:01+00:00</published><updated>2017-10-27T20:24:01+00:00</updated><content type="html"><![CDATA[<h2 id="由来">
-    由来 
-    <a href="#%e7%94%b1%e6%9d%a5" class="anchor-link">#</a>
-</h2><p>近日我参加了一次 <strong>robocode</strong>比赛，方便起见，决定整理下相关网站于此，也是为其他同学提供些许便利。</p>
-<h2 id="相关网址汇总">
-    相关网址汇总 
-    <a href="#%e7%9b%b8%e5%85%b3%e7%bd%91%e5%9d%80%e6%b1%87%e6%80%bb" class="anchor-link">#</a>
-</h2><p><a href="http://robocode.sourceforge.net">官方网站</a></p>
-<ul>
-<li>英文</li>
-</ul>
-<p><a href="https://www.ibm.com/developerworks/cn/java/j-robocode/index.html"><strong>IBM 网站上的介绍</strong></a></p>
-<ul>
-<li>中文</li>
-<li><em>文章过老(<strong>2002</strong>年)，可能已不合时宜</em></li>
-</ul>
-<p><a href="https://site.douban.com/151685/widget/notes/7736245/">Robocode 教程(豆瓣)</a></p>
-<ul>
-<li>翻译于<em>2012</em>年，某些部分可能已不再适用</li>
-<li><strong>较为推荐</strong></li>
-</ul>
-<p><a href="http://www.robowiki.net/wiki/Robocode">官方维基</a></p>
-<ul>
-<li>英文</li>
-</ul>
-<p><a href="https://void-shana.moe/robocode/robocode-%E5%AD%A6%E4%B9%A0-bothelloworld.html">VOID001&rsquo;S WOWO</a></p>
-<ul>
-<li>一位网友的博客</li>
-<li>仅有对环境的搭建</li>
-<li>环境为 Linux，可能不具备通用性</li>
-</ul>
-<p><a href="https://github.com/robo-code/robocode">官方 GitHub 项目</a></p>
-<ul>
-<li>对大家几乎没有用，可以忽略</li>
-</ul>
-<p><a href="http://robocodeacademy.com/">RoboCode Academy</a></p>
-<ul>
-<li>英文</li>
-<li>已被屏蔽，无法打开</li>
-<li>似乎……是幼儿向的</li>
-</ul>
-<p><a href="http://www.verycd.com/topics/2917537/">何老师曾经的视频</a></p>
-<ul>
-<li><strong>仅供参考</strong></li>
-</ul>
-<h2 id="附">
-    附 
-    <a href="#%e9%99%84" class="anchor-link">#</a>
-</h2><p><a href="https://java.com/zh_CN/download/">Java</a></p>
-<ul>
-<li>注意不同版本的区别(尤其是<strong>64 位</strong>与<strong>32 位</strong>)</li>
-</ul>
-<p><a href="http://www.eclipse.org/home/index.php">Eclipse</a></p>
-<ul>
-<li>一个经典的 Java IDE</li>
-</ul>
-]]></content><category scheme="https://blog.batkiz.com/tags/robocode" term="robocode" label="robocode"/></entry></feed>
+]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry></feed>
