@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-hans"><generator uri="https://gohugo.io/" version="0.82.1">Hugo</generator><title type="html">not b@tk1z</title><subtitle type="html">一帘新语随风去，半山明月踏江来。</subtitle><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/rss+xml" title="atom"/><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="HTML"/><updated>2021-04-25T12:41:03+00:00</updated><author><name>batkiz</name></author><id>https://blog.batkiz.com/atom.xml</id><entry><title type="html">翻译|REST API 设计最佳实践</title><link href="https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | SEO 是如何毁掉互联网的"/><link href="https://blog.batkiz.com/posts/2019/advice-to-new-programmers/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | 给新手程序员们的建议"/><link href="https://blog.batkiz.com/posts/2018/translation-the-rise-and-demise-of-rss/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | RSS 的兴起与衰落"/><link href="https://blog.batkiz.com/links/?utm_source=atom_feed" rel="related" type="text/html" title="Links"/><link href="https://blog.batkiz.com/privacy/?utm_source=atom_feed" rel="related" type="text/html" title="隐私政策"/><id>https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/</id><published>2021-03-18T18:51:25+08:00</published><updated>2021-03-18T18:51:25+08:00</updated><content type="html"><![CDATA[<blockquote>在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。</blockquote><p>原文链接：<a href="https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/">Best practices for REST API design</a></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-hans"><generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator><title type="html">not b@tk1z</title><subtitle type="html">一帘新语随风去，半山明月踏江来。</subtitle><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/rss+xml" title="atom"/><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="HTML"/><updated>2021-05-04T12:11:07+00:00</updated><author><name>batkiz</name></author><id>https://blog.batkiz.com/atom.xml</id><entry><title type="html">翻译|REST API 设计最佳实践</title><link href="https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | SEO 是如何毁掉互联网的"/><link href="https://blog.batkiz.com/posts/2019/advice-to-new-programmers/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | 给新手程序员们的建议"/><link href="https://blog.batkiz.com/posts/2018/translation-the-rise-and-demise-of-rss/?utm_source=atom_feed" rel="related" type="text/html" title="翻译 | RSS 的兴起与衰落"/><link href="https://blog.batkiz.com/links/?utm_source=atom_feed" rel="related" type="text/html" title="Links"/><link href="https://blog.batkiz.com/privacy/?utm_source=atom_feed" rel="related" type="text/html" title="隐私政策"/><id>https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/</id><published>2021-03-18T18:51:25+08:00</published><updated>2021-03-18T18:51:25+08:00</updated><content type="html"><![CDATA[<blockquote>在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。</blockquote><p>原文链接：<a href="https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/">Best practices for REST API design</a></p>
 <p>译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 <a href="https://docs.microsoft.com/zh-cn/azure/architecture/best-practices/api-design">Web API 设计</a>。</p>
 <p>声明：本文的完成亦有 <a href="https://www.deepl.com/">DeepL</a> 的帮助。</p>
 <hr>
@@ -302,6 +302,25 @@ hello-repl -&gt; repl name
 */
 </code></pre>
 <p>具体的代码则可以去我主题的代码仓库瞅一眼（毕竟非常简单）</p>
+<hr>
+<p>2021/05 更新：</p>
+<p><a href="https://replit.com/talk/ask/My-share-button-is-missing/138229">repl 已不提供 iframe 嵌入形式的分享选项</a>，不过所幸还没被 ban 掉，官方提供的 iframe 嵌入代码如下所示：</p>
+<pre><code class="language-html">&lt;div class=&quot;embed repl&quot;&gt;
+  &lt;iframe
+    class=&quot;repl&quot;
+    height=&quot;400px&quot;
+    width=&quot;100%&quot;
+    src=&quot;https://repl.it/@batkiz/hello-repl?lite=true&quot;
+    scrolling=&quot;no&quot;
+    frameborder=&quot;no&quot;
+    allowtransparency=&quot;true&quot;
+    allowfullscreen=&quot;true&quot;
+    sandbox=&quot;allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals&quot;
+  &gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;
+</code></pre>
+<p>只需将 <code>@batkiz/hello-repl</code> 换成你想要的用户名/repl 名。</p>
 ]]></content></entry><entry><title type="html">一些 powershell 脚本 | 其二</title><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/?utm_source=atom_feed" rel="related" type="text/html" title="powershell, headers 与乱码"/><link href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本"/><link href="https://blog.batkiz.com/posts/2019/oh-my-powershell/?utm_source=atom_feed" rel="related" type="text/html" title="oh my powershell"/><link href="https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/?utm_source=atom_feed" rel="related" type="text/html" title="无服务器实现 301 跳转（with Cloudflare）"/><link href="https://blog.batkiz.com/posts/2020/talk-about-scoop/?utm_source=atom_feed" rel="related" type="text/html" title="在 winget 到来之际，再谈谈 scoop"/><id>https://blog.batkiz.com/posts/2020/some-pwsh-scripts-2/</id><published>2020-08-31T12:57:22+08:00</published><updated>2020-08-31T12:57:22+08:00</updated><content type="html"><![CDATA[<p>承接<a href="/posts/2020/some-pwsh-scripts/">前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p>
 <h2 id="命令行代理">
     命令行代理 
@@ -552,34 +571,34 @@ const code = 301;
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><a href="ttps://blog.batkiz.com/posts/2018/using-scoop/">初探 Scoop</a>，2018/12/31 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="ttps://blog.batkiz.com/posts/2018/using-scoop/">初探 Scoop</a>，2018/12/31&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p><a href="https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0">https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0">https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p><a href="https://github.com/o2sh/onefetch/releases">https://github.com/o2sh/onefetch/releases</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/o2sh/onefetch/releases">https://github.com/o2sh/onefetch/releases</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p><a href="https://github.com/orgs/ScoopInstaller/people">https://github.com/orgs/ScoopInstaller/people</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/orgs/ScoopInstaller/people">https://github.com/orgs/ScoopInstaller/people</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p>由 <a href="https://github.com/ScoopInstaller/Main/graphs/contributors">Main/contributors</a> 与 <a href="https://github.com/lukesampson/scoop-extras/graphs/contributors">extras/contributors</a> 得出的结论 <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>由 <a href="https://github.com/ScoopInstaller/Main/graphs/contributors">Main/contributors</a> 与 <a href="https://github.com/lukesampson/scoop-extras/graphs/contributors">extras/contributors</a> 得出的结论&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p><a href="https://github.com/lukesampson/scoop/commits/master">https://github.com/lukesampson/scoop/commits/master</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lukesampson/scoop/commits/master">https://github.com/lukesampson/scoop/commits/master</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p><a href="https://github.com/lukesampson/scoop/pull/3782">feat: Present download command #3782</a> <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lukesampson/scoop/pull/3782">feat: Present download command #3782</a>&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<p><a href="https://github.com/lukesampson/scoop#what-does-scoop-do">what-does-scoop-do</a> <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lukesampson/scoop#what-does-scoop-do">what-does-scoop-do</a>&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:9" role="doc-endnote">
-<p><a href="https://github.com/PowerShell/PowerShell/issues/11314">pwsh as a dotnet global tool exhibits very unusual behavior with Ctrl-C</a> <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/PowerShell/PowerShell/issues/11314">pwsh as a dotnet global tool exhibits very unusual behavior with Ctrl-C</a>&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:10" role="doc-endnote">
-<p><a href="https://github.com/lukesampson/scoop-extras/issues/3200">https://github.com/lukesampson/scoop-extras/issues/3200</a> <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lukesampson/scoop-extras/issues/3200">https://github.com/lukesampson/scoop-extras/issues/3200</a>&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -2266,43 +2285,43 @@ Isn't it a terrible day?
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Butler Lampson, “<a href="http://bwlampson.site/Systems.htm">Systems</a>,” Butler Lampson, accessed August 5, 2018. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Butler Lampson, “<a href="http://bwlampson.site/Systems.htm">Systems</a>,” Butler Lampson, accessed August 5, 2018.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>Dennis Ritchie, “<a href="https://www.bell-labs.com/usr/dmr/www/qed.html">An Incomplete History of the QED Editor</a>,” accessed August 5, 2018. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dennis Ritchie, “<a href="https://www.bell-labs.com/usr/dmr/www/qed.html">An Incomplete History of the QED Editor</a>,” accessed August 5, 2018.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>Peter Salus, “<a href="http://www.groklaw.net/article.php?story=20050414215646742">The Daemon, the GNU, and the Penguin</a>,” Groklaw, April 14, 2005, accessed August 5, 2018. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Peter Salus, “<a href="http://www.groklaw.net/article.php?story=20050414215646742">The Daemon, the GNU, and the Penguin</a>,” Groklaw, April 14, 2005, accessed August 5, 2018.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>ibid.（译注：同上） <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ibid.（译注：同上）&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p>Dennis Ritchie, “<a href="https://www.bell-labs.com/usr/dmr/www/qed.html">An Incomplete History of the QED Editor</a>,” accessed August 5, 2018. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dennis Ritchie, “<a href="https://www.bell-labs.com/usr/dmr/www/qed.html">An Incomplete History of the QED Editor</a>,” accessed August 5, 2018.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>Donald Norman, “<a href="http://www.ceri.memphis.edu/people/smalley/ESCI7205_misc_files/The_truth_about_Unix_cleaned.pdf">The Truth about Unix: The User Interface Is Horrid</a>,” Datamation, accessed August 5, 2018. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Donald Norman, “<a href="http://www.ceri.memphis.edu/people/smalley/ESCI7205_misc_files/The_truth_about_Unix_cleaned.pdf">The Truth about Unix: The User Interface Is Horrid</a>,” Datamation, accessed August 5, 2018.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p>Bram Moolenaar, “<a href="https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58s">Vim 25</a>” (lecture, Zurich, November 2, 2016), December 13, 2016, accessed August 5, 2018. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Bram Moolenaar, “<a href="https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58s">Vim 25</a>” (lecture, Zurich, November 2, 2016), December 13, 2016, accessed August 5, 2018.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<p>ibid（译注：同上）. (?t=6m15s) <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ibid（译注：同上）. (?t=6m15s)&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:9" role="doc-endnote">
-<p>ibid（译注：同上）. (?t=7m6s) <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ibid（译注：同上）. (?t=7m6s)&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:10" role="doc-endnote">
-<p>“<a href="http://www.amiga-stuff.com/pd/fish.html">Fish Disks 1 - 1120</a>,” Amiga Stuff, accessed August 5, 2018. <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“<a href="http://www.amiga-stuff.com/pd/fish.html">Fish Disks 1 - 1120</a>,” Amiga Stuff, accessed August 5, 2018.&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:11" role="doc-endnote">
-<p>“<a href="https://www.linuxjournal.com/article/8520#N0x850cd80.0x87983bc">2005 Linux Journal Reader’s Choice Awards</a>,” Linux Journal, September 28, 2005, accessed August 5, 2018. <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“<a href="https://www.linuxjournal.com/article/8520#N0x850cd80.0x87983bc">2005 Linux Journal Reader’s Choice Awards</a>,” Linux Journal, September 28, 2005, accessed August 5, 2018.&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:12" role="doc-endnote">
-<p>“<a href="https://insights.stackoverflow.com/survey/2018/#development-environments-and-tools">Stack Overflow Developer Survey 2018</a>,” Stack Overflow, accessed August 5, 2018. <a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“<a href="https://insights.stackoverflow.com/survey/2018/#development-environments-and-tools">Stack Overflow Developer Survey 2018</a>,” Stack Overflow, accessed August 5, 2018.&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:13" role="doc-endnote">
-<p>Bruce Byfield, “<a href="http://www.linux-magazine.com/Online/Blogs/Off-the-Beat-Bruce-Byfield-s-Blog/The-End-of-the-Editor-Wars">The End of the Editor Wars</a>,” Linux Magazine, May 11, 2015, accessed August 5, 2018. <a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Bruce Byfield, “<a href="http://www.linux-magazine.com/Online/Blogs/Off-the-Beat-Bruce-Byfield-s-Blog/The-End-of-the-Editor-Wars">The End of the Editor Wars</a>,” Linux Magazine, May 11, 2015, accessed August 5, 2018.&#160;<a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -2582,106 +2601,106 @@ Isn't it a terrible day?
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Kevin Werbach, “The Web Goes into Syndication,” Release 1.0, July 22, 1999, 1, accessed September 14, 2018, <a href="http://cdn.oreillystatic.com/radar/r1/07-99.pdf">http://cdn.oreillystatic.com/radar/r1/07-99.pdf</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Kevin Werbach, “The Web Goes into Syndication,” Release 1.0, July 22, 1999, 1, accessed September 14, 2018, <a href="http://cdn.oreillystatic.com/radar/r1/07-99.pdf">http://cdn.oreillystatic.com/radar/r1/07-99.pdf</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>ibid.（同上） <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ibid.（同上）&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>Werbach, 8. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Werbach, 8.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>Peter Wiggin, “RSS Delivers the XML Promise,” Web Review, October 29, 1999, accessed September 14, 2018, <a href="https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html">https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html</a>. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Peter Wiggin, “RSS Delivers the XML Promise,” Web Review, October 29, 1999, accessed September 14, 2018, <a href="https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html">https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html</a>.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p>Ben Hammersley, RSS and Atom (O’Reilly), 8, accessed September 14, 2018, <a href="https://books.google.com/books?id=kwJVAgAAQBAJ">https://books.google.com/books?id=kwJVAgAAQBAJ</a>. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Ben Hammersley, RSS and Atom (O’Reilly), 8, accessed September 14, 2018, <a href="https://books.google.com/books?id=kwJVAgAAQBAJ">https://books.google.com/books?id=kwJVAgAAQBAJ</a>.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>“RSS 0.90 Specification,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-0">http://www.rssboard.org/rss-0-9-0</a>. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“RSS 0.90 Specification,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-0">http://www.rssboard.org/rss-0-9-0</a>.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p>“My Netscape Network Future Directions,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/mnn-futures">http://www.rssboard.org/mnn-futures</a>. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“My Netscape Network Future Directions,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/mnn-futures">http://www.rssboard.org/mnn-futures</a>.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<p>Tim Bray, “The RDF.net Challenge,” Ongoing by Tim Bray, May 21, 2003, accessed September 14, 2018, <a href="https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet">https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet</a>. <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Tim Bray, “The RDF.net Challenge,” Ongoing by Tim Bray, May 21, 2003, accessed September 14, 2018, <a href="https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet">https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet</a>.&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:9" role="doc-endnote">
-<p>Dan Libby, “RSS: Introducing Myself,” August 24, 2000, RSS-DEV Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239</a>. <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dan Libby, “RSS: Introducing Myself,” August 24, 2000, RSS-DEV Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239</a>.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:10" role="doc-endnote">
-<p>Alexandra Krasne, “Browser Wars May Become Portal Wars,” CNN, accessed September 14, 2018, <a href="http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html">http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html</a>. <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Alexandra Krasne, “Browser Wars May Become Portal Wars,” CNN, accessed September 14, 2018, <a href="http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html">http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html</a>.&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:11" role="doc-endnote">
-<p>Dave Winer, “Scripting News in XML,” Scripting News, December 15, 1997, accessed September 14, 2018, <a href="http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html">http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html</a>. <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Scripting News in XML,” Scripting News, December 15, 1997, accessed September 14, 2018, <a href="http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html">http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html</a>.&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:12" role="doc-endnote">
-<p>Dave Winer, “A Faceoff with Netscape,” Scripting News, June 16, 1999, accessed September 14, 2018, <a href="http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html">http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html</a>. <a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “A Faceoff with Netscape,” Scripting News, June 16, 1999, accessed September 14, 2018, <a href="http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html">http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html</a>.&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:13" role="doc-endnote">
-<p>ibid. <a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>ibid.&#160;<a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:14" role="doc-endnote">
-<p>Dan Libby, “RSS 0.91 Specification (Netscape),” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-1-netscape">http://www.rssboard.org/rss-0-9-1-netscape</a>. <a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dan Libby, “RSS 0.91 Specification (Netscape),” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-1-netscape">http://www.rssboard.org/rss-0-9-1-netscape</a>.&#160;<a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:15" role="doc-endnote">
-<p>Dave Winer, “Scripting News: 7/28/1999,” Scripting News, July 28, 1999, accessed September 14, 2018, <a href="http://scripting.com/1999/07/28.html">http://scripting.com/1999/07/28.html</a>. <a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Scripting News: 7/28/1999,” Scripting News, July 28, 1999, accessed September 14, 2018, <a href="http://scripting.com/1999/07/28.html">http://scripting.com/1999/07/28.html</a>.&#160;<a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:16" role="doc-endnote">
-<p>Oliver Willis, “RSS Aggregators?” June 19, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173</a>. <a href="#fnref:16" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Oliver Willis, “RSS Aggregators?” June 19, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173</a>.&#160;<a href="#fnref:16" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:17" role="doc-endnote">
-<p>Dave Winer, “Scripting News: 07/07/2000,” Scripting News, July 07, 2000, accessed September 14, 2018, <a href="http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss">http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss</a>. <a href="#fnref:17" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Scripting News: 07/07/2000,” Scripting News, July 07, 2000, accessed September 14, 2018, <a href="http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss">http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss</a>.&#160;<a href="#fnref:17" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:18" role="doc-endnote">
-<p>Dave Winer, “Re: RSS 0.91 Restarted,” June 9, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132</a>. <a href="#fnref:18" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Re: RSS 0.91 Restarted,” June 9, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132</a>.&#160;<a href="#fnref:18" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:19" role="doc-endnote">
-<p>Leigh Dodds, “RSS Modularization,” XML.com, July 5, 2000, accessed September 14, 2018, <a href="http://www.xml.com/pub/a/2000/07/05/deviant/rss.html">http://www.xml.com/pub/a/2000/07/05/deviant/rss.html</a>. <a href="#fnref:19" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Leigh Dodds, “RSS Modularization,” XML.com, July 5, 2000, accessed September 14, 2018, <a href="http://www.xml.com/pub/a/2000/07/05/deviant/rss.html">http://www.xml.com/pub/a/2000/07/05/deviant/rss.html</a>.&#160;<a href="#fnref:19" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:20" role="doc-endnote">
-<p>Ian Davis, “Re: [syndication] RSS Modularization Demonstration,” June 28, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188</a>. <a href="#fnref:20" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Ian Davis, “Re: [syndication] RSS Modularization Demonstration,” June 28, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188</a>.&#160;<a href="#fnref:20" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:21" role="doc-endnote">
-<p>“RDF Site Summary (RSS) 1.0,” December 09, 2000, accessed September 14, 2018, <a href="http://web.resource.org/rss/1.0/spec">http://web.resource.org/rss/1.0/spec</a>. <a href="#fnref:21" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“RDF Site Summary (RSS) 1.0,” December 09, 2000, accessed September 14, 2018, <a href="http://web.resource.org/rss/1.0/spec">http://web.resource.org/rss/1.0/spec</a>.&#160;<a href="#fnref:21" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:22" role="doc-endnote">
-<p>Dave Winer, “Re: [syndication] Re: Thoughts, Questions, and Issues,” August 16, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410</a>. <a href="#fnref:22" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Re: [syndication] Re: Thoughts, Questions, and Issues,” August 16, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410</a>.&#160;<a href="#fnref:22" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:23" role="doc-endnote">
-<p>Mark Pilgrim, “History of the RSS Fork,” Dive into Mark, September 5, 2002, accessed September 14, 2018, <a href="http://www.diveintomark.link/2002/history-of-the-rss-fork">http://www.diveintomark.link/2002/history-of-the-rss-fork</a>. <a href="#fnref:23" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Mark Pilgrim, “History of the RSS Fork,” Dive into Mark, September 5, 2002, accessed September 14, 2018, <a href="http://www.diveintomark.link/2002/history-of-the-rss-fork">http://www.diveintomark.link/2002/history-of-the-rss-fork</a>.&#160;<a href="#fnref:23" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:24" role="doc-endnote">
-<p>Dan Brickley, “RSS-Classic, RSS 1.0 and a Historical Debt,” November 7, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136</a>. <a href="#fnref:24" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dan Brickley, “RSS-Classic, RSS 1.0 and a Historical Debt,” November 7, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136</a>.&#160;<a href="#fnref:24" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:25" role="doc-endnote">
-<p>Tim O’Reilly, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021537.html">http://static.userland.com/userLandDiscussArchive/msg021537.html</a>. <a href="#fnref:25" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Tim O’Reilly, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021537.html">http://static.userland.com/userLandDiscussArchive/msg021537.html</a>.&#160;<a href="#fnref:25" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:26" role="doc-endnote">
-<p>Dave Winer, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021560.html">http://static.userland.com/userLandDiscussArchive/msg021560.html</a>. <a href="#fnref:26" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dave Winer, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021560.html">http://static.userland.com/userLandDiscussArchive/msg021560.html</a>.&#160;<a href="#fnref:26" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:27" role="doc-endnote">
-<p>John Quain, “BASICS; Fine-Tuning Your Filter for Online Information,” The New York Times, 2004, accessed September 14, 2018, <a href="https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html">https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html</a>. <a href="#fnref:27" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>John Quain, “BASICS; Fine-Tuning Your Filter for Online Information,” The New York Times, 2004, accessed September 14, 2018, <a href="https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html">https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html</a>.&#160;<a href="#fnref:27" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:28" role="doc-endnote">
-<p>John Schwartz, “Aaron Swartz, Internet Activist, Dies at 26,” The New York Times, January 12, 2013, accessed September 14, 2018, <a href="https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html">https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html</a>. <a href="#fnref:28" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>John Schwartz, “Aaron Swartz, Internet Activist, Dies at 26,” The New York Times, January 12, 2013, accessed September 14, 2018, <a href="https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html">https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html</a>.&#160;<a href="#fnref:28" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:29" role="doc-endnote">
-<p>“A Second Spring of Cleaning,” Official Google Blog, March 13, 2013, accessed September 14, 2018, <a href="https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html">https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html</a>. <a href="#fnref:29" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“A Second Spring of Cleaning,” Official Google Blog, March 13, 2013, accessed September 14, 2018, <a href="https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html">https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html</a>.&#160;<a href="#fnref:29" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:30" role="doc-endnote">
-<p>Steve Gillmor, “Rest in Peace, RSS,” TechCrunch, May 5, 2009, accessed September 14, 2018, <a href="https://techcrunch.com/2009/05/05/rest-in-peace-rss/">https://techcrunch.com/2009/05/05/rest-in-peace-rss/</a>. <a href="#fnref:30" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Steve Gillmor, “Rest in Peace, RSS,” TechCrunch, May 5, 2009, accessed September 14, 2018, <a href="https://techcrunch.com/2009/05/05/rest-in-peace-rss/">https://techcrunch.com/2009/05/05/rest-in-peace-rss/</a>.&#160;<a href="#fnref:30" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:31" role="doc-endnote">
-<p>Marco Arment, “Lockdown,” Marco.org, July 3, 2013, accessed September 14, 2018, <a href="https://marco.org/2013/07/03/lockdown">https://marco.org/2013/07/03/lockdown</a>. <a href="#fnref:31" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Marco Arment, “Lockdown,” Marco.org, July 3, 2013, accessed September 14, 2018, <a href="https://marco.org/2013/07/03/lockdown">https://marco.org/2013/07/03/lockdown</a>.&#160;<a href="#fnref:31" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:32" role="doc-endnote">
-<p>Bob Tedeschi, “There’s a Popular New Code for Deals: RSS,” The New York Times, January 29, 2006, accessed September 14, 2018, <a href="https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html">https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html</a>. <a href="#fnref:32" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Bob Tedeschi, “There’s a Popular New Code for Deals: RSS,” The New York Times, January 29, 2006, accessed September 14, 2018, <a href="https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html">https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html</a>.&#160;<a href="#fnref:32" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:33" role="doc-endnote">
-<p>“NYTimes.com RSS Feeds,” The New York Times, accessed September 14, 2018, <a href="https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html">https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html</a>. <a href="#fnref:33" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>“NYTimes.com RSS Feeds,” The New York Times, accessed September 14, 2018, <a href="https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html">https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html</a>.&#160;<a href="#fnref:33" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:34" role="doc-endnote">
-<p>Rael Dornfest, “RE: Re: [syndication] RE: RFC: Clearing Confusion for RSS, Agreement for Forward Motion,” May 31, 2001, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717">https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717</a>. <a href="#fnref:34" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Rael Dornfest, “RE: Re: [syndication] RE: RFC: Clearing Confusion for RSS, Agreement for Forward Motion,” May 31, 2001, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717">https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717</a>.&#160;<a href="#fnref:34" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -2749,10 +2768,10 @@ Isn't it a terrible day?
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><a href="https://www.zhihu.com/question/54896787">https://www.zhihu.com/question/54896787</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://www.zhihu.com/question/54896787">https://www.zhihu.com/question/54896787</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>我选择 <code>Ubuntu</code>，不带版本号的那个。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>我选择 <code>Ubuntu</code>，不带版本号的那个。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
