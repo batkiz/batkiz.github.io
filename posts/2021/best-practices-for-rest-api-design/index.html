@@ -1,177 +1,599 @@
-<!doctype html><html lang=zh-hans><head><meta charset=utf-8><meta name=generator content="Hugo 0.83.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no, date=no, address=no, email=no"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><title>翻译|REST API 设计最佳实践 | not b@tk1z</title><link rel=stylesheet href=/scss/main.min.css><meta name=author content="batkiz"><meta name=description content="在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=mask-icon href=/icons/safari-pinned-tab.svg color><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-title content="not b@tk1z"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=mobile-web-app-capable content="yes"><meta name=application-name content="not b@tk1z"><meta name=msapplication-starturl content="../../../"><meta name=msapplication-TileColor content><meta name=msapplication-TileImage content="../../../icons/mstile-150x150.png"><link rel=manifest href=/manifest.json><link rel=canonical href=https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/><meta name=twitter:card content="summary"><meta name=twitter:title content="翻译|REST API 设计最佳实践"><meta name=twitter:description content="在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。"><meta property="og:title" content="翻译|REST API 设计最佳实践"><meta property="og:description" content="在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-18T18:51:25+08:00"><meta property="article:modified_time" content="2021-03-18T18:51:25+08:00"></head><body><div class=container><nav class=navbar><div class=navbar-header><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/ title>Posts</a>
-<a class=menu-item href=/links/ title>Links</a>
-<a class=menu-item href=/about title>About</a>
-<a class=menu-item href=/atom.xml title>RSS</a></div></nav><main class=main id=main><div class=main-inner><article class=content><header class=post-header><img src=https://z3.ax1x.com/2021/03/22/6ooytA.jpg class=featured-image><h1 class=post-title>翻译|REST API 设计最佳实践</h1><div class=post-meta><div class=author>batkiz</div><div class=post-date>2021-03-18</div><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=/tags/%E7%BF%BB%E8%AF%91>#翻译</a></li><li><a href=/tags/stackoverflow>#stackoverflow</a></li></ul></nav></div></div></header><div class=post-content><p>原文链接：<a href=https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/>Best practices for REST API design</a></p><p>译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 <a href=https://docs.microsoft.com/zh-cn/azure/architecture/best-practices/api-design>Web API 设计</a>。</p><p>声明：本文的完成亦有 <a href=https://www.deepl.com/>DeepL</a> 的帮助。</p><hr><p>REST API 是现今最常见的网络服务之一。它允许包括浏览器在内的多种客户端通过 REST API 与服务器进行通信。</p><p>因此，正确地设计 REST API 非常重要，这样我们就不会在后续的道路上出现问题。我们必须考虑到 API 用户的账号安全性、性能和易用性。</p><p>否则，我们就会给使用我们 API 的客户们带来问题，这并不令人愉快，也会影响人们使用我们的 API。如果我们不遵循普遍接受的惯例，那么我们就会给 API 的维护者和使用它们的客户带来困扰，因为它与大家所期望的不同。</p><p>在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是不会过时的，并且是安全和快速的，因为它们向客户提供的数据可能是保密的。</p><p>由于网络应用可能会被多种问题破坏，我们应该确保任何 REST API 都应使用标准的 HTTP 状态码，以优雅地处理错误，帮助用户处理问题。</p><h2 id=用-json-接收与响应>用 JSON 接收与响应
-<a href=#%e7%94%a8-json-%e6%8e%a5%e6%94%b6%e4%b8%8e%e5%93%8d%e5%ba%94 class=anchor-link>#</a></h2><p>REST API 应该接收 JSON 作为请求的有效载荷（payload），同时也应以 JSON 发送响应。JSON 是传输数据的标准。几乎所有的网络技术都可以使用它：JavaScript 有内置的方法，可以通过 Fetch API 或其他 HTTP 客户端对 JSON 进行编码和解码。服务器端的技术也有一些库可以解码 JSON，不需要做太多工作。</p><p>当然，还有其他传输数据的方式。XML 并没有得到框架的广泛支持，其常用替代通常是 JSON。我们在客户端——尤其是在浏览器中——不能特别容易地操作这些数据。光是做正常的数据传输就会有很多额外的工作。</p><p>表单数据（form data）很适合用于发送数据，特别是当我们要发送文件时。但是对于文本和数字，我们不需要表单数据来传输这些，因为——对大多数框架来说——我们只需要在客户端直接从中获取数据就可以传输 JSON。这是到目前为止最直接的做法。</p><p>为了确保当我们的 REST API 应用以 JSON 响应时，客户端会将其解释为 JSON，我们应该在请求发出后，将响应头（header）中的 <code>Content-Type</code> 设置为 <code>application/json</code>。很多服务器端应用框架都会自动设置响应头。一些 HTTP 客户端会根据 <code>Content-Type</code> 响应头来解析数据。</p><p>唯一的例外是，如果我们试图在客户端和服务器之间发送和接收文件。那么我们就需要处理文件响应，从客户端向服务器发送表单数据。但这就是另外一个话题了。</p><p>我们还应该确保我们的端点（endpoint）能够返回 JSON 作为响应。许多服务器端框架都将此作为一个内置功能。</p><p>让我们来看看一个接受 JSON payload 的 API 示例。这个例子将使用 Node.js 的 <a href=https://expressjs.com/>Express</a> 后端框架。我们可以使用 <a href=https://www.npmjs.com/package/body-parser><code>body-parser</code> 中间件</a> 来解析 JSON 请求体，然后我们可以调用 <code>res.json</code> 方法，将我们想要返回的对象构造为 JSON 响应，如下所示。</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
+<!doctype html><html lang=zh-hans>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=theme-color content="dark">
+<title>翻译|REST API 设计最佳实践 | not b@tk1z</title>
+<meta property="og:site_name" content="not b@tk1z">
+<meta property="og:title" content="翻译|REST API 设计最佳实践 | not b@tk1z">
+<meta itemprop=name content="翻译|REST API 设计最佳实践 | not b@tk1z">
+<meta name=twitter:title content="翻译|REST API 设计最佳实践 | not b@tk1z">
+<meta name=application-name content="翻译|REST API 设计最佳实践 | not b@tk1z">
+<meta name=description content="在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。">
+<meta name=twitter:description content="在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。 ">
+<meta itemprop=description content=" 在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。 ">
+<meta property="og:description" content=" 在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是面向未来的，并且是安全和快速的，因为它们为可能是机密的客户提供数据。 ">
+<link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=stylesheet href=/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css>
+</head>
+<script>(function(){const b='ThemeColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.userColorScheme='dark':document.documentElement.dataset.userColorScheme='light'})()</script>
+<body class=dark>
+<nav class=navbar>
+<div class=container>
+<div class=flex>
+<div>
+<a class=brand href=/>
+not b@tk1z
+</a>
+</div>
+<div class=flex>
+<a href=/posts/>Posts</a>
+<a href=/links/>Links</a>
+<a href=/about>About</a>
+<button id=dark-mode-button><svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163.0 101.643 1.641 1.163 1.163.0 00-1.643-1.641zm-16.022 14.38a1.74 1.74.0 000 2.465 1.742 1.742.0 100-2.465zm13.968-2.147a2.904 2.904.0 01-4.108.0 2.902 2.902.0 010-4.107 2.902 2.902.0 014.108.0 2.902 2.902.0 010 4.107z" fill="#ffcc4d"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg><svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M16 2s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2V2zm18 14s2 0 2 2-2 2-2 2h-2s-2 0-2-2 2-2 2-2h2zM4 16s2 0 2 2-2 2-2 2H2s-2 0-2-2 2-2 2-2h2zm5.121-8.707s1.414 1.414.0 2.828-2.828.0-2.828.0L4.878 8.708s-1.414-1.414.0-2.829c1.415-1.414 2.829.0 2.829.0l1.414 1.414zm21 21s1.414 1.414.0 2.828-2.828.0-2.828.0l-1.414-1.414s-1.414-1.414.0-2.828 2.828.0 2.828.0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zM16 32s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2v-2z"/><circle fill="#ffd983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main>
+<div class=container>
+<article>
+<header class=article-header>
+<div class=thumb>
+<div>
+<h1>翻译|REST API 设计最佳实践</h1>
+<div class=post-meta>
+<div>
+By batkiz | <time>March 18, 2021</time>
+| 11 minutes
+</div>
+<div class=tags>
+<a href=/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=/tags/stackoverflow/>stackoverflow</a>
+</div>
+</div>
+</div>
+</div>
+</header>
+</article>
+<div class=article-post>
+<p>原文链接：<a href=https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/>Best practices for REST API design</a></p>
+<p>译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 <a href=https://docs.microsoft.com/zh-cn/azure/architecture/best-practices/api-design>Web API 设计</a>。</p>
+<p>声明：本文的完成亦有 <a href=https://www.deepl.com/>DeepL</a> 的帮助。</p>
+<hr>
+<p>REST API 是现今最常见的网络服务之一。它允许包括浏览器在内的多种客户端通过 REST API 与服务器进行通信。</p>
+<p>因此，正确地设计 REST API 非常重要，这样我们就不会在后续的道路上出现问题。我们必须考虑到 API 用户的账号安全性、性能和易用性。</p>
+<p>否则，我们就会给使用我们 API 的客户们带来问题，这并不令人愉快，也会影响人们使用我们的 API。如果我们不遵循普遍接受的惯例，那么我们就会给 API 的维护者和使用它们的客户带来困扰，因为它与大家所期望的不同。</p>
+<p>在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是不会过时的，并且是安全和快速的，因为它们向客户提供的数据可能是保密的。</p>
+<p>由于网络应用可能会被多种问题破坏，我们应该确保任何 REST API 都应使用标准的 HTTP 状态码，以优雅地处理错误，帮助用户处理问题。</p>
+<h2 id=用-json-接收与响应>
+<a href=#%e7%94%a8-json-%e6%8e%a5%e6%94%b6%e4%b8%8e%e5%93%8d%e5%ba%94 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+用 JSON 接收与响应
+</h2>
+<p>REST API 应该接收 JSON 作为请求的有效载荷（payload），同时也应以 JSON 发送响应。JSON 是传输数据的标准。几乎所有的网络技术都可以使用它：JavaScript 有内置的方法，可以通过 Fetch API 或其他 HTTP 客户端对 JSON 进行编码和解码。服务器端的技术也有一些库可以解码 JSON，不需要做太多工作。</p>
+<p>当然，还有其他传输数据的方式。XML 并没有得到框架的广泛支持，其常用替代通常是 JSON。我们在客户端——尤其是在浏览器中——不能特别容易地操作这些数据。光是做正常的数据传输就会有很多额外的工作。</p>
+<p>表单数据（form data）很适合用于发送数据，特别是当我们要发送文件时。但是对于文本和数字，我们不需要表单数据来传输这些，因为——对大多数框架来说——我们只需要在客户端直接从中获取数据就可以传输 JSON。这是到目前为止最直接的做法。</p>
+<p>为了确保当我们的 REST API 应用以 JSON 响应时，客户端会将其解释为 JSON，我们应该在请求发出后，将响应头（header）中的 <code>Content-Type</code> 设置为 <code>application/json</code>。很多服务器端应用框架都会自动设置响应头。一些 HTTP 客户端会根据 <code>Content-Type</code> 响应头来解析数据。</p>
+<p>唯一的例外是，如果我们试图在客户端和服务器之间发送和接收文件。那么我们就需要处理文件响应，从客户端向服务器发送表单数据。但这就是另外一个话题了。</p>
+<p>我们还应该确保我们的端点（endpoint）能够返回 JSON 作为响应。许多服务器端框架都将此作为一个内置功能。</p>
+<p>让我们来看看一个接受 JSON payload 的 API 示例。这个例子将使用 Node.js 的 <a href=https://expressjs.com/>Express</a> 后端框架。我们可以使用 <a href=https://www.npmjs.com/package/body-parser><code>body-parser</code> 中间件</a> 来解析 JSON 请求体，然后我们可以调用 <code>res.json</code> 方法，将我们想要返回的对象构造为 JSON 响应，如下所示。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
 
-const app = express();
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.post(&quot;/&quot;, (req, res) =&gt; {
-  res.json(req.body);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s2>&#34;/&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p><code>bodyParser.json()</code> 将 JSON 请求体字符串解析为 JavaScript 对象，然后将其分配给 <code>req.body</code> 对象。</p><p>将响应中的 <code>Content-Type</code> 头设置为 <code>application/json; charset=utf-8</code>，不要做任何修改。这个方法适用于大多数其他后端框架。</p><h2 id=在端点路径中使用名词而非动词>在端点路径中使用名词而非动词
-<a href=#%e5%9c%a8%e7%ab%af%e7%82%b9%e8%b7%af%e5%be%84%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%90%8d%e8%af%8d%e8%80%8c%e9%9d%9e%e5%8a%a8%e8%af%8d class=anchor-link>#</a></h2><p>我们不应该在端点路径中使用动词。相反，我们应该使用名词作为路径名，该名词应代表我们要检索或操作的端点的实体。</p><p>这是因为我们的 HTTP 请求方法已经在用动词了。在我们的 API 端点路径中使用动词并没有益处，而且会使它变得不必要的长，因为它没有传达任何新的信息。选择的动词可以根据开发者的想法而变化。比如说，有些人喜欢用 &ldquo;get&rdquo;，有些人喜欢用 &ldquo;retrieve&rdquo;，所以让 HTTP GET 动词告诉我们什么和端点做什么就好了。</p><p>动作应该由我们所做的 HTTP 请求方法来表示。最常见的方法包括 GET、POST、PUT 和 DELETE。</p><p>GET 检索资源。POST 向服务器提交新数据。PUT 更新现有数据。DELETE 删除数据。这些动词映射到 <a href=https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>CRUD</a> 操作。</p><p>考虑到我们上面讨论的两个原则，我们应该创建像 GET <code>/articles/</code> 这样的路由来获取新闻文章。同样，POST <code>/articles/</code> 用于添加新的文章，PUT <code>/articles/:id</code> 用于用给定的 id 更新文章。DELETE <code>/articles/:id</code> 用于删除给定 ID 的现有文章。</p><p><code>/articles</code> 代表一个 REST API 资源。例如，我们可以使用 Express 添加以下端点来操作文章，如下所示。</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>bodyParser.json()</code> 将 JSON 请求体字符串解析为 JavaScript 对象，然后将其分配给 <code>req.body</code> 对象。</p>
+<p>将响应中的 <code>Content-Type</code> 头设置为 <code>application/json; charset=utf-8</code>，不要做任何修改。这个方法适用于大多数其他后端框架。</p>
+<h2 id=在端点路径中使用名词而非动词>
+<a href=#%e5%9c%a8%e7%ab%af%e7%82%b9%e8%b7%af%e5%be%84%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%90%8d%e8%af%8d%e8%80%8c%e9%9d%9e%e5%8a%a8%e8%af%8d class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+在端点路径中使用名词而非动词
+</h2>
+<p>我们不应该在端点路径中使用动词。相反，我们应该使用名词作为路径名，该名词应代表我们要检索或操作的端点的实体。</p>
+<p>这是因为我们的 HTTP 请求方法已经在用动词了。在我们的 API 端点路径中使用动词并没有益处，而且会使它变得不必要的长，因为它没有传达任何新的信息。选择的动词可以根据开发者的想法而变化。比如说，有些人喜欢用 &ldquo;get&rdquo;，有些人喜欢用 &ldquo;retrieve&rdquo;，所以让 HTTP GET 动词告诉我们什么和端点做什么就好了。</p>
+<p>动作应该由我们所做的 HTTP 请求方法来表示。最常见的方法包括 GET、POST、PUT 和 DELETE。</p>
+<p>GET 检索资源。POST 向服务器提交新数据。PUT 更新现有数据。DELETE 删除数据。这些动词映射到 <a href=https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>CRUD</a> 操作。</p>
+<p>考虑到我们上面讨论的两个原则，我们应该创建像 GET <code>/articles/</code> 这样的路由来获取新闻文章。同样，POST <code>/articles/</code> 用于添加新的文章，PUT <code>/articles/:id</code> 用于用给定的 id 更新文章。DELETE <code>/articles/:id</code> 用于删除给定 ID 的现有文章。</p>
+<p><code>/articles</code> 代表一个 REST API 资源。例如，我们可以使用 Express 添加以下端点来操作文章，如下所示。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
 
-const app = express();
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.get(&quot;/articles&quot;, (req, res) =&gt; {
-  const articles = [];
-  // 获取文章的代码
-  res.json(articles);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/articles&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=nx>articles</span> <span class=o>=</span> <span class=p>[];</span>
+  <span class=c1>// 获取文章的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>articles</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.post(&quot;/articles&quot;, (req, res) =&gt; {
-  // 添加新文章的代码
-  res.json(req.body);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s2>&#34;/articles&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=c1>// 添加新文章的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.put(&quot;/articles/:id&quot;, (req, res) =&gt; {
-  const { id } = req.params;
-  // 更新文章的代码
-  res.json(req.body);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>put</span><span class=p>(</span><span class=s2>&#34;/articles/:id&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=p>{</span> <span class=nx>id</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>params</span><span class=p>;</span>
+  <span class=c1>// 更新文章的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.delete(&quot;/articles/:id&quot;, (req, res) =&gt; {
-  const { id } = req.params;
-  // 删除文章的代码
-  res.json({ deleted: id });
-});
+<span class=nx>app</span><span class=p>.</span><span class=k>delete</span><span class=p>(</span><span class=s2>&#34;/articles/:id&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=p>{</span> <span class=nx>id</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>params</span><span class=p>;</span>
+  <span class=c1>// 删除文章的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>({</span> <span class=nx>deleted</span><span class=o>:</span> <span class=nx>id</span> <span class=p>});</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>在上面的代码中，我们定义了操作文章的端点。我们可以看到，路径名中没有任何动词。所有的都是名词。动词在 HTTP 动词中。</p><p>POST、PUT 和 DELETE 端点都以 JSON 作为请求体，也都以 JSON 作为响应返回，包括 GET 端点。</p><h2 id=使用名词复数来命名集合>使用名词复数来命名集合
-<a href=#%e4%bd%bf%e7%94%a8%e5%90%8d%e8%af%8d%e5%a4%8d%e6%95%b0%e6%9d%a5%e5%91%bd%e5%90%8d%e9%9b%86%e5%90%88 class=anchor-link>#</a></h2><p>我们应该用名词复数来命名集合。我们通常不会只想得到一个单项，所以我们的命名应该是一致的，我们应该用名词复数。</p><p>我们使用名词复数是为了和我们数据库中的内容保持一致。表通常有多个条目，并且在命名时会反映这一点，所以为了与它们保持一致，我们应该使用与 API 访问的表相同的语言。</p><p>对于 <code>/articles</code> 端点，我们的所有端点都是复数形式，所以我们不必将其改为复数。（译者注：此处似乎指的是上面代码之中的端点）</p><h2 id=分层对象的资源嵌套>分层对象的资源嵌套
-<a href=#%e5%88%86%e5%b1%82%e5%af%b9%e8%b1%a1%e7%9a%84%e8%b5%84%e6%ba%90%e5%b5%8c%e5%a5%97 class=anchor-link>#</a></h2><p>在处理嵌套资源的端点的路径时，应把嵌套资源追加为父资源后面的路径上。</p><p>我们必须确保我们考虑的嵌套资源与我们数据库表中的资源相匹配。否则会非常混乱。</p><p>比如说，如果我们想要一个端点来获取一篇新闻文章的评论，我们应该将 <code>/comments</code> 追加到 <code>/articles</code> 路径的末尾。这假设了我们在数据库中把评论（<code>comments</code>）作为文章（<code>articles</code>）的一个子节点。</p><p>例如，我们可以在 Express 中使用以下代码来实现。</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，我们定义了操作文章的端点。我们可以看到，路径名中没有任何动词。所有的都是名词。动词在 HTTP 动词中。</p>
+<p>POST、PUT 和 DELETE 端点都以 JSON 作为请求体，也都以 JSON 作为响应返回，包括 GET 端点。</p>
+<h2 id=使用名词复数来命名集合>
+<a href=#%e4%bd%bf%e7%94%a8%e5%90%8d%e8%af%8d%e5%a4%8d%e6%95%b0%e6%9d%a5%e5%91%bd%e5%90%8d%e9%9b%86%e5%90%88 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+使用名词复数来命名集合
+</h2>
+<p>我们应该用名词复数来命名集合。我们通常不会只想得到一个单项，所以我们的命名应该是一致的，我们应该用名词复数。</p>
+<p>我们使用名词复数是为了和我们数据库中的内容保持一致。表通常有多个条目，并且在命名时会反映这一点，所以为了与它们保持一致，我们应该使用与 API 访问的表相同的语言。</p>
+<p>对于 <code>/articles</code> 端点，我们的所有端点都是复数形式，所以我们不必将其改为复数。（译者注：此处似乎指的是上面代码之中的端点）</p>
+<h2 id=分层对象的资源嵌套>
+<a href=#%e5%88%86%e5%b1%82%e5%af%b9%e8%b1%a1%e7%9a%84%e8%b5%84%e6%ba%90%e5%b5%8c%e5%a5%97 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+分层对象的资源嵌套
+</h2>
+<p>在处理嵌套资源的端点的路径时，应把嵌套资源追加为父资源后面的路径上。</p>
+<p>我们必须确保我们考虑的嵌套资源与我们数据库表中的资源相匹配。否则会非常混乱。</p>
+<p>比如说，如果我们想要一个端点来获取一篇新闻文章的评论，我们应该将 <code>/comments</code> 追加到 <code>/articles</code> 路径的末尾。这假设了我们在数据库中把评论（<code>comments</code>）作为文章（<code>articles</code>）的一个子节点。</p>
+<p>例如，我们可以在 Express 中使用以下代码来实现。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
 
-const app = express();
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.get(&quot;/articles/:articleId/comments&quot;, (req, res) =&gt; {
-  const { articleId } = req.params;
-  const comments = [];
-  // 通过 articleId 获取评论的代码
-  res.json(comments);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/articles/:articleId/comments&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=p>{</span> <span class=nx>articleId</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>params</span><span class=p>;</span>
+  <span class=kr>const</span> <span class=nx>comments</span> <span class=o>=</span> <span class=p>[];</span>
+  <span class=c1>// 通过 articleId 获取评论的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>comments</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>在上面的代码中，我们可以在路径 <code>'/articles/:articleId/comments'</code> 上使用 GET 方法。我们获取由 <code>articleId</code> 标识的文章的评论，然后在响应中返回。我们在 <code>'/articles/:articleId'</code> 路径后添加 <code>'comments'</code>，以表明它是 <code>/articles</code> 的子资源。</p><p>这是有意义的，因为评论（<code>comments</code>）是文章的子对象，假设每篇文章都有自己的评论。否则，就会让用户感到困惑，因为这个结构一般被认为是用来访问子对象的。同样的原理也适用于 POST、PUT 和 DELETE 端点。它们的路径名都可以使用同一种嵌套结构。</p><h2 id=优雅地处理错误并返回标准的错误代码>优雅地处理错误并返回标准的错误代码
-<a href=#%e4%bc%98%e9%9b%85%e5%9c%b0%e5%a4%84%e7%90%86%e9%94%99%e8%af%af%e5%b9%b6%e8%bf%94%e5%9b%9e%e6%a0%87%e5%87%86%e7%9a%84%e9%94%99%e8%af%af%e4%bb%a3%e7%a0%81 class=anchor-link>#</a></h2><p>为了消除 API 用户在发生错误时的困惑，我们应该优雅地处理错误，并返回 HTTP 响应代码，说明发生了什么样的错误。这样可以让 API 的维护者有足够的信息来了解发生的问题。我们不希望错误使我们的系统崩溃，所以我们可以不处理它们，这意味着 API 消费者必须处理它们。</p><p>常见的错误 HTTP 状态码包括：</p><ul><li>400 Bad Request - 这意味着客户端的输入没有通过验证。</li><li>401 Unauthorized - 这意味着用户没有被授权访问资源。它通常在用户未认证时返回。</li><li>403 Forbidden - 这表示用户已通过认证，但不允许访问资源。</li><li>404 Not Found - 这表示找不到资源。</li><li>500 Internal server error - 这是一个通用的服务器错误。它可能不应该被明确地抛出。</li><li>502 <a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502>Bad Gateway</a> - 这表示上游服务器发来了无效响应。</li><li>503 Service Unavailable - 这表示在服务器端发生了一些意想不到的事情（可能是任何事情，比如服务器过载，系统的某些部分失效，等等）。</li></ul><p>我们抛出的错误应该与我们的应用所遇到的问题相对应。例如，如果我们想拒绝请求 payload 中的数据，那么我们应该在 Express API 中返回一个 400 响应，如下所示：</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，我们可以在路径 <code>'/articles/:articleId/comments'</code> 上使用 GET 方法。我们获取由 <code>articleId</code> 标识的文章的评论，然后在响应中返回。我们在 <code>'/articles/:articleId'</code> 路径后添加 <code>'comments'</code>，以表明它是 <code>/articles</code> 的子资源。</p>
+<p>这是有意义的，因为评论（<code>comments</code>）是文章的子对象，假设每篇文章都有自己的评论。否则，就会让用户感到困惑，因为这个结构一般被认为是用来访问子对象的。同样的原理也适用于 POST、PUT 和 DELETE 端点。它们的路径名都可以使用同一种嵌套结构。</p>
+<h2 id=优雅地处理错误并返回标准的错误代码>
+<a href=#%e4%bc%98%e9%9b%85%e5%9c%b0%e5%a4%84%e7%90%86%e9%94%99%e8%af%af%e5%b9%b6%e8%bf%94%e5%9b%9e%e6%a0%87%e5%87%86%e7%9a%84%e9%94%99%e8%af%af%e4%bb%a3%e7%a0%81 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+优雅地处理错误并返回标准的错误代码
+</h2>
+<p>为了消除 API 用户在发生错误时的困惑，我们应该优雅地处理错误，并返回 HTTP 响应代码，说明发生了什么样的错误。这样可以让 API 的维护者有足够的信息来了解发生的问题。我们不希望错误使我们的系统崩溃，所以我们可以不处理它们，这意味着 API 消费者必须处理它们。</p>
+<p>常见的错误 HTTP 状态码包括：</p>
+<ul>
+<li>400 Bad Request - 这意味着客户端的输入没有通过验证。</li>
+<li>401 Unauthorized - 这意味着用户没有被授权访问资源。它通常在用户未认证时返回。</li>
+<li>403 Forbidden - 这表示用户已通过认证，但不允许访问资源。</li>
+<li>404 Not Found - 这表示找不到资源。</li>
+<li>500 Internal server error - 这是一个通用的服务器错误。它可能不应该被明确地抛出。</li>
+<li>502 <a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502>Bad Gateway</a> - 这表示上游服务器发来了无效响应。</li>
+<li>503 Service Unavailable - 这表示在服务器端发生了一些意想不到的事情（可能是任何事情，比如服务器过载，系统的某些部分失效，等等）。</li>
+</ul>
+<p>我们抛出的错误应该与我们的应用所遇到的问题相对应。例如，如果我们想拒绝请求 payload 中的数据，那么我们应该在 Express API 中返回一个 400 响应，如下所示：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
 
-const app = express();
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
 
-// 用户已存在
-const users = [{ email: &quot;abc@foo.com&quot; }];
+<span class=c1>// 用户已存在
+</span><span class=c1></span><span class=kr>const</span> <span class=nx>users</span> <span class=o>=</span> <span class=p>[{</span> <span class=nx>email</span><span class=o>:</span> <span class=s2>&#34;abc@foo.com&#34;</span> <span class=p>}];</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.post(&quot;/users&quot;, (req, res) =&gt; {
-  const { email } = req.body;
-  const userExists = users.find((u) =&gt; u.email === email);
-  if (userExists) {
-    return res.status(400).json({ error: &quot;User already exists&quot; });
-  }
-  res.json(req.body);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s2>&#34;/users&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=p>{</span> <span class=nx>email</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>;</span>
+  <span class=kr>const</span> <span class=nx>userExists</span> <span class=o>=</span> <span class=nx>users</span><span class=p>.</span><span class=nx>find</span><span class=p>((</span><span class=nx>u</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>u</span><span class=p>.</span><span class=nx>email</span> <span class=o>===</span> <span class=nx>email</span><span class=p>);</span>
+  <span class=k>if</span> <span class=p>(</span><span class=nx>userExists</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>400</span><span class=p>).</span><span class=nx>json</span><span class=p>({</span> <span class=nx>error</span><span class=o>:</span> <span class=s2>&#34;User already exists&#34;</span> <span class=p>});</span>
+  <span class=p>}</span>
+  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>在上面的代码中，我们在 <code>user</code> 数组中有一个现有用户列表，包含了给定的电子邮件。</p><p>那么如果我们尝试用已经存在于 <code>users</code> 中的 <code>email</code> 值来提交 payload，我们会得到一个 400 响应状态码，并附上 <code>'User already exists'</code> 的信息，让用户知道该用户已经存在。有了这些信息，用户可以将邮件改成数据库中尚不存在的邮件来纠正操作。</p><p>错误代码需要有信息伴随，这样维护者就有足够的信息来解决问题，但攻击者不能利用错误内容来进行我们的攻击，比如窃取信息或使系统瘫痪。</p><p>每当我们的 API 没有成功完成时，我们应该优雅地失败，发送一个带有信息的错误，以帮助用户做出纠正措施。</p><h2 id=支持过滤排序和分页>支持过滤、排序和分页
-<a href=#%e6%94%af%e6%8c%81%e8%bf%87%e6%bb%a4%e6%8e%92%e5%ba%8f%e5%92%8c%e5%88%86%e9%a1%b5 class=anchor-link>#</a></h2><p>REST API 背后的数据库可能变得非常庞大。有时候，数据太多，不应该一次全部返回，因为太慢了，或者会让我们的系统崩溃。因此，我们需要有办法来过滤项目。</p><p>我们还需要对数据进行分页的方法，这样我们就能一次只返回几个结果。我们不希望因为一个请求，而占用资源太长时间。</p><p>过滤和分页都可以通过减少服务器资源的使用来提高性能。随着数据库中积累的数据越多，这些功能就越发重要。</p><p>这里有一个小例子，API 可以接受一个带有各种查询参数的查询字符串，让我们通过字段过滤出项目：</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，我们在 <code>user</code> 数组中有一个现有用户列表，包含了给定的电子邮件。</p>
+<p>那么如果我们尝试用已经存在于 <code>users</code> 中的 <code>email</code> 值来提交 payload，我们会得到一个 400 响应状态码，并附上 <code>'User already exists'</code> 的信息，让用户知道该用户已经存在。有了这些信息，用户可以将邮件改成数据库中尚不存在的邮件来纠正操作。</p>
+<p>错误代码需要有信息伴随，这样维护者就有足够的信息来解决问题，但攻击者不能利用错误内容来进行我们的攻击，比如窃取信息或使系统瘫痪。</p>
+<p>每当我们的 API 没有成功完成时，我们应该优雅地失败，发送一个带有信息的错误，以帮助用户做出纠正措施。</p>
+<h2 id=支持过滤排序和分页>
+<a href=#%e6%94%af%e6%8c%81%e8%bf%87%e6%bb%a4%e6%8e%92%e5%ba%8f%e5%92%8c%e5%88%86%e9%a1%b5 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+支持过滤、排序和分页
+</h2>
+<p>REST API 背后的数据库可能变得非常庞大。有时候，数据太多，不应该一次全部返回，因为太慢了，或者会让我们的系统崩溃。因此，我们需要有办法来过滤项目。</p>
+<p>我们还需要对数据进行分页的方法，这样我们就能一次只返回几个结果。我们不希望因为一个请求，而占用资源太长时间。</p>
+<p>过滤和分页都可以通过减少服务器资源的使用来提高性能。随着数据库中积累的数据越多，这些功能就越发重要。</p>
+<p>这里有一个小例子，API 可以接受一个带有各种查询参数的查询字符串，让我们通过字段过滤出项目：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
 
-const app = express();
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
 
-// 数据库中的 employees 数据
-const employees = [
-  { firstName: &quot;Jane&quot;, lastName: &quot;Smith&quot;, age: 20 },
-  //...
-  { firstName: &quot;John&quot;, lastName: &quot;Smith&quot;, age: 30 },
-  { firstName: &quot;Mary&quot;, lastName: &quot;Green&quot;, age: 50 },
-];
+<span class=c1>// 数据库中的 employees 数据
+</span><span class=c1></span><span class=kr>const</span> <span class=nx>employees</span> <span class=o>=</span> <span class=p>[</span>
+  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;Jane&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Smith&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>20</span> <span class=p>},</span>
+  <span class=c1>//...
+</span><span class=c1></span>  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;John&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Smith&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>30</span> <span class=p>},</span>
+  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;Mary&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Green&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>50</span> <span class=p>},</span>
+<span class=p>];</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.get(&quot;/employees&quot;, (req, res) =&gt; {
-  const { firstName, lastName, age } = req.query;
-  let results = [...employees];
-  if (firstName) {
-    results = results.filter((r) =&gt; r.firstName === firstName);
-  }
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/employees&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=p>{</span> <span class=nx>firstName</span><span class=p>,</span> <span class=nx>lastName</span><span class=p>,</span> <span class=nx>age</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>query</span><span class=p>;</span>
+  <span class=kd>let</span> <span class=nx>results</span> <span class=o>=</span> <span class=p>[...</span><span class=nx>employees</span><span class=p>];</span>
+  <span class=k>if</span> <span class=p>(</span><span class=nx>firstName</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>results</span> <span class=o>=</span> <span class=nx>results</span><span class=p>.</span><span class=nx>filter</span><span class=p>((</span><span class=nx>r</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>r</span><span class=p>.</span><span class=nx>firstName</span> <span class=o>===</span> <span class=nx>firstName</span><span class=p>);</span>
+  <span class=p>}</span>
 
-  if (lastName) {
-    results = results.filter((r) =&gt; r.lastName === lastName);
-  }
+  <span class=k>if</span> <span class=p>(</span><span class=nx>lastName</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>results</span> <span class=o>=</span> <span class=nx>results</span><span class=p>.</span><span class=nx>filter</span><span class=p>((</span><span class=nx>r</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>r</span><span class=p>.</span><span class=nx>lastName</span> <span class=o>===</span> <span class=nx>lastName</span><span class=p>);</span>
+  <span class=p>}</span>
 
-  if (age) {
-    results = results.filter((r) =&gt; +r.age === +age);
-  }
-  res.json(results);
-});
+  <span class=k>if</span> <span class=p>(</span><span class=nx>age</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>results</span> <span class=o>=</span> <span class=nx>results</span><span class=p>.</span><span class=nx>filter</span><span class=p>((</span><span class=nx>r</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=o>+</span><span class=nx>r</span><span class=p>.</span><span class=nx>age</span> <span class=o>===</span> <span class=o>+</span><span class=nx>age</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>results</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>在上面的代码中，我们通过 <code>req.query</code> 变量来获取查询参数。然后，我们通过使用 JavaScript 解构语法将各个查询参数解构为变量，以提取属性值。最后，我们用每个查询参数值运行 <code>filter</code> 来定位我们想要返回的项目。</p><p>一旦我们完成了这些工作，我们就将 <code>results</code> 作为响应返回。因此，当我们用查询字符串向以下路径发出 GET 请求时</p><pre><code>/employees?lastName=Smith&amp;age=30
-</code></pre><p>我们得到</p><pre><code class=language-json>[
-  {
-    &quot;firstName&quot;: &quot;John&quot;,
-    &quot;lastName&quot;: &quot;Smith&quot;,
-    &quot;age&quot;: 30
-  }
-]
-</code></pre><p>作为返回的响应，因为我们是按 <code>lastName</code> 和 <code>age</code> 过滤的。</p><p>同样，我们也可以接受 <code>page</code> 查询参数，并返回一组从 <code>(page - 1) * 20</code> 到 <code>page * 20</code> 位置的条目。</p><p>我们还可以在查询字符串中指定要排序的字段。例如，我们可以从查询字符串中获取参数，其中包含我们要对数据进行排序的字段。然后，我们可以按照这些单独的字段进行排序。</p><p>例如，我们可能想从一个 URL 中提取查询字符串，比如。</p><pre><code>http://example.com/articles?sort=+author,-datepublished
-</code></pre><p>其中 <code>+</code> 表示升序，<code>-</code> 表示降序。因此，我们按照作者姓名的字母顺序和 <code>datepublished</code> 从最新的到最旧的排序。</p><h2 id=保持良好的安全实践>保持良好的安全实践
-<a href=#%e4%bf%9d%e6%8c%81%e8%89%af%e5%a5%bd%e7%9a%84%e5%ae%89%e5%85%a8%e5%ae%9e%e8%b7%b5 class=anchor-link>#</a></h2><p>客户端和服务器之间的大部分通信应该是私密的，因为我们经常发送和接收私人信息。因此，使用 SSL/TLS 来保证安全是必须的。</p><p>SSL 证书加载到服务器上并不难，而且其是免费或花费很少的。我们应使我们的 REST API 通过安全通道，而不是在公开地通信。</p><p>人们不应该能够访问到他们所请求的信息之外的信息。例如，一个普通用户不应该能够访问另一个用户的信息。他们也不应该能够访问管理员的数据。</p><p>为了执行最小权限原则，我们需要添加角色检查，或者针对单一角色，或者为每个用户设置更细的角色。</p><p>如果我们选择把用户分成几个角色群，那么这些角色的权限应该覆盖他们所需要的所有权限，而不是更多。如果我们对每个用户可以访问的功能有更细化的权限，那么我们要确保管理员可以相应地添加和删除每个用户的这些功能。另外，我们还需要添加一些预设的角色，可以应用于一组用户，这样我们就不必对每个用户都手动操作了。</p><h2 id=缓存数据以提高性能>缓存数据以提高性能
-<a href=#%e7%bc%93%e5%ad%98%e6%95%b0%e6%8d%ae%e4%bb%a5%e6%8f%90%e9%ab%98%e6%80%a7%e8%83%bd class=anchor-link>#</a></h2><p>我们可以添加缓存，从本地内存缓存中返回数据，而不是每次要检索用户请求的一些数据时，都要查询数据库。缓存的好处是，用户可以更快的获得数据。但是，用户得到的数据可能是过时的。这也可能导致在生产环境中调试时出现问题，因为我们一直看到旧的数据。</p><p>缓存解决方案有很多种，比如 <a href=https://redis.io/>Redis</a>、内存缓存等等。我们可以随着需求的变化，改变数据的缓存方式。</p><p>例如，Express 有 <a href=https://www.npmjs.com/package/apicache>apicache</a> 中间件，不需要太多的配置就可以为我们的应用添加缓存功能。我们可以像这样在服务器中添加一个简单的内存缓存。</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
-const apicache = require(&quot;apicache&quot;);
-const app = express();
-let cache = apicache.middleware;
-app.use(cache(&quot;5 minutes&quot;));
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，我们通过 <code>req.query</code> 变量来获取查询参数。然后，我们通过使用 JavaScript 解构语法将各个查询参数解构为变量，以提取属性值。最后，我们用每个查询参数值运行 <code>filter</code> 来定位我们想要返回的项目。</p>
+<p>一旦我们完成了这些工作，我们就将 <code>results</code> 作为响应返回。因此，当我们用查询字符串向以下路径发出 GET 请求时</p>
+<pre tabindex=0><code>/employees?lastName=Smith&amp;age=30
+</code></pre><p>我们得到</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>[</span>
+  <span class=p>{</span>
+    <span class=nt>&#34;firstName&#34;</span><span class=p>:</span> <span class=s2>&#34;John&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;lastName&#34;</span><span class=p>:</span> <span class=s2>&#34;Smith&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;age&#34;</span><span class=p>:</span> <span class=mi>30</span>
+  <span class=p>}</span>
+<span class=p>]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>作为返回的响应，因为我们是按 <code>lastName</code> 和 <code>age</code> 过滤的。</p>
+<p>同样，我们也可以接受 <code>page</code> 查询参数，并返回一组从 <code>(page - 1) * 20</code> 到 <code>page * 20</code> 位置的条目。</p>
+<p>我们还可以在查询字符串中指定要排序的字段。例如，我们可以从查询字符串中获取参数，其中包含我们要对数据进行排序的字段。然后，我们可以按照这些单独的字段进行排序。</p>
+<p>例如，我们可能想从一个 URL 中提取查询字符串，比如。</p>
+<pre tabindex=0><code>http://example.com/articles?sort=+author,-datepublished
+</code></pre><p>其中 <code>+</code> 表示升序，<code>-</code> 表示降序。因此，我们按照作者姓名的字母顺序和 <code>datepublished</code> 从最新的到最旧的排序。</p>
+<h2 id=保持良好的安全实践>
+<a href=#%e4%bf%9d%e6%8c%81%e8%89%af%e5%a5%bd%e7%9a%84%e5%ae%89%e5%85%a8%e5%ae%9e%e8%b7%b5 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+保持良好的安全实践
+</h2>
+<p>客户端和服务器之间的大部分通信应该是私密的，因为我们经常发送和接收私人信息。因此，使用 SSL/TLS 来保证安全是必须的。</p>
+<p>SSL 证书加载到服务器上并不难，而且其是免费或花费很少的。我们应使我们的 REST API 通过安全通道，而不是在公开地通信。</p>
+<p>人们不应该能够访问到他们所请求的信息之外的信息。例如，一个普通用户不应该能够访问另一个用户的信息。他们也不应该能够访问管理员的数据。</p>
+<p>为了执行最小权限原则，我们需要添加角色检查，或者针对单一角色，或者为每个用户设置更细的角色。</p>
+<p>如果我们选择把用户分成几个角色群，那么这些角色的权限应该覆盖他们所需要的所有权限，而不是更多。如果我们对每个用户可以访问的功能有更细化的权限，那么我们要确保管理员可以相应地添加和删除每个用户的这些功能。另外，我们还需要添加一些预设的角色，可以应用于一组用户，这样我们就不必对每个用户都手动操作了。</p>
+<h2 id=缓存数据以提高性能>
+<a href=#%e7%bc%93%e5%ad%98%e6%95%b0%e6%8d%ae%e4%bb%a5%e6%8f%90%e9%ab%98%e6%80%a7%e8%83%bd class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+缓存数据以提高性能
+</h2>
+<p>我们可以添加缓存，从本地内存缓存中返回数据，而不是每次要检索用户请求的一些数据时，都要查询数据库。缓存的好处是，用户可以更快的获得数据。但是，用户得到的数据可能是过时的。这也可能导致在生产环境中调试时出现问题，因为我们一直看到旧的数据。</p>
+<p>缓存解决方案有很多种，比如 <a href=https://redis.io/>Redis</a>、内存缓存等等。我们可以随着需求的变化，改变数据的缓存方式。</p>
+<p>例如，Express 有 <a href=https://www.npmjs.com/package/apicache>apicache</a> 中间件，不需要太多的配置就可以为我们的应用添加缓存功能。我们可以像这样在服务器中添加一个简单的内存缓存。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>apicache</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;apicache&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
+<span class=kd>let</span> <span class=nx>cache</span> <span class=o>=</span> <span class=nx>apicache</span><span class=p>.</span><span class=nx>middleware</span><span class=p>;</span>
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>cache</span><span class=p>(</span><span class=s2>&#34;5 minutes&#34;</span><span class=p>));</span>
 
-// 数据库中的 employees 数据
-const employees = [
-  { firstName: &quot;Jane&quot;, lastName: &quot;Smith&quot;, age: 20 },
-  //...
-  { firstName: &quot;John&quot;, lastName: &quot;Smith&quot;, age: 30 },
-  { firstName: &quot;Mary&quot;, lastName: &quot;Green&quot;, age: 50 },
-];
+<span class=c1>// 数据库中的 employees 数据
+</span><span class=c1></span><span class=kr>const</span> <span class=nx>employees</span> <span class=o>=</span> <span class=p>[</span>
+  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;Jane&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Smith&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>20</span> <span class=p>},</span>
+  <span class=c1>//...
+</span><span class=c1></span>  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;John&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Smith&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>30</span> <span class=p>},</span>
+  <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;Mary&#34;</span><span class=p>,</span> <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Green&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>50</span> <span class=p>},</span>
+<span class=p>];</span>
 
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.get(&quot;/employees&quot;, (req, res) =&gt; {
-  res.json(employees);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/employees&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>employees</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>上面的代码只是用 <code>apicache.middleware</code> 来引用 <code>apicache</code> 中间件，然后我们用:</p><pre><code class=language-js>app.use(cache(&quot;5 minutes&quot;));
-</code></pre><p>来将缓存应用于整个应用。比如说，我们将结果缓存 5 分钟。我们可以根据自己的需要调整。</p><h2 id=版本化我们的-api>版本化我们的 API
-<a href=#%e7%89%88%e6%9c%ac%e5%8c%96%e6%88%91%e4%bb%ac%e7%9a%84-api class=anchor-link>#</a></h2><p>如果我们要对 API 进行任何可能破坏客户端的修改，我们便应有不同的版本。版本划分可以像现在大多数应用一样，根据语义版本进行（例如，2.0.6 表示主要版本 2 和第 6 个补丁）。</p><p>这样一来，我们可以逐步淘汰旧的端点，而不是强迫大家同时转移到新的 API 上。v1 端点可以为那些不想改变的人保持活跃，而 v2 则可以凭借其闪亮的新功能为那些准备升级的人服务。如果我们的 API 是公开的，这一点尤其重要。我们应该对它们进行版本调整，这样就不会破坏使用我们 API 的第三方应用。</p><p>版本化通常是在 API 路径的开头加上 <code>/v1/</code>、<code>/v2/</code> 等。</p><p>例如，我们可以对 Express 进行如下操作。</p><pre><code class=language-js>const express = require(&quot;express&quot;);
-const bodyParser = require(&quot;body-parser&quot;);
-const app = express();
-app.use(bodyParser.json());
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码只是用 <code>apicache.middleware</code> 来引用 <code>apicache</code> 中间件，然后我们用:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>cache</span><span class=p>(</span><span class=s2>&#34;5 minutes&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>来将缓存应用于整个应用。比如说，我们将结果缓存 5 分钟。我们可以根据自己的需要调整。</p>
+<h2 id=版本化我们的-api>
+<a href=#%e7%89%88%e6%9c%ac%e5%8c%96%e6%88%91%e4%bb%ac%e7%9a%84-api class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+版本化我们的 API
+</h2>
+<p>如果我们要对 API 进行任何可能破坏客户端的修改，我们便应有不同的版本。版本划分可以像现在大多数应用一样，根据语义版本进行（例如，2.0.6 表示主要版本 2 和第 6 个补丁）。</p>
+<p>这样一来，我们可以逐步淘汰旧的端点，而不是强迫大家同时转移到新的 API 上。v1 端点可以为那些不想改变的人保持活跃，而 v2 则可以凭借其闪亮的新功能为那些准备升级的人服务。如果我们的 API 是公开的，这一点尤其重要。我们应该对它们进行版本调整，这样就不会破坏使用我们 API 的第三方应用。</p>
+<p>版本化通常是在 API 路径的开头加上 <code>/v1/</code>、<code>/v2/</code> 等。</p>
+<p>例如，我们可以对 Express 进行如下操作。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;express&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;body-parser&#34;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>();</span>
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
 
-app.get(&quot;/v1/employees&quot;, (req, res) =&gt; {
-  const employees = [];
-  // 获取 employees 的代码
-  res.json(employees);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/v1/employees&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=nx>employees</span> <span class=o>=</span> <span class=p>[];</span>
+  <span class=c1>// 获取 employees 的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>employees</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.get(&quot;/v2/employees&quot;, (req, res) =&gt; {
-  const employees = [];
-  // 另一些获取 employees 的代码
-  res.json(employees);
-});
+<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/v2/employees&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+  <span class=kr>const</span> <span class=nx>employees</span> <span class=o>=</span> <span class=p>[];</span>
+  <span class=c1>// 另一些获取 employees 的代码
+</span><span class=c1></span>  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>(</span><span class=nx>employees</span><span class=p>);</span>
+<span class=p>});</span>
 
-app.listen(3000, () =&gt; console.log(&quot;server started&quot;));
-</code></pre><p>我们只需将版本号添加到端点 URL 路径的开头，就可以对它们进行版本控制。</p><h2 id=结束语>结束语
-<a href=#%e7%bb%93%e6%9d%9f%e8%af%ad class=anchor-link>#</a></h2><p>设计高质量的 REST API 最重要的思考是，通过遵循 Web 标准和约定来获取一致性。JSON、SSL/TLS 和 HTTP 状态码都是现代网络的标准构件。</p><p>性能也是一个重要的考虑因素。我们可以通过不一次性返回太多数据来提高它的性能。此外，我们还可以使用缓存，这样我们就不必一直查询数据。</p><p>端点的路径应该是一致的，我们只使用名词，因为 HTTP 方法表示我们要采取的行动。嵌套资源的路径应该在父资源的路径之后。它们应该告诉我们，我们正在获取或操作什么，而非我们需要阅读额外的文档来理解它在做什么。</p></div></article><div class=copyright><div class=copyright-title>翻译|REST API 设计最佳实践</div><div class=copyright-link><a href=https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/ rel="external nofollow noopenner" target=_blank one-link-mark=yes>https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/</a></div><div class=copyright-meta><div class=copyright-meta-item><div class=copyright-meta-title>本文作者</div><div class=copyright-meta-text>batkiz</div></div><div class=copyright-meta-item><div class=copyright-meta-title>发布于</div><div class=copyright-meta-text>2021-03-18</div></div><div class=copyright-meta-item><div class=copyright-meta-title>许可协议</div><div class=copyright-meta-text><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></div></div></div><div>转载或引用本文时请遵守许可协议，注明原文作者、链接，不得用于商业用途</div></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/theme-new-feat-repl-embed/ class=prev rel=prev title="博客主题新功能：repl 代码集成">← 博客主题新功能：repl 代码集成</a></div><br><div class=comments><div id=cusdis_thread data-host=https://cusdis.com data-app-id=6a934ac3-ac91-43e2-a4f8-dec66f0cf666 data-page-id=/posts/2021/best-practices-for-rest-api-design/ data-page-url=https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/ data-page-title="翻译|REST API 设计最佳实践"></div><script async src=https://cusdis.com/js/cusdis.es.js></script></div></div></main><footer id=footer class=footer><section><div class=social><ul><li><a class=social-item href=mailto:batkiz@outlook.com rel="me noopener noreffer"><svg class="social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Email</title><path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87.34-.76q.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46.0-.8-.33-.32-.33-.32-.8V18H1q-.41.0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h6.5V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44.0.75.3.3.3.3.75v8.3l1.24.72h.01q.1.07.18.18.07.12.07.25zm-6-8.25v3h3v-3zm0 4.5v3h3v-3zm0 4.5v1.83l3.05-1.83zm-5.25-9v3h3.75v-3zm0 4.5v3h3.75v-3zm0 4.5v2.03l2.41 1.5 1.34-.8v-2.73zM9 3.75V6h2l.13.01.12.04v-2.3zM5.98 15.98q.9.0 1.6-.3.7-.32 1.19-.86.48-.55.73-1.28.25-.74.25-1.61.0-.83-.25-1.55-.24-.71-.71-1.24t-1.15-.83q-.68-.3-1.55-.3-.92.0-1.64.3-.71.3-1.2.85-.5.54-.75 1.3-.25.74-.25 1.63.0.85.26 1.56.26.72.74 1.23.48.52 1.17.81.69.3 1.56.3zM7.5 21h12.39L12 16.08V17q0 .41-.3.7-.29.3-.7.3H7.5zm15-.13v-7.24l-5.9 3.54z"/></svg></a></li><li><a class=social-item href=https://twitter.com/batkizc target=_blank rel="external noopener" title=Twitter><svg class="social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958.0 002.163-2.723c-.951.555-2.005.959-3.127 1.184A4.92 4.92.0 0011.78 8.288C7.69 8.095 4.067 6.13 1.64 3.162A4.822 4.822.0 00.974 5.637c0 1.71.87 3.213 2.188 4.096A4.904 4.904.0 01.934 9.117v.06a4.923 4.923.0 003.946 4.827 4.996 4.996.0 01-2.212.085 4.936 4.936.0 004.604 3.417A9.867 9.867.0 011.17 19.611c-.39.0-.779-.023-1.17-.067a13.995 13.995.0 007.557 2.209c9.053.0 13.998-7.496 13.998-13.985.0-.21.0-.42-.015-.63A9.935 9.935.0 0024 4.59z"/></svg></a></li><li><a class=social-item href=https://github.com/batkiz target=_blank rel="external noopener" title=GitHub><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63.0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577.0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93.0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176.0.0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22.0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22.0 1.606-.015 2.896-.015 3.286.0.315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li><li><a class=social-item href=https://t.me/batkiz rel="me noopener noreffer" target=_blank title=Telegram><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944.0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056.0zm4.962 7.224c.1-.002.321.023.465.14a.506.506.0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a></li></ul></div><div class=site-info><div class=copyright-info>&copy;
-<span itemprop=copyrightYear>2017 - 2021</span>
-<span class=author itemprop=copyrightHolder>batkiz</span></div><div class=hugo-info><span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/batkiz/hugo-theme-fs target=_blank rel="external nofollow noopener noreffer">fs</a></span></div></div></section></footer></div><script src=https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js></script><script>mediumZoom(document.querySelectorAll('div.main-inner img'),{background:'rgba(0, 0, 0, 0.6)'})</script><style type=text/css>@import 'https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-solarizedlight.css';@import url('https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css') screen and (prefers-color-scheme:dark)</style><script src=https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-core.min.js></script><script src=https://cdn.jsdelivr.net/npm/prismjs@latest/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdn.jsdelivr.net/npm/prismjs@latest/components/></script><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script></body></html>
+<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;server started&#34;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们只需将版本号添加到端点 URL 路径的开头，就可以对它们进行版本控制。</p>
+<h2 id=结束语>
+<a href=#%e7%bb%93%e6%9d%9f%e8%af%ad class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+结束语
+</h2>
+<p>设计高质量的 REST API 最重要的思考是，通过遵循 Web 标准和约定来获取一致性。JSON、SSL/TLS 和 HTTP 状态码都是现代网络的标准构件。</p>
+<p>性能也是一个重要的考虑因素。我们可以通过不一次性返回太多数据来提高它的性能。此外，我们还可以使用缓存，这样我们就不必一直查询数据。</p>
+<p>端点的路径应该是一致的，我们只使用名词，因为 HTTP 方法表示我们要采取的行动。嵌套资源的路径应该在父资源的路径之后。它们应该告诉我们，我们正在获取或操作什么，而非我们需要阅读额外的文档来理解它在做什么。</p>
+</div>
+</div>
+<div class=container>
+<nav class="flex container suggested">
+<a rel=prev href=/posts/2020/theme-new-feat-repl-embed/ title="Previous post (older)">
+<span>Previous</span>
+博客主题新功能：repl 代码集成
+</a>
+</nav>
+</div>
+<div class=container>
+<script src=https://giscus.app/client.js data-repo=batkiz/batkiz.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMDg1Mjk2NjI=" data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-theme=light crossorigin=anonymous async></script>
+<script>function setGiscusTeheme(b){let a=document.querySelector('.giscus iframe');a&&a.contentWindow.postMessage({giscus:{setConfig:{theme:b}}},'https://giscus.app')}addEventListener('message',a=>{if(a.origin!=='https://giscus.app')return;setGiscusTeheme(document.documentElement.dataset.userColorScheme)}),window.addEventListener('onColorSchemeChange',a=>{setGiscusTeheme(a.detail)})</script>
+</div>
+</main>
+</main>
+<footer class="footer flex">
+<section class=container>
+<nav class=footer-links>
+<a href=/atom.xml>RSS</a>
+</nav>
+<style>@import "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";@import "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap";@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";:root{--noto-serif:"Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
+            "Source Han Serif SC", "Source Han Serif", source-han-serif-sc,
+            "Noto Serif SC";--sys-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";--zh-font-family:var(--noto-serif), "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";--base-font-family:var(--noto-serif), var(--sys-font-family), var(--zh-font-family);--code-font-family:"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;--article-font-family:var(--noto-serif), var(--base-font-family)}</style>
+<script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script>
+</section>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css integrity=sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js integrity=sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous onload="renderMathInElement(document.querySelector('.article-post'),{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}]})"></script>
+<script defer src=/ts/features.c81551cd4dbef120af278f16966a41142c02be9ff5d6a669be09820fbf047456.js data-enable-footnotes=false></script>
+</footer>
+</body>
+</html>

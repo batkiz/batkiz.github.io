@@ -1,10 +1,138 @@
-<!doctype html><html lang=zh-hans><head><meta charset=utf-8><meta name=generator content="Hugo 0.83.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no, date=no, address=no, email=no"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><title>powershell, headers 与乱码 | not b@tk1z</title><link rel=stylesheet href=/scss/main.min.css><meta name=author content="batkiz"><meta name=description content="问题起源 # 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所……"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=mask-icon href=/icons/safari-pinned-tab.svg color><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-title content="not b@tk1z"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=mobile-web-app-capable content="yes"><meta name=application-name content="not b@tk1z"><meta name=msapplication-starturl content="../../../"><meta name=msapplication-TileColor content><meta name=msapplication-TileImage content="../../../icons/mstile-150x150.png"><link rel=manifest href=/manifest.json><link rel=canonical href=https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/><meta name=twitter:card content="summary"><meta name=twitter:title content="powershell, headers 与乱码"><meta name=twitter:description content="问题起源 # 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所"><meta property="og:title" content="powershell, headers 与乱码"><meta property="og:description" content="问题起源 # 在几天之前，我的命令行翻译程序挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。 正如前文所述，我极少用到这个，所"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-06-27T20:58:36+08:00"><meta property="article:modified_time" content="2020-06-27T20:58:36+08:00"></head><body><div class=container><nav class=navbar><div class=navbar-header><a href=https://blog.batkiz.com/>not b@tk1z</a></div><div class="menu navbar-right"><a class=menu-item href=/posts/ title>Posts</a>
-<a class=menu-item href=/links/ title>Links</a>
-<a class=menu-item href=/about title>About</a>
-<a class=menu-item href=/atom.xml title>RSS</a></div></nav><main class=main id=main><div class=main-inner><article class=content><header class=post-header><h1 class=post-title>powershell, headers 与乱码</h1><div class=post-meta><div class=author>batkiz</div><div class=post-date>2020-06-27</div><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=/tags/windows>#windows</a></li><li><a href=/tags/powershell>#powershell</a></li></ul></nav></div></div></header><div class=post-content><h2 id=问题起源>问题起源
-<a href=#%e9%97%ae%e9%a2%98%e8%b5%b7%e6%ba%90 class=anchor-link>#</a></h2><p>在几天之前，我的<a href=https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123>命令行翻译程序</a>挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。</p><p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 <a href=http://nlp.xmu.edu.cn/>厦门大学自然语言处理实验室</a> 提供的 <a href=http://nmt.xmu.edu.cn/>云译 CloudTranslation</a> 的公开 <a href=http://nmt.xmu.edu.cn/static/api_zh-cn.html>API</a>。</p><h2 id=解决过程>解决过程
-<a href=#%e8%a7%a3%e5%86%b3%e8%bf%87%e7%a8%8b class=anchor-link>#</a></h2><p>就当我读完短短的 API Doc 后准备开始写段小脚本时，悲剧发生了：它竟然乱码了！</p><p><figure data-type=image data-pswp=true itemscope itemprop=associatedMedia itemtype=http://schema.org/ImageObject><img alt="图中的 Content 与 RawContent 都是乱码的" data-pswp-title="图中的 Content 与 RawContent 都是乱码的" src=https://s1.ax1x.com/2020/06/27/NckFpV.png sizes=auto><figcaption>图中的 Content 与 RawContent 都是乱码的</figcaption></figure></p><p>然后我也很不能相信，于是又回去读了读文档，看到<a href=http://nmt.xmu.edu.cn/static/api_zh-cn.html#_4>其中</a>清楚地写着：</p><blockquote><p>返回格式： UTF-8 编码纯文本</p></blockquote><p>WHAT THE F@XK? 我的 Windows 系统一直都是默认 unicode 的，而当前 pwsh 的活动代码页也是 <code>65001</code>。换言之，这个接口的返回值乱码绝对不是本地是 gbk/gb2312 这种低级错误。那问题出在哪呢？</p><p>为了确定它返回的编码确实是 utf-8，我看了看它的 headers，以防出现他本身发送的是 gbk/gb2312 这种乌龙。</p><p><em>通过 <a href=http://www.mytju.com/classCode/tools/messyCodeRecover.asp>乱码恢复</a> 确定了乱码文字现在的编码是 iso-8859-1，其本身确实是 utf-8 的。</em></p><p><figure data-type=image data-pswp=true itemscope itemprop=associatedMedia itemtype=http://schema.org/ImageObject><img alt=看起来并没有问题 data-pswp-title=看起来并没有问题 src=https://s1.ax1x.com/2020/06/27/NcARqe.png sizes=auto><figcaption>看起来并没有问题</figcaption></figure></p><p>打眼一看确实没啥问题，但我注意到了其中并没有指定 charset/encoding 信息。</p><p>以防万一，我又在 wsl 中用 curl 对比执行了一下：</p><p><figure data-type=image data-pswp=true itemscope itemprop=associatedMedia itemtype=http://schema.org/ImageObject><img alt="完 全 正 常" data-pswp-title="完 全 正 常" src=https://s1.ax1x.com/2020/06/27/NcAYvT.png sizes=auto><figcaption>完 全 正 常</figcaption></figure></p><p>此时我已经基本确定，乱码是因为 headers 中缺了东西导致的，但为什么会导致这种问题呢？我想让他不乱码难道就只能通过 wsl 来调用 API 了么？</p><p>然后通过我<del>西安市 top3 的信息检索能力</del>的 Google 技术，找到了这个 StackOverflow 回答：</p><blockquote><p>The problem is that Spotify is (unwisely) not returning the encoding it&rsquo;s using in its headers. PowerShell obeys the standard by assuming ISO-8859-1, but unfortunately the site is using UTF-8. <a href=https://stackoverflow.com/a/47961370/8553961>src</a></p></blockquote><p>即一则网站未按规范在 headers 中指定编码信息；二则 powershell 遇到未指定编码的内容时，会假设其编码为 ISO-8859-1，问题就这样出现了。</p><p>想要解决也很简单，把内容从 ISO-8859-1 编码转换回 utf-8 即可。</p><h2 id=等等还有一个问题>等等，还有一个问题
-<a href=#%e7%ad%89%e7%ad%89%e8%bf%98%e6%9c%89%e4%b8%80%e4%b8%aa%e9%97%ae%e9%a2%98 class=anchor-link>#</a></h2><p>命令行中的问题解决了，浏览器中的呢？</p><p>如果在浏览器中打开 <a href="https://nmt.xmu.edu.cn/nmt?lang=en_zh-cn&src=Neural%20Machine%20Translation">此示例</a>，浏览器中的内容会是 <em>绁炵粡鏈哄櫒缈昏瘧</em>，是被错误以 gbk 解码而出现的乱码，这个问题在 chromium 与 firefox 上都会出现。</p><p>然而在开发者工具的 network 中查看时，其响应会是正常的。时间与才学所限没能细看 chromium/firefox 的源代码，希望有朋友知道的话能指教一二（可看关于页中我的联系方式）。</p></div></article><div class=copyright><div class=copyright-title>powershell, headers 与乱码</div><div class=copyright-link><a href=https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/ rel="external nofollow noopenner" target=_blank one-link-mark=yes>https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/</a></div><div class=copyright-meta><div class=copyright-meta-item><div class=copyright-meta-title>本文作者</div><div class=copyright-meta-text>batkiz</div></div><div class=copyright-meta-item><div class=copyright-meta-title>发布于</div><div class=copyright-meta-text>2020-06-27</div></div><div class=copyright-meta-item><div class=copyright-meta-title>许可协议</div><div class=copyright-meta-text><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a></div></div></div><div>转载或引用本文时请遵守许可协议，注明原文作者、链接，不得用于商业用途</div></div><div class=post-nav><a href=https://blog.batkiz.com/posts/2020/talk-about-scoop/ class=prev rel=prev title="在 winget 到来之际，再谈谈 scoop">← 在 winget 到来之际，再谈谈 scoop</a>
-<a href=https://blog.batkiz.com/posts/2020/301-redirect-with-cloudflare/ class=next rel=next title="无服务器实现 301 跳转（with Cloudflare）">无服务器实现 301 跳转（with Cloudflare） →</a></div><br><div class=comments><div id=cusdis_thread data-host=https://cusdis.com data-app-id=6a934ac3-ac91-43e2-a4f8-dec66f0cf666 data-page-id=/posts/2020/pwsh-headers-and-messy-code/ data-page-url=https://blog.batkiz.com/posts/2020/pwsh-headers-and-messy-code/ data-page-title="powershell, headers 与乱码"></div><script async src=https://cusdis.com/js/cusdis.es.js></script></div></div></main><footer id=footer class=footer><section><div class=social><ul><li><a class=social-item href=mailto:batkiz@outlook.com rel="me noopener noreffer"><svg class="social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Email</title><path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87.34-.76q.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46.0-.8-.33-.32-.33-.32-.8V18H1q-.41.0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h6.5V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44.0.75.3.3.3.3.75v8.3l1.24.72h.01q.1.07.18.18.07.12.07.25zm-6-8.25v3h3v-3zm0 4.5v3h3v-3zm0 4.5v1.83l3.05-1.83zm-5.25-9v3h3.75v-3zm0 4.5v3h3.75v-3zm0 4.5v2.03l2.41 1.5 1.34-.8v-2.73zM9 3.75V6h2l.13.01.12.04v-2.3zM5.98 15.98q.9.0 1.6-.3.7-.32 1.19-.86.48-.55.73-1.28.25-.74.25-1.61.0-.83-.25-1.55-.24-.71-.71-1.24t-1.15-.83q-.68-.3-1.55-.3-.92.0-1.64.3-.71.3-1.2.85-.5.54-.75 1.3-.25.74-.25 1.63.0.85.26 1.56.26.72.74 1.23.48.52 1.17.81.69.3 1.56.3zM7.5 21h12.39L12 16.08V17q0 .41-.3.7-.29.3-.7.3H7.5zm15-.13v-7.24l-5.9 3.54z"/></svg></a></li><li><a class=social-item href=https://twitter.com/batkizc target=_blank rel="external noopener" title=Twitter><svg class="social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958.0 002.163-2.723c-.951.555-2.005.959-3.127 1.184A4.92 4.92.0 0011.78 8.288C7.69 8.095 4.067 6.13 1.64 3.162A4.822 4.822.0 00.974 5.637c0 1.71.87 3.213 2.188 4.096A4.904 4.904.0 01.934 9.117v.06a4.923 4.923.0 003.946 4.827 4.996 4.996.0 01-2.212.085 4.936 4.936.0 004.604 3.417A9.867 9.867.0 011.17 19.611c-.39.0-.779-.023-1.17-.067a13.995 13.995.0 007.557 2.209c9.053.0 13.998-7.496 13.998-13.985.0-.21.0-.42-.015-.63A9.935 9.935.0 0024 4.59z"/></svg></a></li><li><a class=social-item href=https://github.com/batkiz target=_blank rel="external noopener" title=GitHub><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63.0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577.0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93.0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176.0.0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22.0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22.0 1.606-.015 2.896-.015 3.286.0.315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li><li><a class=social-item href=https://t.me/batkiz rel="me noopener noreffer" target=_blank title=Telegram><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944.0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056.0zm4.962 7.224c.1-.002.321.023.465.14a.506.506.0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a></li></ul></div><div class=site-info><div class=copyright-info>&copy;
-<span itemprop=copyrightYear>2017 - 2021</span>
-<span class=author itemprop=copyrightHolder>batkiz</span></div><div class=hugo-info><span>powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/batkiz/hugo-theme-fs target=_blank rel="external nofollow noopener noreffer">fs</a></span></div></div></section></footer></div><script src=https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js></script><script>mediumZoom(document.querySelectorAll('div.main-inner img'),{background:'rgba(0, 0, 0, 0.6)'})</script><style type=text/css>@import 'https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-solarizedlight.css';@import url('https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css') screen and (prefers-color-scheme:dark)</style><script src=https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-core.min.js></script><script src=https://cdn.jsdelivr.net/npm/prismjs@latest/plugins/autoloader/prism-autoloader.min.js data-autoloader-path=https://cdn.jsdelivr.net/npm/prismjs@latest/components/></script><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script></body></html>
+<!doctype html><html lang=zh-hans>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=theme-color content="dark">
+<title>powershell, headers 与乱码 | not b@tk1z</title>
+<meta property="og:site_name" content="not b@tk1z">
+<meta property="og:title" content="powershell, headers 与乱码 | not b@tk1z">
+<meta itemprop=name content="powershell, headers 与乱码 | not b@tk1z">
+<meta name=twitter:title content="powershell, headers 与乱码 | not b@tk1z">
+<meta name=application-name content="powershell, headers 与乱码 | not b@tk1z">
+<meta name=description content="一帘新语随风去，半山明月踏江来。">
+<meta name=twitter:description content="一帘新语随风去，半山明月踏江来。">
+<meta itemprop=description content="一帘新语随风去，半山明月踏江来。">
+<meta property="og:description" content="一帘新语随风去，半山明月踏江来。">
+<link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=stylesheet href=/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css>
+</head>
+<script>(function(){const b='ThemeColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.userColorScheme='dark':document.documentElement.dataset.userColorScheme='light'})()</script>
+<body class=dark>
+<nav class=navbar>
+<div class=container>
+<div class=flex>
+<div>
+<a class=brand href=/>
+not b@tk1z
+</a>
+</div>
+<div class=flex>
+<a href=/posts/>Posts</a>
+<a href=/links/>Links</a>
+<a href=/about>About</a>
+<button id=dark-mode-button><svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163.0 101.643 1.641 1.163 1.163.0 00-1.643-1.641zm-16.022 14.38a1.74 1.74.0 000 2.465 1.742 1.742.0 100-2.465zm13.968-2.147a2.904 2.904.0 01-4.108.0 2.902 2.902.0 010-4.107 2.902 2.902.0 014.108.0 2.902 2.902.0 010 4.107z" fill="#ffcc4d"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg><svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M16 2s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2V2zm18 14s2 0 2 2-2 2-2 2h-2s-2 0-2-2 2-2 2-2h2zM4 16s2 0 2 2-2 2-2 2H2s-2 0-2-2 2-2 2-2h2zm5.121-8.707s1.414 1.414.0 2.828-2.828.0-2.828.0L4.878 8.708s-1.414-1.414.0-2.829c1.415-1.414 2.829.0 2.829.0l1.414 1.414zm21 21s1.414 1.414.0 2.828-2.828.0-2.828.0l-1.414-1.414s-1.414-1.414.0-2.828 2.828.0 2.828.0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zM16 32s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2v-2z"/><circle fill="#ffd983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main>
+<div class=container>
+<article>
+<header class=article-header>
+<div class=thumb>
+<div>
+<h1>powershell, headers 与乱码</h1>
+<div class=post-meta>
+<div>
+By batkiz | <time>June 27, 2020</time>
+| 2 minutes
+</div>
+<div class=tags>
+<a href=/tags/windows/>windows</a>
+<a href=/tags/powershell/>powershell</a>
+</div>
+</div>
+</div>
+</div>
+</header>
+</article>
+<div class=article-post>
+<h2 id=问题起源>
+<a href=#%e9%97%ae%e9%a2%98%e8%b5%b7%e6%ba%90 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+问题起源
+</h2>
+<p>在几天之前，我的<a href=https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123>命令行翻译程序</a>挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。</p>
+<p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 <a href=http://nlp.xmu.edu.cn/>厦门大学自然语言处理实验室</a> 提供的 <a href=http://nmt.xmu.edu.cn/>云译 CloudTranslation</a> 的公开 <a href=http://nmt.xmu.edu.cn/static/api_zh-cn.html>API</a>。</p>
+<h2 id=解决过程>
+<a href=#%e8%a7%a3%e5%86%b3%e8%bf%87%e7%a8%8b class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+解决过程
+</h2>
+<p>就当我读完短短的 API Doc 后准备开始写段小脚本时，悲剧发生了：它竟然乱码了！</p>
+<p><img loading=lazy src=https://s1.ax1x.com/2020/06/27/NckFpV.png alt="图中的 Content 与 RawContent 都是乱码的"></p>
+<p>然后我也很不能相信，于是又回去读了读文档，看到<a href=http://nmt.xmu.edu.cn/static/api_zh-cn.html#_4>其中</a>清楚地写着：</p>
+<blockquote>
+<p>返回格式： UTF-8 编码纯文本</p>
+</blockquote>
+<p>WHAT THE F@XK? 我的 Windows 系统一直都是默认 unicode 的，而当前 pwsh 的活动代码页也是 <code>65001</code>。换言之，这个接口的返回值乱码绝对不是本地是 gbk/gb2312 这种低级错误。那问题出在哪呢？</p>
+<p>为了确定它返回的编码确实是 utf-8，我看了看它的 headers，以防出现他本身发送的是 gbk/gb2312 这种乌龙。</p>
+<p><em>通过 <a href=http://www.mytju.com/classCode/tools/messyCodeRecover.asp>乱码恢复</a> 确定了乱码文字现在的编码是 iso-8859-1，其本身确实是 utf-8 的。</em></p>
+<p><img loading=lazy src=https://s1.ax1x.com/2020/06/27/NcARqe.png alt=看起来并没有问题></p>
+<p>打眼一看确实没啥问题，但我注意到了其中并没有指定 charset/encoding 信息。</p>
+<p>以防万一，我又在 wsl 中用 curl 对比执行了一下：</p>
+<p><img loading=lazy src=https://s1.ax1x.com/2020/06/27/NcAYvT.png alt="完 全 正 常"></p>
+<p>此时我已经基本确定，乱码是因为 headers 中缺了东西导致的，但为什么会导致这种问题呢？我想让他不乱码难道就只能通过 wsl 来调用 API 了么？</p>
+<p>然后通过我<del>西安市 top3 的信息检索能力</del>的 Google 技术，找到了这个 StackOverflow 回答：</p>
+<blockquote>
+<p>The problem is that Spotify is (unwisely) not returning the encoding it&rsquo;s using in its headers. PowerShell obeys the standard by assuming ISO-8859-1, but unfortunately the site is using UTF-8. <a href=https://stackoverflow.com/a/47961370/8553961>src</a></p>
+</blockquote>
+<p>即一则网站未按规范在 headers 中指定编码信息；二则 powershell 遇到未指定编码的内容时，会假设其编码为 ISO-8859-1，问题就这样出现了。</p>
+<p>想要解决也很简单，把内容从 ISO-8859-1 编码转换回 utf-8 即可。</p>
+<h2 id=等等还有一个问题>
+<a href=#%e7%ad%89%e7%ad%89%e8%bf%98%e6%9c%89%e4%b8%80%e4%b8%aa%e9%97%ae%e9%a2%98 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
+</a>
+等等，还有一个问题
+</h2>
+<p>命令行中的问题解决了，浏览器中的呢？</p>
+<p>如果在浏览器中打开 <a href="https://nmt.xmu.edu.cn/nmt?lang=en_zh-cn&src=Neural%20Machine%20Translation">此示例</a>，浏览器中的内容会是 <em>绁炵粡鏈哄櫒缈昏瘧</em>，是被错误以 gbk 解码而出现的乱码，这个问题在 chromium 与 firefox 上都会出现。</p>
+<p>然而在开发者工具的 network 中查看时，其响应会是正常的。时间与才学所限没能细看 chromium/firefox 的源代码，希望有朋友知道的话能指教一二（可看关于页中我的联系方式）。</p>
+</div>
+</div>
+<div class=container>
+<nav class="flex container suggested">
+<a rel=prev href=/posts/2020/talk-about-scoop/ title="Previous post (older)">
+<span>Previous</span>
+在 winget 到来之际，再谈谈 scoop
+</a>
+<a rel=next href=/posts/2020/301-redirect-with-cloudflare/ title="Next post (newer)">
+<span>Next</span>
+无服务器实现 301 跳转（with Cloudflare）
+</a>
+</nav>
+</div>
+<div class=container>
+<script src=https://giscus.app/client.js data-repo=batkiz/batkiz.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMDg1Mjk2NjI=" data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-theme=light crossorigin=anonymous async></script>
+<script>function setGiscusTeheme(b){let a=document.querySelector('.giscus iframe');a&&a.contentWindow.postMessage({giscus:{setConfig:{theme:b}}},'https://giscus.app')}addEventListener('message',a=>{if(a.origin!=='https://giscus.app')return;setGiscusTeheme(document.documentElement.dataset.userColorScheme)}),window.addEventListener('onColorSchemeChange',a=>{setGiscusTeheme(a.detail)})</script>
+</div>
+</main>
+</main>
+<footer class="footer flex">
+<section class=container>
+<nav class=footer-links>
+<a href=/atom.xml>RSS</a>
+</nav>
+<style>@import "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";@import "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap";@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";:root{--noto-serif:"Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
+            "Source Han Serif SC", "Source Han Serif", source-han-serif-sc,
+            "Noto Serif SC";--sys-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";--zh-font-family:var(--noto-serif), "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";--base-font-family:var(--noto-serif), var(--sys-font-family), var(--zh-font-family);--code-font-family:"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;--article-font-family:var(--noto-serif), var(--base-font-family)}</style>
+<script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script>
+</section>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css integrity=sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js integrity=sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous onload="renderMathInElement(document.querySelector('.article-post'),{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}]})"></script>
+<script defer src=/ts/features.c81551cd4dbef120af278f16966a41142c02be9ff5d6a669be09820fbf047456.js data-enable-footnotes=false></script>
+</footer>
+</body>
+</html>
