@@ -1,137 +1,20 @@
-<!doctype html><html lang=zh-hans>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=theme-color content="dark">
-<title>博客迁移至 Hugo 并实现自动化 | not b@tk1z</title>
-<meta property="og:site_name" content="not b@tk1z">
-<meta property="og:title" content="博客迁移至 Hugo 并实现自动化 | not b@tk1z">
-<meta itemprop=name content="博客迁移至 Hugo 并实现自动化 | not b@tk1z">
-<meta name=twitter:title content="博客迁移至 Hugo 并实现自动化 | not b@tk1z">
-<meta name=application-name content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><meta name=twitter:card content="summary">
-<meta name=description content="一帘新语随风去，半山明月踏江来。">
-<meta name=twitter:description content="一帘新语随风去，半山明月踏江来。">
-<meta itemprop=description content="一帘新语随风去，半山明月踏江来。">
-<meta property="og:description" content="一帘新语随风去，半山明月踏江来。">
-<link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
-<link rel=stylesheet href=/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css>
-</head>
-<script>(function(){const a='ThemeColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='ThemeColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.userColorScheme='dark':document.documentElement.dataset.userColorScheme='light'})()</script>
-<body class=dark>
-<nav class=navbar>
-<div class=container>
-<div class=flex>
-<div>
-<a class=brand href=/>
-not b@tk1z
-</a>
-</div>
-<div class=flex>
-<a href=/posts/>Posts</a>
+<!doctype html><html lang=zh-hans><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><title>博客迁移至 Hugo 并实现自动化 | not b@tk1z</title><meta property="og:site_name" content="not b@tk1z"><meta property="og:title" content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><meta itemprop=name content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><meta name=twitter:title content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><meta name=application-name content="博客迁移至 Hugo 并实现自动化 | not b@tk1z"><meta name=twitter:card content="summary"><meta name=description content="一帘新语随风去，半山明月踏江来。"><meta name=twitter:description content="一帘新语随风去，半山明月踏江来。"><meta itemprop=description content="一帘新语随风去，半山明月踏江来。"><meta property="og:description" content="一帘新语随风去，半山明月踏江来。"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=stylesheet href=/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css></head><script>(function(){const e="ThemeColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="ThemeColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.userColorScheme="dark":document.documentElement.dataset.userColorScheme="light"})()</script><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/>not b@tk1z</a></div><div class=flex><a href=/posts/>Posts</a>
 <a href=/links/>Links</a>
 <a href=/about>About</a>
-<button id=dark-mode-button><svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163.0 101.643 1.641 1.163 1.163.0 00-1.643-1.641zm-16.022 14.38a1.74 1.74.0 000 2.465 1.742 1.742.0 100-2.465zm13.968-2.147a2.904 2.904.0 01-4.108.0 2.902 2.902.0 010-4.107 2.902 2.902.0 014.108.0 2.902 2.902.0 010 4.107z" fill="#ffcc4d"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg><svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M16 2s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2V2zm18 14s2 0 2 2-2 2-2 2h-2s-2 0-2-2 2-2 2-2h2zM4 16s2 0 2 2-2 2-2 2H2s-2 0-2-2 2-2 2-2h2zm5.121-8.707s1.414 1.414.0 2.828-2.828.0-2.828.0L4.878 8.708s-1.414-1.414.0-2.829c1.415-1.414 2.829.0 2.829.0l1.414 1.414zm21 21s1.414 1.414.0 2.828-2.828.0-2.828.0l-1.414-1.414s-1.414-1.414.0-2.828 2.828.0 2.828.0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zM16 32s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2v-2z"/><circle fill="#ffd983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg>
-</button>
-</div>
-</div>
-</div>
-</nav>
-<main>
-<div class=container>
-<article>
-<header class=article-header>
-<div class=thumb>
-<div>
-<h1>博客迁移至 Hugo 并实现自动化</h1>
-<div class=post-meta>
-<div>
-By batkiz | <time>October 20, 2019</time>
-| 5 minutes
-</div>
-<div class=tags>
-<a href=/tags/hugo/>hugo</a>
-</div>
-</div>
-</div>
-</div>
-</header>
-</article>
-<div class=article-post>
-<p>好久不见！</p>
-<p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p>
-<p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p>
-<p>下面是过程复现与总结。</p>
-<h2 id=hugo>
-<a href=#hugo class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-Hugo
-</h2>
-<p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p>
-<p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p>
-<ul>
-<li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li>
-<li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li>
-<li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li>
-<li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li>
-</ul>
-<p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p>
-<h2 id=开始迁移>
-<a href=#%e5%bc%80%e5%a7%8b%e8%bf%81%e7%a7%bb class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-开始迁移
-</h2>
-<p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p>
-<h3 id=链接>
-<a href=#%e9%93%be%e6%8e%a5 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-链接
-</h3>
-<p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p>
-<p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p>
-<p>解决很简单，修改为相同的即可。</p>
-<h3 id=rss>
-<a href=#rss class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-RSS
-</h3>
-<p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p>
-<p>解决方法：在 <code>config.toml</code> 中加入下列内容</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+<button id=dark-mode-button><svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163.0 101.643 1.641 1.163 1.163.0 00-1.643-1.641zm-16.022 14.38a1.74 1.74.0 000 2.465 1.742 1.742.0 100-2.465zm13.968-2.147a2.904 2.904.0 01-4.108.0 2.902 2.902.0 010-4.107 2.902 2.902.0 014.108.0 2.902 2.902.0 010 4.107z" fill="#ffcc4d"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg><svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M16 2s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2V2zm18 14s2 0 2 2-2 2-2 2h-2s-2 0-2-2 2-2 2-2h2zM4 16s2 0 2 2-2 2-2 2H2s-2 0-2-2 2-2 2-2h2zm5.121-8.707s1.414 1.414.0 2.828-2.828.0-2.828.0L4.878 8.708s-1.414-1.414.0-2.829c1.415-1.414 2.829.0 2.829.0l1.414 1.414zm21 21s1.414 1.414.0 2.828-2.828.0-2.828.0l-1.414-1.414s-1.414-1.414.0-2.828 2.828.0 2.828.0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zM16 32s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2v-2z"/><circle fill="#ffd983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>博客迁移至 Hugo 并实现自动化</h1><div class=post-meta><div>By batkiz | <time>October 20, 2019</time>
+| 5 minutes</div><div class=tags><a href=/tags/hugo/>hugo</a></div></div></div></div></header></article><div class=article-post><p>好久不见！</p><p>自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 <a href=https://www.v2ex.com/t/611063>hexo 释出 4.0 版本</a> 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。</p><p>于是，我趁着今天是闲暇的周日，把一切事情办好了。</p><p>下面是过程复现与总结。</p><h2 id=hugo><a href=#hugo class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Hugo</h2><p>其实最早我并不是太想换到 Hugo 的，但奈何自己想要写一个静态博客生成器的计划一直提不上日程…… 便选择了这个解决方案。</p><p>之后是主题的选择。由于 Hugo 的主题生态圈较之 Hexo 仍较为匮乏，因此选择并不多。经过我在各种网站上的搜罗与比较，下面列出我较为偏向的选择：</p><ul><li>Maupassant，这个是我在 Hexo 上一直使用的主题，但 Hugo 上的移植版我不太满意，pass。</li><li><a href=https://linw1995.com/>https://linw1995.com/</a>，这个主题我十分喜欢，但由于没有提供主题的 repo，只能作罢。</li><li><a href=https://github.com/liuzc/LeaveIt>LeaveIt</a>，这个主题看着还行，但太久没维护，都没办法用……</li><li><a href=https://github.com/Fastbyte01/KeepIt>KeepIt</a>，这个是上面 LeaveIt 的 fork，也是我最终的选择。</li></ul><p>但由于 KeepIt 的功能还是不太能满足我的需求，因此我又 fork 了一份，作为自用。地址 <a href=https://github.com/batkiz/left>batkiz/left</a></p><h2 id=开始迁移><a href=#%e5%bc%80%e5%a7%8b%e8%bf%81%e7%a7%bb class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>开始迁移</h2><p>整个迁移过程中，我最在意的是该死的 <strong>兼容性</strong> ，即，我新生成的博客要与之前的博客在整体行为上没有太大变化，下面就是在保证兼容性前提下的迁移过程。</p><h3 id=链接><a href=#%e9%93%be%e6%8e%a5 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>链接</h3><p>之前的链接不能直接 404，让读者找不到文章（虽然原来就没啥读者），不能造成割裂行为。</p><p>Hexo 默认的链接生成方法为 <code>/:year/:month/:day/:filename/</code>，而 Hugo 的则为 <code>/:year/:filename/</code>。</p><p>解决很简单，修改为相同的即可。</p><h3 id=rss><a href=#rss class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>RSS</h3><p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p><p>解决方法：在 <code>config.toml</code> 中加入下列内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>outputs</span><span class=p>]</span>
-  <span class=nx>home</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;Atom&#34;</span><span class=p>,</span> <span class=s2>&#34;HTML&#34;</span><span class=p>]</span>
-
-<span class=p>[</span><span class=nx>outputFormats</span><span class=p>.</span><span class=nx>Atom</span><span class=p>]</span>
-  <span class=nx>mediatype</span> <span class=p>=</span> <span class=s2>&#34;application/rss&#34;</span>
-  <span class=nx>baseName</span> <span class=p>=</span> <span class=s2>&#34;atom&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p>
-<p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p>
-<p>为解决此问题，我试着看了看源码，但看不懂（</p>
-<p>接着我试了试 Google，感谢 <a href=https://github.com/kaushalmodi/hugo-atom-feed>kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p>
-<h3 id=mathjax>
-<a href=#mathjax class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-mathjax
-</h3>
-<p>虽然我平时很少输入数学公式，但这个功能也不能少！</p>
-<p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p>
-<p>接下来仍然是 Google。</p>
-<p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p>
-<p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>outputs</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>home</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;Atom&#34;</span><span class=p>,</span> <span class=s2>&#34;HTML&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>outputFormats</span><span class=p>.</span><span class=nx>Atom</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>mediatype</span> <span class=p>=</span> <span class=s2>&#34;application/rss&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>baseName</span> <span class=p>=</span> <span class=s2>&#34;atom&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>即可生成 <code>atom.xml</code> 文件作为 RSS feed。</p><p>在成功解决上述兼容性问题之后，新问题随之而来：<strong>为什么生成的 xml 里 tmd 没有内容？</strong></p><p>为解决此问题，我试着看了看源码，但看不懂（</p><p>接着我试了试 Google，感谢 <a href=https://github.com/kaushalmodi/hugo-atom-feed>kaushalmodi</a> 的代码，我用它覆盖了 <code>index.atom.xml</code> 之后便成功部署了正确的 RSS，简单修改（将默认的只生成最近 6 条增加到 20）之后便符合了需求。</p><h3 id=mathjax><a href=#mathjax class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>mathjax</h3><p>虽然我平时很少输入数学公式，但这个功能也不能少！</p><p>首先我尝试了将 mathjax 的支持直接写入 head/footer/js 等几个模板，但，还是没用（即使我已经在源码中看到了 mathjax 的支持代码）。</p><p>接下来仍然是 Google。</p><p>感谢 <a href=http://weibo.com/u/2837672545>匿蟒</a>，我在 <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p><p>在添加 <a href=https://www.mathjax.org/>MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -160,109 +43,53 @@ mathjax
 </span><span class=lnt>27
 </span><span class=lnt>28
 </span><span class=lnt>29
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span>
-  <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span>
-  <span class=na>async</span>
-  <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;</span>
-<span class=p>&gt;</span>
-  <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Config</span><span class=p>({</span>
-      <span class=s2>&#34;HTML-CSS&#34;</span><span class=o>:</span> <span class=p>{</span><span class=nx>preferredFont</span><span class=o>:</span> <span class=s2>&#34;TeX&#34;</span><span class=p>,</span> <span class=nx>availableFonts</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;STIX&#34;</span><span class=p>,</span> <span class=s2>&#34;TeX&#34;</span><span class=p>],</span> <span class=nx>linebreaks</span><span class=o>:</span> <span class=p>{</span> <span class=nx>automatic</span><span class=o>:</span> <span class=kc>true</span> <span class=p>},</span> <span class=nx>EqnChunk</span><span class=o>:</span> <span class=p>(</span><span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Browser</span><span class=p>.</span><span class=nx>isMobile</span> <span class=o>?</span> <span class=mi>10</span> <span class=o>:</span> <span class=mi>50</span><span class=p>)</span> <span class=p>},</span>
-      <span class=nx>tex2jax</span><span class=o>:</span> <span class=p>{</span><span class=nx>inlineMath</span><span class=o>:</span> <span class=p>[[</span><span class=s2>&#34;$&#34;</span><span class=p>,</span> <span class=s2>&#34;$&#34;</span><span class=p>],</span> <span class=p>[</span><span class=s2>&#34;\\(&#34;</span><span class=p>,</span> <span class=s2>&#34;\\)&#34;</span><span class=p>]],</span> <span class=nx>processEscapes</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span> <span class=nx>ignoreClass</span><span class=o>:</span> <span class=s2>&#34;tex2jax_ignore|dno&#34;</span><span class=p>,</span> <span class=nx>skipTags</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;script&#39;</span><span class=p>,</span> <span class=s1>&#39;noscript&#39;</span><span class=p>,</span> <span class=s1>&#39;style&#39;</span><span class=p>,</span> <span class=s1>&#39;textarea&#39;</span><span class=p>,</span> <span class=s1>&#39;pre&#39;</span><span class=p>,</span> <span class=s1>&#39;code&#39;</span><span class=p>]</span> <span class=p>},</span>
-      <span class=nx>TeX</span><span class=o>:</span> <span class=p>{</span><span class=nx>noUndefined</span><span class=o>:</span> <span class=p>{</span> <span class=nx>attributes</span><span class=o>:</span> <span class=p>{</span> <span class=nx>mathcolor</span><span class=o>:</span> <span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=nx>mathbackground</span><span class=o>:</span> <span class=s2>&#34;#FFEEEE&#34;</span><span class=p>,</span> <span class=nx>mathsize</span><span class=o>:</span> <span class=s2>&#34;90%&#34;</span><span class=p>}</span> <span class=p>},</span> <span class=nx>Macros</span><span class=o>:</span> <span class=p>{</span> <span class=nx>href</span><span class=o>:</span> <span class=s2>&#34;{}&#34;</span> <span class=p>}</span> <span class=p>},</span>
-      <span class=nx>messageStyle</span><span class=o>:</span> <span class=s2>&#34;none&#34;</span>
-  <span class=p>});</span>
-
-  <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Queue</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
-      <span class=kd>var</span> <span class=nx>all</span> <span class=o>=</span> <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>getAllJax</span><span class=p>(),</span> <span class=nx>i</span><span class=p>;</span>
-      <span class=k>for</span> <span class=p>(</span><span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>all</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
-          <span class=nx>all</span><span class=p>[</span><span class=nx>i</span><span class=p>].</span><span class=nx>SourceElement</span><span class=p>().</span><span class=nx>parentNode</span><span class=p>.</span><span class=nx>className</span> <span class=o>+=</span> <span class=s1>&#39;has-jax&#39;</span><span class=p>;</span>
-      <span class=p>}</span>
-  <span class=p>});</span>
-<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
-
-<span class=p>&lt;</span><span class=nt>style</span><span class=p>&gt;</span>
-  <span class=nt>code</span><span class=p>.</span><span class=nc>has-jax</span> <span class=p>{</span>
-    <span class=k>font</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
-    <span class=k>font-size</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
-    <span class=k>background</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
-    <span class=k>border</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
-    <span class=k>color</span><span class=p>:</span> <span class=mh>#515151</span><span class=p>;</span>
-  <span class=p>}</span>
-<span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p>
-<p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-html data-lang=html>{{partial &#34;mathjax.html&#34; .}}
-</code></pre></td></tr></table>
-</div>
-</div><h3 id=frontmatter>
-<a href=#frontmatter class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-frontmatter
-</h3>
-<p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p>
-<p>Hugo 中的 tags 的形式应为</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span>
+</span></span><span class=line><span class=cl>  <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=na>async</span>
+</span></span><span class=line><span class=cl>  <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Config</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;HTML-CSS&#34;</span><span class=o>:</span> <span class=p>{</span><span class=nx>preferredFont</span><span class=o>:</span> <span class=s2>&#34;TeX&#34;</span><span class=p>,</span> <span class=nx>availableFonts</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;STIX&#34;</span><span class=p>,</span> <span class=s2>&#34;TeX&#34;</span><span class=p>],</span> <span class=nx>linebreaks</span><span class=o>:</span> <span class=p>{</span> <span class=nx>automatic</span><span class=o>:</span> <span class=kc>true</span> <span class=p>},</span> <span class=nx>EqnChunk</span><span class=o>:</span> <span class=p>(</span><span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Browser</span><span class=p>.</span><span class=nx>isMobile</span> <span class=o>?</span> <span class=mi>10</span> <span class=o>:</span> <span class=mi>50</span><span class=p>)</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nx>tex2jax</span><span class=o>:</span> <span class=p>{</span><span class=nx>inlineMath</span><span class=o>:</span> <span class=p>[[</span><span class=s2>&#34;$&#34;</span><span class=p>,</span> <span class=s2>&#34;$&#34;</span><span class=p>],</span> <span class=p>[</span><span class=s2>&#34;\\(&#34;</span><span class=p>,</span> <span class=s2>&#34;\\)&#34;</span><span class=p>]],</span> <span class=nx>processEscapes</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span> <span class=nx>ignoreClass</span><span class=o>:</span> <span class=s2>&#34;tex2jax_ignore|dno&#34;</span><span class=p>,</span> <span class=nx>skipTags</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;script&#39;</span><span class=p>,</span> <span class=s1>&#39;noscript&#39;</span><span class=p>,</span> <span class=s1>&#39;style&#39;</span><span class=p>,</span> <span class=s1>&#39;textarea&#39;</span><span class=p>,</span> <span class=s1>&#39;pre&#39;</span><span class=p>,</span> <span class=s1>&#39;code&#39;</span><span class=p>]</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nx>TeX</span><span class=o>:</span> <span class=p>{</span><span class=nx>noUndefined</span><span class=o>:</span> <span class=p>{</span> <span class=nx>attributes</span><span class=o>:</span> <span class=p>{</span> <span class=nx>mathcolor</span><span class=o>:</span> <span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=nx>mathbackground</span><span class=o>:</span> <span class=s2>&#34;#FFEEEE&#34;</span><span class=p>,</span> <span class=nx>mathsize</span><span class=o>:</span> <span class=s2>&#34;90%&#34;</span><span class=p>}</span> <span class=p>},</span> <span class=nx>Macros</span><span class=o>:</span> <span class=p>{</span> <span class=nx>href</span><span class=o>:</span> <span class=s2>&#34;{}&#34;</span> <span class=p>}</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=nx>messageStyle</span><span class=o>:</span> <span class=s2>&#34;none&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>Queue</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kd>var</span> <span class=nx>all</span> <span class=o>=</span> <span class=nx>MathJax</span><span class=p>.</span><span class=nx>Hub</span><span class=p>.</span><span class=nx>getAllJax</span><span class=p>(),</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>for</span> <span class=p>(</span><span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>all</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>all</span><span class=p>[</span><span class=nx>i</span><span class=p>].</span><span class=nx>SourceElement</span><span class=p>().</span><span class=nx>parentNode</span><span class=p>.</span><span class=nx>className</span> <span class=o>+=</span> <span class=s1>&#39;has-jax&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nt>code</span><span class=p>.</span><span class=nc>has-jax</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>font</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>border</span><span class=p>:</span> <span class=kc>inherit</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#515151</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href=https://www.mathjax.org/>MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p><p>把这个 partial 模板添加到 <code>&lt;head></code> 中，即可正常工作。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{partial &#34;mathjax.html&#34; .}}
+</span></span></code></pre></td></tr></table></div></div><h3 id=frontmatter><a href=#frontmatter class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>frontmatter</h3><p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p><p>Hugo 中的 tags 的形式应为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=nt>tags</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span>- <span class=l>hello</span><span class=w>
-</span><span class=w>  </span>- <span class=l>world</span><span class=w>
-</span><span class=w>  </span>- <span class=l>etc</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p>
-<p>此外还有 title 的值应被包裹在括号之中等。</p>
-<p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p>
-<h2 id=版本控制与自动化>
-<a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%8c%96 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-版本控制与自动化
-</h2>
-<p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p>
-<h3 id=版本控制>
-<a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-版本控制
-</h3>
-<p>首先是对内容（markdown 文件）的版本控制。</p>
-<p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p>
-<pre tabindex=0><code class=language-gitignore data-lang=gitignore>/archetypes/
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>tags</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>hello</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>world</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>etc</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>即使只有一个 tag ，也要按此格式来写，否则会编译错误。</p><p>此外还有 title 的值应被包裹在括号之中等。</p><p>另外，hexo 中的 time 项可不用修改，Hugo 似乎已支持了此种格式。</p><h2 id=版本控制与自动化><a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%8c%96 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>版本控制与自动化</h2><p>很久之前也曾想过要实现博客的云同步与自动化部署，但当时没有余力去做，今天趁着迁移博客，顺带利用 GitHub actions 实现自动化。</p><h3 id=版本控制><a href=#%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>版本控制</h3><p>首先是对内容（markdown 文件）的版本控制。</p><p>对 <code>hugo new site .</code> 生成出来的文件夹，使用 <code>git init</code> ，并添加以下的 <code>.gitignore</code> 信息：</p><pre tabindex=0><code class=language-gitignore data-lang=gitignore>/archetypes/
 /data/
 /layouts/
 /public/
 /resources/
 /static/
 /themes/
-</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p>
-<ul>
-<li><code>content/</code>，这个是文章所在的文件夹</li>
-<li><code>config.toml</code>，这个是 hugo 的配置文件</li>
-</ul>
-<p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p>
-<h3 id=自动化>
-<a href=#%e8%87%aa%e5%8a%a8%e5%8c%96 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-自动化
-</h3>
-<p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p>
-<p>下面是 GitHub Actions 的 workflow，详情请看注释。</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</code></pre><p>这样的话，只有下面两项被加入了版本控制之中：</p><ul><li><code>content/</code>，这个是文章所在的文件夹</li><li><code>config.toml</code>，这个是 hugo 的配置文件</li></ul><p>之后可以将此目录推向 GitHub，进行文章的版本控制与部署的自动化。</p><h3 id=自动化><a href=#%e8%87%aa%e5%8a%a8%e5%8c%96 class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>自动化</h3><p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p><p>下面是 GitHub Actions 的 workflow，详情请看注释。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -327,119 +154,76 @@ frontmatter
 </span><span class=lnt>63
 </span><span class=lnt>64
 </span><span class=lnt>65
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>blog</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>push]</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span><span class=nt>build</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
-</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span><span class=c># 使用预编译的 Hugo 二进制文件</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
-</span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2.2.2</span><span class=w>
-</span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;latest&#34;</span><span class=w>
-</span><span class=w>          </span><span class=c># 使用 Hugo-extended 版本</span><span class=w>
-</span><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 新建站点</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>new site</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          </span><span class=w>          </span><span class=l>hugo new site $HOME/blog</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 获取主题</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get theme</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          </span><span class=w>          </span><span class=l>git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 获取 username.github.io 以保持 commit 记录</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get username.github.io</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          </span><span class=w>          </span><span class=l>git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 获取内容文件</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v1</span><span class=w>
-</span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 将内容文件复制进入站点内</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>copy in</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          rm -rf $HOME/blog/config.toml $HOME/blog/content/
-</span><span class=sd>          /bin/cp -rf config.toml $HOME/blog/config.toml
-</span><span class=sd>          /bin/cp -rf content/ $HOME/blog/content/</span><span class=w>          
-</span><span class=w>
-</span><span class=w>      </span><span class=c># build</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>build</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          cd $HOME/blog
-</span><span class=sd>          HUGO_ENV=production hugo --gc --minify</span><span class=w>          
-</span><span class=w>
-</span><span class=w>      </span><span class=c># 将生成出的站点推向 username.github.io</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>publish</span><span class=w>
-</span><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
-</span><span class=w>          </span><span class=nt>USER</span><span class=p>:</span><span class=w> </span><span class=l>batkiz</span><span class=w>
-</span><span class=w>          </span><span class=nt>EMAIL</span><span class=p>:</span><span class=w> </span><span class=l>batkiz@outlook.com</span><span class=w>
-</span><span class=w>          </span><span class=nt>GH_REF</span><span class=p>:</span><span class=w> </span><span class=l>github.com/batkiz/batkiz.github.io.git</span><span class=w>
-</span><span class=w>          </span><span class=c># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span><span class=w>
-</span><span class=w>          </span><span class=nt>GH_TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GH_TOKEN }}</span><span class=w>
-</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span><span class=sd>          cd $HOME/blog/public
-</span><span class=sd>          git config --global user.name $USER
-</span><span class=sd>          git config --global user.email $EMAIL
-</span><span class=sd>          git add .
-</span><span class=sd>          git commit -m &#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;
-</span><span class=sd>          git push &#34;https://$USER:$GH_TOKEN@$GH_REF&#34; master:master</span><span class=w>          
-</span></code></pre></td></tr></table>
-</div>
-</div><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p>
-<p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p>
-<h2 id=结语>
-<a href=#%e7%bb%93%e8%af%ad class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg>
-</a>
-结语
-</h2>
-<p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p>
-<p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p>
-<p>see you later.</p>
-</div>
-</div>
-<div class=container>
-<nav class="flex container suggested">
-<a rel=prev href=/posts/2019/c-using-vscode-and-tcc/ title="Previous post (older)">
-<span>Previous</span>
-使用 VS Code 与 TinyCC 学习 C 语言
-</a>
-<a rel=next href=/posts/2019/sth-about-hosts-tool-2/ title="Next post (newer)">
-<span>Next</span>
-写在 hosts-tool-go 0.1.0 之际
-</a>
-</nav>
-</div>
-<div class=container>
-<script src=https://giscus.app/client.js data-repo=batkiz/batkiz.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMDg1Mjk2NjI=" data-category=Comments data-category-id=DIC_kwDOBngH_s4B_Xmx data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-theme=light crossorigin=anonymous async></script>
-<script>function setGiscusTeheme(b){let a=document.querySelector('.giscus iframe');a&&a.contentWindow.postMessage({giscus:{setConfig:{theme:b}}},'https://giscus.app')}addEventListener('message',a=>{if(a.origin!=='https://giscus.app')return;setGiscusTeheme(document.documentElement.dataset.userColorScheme)}),window.addEventListener('onColorSchemeChange',a=>{setGiscusTeheme(a.detail)})</script>
-</div>
-</main>
-</main>
-<footer class="footer flex">
-<section class=container>
-<nav class=footer-links>
-<a href=/atom.xml>RSS</a>
-</nav>
-<style>@import "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";@import "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap";@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";:root{--noto-serif:"Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>blog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>push]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 使用预编译的 Hugo 二进制文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2.2.2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;latest&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 使用 Hugo-extended 版本</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 新建站点</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>new site</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>hugo new site $HOME/blog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取主题</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get theme</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>git clone --depth=1 https://github.com/batkiz/left.git $HOME/blog/themes/left</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取 username.github.io 以保持 commit 记录</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get username.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>git clone --no-checkout https://github.com/batkiz/batkiz.github.io.git $HOME/blog/public</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取内容文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 将内容文件复制进入站点内</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>copy in</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          rm -rf $HOME/blog/config.toml $HOME/blog/content/
+</span></span></span><span class=line><span class=cl><span class=sd>          /bin/cp -rf config.toml $HOME/blog/config.toml
+</span></span></span><span class=line><span class=cl><span class=sd>          /bin/cp -rf content/ $HOME/blog/content/</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cd $HOME/blog
+</span></span></span><span class=line><span class=cl><span class=sd>          HUGO_ENV=production hugo --gc --minify</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 将生成出的站点推向 username.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>publish</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>USER</span><span class=p>:</span><span class=w> </span><span class=l>batkiz</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>EMAIL</span><span class=p>:</span><span class=w> </span><span class=l>batkiz@outlook.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>GH_REF</span><span class=p>:</span><span class=w> </span><span class=l>github.com/batkiz/batkiz.github.io.git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 这里的 token 需要自己在 GitHub settings 中部署，并利用 actions 的 secrets 功能</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>GH_TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GH_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cd $HOME/blog/public
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.name $USER
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.email $EMAIL
+</span></span></span><span class=line><span class=cl><span class=sd>          git add .
+</span></span></span><span class=line><span class=cl><span class=sd>          git commit -m &#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git push &#34;https://$USER:$GH_TOKEN@$GH_REF&#34; master:master</span><span class=w>          
+</span></span></span></code></pre></td></tr></table></div></div><p>感谢 <a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a> 提供的可在 GitHub actions 使用的 Hugo 二进制文件，避免了每次都手动编译 Hugo。</p><p>另外希望大家别不看内容就随便写，会出 typo 的，然后 failed（泪</p><h2 id=结语><a href=#%e7%bb%93%e8%af%ad class=anchor><svg class="icon" aria-hidden="true" focusable="false" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5.0-3-1.69-3-3.5S2.55 3 4 3h4c1.45.0 3 1.69 3 3.5.0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98.0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98.0-2-1.22-2-2.5.0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45.0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>结语</h2><p>经过一个下午 + 一个晚上的努力，终于成功地把博客迁移到了 Hugo，并实现了内容的版本管理与自动化部署。可喜可贺，可喜可贺。</p><p>接下来大概会抽空将以前的文章格式调整一下（Hugo 的 markdown 不知道是用啥解析的，写的随意的话不会按你想的那样渲染），以及自己写一个 Hugo 的主题。</p><p>see you later.</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/posts/2019/c-using-vscode-and-tcc/ title="Previous post (older)"><span>Previous</span>
+使用 VS Code 与 TinyCC 学习 C 语言</a>
+<a rel=next href=/posts/2019/sth-about-hosts-tool-2/ title="Next post (newer)"><span>Next</span>
+写在 hosts-tool-go 0.1.0 之际</a></nav></div><div class=container><script src=https://giscus.app/client.js data-repo=batkiz/batkiz.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMDg1Mjk2NjI=" data-category=Comments data-category-id=DIC_kwDOBngH_s4B_Xmx data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-theme=light crossorigin=anonymous async></script><script>function setGiscusTeheme(t){let e=document.querySelector(".giscus iframe");e&&e.contentWindow.postMessage({giscus:{setConfig:{theme:t}}},"https://giscus.app")}addEventListener("message",e=>{if(e.origin!=="https://giscus.app")return;setGiscusTeheme(document.documentElement.dataset.userColorScheme)}),window.addEventListener("onColorSchemeChange",e=>{setGiscusTeheme(e.detail)})</script></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/atom.xml>RSS</a></nav><style>@import "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";@import "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap";@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";:root{--noto-serif:"Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
             "Source Han Serif SC", "Source Han Serif", source-han-serif-sc,
-            "Noto Serif SC";--sys-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";--zh-font-family:var(--noto-serif), "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";--base-font-family:var(--noto-serif), var(--sys-font-family), var(--zh-font-family);--code-font-family:"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;--article-font-family:var(--noto-serif), var(--base-font-family)}</style>
-<script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script>
-</section>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css integrity=sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc crossorigin=anonymous>
-<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js integrity=sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp crossorigin=anonymous></script>
-<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous onload="renderMathInElement(document.querySelector('.article-post'),{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1},{left:'\\[',right:'\\]',display:!0}]})"></script>
-<script defer src=/ts/features.a534d05c446023fa2ae2a638f87cc2443ad8e49f6aaeb4d9f24ed61d53766712.js data-enable-footnotes=false></script>
-</footer>
-</body>
-</html>
+            "Noto Serif SC";--sys-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";--zh-font-family:var(--noto-serif), "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";--base-font-family:var(--noto-serif), var(--sys-font-family), var(--zh-font-family);--code-font-family:"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;--article-font-family:var(--noto-serif), var(--base-font-family)}</style><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script></section><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css integrity=sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js integrity=sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous onload='renderMathInElement(document.querySelector(".article-post"),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})'></script>
+<script defer src=/ts/features.2f98c2f5215583b54b0a8bd7bdb10411467f4fee386a61e03ca3ddf376273fc4.js data-enable-footnotes=false></script></footer></body></html>
