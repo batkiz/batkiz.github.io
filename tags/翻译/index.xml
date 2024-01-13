@@ -1,1 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>翻译 on not b@tk1z</title><link>https://blog.batkiz.com/tags/%E7%BF%BB%E8%AF%91/</link><description>Recent content in 翻译 on not b@tk1z</description><generator>Hugo -- gohugo.io</generator><language>zh-hans</language><lastBuildDate>Thu, 18 Mar 2021 18:51:25 +0800</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml"/><item><title>翻译|REST API 设计最佳实践</title><link>https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/</link><pubDate>Thu, 18 Mar 2021 18:51:25 +0800</pubDate><guid>https://blog.batkiz.com/posts/2021/best-practices-for-rest-api-design/</guid><description>原文链接：Best practices for REST API design 译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 Web API 设计。 声明：本文的完成亦有 DeepL 的帮助。 REST API 是现今最常见的网络服务</description></item><item><title>翻译 | SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://blog.batkiz.com/posts/2020/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet 翻译：batkiz 译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调</description></item><item><title>翻译 | 给新手程序员们的建议</title><link>https://blog.batkiz.com/posts/2019/advice-to-new-programmers/</link><pubDate>Sun, 28 Apr 2019 21:17:56 +0000</pubDate><guid>https://blog.batkiz.com/posts/2019/advice-to-new-programmers/</guid><description>这篇都是过年前翻译的了，但一直懒得放上来=。= 原文：Advice to new Programmers 并不是每天都有学生向 709 个软件开发者寻求建议的机会的。 综述 在瑞典马尔摩有</description></item><item><title>翻译 | RSS 的兴起与衰落</title><link>https://blog.batkiz.com/posts/2018/translation-the-rise-and-demise-of-rss/</link><pubDate>Tue, 09 Oct 2018 14:58:44 +0000</pubDate><guid>https://blog.batkiz.com/posts/2018/translation-the-rise-and-demise-of-rss/</guid><description>原文：The Rise and Demise of RSS 翻译：batkiz，校对：RUInsYi 这有两个故事。第一个故事是关于一个从未完全实现的对互联网未来的愿景。第二个故事</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>翻译 on My New Hugo Site</title><link>https://example.org/tags/%E7%BF%BB%E8%AF%91/</link><description>Recent content in 翻译 on My New Hugo Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Mar 2021 18:51:25 +0800</lastBuildDate><atom:link href="https://example.org/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml"/><item><title>翻译|REST API 设计最佳实践</title><link>https://example.org/posts/best-practices-for-rest-api-design/</link><pubDate>Thu, 18 Mar 2021 18:51:25 +0800</pubDate><guid>https://example.org/posts/best-practices-for-rest-api-design/</guid><description>原文链接：Best practices for REST API design
+译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 Web API 设计。
+声明：本文的完成亦有 DeepL 的帮助。
+REST API 是现今最常见的网络服务之一。它允许包括浏览器在内的多种客户端通过 REST API 与服务器进行通信。
+因此，正确地设计 REST API 非常重要，这样我们就不会在后续的道路上出现问题。我们必须考虑到 API 用户的账号安全性、性能和易用性。
+否则，我们就会给使用我们 API 的客户们带来问题，这并不令人愉快，也会影响人们使用我们的 API。如果我们不遵循普遍接受的惯例，那么我们就会给 API 的维护者和使用它们的客户带来困扰，因为它与大家所期望的不同。
+在这篇文章中，我们将探讨如何设计 REST API，使其对任何使用它们的人来说都是容易理解的，是不会过时的，并且是安全和快速的，因为它们向客户提供的数据可能是保密的。
+由于网络应用可能会被多种问题破坏，我们应该确保任何 REST API 都应使用标准的 HTTP 状态码，以优雅地处理错误，帮助用户处理问题。
+用 JSON 接收与响应 REST API 应该接收 JSON 作为请求的有效载荷（payload），同时也应以 JSON 发送响应。JSON 是传输数据的标准。几乎所有的网络技术都可以使用它：JavaScript 有内置的方法，可以通过 Fetch API 或其他 HTTP 客户端对 JSON 进行编码和解码。服务器端的技术也有一些库可以解码 JSON，不需要做太多工作。
+当然，还有其他传输数据的方式。XML 并没有得到框架的广泛支持，其常用替代通常是 JSON。我们在客户端——尤其是在浏览器中——不能特别容易地操作这些数据。光是做正常的数据传输就会有很多额外的工作。
+表单数据（form data）很适合用于发送数据，特别是当我们要发送文件时。但是对于文本和数字，我们不需要表单数据来传输这些，因为——对大多数框架来说——我们只需要在客户端直接从中获取数据就可以传输 JSON。这是到目前为止最直接的做法。
+为了确保当我们的 REST API 应用以 JSON 响应时，客户端会将其解释为 JSON，我们应该在请求发出后，将响应头（header）中的 Content-Type 设置为 application/json。很多服务器端应用框架都会自动设置响应头。一些 HTTP 客户端会根据 Content-Type 响应头来解析数据。</description></item><item><title>翻译 | SEO 是如何毁掉互联网的</title><link>https://example.org/posts/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><guid>https://example.org/posts/how-seo-ruined-the-internet/</guid><description>原文： How SEO Ruined the Internet
+翻译：batkiz
+译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调整网站，以提高网站在有关搜索引擎内排名的方式。
+在 1998 年到 2003 年的那段时间，在 Google 上搜索是非常神奇的。我还记得输入像是“oil mother&amp;rsquo;s milk,”这样一个模糊的概念，然后就被导航到了 Thomas Gold 的一篇访谈。（Thomas Gold 是一位天文物理学家，提出了石油会因为地壳压力重新沉积的理论。）
+现如今，如果你在寻找技术性的、具体的、学术性的或是一般非商业的信息，那么你拥有了该死的好运气。世界上最好的信息检索系统像是变成了 2006 年代的 Digg 一样：由一小部分商业玩家控制的流行流行指数。他们称自己为“SEO”。
+拥有着卓越技术的 SEO 专家们通常使网站更快、更安全、更易访问。“黑帽” SEO 则显然是坏蛋。他们以破坏规则的方式来提升自己网站的排名（例如侵入一个网站，在其中添加到自己网站的链接）。然而，黑帽们只是 SEO 世界中的小小罪犯。还存在着看似是好家伙，实际上却是披着羊皮的狼的 “白帽” SEO。
+这些网络营销者的策略十分简单：以集权压制竞争。他们躲藏在合理与伪善的大旗之下，如同极权政体一般，他们为了达到目的不择手段。下面是他们使用的一些手段：
+编辑历史 你重新读一篇文章时，你可能会发现其标题或是链接被改动过，这是一个非常普遍的行为。SEO 专家会“优化”旧文章来使它们更为市场化（并为读者推荐更新、更商业化的内容）。当我回看十年前我写的文章时，文章已经变得面目全非：夹杂着我从未写过的内容，承载着我从未表达的含义。
+删除过去 在大型知名网站上，“内容修剪”是一个非常有效的 SEO 策略。相比于将具有历史意义的内容归档，许多网站会选择将它们删除，返回 410 状态码。永久性的丢失。这样做是为了优化“抓取配额”，使 Google 关注当下更为流行的内容。结果便是互联网上不再有制度记忆（institutional memory或是可信度了。
+导演叙事 给我一个现代新闻编辑室，我会给你展示一个指导写手们的内容策略专家。但是，当记者们因必须写自己感到不舒服的专题而感到压力，或是被强迫以特定的角度解读问题，“SEO 最佳实践”就像是一个宣传机构了。这是有线新闻效应，黑幕背后的人可以随意修改台本，将所有的事都推送为“爆炸新闻”！
+提供“有选择的”错觉 一少部分出版公司手握着上百家的年浏览量以数十亿计的媒体网站。当你搜索“最好的手机”时，你可能会看到来自 TechRadar, Android Central, T3, Tom&amp;rsquo;s Guide, Anandtech, iMore 或是 Top Ten Reviews 的搜索结果。不论你点击了哪个结果，你其实都毫无选择：上述的所有都隶属于一下公司之下。
+囤积财富 链接就是网络中的货币。没有链接的话，搜索引擎将无法分辨哪个页面更为有价值。不幸的是，许多网站不允许其他网站引用他们的内容，或是为每一个链接都加上 ref=&amp;quot;nofollow&amp;quot; 属性（即告诉搜索引擎不要抓取这条链接）。这使得整个网络世界都变的更为贫瘠了。</description></item><item><title>翻译 | 给新手程序员们的建议</title><link>https://example.org/posts/advice-to-new-programmers/</link><pubDate>Sun, 28 Apr 2019 21:17:56 +0000</pubDate><guid>https://example.org/posts/advice-to-new-programmers/</guid><description>这篇都是过年前翻译的了，但一直懒得放上来=。=
+原文：Advice to new Programmers
+并不是每天都有学生向 709 个软件开发者寻求建议的机会的。
+综述 在瑞典马尔摩有一所学校叫做 The Game Assembly。这所学校专注于游戏制作教学。编程、艺术及设计，无所不包。有一个最后一年在游戏工作室度过的三年项目。
+因为我为一家游戏公司工作，我们被邀请向这些学生举办讲座。在过去几年间我曾数次做讲座，且非常荣幸得到此机会。
+今年我开始向新来的学生们讲演。原计划为面向对象编程的基础，但我还有另一个想法。
+为什么不联系 Twitter 并问他们对“易受影响的年轻人”有什么建议呢？
+推特上的程序员你们好！
+几天后我将会向一些易受影响的年轻人演讲
+他们尚且处于学习的早期阶段，20 来岁的样子。
+你最想给出什么建议呢？语言是未知的。
+感谢转推
+（我会在幻灯片中引用你们，所以务必友善：）
+— Ólafur Waage (@olafurw) January 21, 2019
+我确实没料到能获得 700 余条回复。因为在这条推特与演讲之间只有两天，我并不能总结所有的智慧。但是我也在试着寻找获赞最多的与在游戏产业中工作的人。
+但有着太多的数据被掩盖。我需要分析这些回复。
+获得数据 刚开始我试着仅仅浏览 Twitter 上的时间线并复制文本。但显然，当一个讨论贴达到了一定规模时，Twitter 限制了你能看到的推文数。所以从数据集中我仅能得到 285 个回复。
+接下来是使用 Twitter 开发者 API，虽然被限制严重，但允许更多的搜索粒度。
+通过 Python 和 Tweepy 及请求间的 5 分钟睡眠，我能够从请求中得到 763 条直接回复于我的推文。这花了 362 分钟，或言 6 个小时。更短的睡眠时间可能也行，但我睡后留下它自己跑，所以也没多大关系。
+for page in tweepy.Cursor(api.search, q=&amp;#34;to:olafurw&amp;#34;, since_id=&amp;#39;1087438169585434624&amp;#39;, tweet_mode=&amp;#39;extended&amp;#39;).pages(): repliesFile = open(&amp;#34;replies.txt&amp;#34;, &amp;#34;a&amp;#34;) for tweet in page: repliesFile.</description></item><item><title>翻译 | RSS 的兴起与衰落</title><link>https://example.org/posts/translation-the-rise-and-demise-of-rss/</link><pubDate>Tue, 09 Oct 2018 14:58:44 +0000</pubDate><guid>https://example.org/posts/translation-the-rise-and-demise-of-rss/</guid><description>原文：The Rise and Demise of RSS
+翻译：batkiz，校对：RUInsYi
+这有两个故事。第一个故事是关于一个从未完全实现的对互联网未来的愿景。第二个故事，则讲述了改善一个流行标准的合作是如何演变为开源软件发展史上最富争议的问题之一。
+90 年代末，在那个网景公司 IPO 与互联网泡沫崩溃间的狂热年代，每个人都能预见到互联网行将变成更为庞大的产业，尽管没人确切知道它是如何如何做到的。一种观点认为 信息聚合 将席卷整个互联网产业。最初为了使两端——服务端，与从服务端抓取文档的客户端——间的简单交流成为可能而建立的互联网，将因一种在一系列频道中重新打包并分发所有网站的新标准而蜕变。Kevin Werbach，Release 1.0，90 年代一封在投资者中影响深远的通讯的作者，曾预测信息聚合“会演化为互联网生态的核心模式，在允许企业和个人享受大规模、大范围的益处同时，保留对他们网络形象的控制。”1 他邀请他的读者一同想象这样的未来，剑术迷能够直接在他们最爱的网站上通过嵌入其中的网购插件买一把新的重剑，而非直接去“在线运动品商店”或“击剑设备零售商”。2 就如同电视世界中，大的网络提供商能够将他们的节目聚合到一个较小的地方电视台，网络上的信息聚合能使销售商和出版商通过大量的中间站点接触到消费者。这意味着，作为结论，消费者会在与销售商和出版商互动上，拥有天时地利人和的选择权。
+RSS 是承诺提供这样的聚合化未来的标准之一。对于 Werbach，RSS 是“轻量级聚合协议的领先范例。”3 另一篇同期文章将 RSS 称为第一个意识到 XML 的潜力的协议。4 它正成为使用户与内容整合者能够从必须提供一切信息的网站中创造个性化定制的频道的一种方式。而现在，二十年后，RSS 像是成为了一种将死的技术，仅仅主要被播客与程序员们的科技博客使用。此外，在后来的群体中，比起实际效用，RSS 可能更主要因其政治上的象征意义而被使用。尽管有些人确实有 RSS 读者，并顽固地为博客加入 RSS 服务，这在 2018 年也是一种十分保守的表态。那个小小的橘子泡（译注：指 RSS 标志）已然成为一个象征着对与 Werbach 的想象中的聚合网络一点也不像的巨头垄断式中心化网络的反抗标志。
+RSS 的未来曾是如此光明。那到底是发生了什么呢？难道它的衰落是不可避免的？还是它在一个单一 RSS 标准的发展中因内斗而落没？
+浑水 RSS 曾两度被发明。这意味着，它从未有过一个明白无误的拥有者，一系列的事务又催生了无止境的争吵与辩论。但这也同时表明，作为一个重要想法， RSS 的时代已经到来。
+1998 年，网景正竭力想象自己的未来。它的旗舰产品，曾一度被 80% 的互联网用户所选择的网景浏览器，正在 IE 浏览器前迅速失去份额。所以网景决定在一个全新的领域竞争。五月份，一个小组被组建起来，开始了后来被内部称为“Project 60”的项目。5 两个月后，网景宣布了“My Netscape”，一个与其他互联网门户如雅虎，MSN 及 Excite 相竞争的互联网门户。
+第二年三月，网景宣布了一个叫&amp;quot;My Netscape Network&amp;quot;的 My Netscape 门户扩展。My Netscape 用户现在可以自定义他们的 My Netscape 页面所以它包含了名为“channels&amp;quot;的功能，汇集网络上最近的头条新闻。只要你最爱的网站发布了一个由网景规定格式的特殊文件，一般只需点击网站在其界面提供的“Add Channel”按键，你就能把这个网站添加到你的 My Netscape 页面。如此，一个包含着一列相关头条的小盒子就会出现。</description></item></channel></rss>
