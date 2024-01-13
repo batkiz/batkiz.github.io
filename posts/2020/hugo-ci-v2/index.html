@@ -1,0 +1,157 @@
+<!doctype html><html lang=zh-hans><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=theme-color content="dark"><title>Hugo 自动化 CI V2 | not b@tk1z</title>
+<meta property="og:site_name" content="not b@tk1z"><meta property="og:title" content="Hugo 自动化 CI V2 | not b@tk1z"><meta itemprop=name content="Hugo 自动化 CI V2 | not b@tk1z"><meta name=twitter:title content="Hugo 自动化 CI V2 | not b@tk1z"><meta name=application-name content="Hugo 自动化 CI V2 | not b@tk1z"><meta name=twitter:card content="summary"><meta name=description content="一帘新语随风去，半山明月踏江来。"><meta name=twitter:description content="一帘新语随风去，半山明月踏江来。"><meta itemprop=description content="一帘新语随风去，半山明月踏江来。"><meta property="og:description" content="一帘新语随风去，半山明月踏江来。"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=stylesheet href=/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css></head><script>(function(){const e="ThemeColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="ThemeColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.userColorScheme="dark":document.documentElement.dataset.userColorScheme="light"})()</script><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/>not b@tk1z</a></div><div class=flex><a href=/posts/>Posts</a>
+<a href=/links/>Links</a>
+<a href=/about>About</a>
+<button id=dark-mode-button><svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163.0 101.643 1.641 1.163 1.163.0 00-1.643-1.641zm-16.022 14.38a1.74 1.74.0 000 2.465 1.742 1.742.0 100-2.465zm13.968-2.147a2.904 2.904.0 01-4.108.0 2.902 2.902.0 010-4.107 2.902 2.902.0 014.108.0 2.902 2.902.0 010 4.107z" fill="#ffcc4d"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg><svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg)" viewBox="0 0 36 36"><path fill="#ffd983" d="M16 2s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2V2zm18 14s2 0 2 2-2 2-2 2h-2s-2 0-2-2 2-2 2-2h2zM4 16s2 0 2 2-2 2-2 2H2s-2 0-2-2 2-2 2-2h2zm5.121-8.707s1.414 1.414.0 2.828-2.828.0-2.828.0L4.878 8.708s-1.414-1.414.0-2.829c1.415-1.414 2.829.0 2.829.0l1.414 1.414zm21 21s1.414 1.414.0 2.828-2.828.0-2.828.0l-1.414-1.414s-1.414-1.414.0-2.828 2.828.0 2.828.0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828.0.0-2.828.0-2.828l1.414-1.414s1.414-1.414 2.828.0.0 2.828.0 2.828l-1.414 1.414zM16 32s0-2 2-2 2 2 2 2v2s0 2-2 2-2-2-2-2v-2z"/><circle fill="#ffd983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)"/></svg></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>Hugo 自动化 CI V2</h1><div class=post-meta><div>By batkiz | <time>April 13, 2020</time>
+| 1 minutes</div><div class=tags><a href=/tags/hugo/>hugo</a>
+<a href=/tags/ci/>CI</a></div></div></div></div></header></article><div class=article-post><p>改进了一下自动化发布博客的 CI，代码在下面。</p><p>如果想拿去用的话只需要修改 env 下的值就行了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>blog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>push]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># 各种信息在此处设置</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># config.toml 里 theme 的值</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>THEME_NAME</span><span class=p>:</span><span class=w> </span><span class=l>left</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 主题的 github 链接</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>THEME_REPO</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/batkiz/left.git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># github username</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>USER_NAME</span><span class=p>:</span><span class=w> </span><span class=l>batkiz</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># github email</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>EMAIL</span><span class=p>:</span><span class=w> </span><span class=l>batkiz@outlook.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># GitHub token</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>GH_TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GH_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取 repo 内文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 使用预编译的 Hugo 二进制文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;latest&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 新建站点</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>new site</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          hugo new site $HOME/blog</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取主题</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get theme</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          git clone --depth=1 $THEME_REPO $HOME/blog/themes/$THEME_NAME</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 获取 $user.github.io 以保持 commit 记录</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>get username.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          git clone --no-checkout https://github.com/$USER_NAME/$USER_NAME.github.io.git $HOME/blog/public</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 将内容文件复制进入站点内</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>copy in</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          rm -rf $HOME/blog/config.toml $HOME/blog/content/
+</span></span></span><span class=line><span class=cl><span class=sd>          /bin/cp -rf config.toml $HOME/blog/config.toml
+</span></span></span><span class=line><span class=cl><span class=sd>          /bin/cp -rf content/ $HOME/blog/content/</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cd $HOME/blog
+</span></span></span><span class=line><span class=cl><span class=sd>          HUGO_ENV=production hugo --gc --minify</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 将生成出的站点推向 user.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 注意设置 github token</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>publish</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.name $USER_NAME
+</span></span></span><span class=line><span class=cl><span class=sd>          git config --global user.email $EMAIL
+</span></span></span><span class=line><span class=cl><span class=sd>          cd $HOME/blog/public
+</span></span></span><span class=line><span class=cl><span class=sd>          git add .
+</span></span></span><span class=line><span class=cl><span class=sd>          git commit -m &#34;Auto Update: `date +&#39;%Y-%m-%d %H:%M:%S&#39;`&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git push &#34;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&#34; master:master</span><span class=w>          
+</span></span></span></code></pre></td></tr></table></div></div><p>附赠本人用于存放 blog 内容仓库的 gitignore</p><pre tabindex=0><code class=language-gitignore data-lang=gitignore>/archetypes/
+/data/
+/layouts/
+/public/
+/resources/
+/static/
+/themes/
+</code></pre></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/posts/2020/how-seo-ruined-the-internet/ title="Previous post (older)"><span>Previous</span>
+翻译 | SEO 是如何毁掉互联网的
+</a><a rel=next href=/posts/2020/conways-game-of-life/ title="Next post (newer)"><span>Next</span>
+Conway's Game of Life</a></nav></div><div class=container><script src=https://giscus.app/client.js data-repo data-repo-id data-mapping=pathname data-reactions-enabled=1 data-emit-metadata=0 data-theme=light crossorigin=anonymous async></script><script>function setGiscusTeheme(e){let t=document.querySelector(".giscus iframe");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}addEventListener("message",e=>{if(e.origin!=="https://giscus.app")return;setGiscusTeheme(document.documentElement.dataset.userColorScheme)}),window.addEventListener("onColorSchemeChange",e=>{setGiscusTeheme(e.detail)})</script></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/atom.xml>RSS</a></nav><style>@import "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";@import "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap";@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";:root{--noto-serif:"Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
+            "Source Han Serif SC", "Source Han Serif", source-han-serif-sc,
+            "Noto Serif SC";--sys-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";--zh-font-family:var(--noto-serif), "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";--base-font-family:var(--noto-serif), var(--sys-font-family), var(--zh-font-family);--code-font-family:"Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;--article-font-family:var(--noto-serif), var(--base-font-family)}</style><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "fd2a175921e640c8a40b873fb5e58aaa"}'></script></section><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css integrity=sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js integrity=sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous onload='renderMathInElement(document.querySelector(".article-post"),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})'></script><script defer src=/ts/features.706a523ba43e6d0427c7fdf2b9d05dbd0920d3f12942b453690b495cb2522743.js data-enable-footnotes=false></script></footer></body></html>
