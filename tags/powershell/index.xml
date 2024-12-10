@@ -1,1 +1,45 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Powershell on not b@tk1z</title><link>https://blog.batkiz.com/tags/powershell/</link><description>Recent content in Powershell on not b@tk1z</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>batkiz@outlook.com (Jinglue)</managingEditor><webMaster>batkiz@outlook.com (Jinglue)</webMaster><copyright>by Jinglue</copyright><lastBuildDate>Mon, 31 Aug 2020 12:57:22 +0800</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/powershell/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Powershell on not b@tk1z</title><link>https://blog.batkiz.com/tags/powershell/</link><description>Recent content in Powershell on not b@tk1z</description><generator>Hugo</generator><language>zh</language><managingEditor>batkiz@outlook.com (Jinglue)</managingEditor><webMaster>batkiz@outlook.com (Jinglue)</webMaster><copyright>by Jinglue</copyright><lastBuildDate>Mon, 31 Aug 2020 12:57:22 +0800</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/powershell/index.xml" rel="self" type="application/rss+xml"/><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><author>batkiz@outlook.com (Jinglue)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</guid><description>&lt;p>承接&lt;a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/">前文&lt;/a>，这里是另一些可能有点用的 pwsh 脚本。&lt;/p>
+&lt;h2 id="命令行代理">命令行代理&lt;/h2>
+&lt;p>让命令行应用走代理，用法是 &lt;code>socks app command&lt;/code>。也可以把 &lt;code>Set-CliProxy&lt;/code> 与 &lt;code>Clear-CliProxy&lt;/code> 单独拿出来用。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> socks {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> $Command = &lt;span style="color:#e6db74">&amp;#34;&lt;/span>$args&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Set-CliProxy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Invoke-Expression $Command &lt;span style="color:#ae81ff">2&lt;/span>&amp;gt;&amp;amp;&lt;span style="color:#ae81ff">1&lt;/span> | out-default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Clear-CliProxy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> Set-CliProxy {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> $proxy = &lt;span style="color:#e6db74">&amp;#39;http://127.0.0.1:43333&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> $env:HTTP_PROXY = $proxy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> $env:HTTPS_PROXY = $proxy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> Clear-CliProxy {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove-Item env&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>HTTP_PROXY
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove-Item env&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>HTTPS_PROXY
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="time">time&lt;/h2>
+&lt;p>为命令行应用计时，大概类似于 &lt;em>*nix&lt;/em> 中的 &lt;code>time&lt;/code>。用法是 &lt;code>time app command&lt;/code>。&lt;/p></description></item><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><author>batkiz@outlook.com (Jinglue)</author><guid>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</guid><description>&lt;h2 id="问题起源">问题起源&lt;/h2>
+&lt;p>在几天之前，我的&lt;a href="https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123">命令行翻译程序&lt;/a>挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。&lt;/p>
+&lt;p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 &lt;a href="http://nlp.xmu.edu.cn/">厦门大学自然语言处理实验室&lt;/a> 提供的 &lt;a href="http://nmt.xmu.edu.cn/">云译 CloudTranslation&lt;/a> 的公开 &lt;a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html">API&lt;/a>。&lt;/p></description></item><item><title>一些 powershell 脚本</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts/</link><pubDate>Wed, 13 May 2020 21:34:09 +0800</pubDate><author>batkiz@outlook.com (Jinglue)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts/</guid><description>&lt;p>近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 &lt;a href="https://github.com/batkiz/dotfiles">batkiz/dotfiles&lt;/a>。&lt;/p>
+&lt;p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。&lt;/p>
+&lt;h2 id="在-pwsh-中使用-wsl-中的-nvim">在 pwsh 中使用 wsl 中的 nvim&lt;/h2>
+&lt;p>&lt;code>dos2nix&lt;/code> 是将 windows 风格的路径转换为 wsl 中的路径。&lt;/p></description></item><item><title>oh my powershell</title><link>https://blog.batkiz.com/posts/oh-my-powershell/</link><pubDate>Tue, 24 Sep 2019 22:43:46 +0000</pubDate><author>batkiz@outlook.com (Jinglue)</author><guid>https://blog.batkiz.com/posts/oh-my-powershell/</guid><description>&lt;p>对 *nix 平台上的 oh-my-zsh 的绝赞复刻！&lt;/p>
+&lt;p>备受好评的 shell 配置，来到了 powershell 之上~&lt;/p>
+&lt;h2 id="requirements">requirements&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>set-executionpolicy remotesigned&lt;/code> 执行策略更改，以执行脚本、安装应用&lt;/li>
+&lt;li>&lt;a href="scoop.sh">scoop&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="installation">installation&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ps" data-lang="ps">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">Install-Module&lt;/span> &lt;span style="color:#a6e22e">posh-git&lt;/span> &lt;span style="color:#a6e22e">-Scope&lt;/span> &lt;span style="color:#a6e22e">CurrentUser&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">Install-Module&lt;/span> &lt;span style="color:#a6e22e">oh-my-posh&lt;/span> &lt;span style="color:#a6e22e">-Scope&lt;/span> &lt;span style="color:#a6e22e">CurrentUser&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ps" data-lang="ps">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">scoop&lt;/span> &lt;span style="color:#a6e22e">install&lt;/span> &lt;span style="color:#a6e22e">scoop-completion&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>亦可均由 scoop 安装，即&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ps" data-lang="ps">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">scoop&lt;/span> &lt;span style="color:#a6e22e">install&lt;/span> &lt;span style="color:#a6e22e">scoop-completion&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">scoop&lt;/span> &lt;span style="color:#a6e22e">install&lt;/span> &lt;span style="color:#a6e22e">oh-my-posh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">scoop&lt;/span> &lt;span style="color:#a6e22e">install&lt;/span> &lt;span style="color:#a6e22e">posh-git&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置">配置&lt;/h2>
+&lt;p>配置文件为 &lt;code>~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&lt;/code>，若不存在请自行创建。&lt;/p></description></item></channel></rss>

