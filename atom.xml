@@ -1,4 +1,290 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.139.4">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><updated>2025-04-03T08:25:45+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">十八愁绕口令</title><link href="https://blog.batkiz.com/posts/shi-ba-chou/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/shi-ba-chou/</id><published>2025-04-03T15:52:17+08:00</published><updated>2025-04-03T15:52:17+08:00</updated><content type="html"><![CDATA[<p>很早之前靠人工整理出来的，压制的视频在：<a href="https://www.bilibili.com/video/BV1At421j7NH">BV1At421j7NH</a>。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.139.4">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><updated>2025-07-05T16:11:06+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">Vim 的起源</title><link href="https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</id><published>2025-07-06T00:07:55+08:00</published><updated>2025-07-06T00:07:55+08:00</updated><content type="html"><![CDATA[<p>2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。</p>
+<p>不过现在我们不止有了 GPT-2，我们还拥有着更先进的种种大模型（在此着重致谢各家的免费产品，尤其是 Gemini），在大模型以及恰当的提示词的帮助下，翻译文章这种事情变得非常简单了。因此，最近我借助大模型的能力，将之前的两篇文章重新翻译了下，姑且重置一下，也免得辣到不小心点进来的朋友们的眼睛。</p>
+<p>刚才也去 X (formerly Twitter) 看了眼，发现 Two Bit History 的动态也停止在了 2021 年 3 月，一晃眼也是好多年了。</p>
+<p>原文：<a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html">Where Vim Came From</a></p>
+<hr>
+<p>最近，我偶然接触到一种名为 Intel HEX 的文件格式。据我了解，Intel HEX 文件 (扩展名为 <code>.hex</code>) 的作用，是通过将二进制图像编码成一行行十六进制数字，让原本难以捉摸的二进制内容变得更直观一些。一般是给微控制器 (microcontrollers) 编程或需要将数据烧录进只读存储器 (ROM) 的人会用到它。总之，当我第一次在 Vim 里打开一个 HEX 文件时，我被彻底震惊了。这个文件格式，至少在我看来，是如此深奥，但 Vim 却早已对它了如指掌。HEX 文件的每一行都是一条记录，被划分为不同字段——而 Vim 早就贴心地用不同颜色标亮了每个字段。我敬畏地输入 <code>:set ft?</code> 并按下回车。“<code>filetype=hex</code>”，Vim 自豪地回应。</p>
+<p>Vim 的身影无处不在。它的用户群体如此庞大，以至于支持 HEX 这种小众格式其实不足为奇。macOS 系统预装了 Vim，它在 Linux 世界里也拥有一大批忠实拥趸。就连那些讨厌它的人也对它不陌生，因为有太多流行的命令行工具会默认使用 Vim 打开文件，结果导致无数新手被困在 Vim 里出不来，这甚至成了一个经久不衰的 <a href="https://stackoverflow.blog/wp-content/uploads/2017/05/meme.jpeg">梗</a>。甚至在包括 Facebook 在内的一些大型网站上，你按下 <code>j</code> 键页面就会向下滚动，按下 <code>k</code> 键就会向上滚动——这堪称 Vim 渗透数字文化的巅峰标志。</p>
+<p>然而，Vim 也是一个谜。就拿 React 来说，人人都知道它由 Facebook 开发和维护，但 Vim 却似乎没有任何官方赞助商。尽管它如此普及和重要，却好像没有任何委员会或组织在为它做决策。你可以在 <a href="https://www.vim.org/">Vim 官网</a> 上逛好几分钟，但对谁创造了 Vim、又为何创造它这些问题，依然一头雾水。如果你启动 Vim 时没有指定文件名，会看到一条启动信息，说 Vim 是由 “Bram Moolenaar 等人” 开发的。但这信息量约等于零。Bram Moolenaar 是谁？他那些神秘的伙伴们又是何方神圣？</p>
+<p>或许更重要的是，既然我们已经开始提问了，那为什么退出 Vim 非得用 <code>:wq</code> 这么个指令？诚然，这是“写入 (write)” 操作后面跟着“退出 (quit)” 操作，但这实在算不上什么直观的设计。又是谁决定了复制文本不叫“复制”，而叫“yanking” (yank，意为猛地一拉)？为什么 <code>:%s/foo/bar/gc</code> 这么一长串就代表了“查找并替换”？Vim 的种种奇特之处显得如此随心所欲，不像是凭空杜撰的，那么它们到底从何而来？</p>
+<p>答案，一如既往地，要从那个古老的计算技术摇篮——贝尔实验室 (Bell Labs) 讲起。从某种意义上说，Vim 不过是一款软件的最新迭代版本。我们可以叫它“wq 文本编辑器”，自 Unix 纪元开启以来，它就一直处于持续的开发和改进之中。</p>
+<h2 id="ken-thompson-开发的行编辑器">Ken Thompson 开发的行编辑器</h2>
+<p>1966 年，贝尔实验室聘用了 Ken Thompson。Thompson 当时刚在加州大学伯克利分校获得电气工程与计算机科学硕士学位。在校期间，他曾使用过一款名为 QED 的文本编辑器，这款编辑器是 1965 到 1966 年间为伯克利分时系统编写的。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Thompson 到贝尔实验室后做的第一件事，就是为 MIT 兼容分时系统重写了 QED。后来，他又为 Multics 项目写了另一个版本的 QED。在这一过程中，他扩展了程序功能，让用户可以使用 正则表达式 (regular expressions) 来搜索文件中的特定行并执行替换操作。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>Multics 项目的目标是创建一个商业上可行的分时操作系统 (就像伯克利分时系统一样)，它由 MIT、通用电气和贝尔实验室三方合作。最终，AT&amp;T 认为该项目前景渺茫而选择退出。就这样，Thompson 和同在贝尔实验室的同事 Dennis Ritchie 突然没法使用分时系统了，他们非常怀念那种系统带来的“交互式计算的感觉”，于是决定自己动手打造一个。这个系统，最终以 Unix 的名字为世人所知。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> 1969 年 8 月，趁着妻子和年幼的儿子去加州度假，Thompson 拼凑出了这个新系统的基本雏形，他计划“给操作系统、shell、编辑器和汇编器各一周的开发时间”。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p>这款编辑器被命名为 <code>ed</code>。它基于 QED，但并非简单的复刻。Thompson 决定砍掉 QED 的一些特性。正则表达式 的支持被削弱了，<code>ed</code> 只能理解比较简单的正则。QED 允许用户打开多个 缓冲区 (buffer) 来同时编辑多个文件，但 <code>ed</code> 一次只能处理一个缓冲区。此外，QED 可以执行一个包含命令的缓冲区，<code>ed</code> 则完全不支持这个功能。这些简化在当时或许是必要的。Dennis Ritchie 就曾说过，缺少 QED 的高级正则表达式“算不上什么大损失”。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p><code>ed</code> 现在已经是 POSIX 规范的一部分，所以只要你的系统遵循 POSIX 标准，你的电脑里就有它。<code>ed</code> 很值得把玩一番，因为它的许多命令如今已是 Vim 的一部分。例如，要把缓冲区内容写入磁盘，你得用 <code>w</code> 命令；要退出编辑器，就得用 <code>q</code> 命令。这两个命令可以写在同一行一次性执行——<code>wq</code> 就这么来了。和 Vim 一样，<code>ed</code> 也是一个 模态编辑器 (modal editor)；要从命令模式进入输入模式，你需要根据操作目的使用插入命令 (<code>i</code>)、追加命令 (<code>a</code>) 或修改命令 (<code>c</code>)。<code>ed</code> 还开创性地使用 <code>s/foo/bar/g</code> 这种语法来查找和替换文本。</p>
+<p>看到这么多相似之处，你可能会觉得 Vim 用户上手 <code>ed</code> 应该毫无压力。但在另一个关键方面，<code>ed</code> 和 Vim 天差地别。<code>ed</code> 是一个纯粹的 行编辑器 (line editor)。它诞生并风靡于电传打字机 (teletype printer) 的年代。当 Ken Thompson 和 Dennis Ritchie 奋力编写 Unix 时，他们的工作场景是这样的：</p>
+<p><img src="https://s2.loli.net/2024/04/13/Yzk6CW9PntxZilM.jpg" alt="Ken Thompson (坐) 和 Dennis Ritchie (站) 通过电传打字机与 PDP-11 交互。"></p>
+<p><code>ed</code> 不允许你在文件的多行文本中自由移动光标并就地编辑，因为每当你修改一处，<code>ed</code> 就必须把整个文件重新打印一遍。在 1969 年，<code>ed</code> 没有任何机制能“清空”屏幕，因为所谓的“屏幕”就是一张纸，打上去的内容都是白纸黑字，覆水难收。需要时，你可以用列表命令 (<code>l</code>) 让 <code>ed</code> 打印出某几行给你看，但大多数时候，你编辑的文本是你根本看不见的。因此，用 <code>ed</code> 的感觉，就好比拿着一盏快没电的手电筒，在一间漆黑的屋子里摸索。你一次只能照亮一小块地方，所以必须竭尽全力记住屋里的一切布局。</p>
+<p>下面是一个 <code>ed</code> 会话的示例。我在每行后面用 <code>#</code> 加了注释来解释其用途 (如果在真实的 <code>ed</code> 里输入这些注释，它会报错)：</p>
+<pre tabindex="0"><code>[sinclairtarget 09:49 ~]$ ed
+i                               # 进入输入模式
+Hello world!
+
+Isn&#39;t it a nice day?
+.                               # 结束输入
+1,2l                            # 列出第 1 到 2 行
+Hello world!$
+$
+2d                              # 删除第 2 行
+,l                              # 列出整个缓冲区
+Hello world!$
+Isn&#39;t it a nice day?$
+s/nice/terrible/g               # 全局替换
+,l
+Hello world!$
+Isn&#39;t it a terrible day?$
+w foo.txt                       # 写入 foo.txt
+38                              # (写入的字节数)
+q                               # 退出
+[sinclairtarget 10:50 ~]$ cat foo.txt
+Hello world!
+Isn&#39;t it a terrible day?
+</code></pre><p>如你所见，<code>ed</code> 是个相当“沉默寡言”的程序。</p>
+<h2 id="bill-joy-开发的文本编辑器">Bill Joy 开发的文本编辑器</h2>
+<p><code>ed</code> 对于 Thompson 和 Ritchie 来说够用了。但其他人觉得它难用得要命，并给它贴上了“Unix 对新手极度不友好”的典型反面教材的标签。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 1975 年，一个叫 George Coulouris 的人在伦敦玛丽女王学院的 Unix 系统上，开发了 <code>ed</code> 的一个改进版。Coulouris 编写这个编辑器时，充分利用了他在学院能接触到的视频显示器。和 <code>ed</code> 不同，Coulouris 的程序允许用户在屏幕上直接编辑一整行，并通过键盘逐字移动光标 (想象一下，只能在单行里使用 Vim)。Coulouris 将他的程序命名为 <code>em</code>，即“editor for mortals (凡人编辑器)”。据说这个名字的灵感来源于一次 Ken Thompson 的到访：Thompson 看了 Coulouris 的程序后不屑一顾，说自己编辑文件时根本不需要看到文件的实时状态。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+<p>1976 年，Coulouris 带着 <code>em</code> 来到加州大学伯克利分校，作为计算机科学系的访问学者在这里度过了一个夏天。这恰好是 Ken Thompson 离开伯克利前往贝尔实验室的十年之后。在伯克利，Coulouris 遇到了 Bill Joy，一位正在为 伯克利软件发行版 (Berkeley Software Distribution, BSD) 忙碌的研究生。Coulouris 向 Joy 展示了 <code>em</code>，Joy 则在 <code>em</code> 的源码基础上，开发出了一个更强大的 <code>ed</code> 改进版，取名为 <code>ex</code>，意为“extended <code>ed</code> (扩展版 <code>ed</code>)”。1978 年，<code>ex</code> 的 1.1 版本随第一版 BSD Unix 一同发布。<code>ex</code> 在很大程度上与 <code>ed</code> 兼容，但新增了两种模式：一种是“开放模式”，可以像 <code>em</code> 一样进行单行编辑；另一种是“可视模式”，这种模式会占据整个屏幕，实现我们今天所习惯的对整个文件进行实时编辑。</p>
+<p>在 1979 年的第二版 BSD 中，一个名为 <code>vi</code> 的可执行文件诞生了，它的功能很简单：直接在可视模式下启动 <code>ex</code>。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
+<p><code>ex</code>/<code>vi</code> (下文统称 <code>vi</code>) 奠定了我们今天所熟知的、除继承自 <code>ed</code> 之外的几乎所有 Vim 的传统。当年 Joy 使用的视频终端是 Lear Siegler ADM-3A，这款终端的键盘上没有方向键。作为替代，<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 这几个键上印着箭头，这便是 Joy 用这几个键在 <code>vi</code> 中移动光标的原因。此外，ADM-3A 键盘上的 <code>Esc</code> 键，正好在我们今天键盘上 <code>Tab</code> 键的位置，这就解释了为什么“退出模式”这么一个高频操作，会分配给一个如今看来如此“偏僻”的按键。命令前面的冒号 <code>:</code> 也源自 <code>vi</code>，它在普通模式 (也就是运行 <code>ex</code> 后进入的模式) 下，会用 <code>:</code> 作为提示符。这解决了 <code>ed</code> 长期以来为人诟病的一点——启动后一片死寂，毫无提示。在可视模式下，保存并退出需要输入经典的 <code>:wq</code>。“yanking (复制)” 和 “putting (粘贴)”，以及标记功能和用于设置选项的 <code>set</code> 命令，都源于最初的 <code>vi</code>。可以说，我们今天在 Vim 中进行基本文本编辑所用的功能，绝大部分都来自 <code>vi</code>。</p>
+<p><img src="https://s2.loli.net/2024/04/13/GnTOFa4NMpXo7di.jpg" alt="一台 Lear Siegler ADM-3A 终端的键盘。"></p>
+<p>在 BSD Unix 中，除了 <code>ed</code>，<code>vi</code> 是唯一捆绑的文本编辑器。在那个年代，Emacs 可能要花费数百美元 (当时 GNU Emacs 还未问世)，因此 <code>vi</code> 迅速流行起来。但 <code>vi</code> 是 <code>ed</code> 的直系后代，这意味着没有 AT&amp;T 的源码授权，谁也不能修改它的代码。这激励了许多人去创造 <code>vi</code> 的 开源 (open-source) 版本。STEVIE (ST Editor for VI Enthusiasts) 诞生于 1987 年，Elvis 诞生于 1990 年，<code>nvi</code> 则在 1994 年问世。这些克隆版中的一些还增加了额外功能，比如 语法高亮 (syntax highlighting) 和分屏。特别是 Elvis，它的许多特性后来都被整合进了 Vim，这很大程度上要归功于 Elvis 用户们的积极推动。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
+<h2 id="bram-moolenaar-创造-vim">Bram Moolenaar 创造 Vim</h2>
+<p>“Vim”，如今是“Vi Improved (Vi 改进版)”的缩写，但它最初的名字是“Vi Imitation (Vi 模仿版)”。和其它 <code>vi</code> 的克隆版一样，Vim 的诞生也是源于在一个无法使用 <code>vi</code> 的平台上复刻它的想法。Bram Moolenaar 是一位荷兰软件工程师，在荷兰芬洛的一家复印机公司工作。他想为自己全新的 Amiga 2000 电脑找一款像 <code>vi</code> 一样的工具。Moolenaar 在大学时早已习惯了在 Unix 系统上使用 <code>vi</code>，那套操作已经融入了他的指尖，形成了肌肉记忆。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> 于是，在 1988 年，Moolenaar 以当时已有的 <code>vi</code> 克隆版 STEVIE 为起点，开始打造 Vim。</p>
+<p>Moolenaar 之所以能用上 STEVIE，是因为 STEVIE 曾被收录在一套叫“Fred Fish 磁盘”的东西里。Fred Fish 是一名美国程序员，他每个月都会向外邮寄一张软盘，里面精选了 Amiga 平台下最优秀的开源软件。任何人只要支付邮费，就能索取一张。STEVIE 的好几个版本都通过 Fred Fish 磁盘发行，Moolenaar 用的是第 256 号磁盘上的版本。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup> (有点令人失望的是，Fred Fish 磁盘和那个卡通游戏角色 <a href="https://en.wikipedia.org/wiki/Freddi_Fish">Freddi Fish (小鲤鱼弗雷迪)</a> 似乎没什么关系。)</p>
+<p>Moolenaar 很喜欢 STEVIE，但很快就发现它缺少了许多 <code>vi</code> 的命令。<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup> 因此，在 Vim 的第一个版本里，Moolenaar 将兼容 <code>vi</code> 作为首要目标。当时，有人写了一套 <code>vi</code> 宏，只要编辑器能完美兼容 <code>vi</code>，运行这套宏就能解开一个 <a href="https://github.com/isaacs/.vim/tree/master/macros/maze">随机生成的迷宫</a>。Moolenaar 最终成功让这套宏在 Vim 里跑了起来。1991 年，Vim 作为“Vi Imitation”首次在第 591 号 Fred Fish 磁盘上发布。<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup> Moolenaar 已经为它添加了一些新功能 (包括多级撤销和针对编译器错误的“快速修复”模式)，这意味着 Vim 此时已超越了 <code>vi</code>。但直到 1993 年通过 FTP 发布的 Vim 2.0，它才正式告别“Vi Imitation”这个名字。</p>
+<p>在互联网上各路协作者的偶尔帮助下，Moolenaar 稳步地为 Vim 添加新功能。Vim 2.0 引入了对 <code>wrap</code> (自动换行) 选项和长文本行水平滚动的支持。Vim 3.0 增加了分屏和缓冲区支持，这个功能的灵感来源于 <code>vi</code> 的另一个克隆版 <code>nvi</code>。Vim 还开始将每个缓冲区存入一个 交换文件 (swap file)，这样即使程序崩溃，编辑过的内容也能恢复。Vimscript 在 Vim 5.0 中首次亮相，一同出现的还有语法高亮功能。在这一切发生的同时，Vim 的声望与日俱增。它被移植到了 MS-DOS、Windows、Mac，甚至还“反攻”回了 Unix，与原版 <code>vi</code> 一较高下。</p>
+<p>2006 年，Vim 被《Linux Journal》的读者票选为最受欢迎的编辑器。<sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup> 时至今日，根据 Stack Overflow 2018 年的开发者调查，Vim 是最受欢迎的文本模式 (即在终端模拟器中运行) 编辑器，有 25.8% 的软件开发者 (以及 40% 的系统管理员/DevOps 工程师) 在使用它。<sup id="fnref:15"><a href="#fn:15" class="footnote-ref" role="doc-noteref">15</a></sup> 在上世纪 80 年代末到整个 90 年代，程序员之间曾爆发过一场“编辑器战争”，将 Emacs 用户和 <code>vi</code> (以及后来的 Vim) 用户划分为两大对立阵营。尽管 Emacs 至今无疑仍有拥趸，但一些人认为，这场战争已经结束，Vim 最终胜出。<sup id="fnref:16"><a href="#fn:16" class="footnote-ref" role="doc-noteref">16</a></sup> 2018 年 Stack Overflow 的调查数据似乎也印证了这一点：只有 4.1% 的受访者使用 Emacs。</p>
+<p>Vim 为何能如此成功？显然，人们喜爱 Vim 提供的各种功能。但我认为，Vim 悠久的历史说明，它的优势远不止功能集那么简单。Vim 的代码库最早只能追溯到 1988 年，也就是 Moolenaar 开始开发它的那年。但“wq 文本编辑器”——这个关于类 Unix 文本编辑器应如何设计的宏大构想——却已存在了半个世纪之久。“wq 文本编辑器”有过几种不同的具体实现，但很大程度上得益于 Bill Joy 和 Bram Moolenaar 对向后兼容性的异乎寻常的重视，各种绝妙的创意得以随着时间推移不断累积。从这个意义上讲，“wq 文本编辑器”是史上持续时间最长、最成功的开源项目之一，它曾汇聚了计算机世界里一些最顶尖大脑的智慧与贡献。我并非认为“创业公司抛弃一切传统，创造颠覆性新软件”的开发模式有什么不好，但 Vim 的故事提醒着我们：协作与迭代，同样能创造奇迹。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Butler Lampson, “Systems,” Butler Lampson, accessed August 5, 2018, <a href="http://bwlampson.site/Systems.htm">http://bwlampson.site/Systems.htm</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Dennis Ritchie, “An Incomplete History of the QED Editor,” accessed August 5, 2018, <a href="https://www.bell-labs.com/usr/dmr/www/qed.html">https://www.bell-labs.com/usr/dmr/www/qed.html</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Peter Salus, “The Daemon, the GNU, and the Penguin,” Groklaw, April 14, 2005, accessed August 5, 2018, <a href="http://www.groklaw.net/article.php?story=20050414215646742">http://www.groklaw.net/article.php?story=20050414215646742</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>ibid.（同上）&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Dennis Ritchie, “An Incomplete History of the QED Editor,” accessed August 5, 2018, <a href="https://www.bell-labs.com/usr/dmr/www/qed.html">https://www.bell-labs.com/usr/dmr/www/qed.html</a>.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>Donald Norman, “The Truth about Unix: The User Interface Is Horrid,” Datamation, accessed August 5, 2018, <a href="http://www.ceri.memphis.edu/people/smalley/ESCI7205_misc_files/The_truth_about_Unix_cleaned.pdf">http://www.ceri.memphis.edu/people/smalley/ESCI7205_misc_files/The_truth_about_Unix_cleaned.pdf</a>.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>George Coulouris, “George Coulouris: A Bit of History,” George Coulouris’ Homepage, September 1998, accessed August 5, 2018, <a href="http://www.eecs.qmul.ac.uk/~gc/history/index.html">http://www.eecs.qmul.ac.uk/~gc/history/index.html</a>.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>“Second Berkeley Software Distribution Manual,” Roguelife, accessed August 5, 2018, <a href="http://roguelife.org/~fujita/COOKIES/HISTORY/2BSD/vi.u.html">http://roguelife.org/~fujita/COOKIES/HISTORY/2BSD/vi.u.html</a>.&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p>Sven Guckes, “VIM Wishlist,” Vmunix, May 15, 1995, accessed August 5, 2018, <a href="https://web.archive.org/web/20080520075925/http://www.vmunix.com/vim/wish.html">https://web.archive.org/web/20080520075925/http://www.vmunix.com/vim/wish.html</a>.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p>Bram Moolenaar, “Vim 25” (lecture, Zurich, November 2, 2016), December 13, 2016, accessed August 5, 2018, <a href="https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58">https://www.youtube.com/watch?v=ayc_qpB-93o&t=4m58</a>s&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11">
+<p>ibid. (?t=6m15s)&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:12">
+<p>ibid. (?t=7m6s)&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:13">
+<p>“Fish Disks 1 - 1120,” Amiga Stuff, accessed August 5, 2018, <a href="http://www.amiga-stuff.com/pd/fish.html">http://www.amiga-stuff.com/pd/fish.html</a>.&#160;<a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:14">
+<p>“2005 Linux Journal Reader’s Choice Awards,” Linux Journal, September 28, 2005, accessed August 5, 2018, <a href="https://www.linuxjournal.com/article/8520#N0x850cd80.0x87983bc">https://www.linuxjournal.com/article/8520#N0x850cd80.0x87983bc</a>.&#160;<a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:15">
+<p>“Stack Overflow Developer Survey 2018,” Stack Overflow, accessed August 5, 2018, <a href="https://insights.stackoverflow.com/survey/2018/#development-environments-and-tools">https://insights.stackoverflow.com/survey/2018/#development-environments-and-tools</a>.&#160;<a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:16">
+<p>Bruce Byfield, “The End of the Editor Wars,” Linux Magazine, May 11, 2015, accessed August 5, 2018, <a href="http://www.linux-magazine.com/Online/Blogs/Off-the-Beat-Bruce-Byfield-s-Blog/The-End-of-the-Editor-Wars">http://www.linux-magazine.com/Online/Blogs/Off-the-Beat-Bruce-Byfield-s-Blog/The-End-of-the-Editor-Wars</a>.&#160;<a href="#fnref:16" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content></entry><entry><title type="html">RSS 的兴起与消亡</title><link href="https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/</id><published>2025-07-05T22:58:53+08:00</published><updated>2025-07-05T22:58:53+08:00</updated><content type="html"><![CDATA[<p>2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。</p>
+<p>不过现在我们不止有了 GPT-2，我们还拥有着更先进的种种大模型（在此着重致谢各家的免费产品，尤其是 Gemini），在大模型以及恰当的提示词的帮助下，翻译文章这种事情变得非常简单了。因此，最近我借助大模型的能力，将之前的两篇文章重新翻译了下，姑且重置一下，也免得辣到不小心点进来的朋友们的眼睛。</p>
+<p>刚才也去 X (formerly Twitter) 看了眼，发现 Two Bit History 的动态也停止在了 2021 年 3 月，一晃眼也是好多年了。</p>
+<p>原文：<a href="https://twobithistory.org/2018/12/18/rss.html">The Rise and Demise of RSS</a></p>
+<hr>
+<p><em>本文初版发布于 <a href="https://twobithistory.org/2018/09/16/the-rise-and-demise-of-rss.html">2018年9月16日</a>。此为修订版，增补了对 Ramanathan Guha、Ian Davis、Dan Libby 和 Kevin Werbach 的访谈内容。</em></p>
+<p><em>本文的另一个版本也曾发表于 <a href="https://www.vice.com/en_us/article/a3mm4z/the-rise-and-demise-of-rss">Vice News</a>。</em></p>
+<p>大约在十年多前，随便一位网民可能都听说过 RSS。RSS 的全称有两个版本，你可以叫它“真正简单的整合” (Really Simple Syndication)，也可以叫它“丰富站点摘要” (Rich Site Summary)，这取决于你问的是谁。它是一种标准，网站和播客可以通过它向用户提供内容订阅源，并且这种格式能被各种各样的电脑程序轻松解析。然而时至今日，尽管 RSS 仍在为网络上的许多应用提供着动力，但对大多数人来说，它已经成了一门鲜为人知的“古老”技术。</p>
+<p>要说清 RSS 的故事，我们得从两条线索讲起。第一条线索，是关于一个宏大却从未完全实现的Web未来构想。第二条线索，则是一场本想齐心协力改进流行标准的技术合作，最终如何演变成了开源软件开发史上最激烈的“路线之争”之一。</p>
+<p>时间回到上世纪 90 年代末，那是一个介于 Netscape 上市和互联网泡沫破灭之间的狂飙突进的年代。所有人都预感到，互联网将掀起比以往更巨大的浪潮，尽管没人能确切说出浪潮将涌向何方。当时有一种流行的理论：内容整合 (syndication) 将彻底改变整个 Web。最初，Web 的设计只是为了实现一次简单的双方交易——客户端从一台主机服务器上获取一份文档。但新的标准将打破这一模式，它允许人们将整个网站的内容重新打包，通过五花八门的渠道再次分发。Kevin Werbach 在当时极具投资者影响力的时事通讯 <em>Release 1.0</em> 中预言，内容整合“将演化为互联网经济的核心模型，让企业和个人既能掌控自己的线上形象，又能享受到巨大规模和范围带来的红利。”<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>他邀请读者想象这样一幅未来图景：一位击剑爱好者想买一把新重剑，他不必再访问“在线体育用品商店”或“击剑器材零售商”的网站，而是可以直接在他最喜欢的击剑主题网站上，通过嵌入的电子商务插件完成购买。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 这就像电视界的大型电视网将节目授权给地方小电视台播放一样，Web 上的内容整合能让商家和媒体通过无数个中间站点触达消费者。而这自然也意味着，消费者将获得前所未有的控制权，可以自由选择在何时、何地、以何种方式与商家或媒体互动。</p>
+<p>RSS，正是当年被寄予厚望、能够实现这一“整合未来”的标准之一。在 Werbach 看来，RSS 是“轻量级内容整合协议的杰出代表”。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> 同一时期的另一篇文章则称 RSS 是首个真正发挥出 XML 潜力的协议。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> 无论是普通用户还是内容聚合平台，都可以利用它，从浩如烟海的 Web 信息中打造出属于自己的个性化频道。然而二十年过去了，社交媒体巨头崛起，Google Reader 也被送进了坟墓，RSS 似乎成了一项 <a href="https://trends.google.com/trends/explore?date=all%5c&amp;geo=US%5c&amp;q=rss">日渐式微的技术</a>，如今只有播客作者、技术博主和少数记者还在使用它。当然，还是有一小撮人顽固地坚守着 RSS 阅读器。但在 2018 年的今天，给自己的博客加上 RSS 订阅选项，本身就是一种政治姿态。那个小小的橙色图标，已经成为一个怀旧的符号，象征着对那个由少数几家公司控制的中心化网络的无声反抗——这个网络，与 Werbach 当年想象的整合世界，早已判若云泥。</p>
+<p>RSS 的未来曾一片光明。到底发生了什么？它的衰落是历史的必然，还是那场阻碍其标准统一的激烈内斗加速了它的灭亡？</p>
+<h2 id="浑水">浑水</h2>
+<p>RSS 其实被发明了两次。这意味着它从未有过一个明确的“主人”，这种权责不清的局面引发了无尽的争论和敌意。但这也恰恰说明，RSS 是一个顺应时代潮流的重要思想。</p>
+<p>1998 年，Netscape 正挣扎于生死存亡之秋，苦苦思索着公司的未来。它的旗舰产品——曾占据超过 80% 市场份额的 Netscape Navigator 浏览器——正被 Microsoft 的 Internet Explorer 迅速蚕食。于是，Netscape 决定开辟新战场。当年 5 月，公司集结了一个团队，启动了内部代号为“60号项目”的计划。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> 两个月后，Netscape 推出了名为“My Netscape”的门户网站，意图与 Yahoo、MSN 和 Excite 等当时的门户巨头一较高下。</p>
+<p>第二年三月，Netscape 为 My Netscape 门户网站增加了一项新功能，名为“My Netscape Network”。用户可以在自己的 My Netscape 页面上进行个性化定制，添加来自全网各大站点的“频道”，展示最新的头条新闻。只要你喜欢的网站按照 Netscape 的规定格式发布一个特殊文件，你就能把它添加到你的 My Netscape 页面上。通常，参与的网站会在页面上放置一个“添加频道”的按钮，用户点击一下，一个包含最新链接标题的小窗口就会出现在他们的门户页上。</p>
+<p><img src="https://s1.ax1x.com/2018/09/22/iupTPJ.gif" alt="一个 My Netscape Network 频道"></p>
+<p><em>图注：一个 Mozilla.org 的 My Netscape Network 频道，在用户即将把它添加到 My Netscape 页面时大概就是这个样子。</em></p>
+<p>网站们需要发布的那个特殊文件，就是一个 RSS 文件。在 My Netscape Network 的发布公告中，Netscape 解释说 RSS 是“RDF 站点摘要” (RDF Site Summary) 的缩写。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 这个名字其实有点误导人。RDF，即资源描述框架 (Resource Description Framework)，本质上是一种用来描述任意资源属性的语法。(如果你对此很感兴趣，可以读读我那篇关于 <a href="/2018/05/27/semantic-web.html">语义网 (Semantic Web) 的文章</a>。) 1999 年，万维网联盟 (W3C)——Web 世界的主要标准制定机构——正在审议 RDF 的规范草案。尽管 RSS 号称基于 RDF，但 Netscape 发布的示例文件里却根本没用任何 RDF 标签。RSS 规范的作者之一 Dan Libby 在一份配套文档中解释说：“在 MNN 的这个版本里，Netscape 有意限制了 RSS 格式的复杂性。”<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 该规范的版本号被定为 0.90，言下之意是，后续版本会让 RSS 逐渐向 W3C 的 XML 规范和不断演进的 RDF 规范草案看齐。</p>
+<p>RSS 是由 Libby 和另外两位 Netscape 员工 Eckart Walther、Ramanathan Guha 共同创造的。根据 Guha 在邮件中的回忆，最初是他和 Walther 在 Libby 的一些建议下捣鼓出了 RSS 的雏形。1998 年 AOL 收购 Netscape 后，他和 Walther 相继离开，RSS 的后续发展就落到了 Libby 肩上。在加入 Netscape 之前，Guha 曾在 Apple 公司工作，并提出了一个名为“元内容框架” (Meta Content Framework, MCF) 的概念。MCF 是一种用来表示元数据 (metadata) 的格式，无论是网页还是本地文件，它都能描述。为了展示其威力，Guha 开发了一款名为 <a href="http://web.archive.org/web/19970703020212/http://mcf.research.apple.com:80/hs/screen_shot.html">HotSauce</a> 的应用，能将文件间的关系以三维空间中悬浮的节点网络形式可视化。离开 Apple 加入 Netscape 后，Guha 立即与一位名叫 Tim Bray 的顾问合作。Bray 在博客中提到，他和 Guha 最终做出了一个基于 XML 的 MCF 版本，而这个版本又成了 W3C 的 RDF 草案的基础。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup> 毫无疑问，Guha、Walther 和 Libby 都希望能延续 Guha 此前的工作，将 RDF 融入 RSS。但 Libby 后来写道，由于时间紧迫，加上当时普遍认为 RDF 对“普通用户”来说“太复杂”，最初那个基于 RDF 的宏大构想最终被打了折扣。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
+<p>就在 Netscape 投身于后来被称为“门户大战”的流量争夺战时，一种名为“网络日志” (weblogging) 的新事物正在 Web 的另一角悄然兴起。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> Dave Winer 便是其中的一位先驱。他是 UserLand Software 公司的 CEO，这家公司开发的早期内容管理系统，让许多不精通技术的人也能轻松写博客。Winer 自己也运营着一个博客，名为 <a href="http://scripting.com">Scripting News</a>，至今仍是互联网上最古老的博客之一。早在 Netscape 发布 My Netscape Network 的一年多前，即 1997 年 12 月 15 日，Winer 就宣布他的博客将同时提供 XML 和 HTML 两种格式。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup></p>
+<p>Dave Winer 的这种 XML 格式后来被称为 Scripting News 格式。据说它和 Microsoft 的“频道定义格式” (Channel Definition Format, 一种在 1997 年 3 月提交给 W3C 的“推送技术”标准) 很相似，但我没能找到原始文件来证实这一点。<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup> 和 Netscape 的 RSS 一样，它也将 Winer 博客的内容结构化，以便其他软件能够理解。当 Netscape 发布 RSS 0.90 后，Winer 和他的 UserLand Software 公司开始同时支持这两种格式。但 Winer 认为 Netscape 的格式“严重不足”，并且“缺少了网站作者和读者最需要的东西”。<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup> Netscape 的格式只能呈现一个链接列表，而 Scripting News 格式却能呈现一系列段落，每个段落里还可以包含一个或多个链接。</p>
+<p>1999 年 6 月，也就是 Netscape 宣布 My Netscape Network 两个月后，Winer 推出了 Scripting News 格式的新版本——ScriptingNews 2.0b1。Winer 声称，他之所以决定自己动手，是因为他曾试图让 Netscape 的人关注 RSS 0.90 的缺陷，但却无人理睬。<sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup> 新版的 Scripting News 格式在 <code>&lt;header&gt;</code> 元素中增加了几项，使其在功能上与 RSS 看齐。但两者依然存在一个关键区别：Winer 戏称为“胖”整合格式的 Scripting News，可以包含完整的段落，而不仅仅是链接。</p>
+<p>Netscape 紧接着在下个月就发布了 RSS 0.91。这次的更新堪称一次 180 度大转弯。RSS 不再是“RDF 站点摘要”的缩写，而是变成了“丰富站点摘要”。所有的 RDF 元素——本来也几乎没有——被悉数移除，同时吸收了许多 Scripting News 格式的标签。在新规范的说明中，Libby 这样解释：</p>
+<blockquote>
+<p>RDF 相关引用已被移除。RSS 最初的构想是作为一种提供网站摘要的元数据格式。但现在两点已经很明确：首先，内容提供者更需要的是一种内容整合格式，而非元数据格式。RDF 文件的结构非常严谨，必须遵循 RDF 数据模型才能生效，这对人类来说不易理解，也让创建有用的 RDF 文件变得困难。其次，市面上几乎没有可用于生成、验证和处理 RDF 的工具。基于这些原因，我们决定采用标准的 XML 方式。<sup id="fnref:15"><a href="#fn:15" class="footnote-ref" role="doc-noteref">15</a></sup></p>
+</blockquote>
+<p>Winer 对 RSS 0.91 极为满意，称其“比我预想的还要好”。<sup id="fnref:16"><a href="#fn:16" class="footnote-ref" role="doc-noteref">16</a></sup> UserLand Software 公司随即采用它取代了自家的 ScriptingNews 2.0b1 格式。在当时看来，RSS 似乎终于有了一份统一的、权威的规范。</p>
+<h2 id="大分裂">大分裂</h2>
+<p>一年之后，RSS 0.91 规范也显得捉襟见肘了。人们想用 RSS 做各种各样的事情，但规范却无法满足需求。规范中的某些限制也显得毫无必要——比如，每个 RSS 频道最多只能包含 15 个项目。</p>
+<p>到那时，已经有更多的组织采纳了 RSS。除了在 0.91 版本后就似乎兴味索然的 Netscape，牌桌上的主要玩家包括 Dave Winer 的 UserLand Software、运营着 RSS 聚合器 Meerkat 的 O’Reilly Net，以及同样运营着新闻类 RSS 聚合器的 Moreover.com。<sup id="fnref:17"><a href="#fn:17" class="footnote-ref" role="doc-noteref">17</a></sup> 这些组织的代表们通过邮件列表，定期讨论如何改进 RSS 0.91。但在改进的方向上，他们之间存在着深刻的分歧。</p>
+<p>这场讨论主要发生在一个名为“整合” (Syndication) 的邮件列表里。<a href="https://groups.yahoo.com/neo/groups/syndication/info">该邮件列表的存档</a> 至今仍可访问，是一份惊人的历史资料。它逐分逐秒地记录了这些深刻的分歧最终如何撕裂了整个 RSS 社区。</p>
+<p>站在这场分裂风暴一侧的，是 Winer。他迫切地想要推动 RSS 的演进，但只希望以一种相对保守的方式进行。2000 年 6 月，他在 UserLand 网站上发布了自己版本的 RSS 0.91 规范，作为后续开发的起点。这个版本与 Netscape 发布的 0.91 规范相比，并无重大改动。Winer 在一篇配套的博客文章中声称，这只是一次“清理”工作，旨在记录 RSS 在实际应用中的情况，因为 Netscape 的官方规范已经无人维护。<sup id="fnref:18"><a href="#fn:18" class="footnote-ref" role="doc-noteref">18</a></sup> 在同一篇文章中，他坚称 RSS 之所以成功，关键在于其简单性。他认为，如果在格式中重新加入命名空间 (namespaces，一种区分不同 RSS 词汇的方式) 或 RDF——这是邮件列表里一些人的提议——将会“使其变得极其复杂，恕我直言，对于内容提供者来说，这种复杂性几乎带不来任何好处。” 在差不多同一时间发给“整合”邮件列表的一封邮件中，Winer 暗示这些分歧非常严重，甚至可能导致他另起炉灶：</p>
+<blockquote>
+<p>我仍在思考如何推动 RSS 向前发展。我非常希望在 RSS2 中加入类似 ICE 的功能，发布和订阅是我的重中之重，但我会为了保持简单性而斗争到底。我喜欢可选元素。我不想走上命名空间和模式 (schema) 的道路，也不想把它变成 RDF 的一种方言。我理解其他人想这么做，所以，我猜我们最终会走向分裂 (fork)。对于另一条路会通向何方，我有自己的看法，但至少现在，我会保留这些看法。<sup id="fnref:19"><a href="#fn:19" class="footnote-ref" role="doc-noteref">19</a></sup></p>
+</blockquote>
+<p>与 Winer 对立的是另外几位人物，包括 O’Reilly 的 Rael Dornfest、搜索创业公司 Calaba 的负责人 Ian Davis，以及一位年仅 14 岁的早慧少年 Aaron Swartz。没错，就是后来共同创办了 Reddit 并以其黑客行动主义闻名的那个 Aaron Swartz。(据 Davis 在邮件中回忆，2000 年时，他父亲还经常陪他参加技术圈的聚会。) Dornfest、Davis 和 Swartz 都认为，为了满足五花八门的应用需求，RSS 必须引入命名空间。在 O’Reilly 主持的另一个邮件列表里，Davis 提出了一个基于命名空间的模块化系统，他写道，这样的系统能“让 RSS 随心所欲地扩展，而不是硬塞进各种新功能，把规范搞得越来越复杂。”<sup id="fnref:20"><a href="#fn:20" class="footnote-ref" role="doc-noteref">20</a></sup> “命名空间阵营”相信，RSS 的用途很快将远不止于聚合博客文章，因此，命名空间非但不是累赘，反而是防止 RSS 在支持越来越多用例后变得难以管理的唯一出路。</p>
+<p>对命名空间的分歧，其根源在于对 RSS 究竟为何物这一根本问题的不同理解。Winer 当初发明 Scripting News 格式，是为了聚合自己博客的文章。Netscape 发布 RSS 时称其为“RDF 站点摘要”，是想在 My Netscape 门户里微缩式地重建一个个网站。有些人觉得，应该尊重 Netscape 最初的愿景。Davis 在给“整合”邮件列表的信中阐述了他的观点：RSS“最初的构想是用来建立迷你版的网站地图”，而现在，他和同伴们希望扩展 RSS，“使其能包含新闻标题之外更多类型的信息，并满足过去 12 个月里涌现出的新用途。”<sup id="fnref:21"><a href="#fn:21" class="footnote-ref" role="doc-noteref">21</a></sup> 这个观点不无道理，因为 Netscape 的 RSS 项目最初的目标甚至比 Davis 描述的还要宏大：Guha 曾告诉我，他想创造一种技术，不仅能支持网站频道，还能支持关于任意实体 (比如歌手麦当娜) 的信息源。从这个角度看，进一步发展 RSS 以实现这一目标，确实符合其初衷。但 Davis 的论点也夸大了 Netscape 在发布 RSS 规范时内部愿景的统一程度。据我与 Libby 的邮件交流，即便在 Netscape 内部，最终也分裂为“我们来构建语义网吧”和“我们把它做得简单点，方便大家用”两个派别。</p>
+<p>而 Winer 则认为，Netscape 最初的目标根本不重要，因为他的 Scripting News 格式才是 RSS 的鼻祖，且其初衷截然不同。鉴于 RSS 开发的核心参与者们在“谁创造了 RSS”以及“为何创造”这两个根本问题上都无法达成一致，分裂似乎已在所难免。</p>
+<p>当 Dornfest 宣布了一份提议中的 RSS 1.0 规范，并组建了 RSS-DEV 工作组来筹备发布时，分裂最终发生了。这个工作组里有 Davis、Swartz 和其他几位成员，但没有 Winer。在提议的规范中，RSS 的全称又变回了“RDF 站点摘要”，因为 RDF 被重新引入，用于表示某些 RSS 元素的元数据属性。规范指名道姓地感谢了 Winer，称赞他通过“传道式”的热情推广了 RSS。<sup id="fnref:22"><a href="#fn:22" class="footnote-ref" role="doc-noteref">22</a></sup> 但规范也指出，RSS 不能按照 Winer 倡导的方式去改进。仅仅向 RSS 添加更多元素，而不通过模块系统提供可扩展性，将“牺牲其可伸缩性 (scalability)”。规范接着定义了一套基于 XML 命名空间的 RSS 模块系统。</p>
+<p>Winer 觉得 RSS-DEV 工作组擅自取名“RSS 1.0”是“不公平的”。<sup id="fnref:23"><a href="#fn:23" class="footnote-ref" role="doc-noteref">23</a></sup> 在另一个关于去中心化的邮件列表里，他写道自己“最近有个标准被一个大牌给偷了”，矛头直指召集了 RSS-DEV 工作组的 O’Reilly。<sup id="fnref:24"><a href="#fn:24" class="footnote-ref" role="doc-noteref">24</a></sup> “整合”邮件列表里的其他成员也认为，在社区就 RSS 的未来达成一致之前，RSS-DEV 工作组不该使用“RSS”这个名字。但工作组坚持己见。工作组的另一位成员 Dan Brickley 辩护道：“我们提议的 RSS 1.0 牢牢植根于 RSS 的最初愿景，而这一愿景本身可以追溯到 MCF (RDF 的前身) 和其他相关规范 (如 CDF) 的悠久传统。”<sup id="fnref:25"><a href="#fn:25" class="footnote-ref" role="doc-noteref">25</a></sup> 他基本上认为，既然 RDF 本就是 RSS 的一部分，那么 RSS 1.0 的努力比 Winer 更有资格继承“RSS”这个名号。RSS-DEV 工作组在当年 12 月发布了规范的最终版。同月，Winer 在 UserLand 网站上发布了他自己对 RSS 0.91 的改进版，命名为 RSS 0.92。RSS 0.92 对 RSS 做了一些小的、可选的改进，其中就包括了后来被播客界广泛采用的 <code>&lt;enclosure&gt;</code> 标签。至此，RSS 正式分裂。</p>
+<p>如果当初能更努力地将 Winer 纳入 RSS-DEV 工作组，这场分裂或许本可避免。他显然是理应在席的。他是“整合”邮件列表的杰出贡献者，对 RSS 的普及功不可没，这一点连工作组成员自己都承认。但正如 Davis 在邮件中所写，Winer“想要控制权，希望 RSS 成为他的个人遗产，所以不愿与我们合作。” O’Reilly 的创始人兼 CEO Tim O’Reilly 在 2000 年 9 月的一个 UserLand 讨论组中解释说，Winer 基本上是拒绝参与合作：</p>
+<blockquote>
+<p>一群参与 RSS 的人聚在一起，开始思考它的未来发展。Dave 也是其中一员。但当团队的共识转向了他不喜欢的方向时，Dave 就退出了，并把这描绘成 O’Reilly 企图从他手中夺取 RSS 的阴谋，尽管 O’Reilly 的 Rael Dornfest 只是 RSS 1.0 提案的十几位作者之一，而且许多参与开发的成员在 RSS 领域的资历至少和 Dave 一样长。<sup id="fnref:26"><a href="#fn:26" class="footnote-ref" role="doc-noteref">26</a></sup></p>
+</blockquote>
+<p>对此，Winer 回应道：</p>
+<blockquote>
+<p>在他们宣布的两周前，我见了 Dale [Dougherty]，他压根没提要叫 RSS 1.0。在宣布前的那个周五，我和 Rael 通了电话，他也只字未提他们要叫它 RSS 1.0。我是直到公之于众时才第一次听说。</p>
+<p>让我直接问你一个问题。如果事实证明，将新规范命名为“RSS 1.0”的计划是私下决定的，没有任何事先通知或协商，也没给‘整合’邮件列表的成员们——不只是我——任何同意或反对的机会，你打算怎么办？</p>
+<p>UserLand 为了创造、推广和支持 RSS 付出了巨大努力。我们放弃了这些，让你们的人拿走了这个名字。这是最根本的问题。如果我今后想在 Web 整合领域做任何事，我都得用一个新名字。Tim，这到底是为什么，又是怎么发生的？<sup id="fnref:27"><a href="#fn:27" class="footnote-ref" role="doc-noteref">27</a></sup></p>
+</blockquote>
+<p>我没能在“整合”邮件列表的存档中找到任何在 RSS 1.0 提案公布前关于命名问题的讨论。Winer 在给我的消息中表示，他并非想控制 RSS，只是想在自己的产品里使用它。</p>
+<p>2003 年，RSS 再次分裂。几位对 RSS 社区无休止的争吵感到厌倦的开发者，试图创造一种全新的格式。他们创造了 Atom，一种摒弃了 RDF 但拥抱了 XML 命名空间的格式。Atom 最终由 <a href="https://tools.ietf.org/html/rfc4287">一项提议的 IETF 标准</a> 进行了规范。Atom 诞生后，市面上出现了三个相互竞争的 RSS 版本：Winer 的 RSS 0.92 (于 2002 年升级为 RSS 2.0，并更名为“真正简单的整合”)、RSS-DEV 工作组的 RSS 1.0，以及 Atom。</p>
+<h2 id="衰落">衰落</h2>
+<p>多个 RSS 规范并存的局面，可能从其他方面也阻碍了 RSS 的发展，这一点我稍后会谈到。但这并没能阻止 RSS 在 21 世纪的头十年里风靡一时。到 2004 年，《纽约时报》开始用 RSS 提供头条新闻，并专门刊文向普通读者解释什么是 RSS 以及如何使用它。<sup id="fnref:28"><a href="#fn:28" class="footnote-ref" role="doc-noteref">28</a></sup> 2005 年，最终拥有数百万用户的 RSS 聚合器 Google Reader 问世。到 2013 年，RSS 的普及程度似乎让《纽约时报》在为 Aaron Swartz 撰写的讣告中，称其为一项“无处不在”的技术。<sup id="fnref:29"><a href="#fn:29" class="footnote-ref" role="doc-noteref">29</a></sup> 曾几何时，在地球上三分之一的人口注册 Facebook 之前，RSS 就是许多人获取互联网新闻的主要方式。</p>
+<p>《纽约时报》发表 Swartz 讣告是在 2013 年 1 月。但实际上，RSS 在那时已经盛极而衰，正一步步走向默默无闻。2013 年 7 月，Google Reader 被关闭，官方给出的理由是用户数“连年下滑”。<sup id="fnref:30"><a href="#fn:30" class="footnote-ref" role="doc-noteref">30</a></sup> 此举引发了各大媒体纷纷发文，宣告 RSS 的死亡。但其实，早在 Google Reader 关闭前，唱衰 RSS 的声音就已持续多年。2009 年 5 月，Steve Gillmor 在 TechCrunch 上撰文建议：“是时候彻底告别 RSS，转向 Twitter 了”，因为“RSS 已经跟不上时代了”。<sup id="fnref:31"><a href="#fn:31" class="footnote-ref" role="doc-noteref">31</a></sup> 他指出，Twitter 本质上就是一个更强大的 RSS 源，因为它不仅能推送文章，还能让你看到大家对文章的看法。它让你关注的是“人”，而不仅仅是“频道”。Gillmor 告诉读者，是时候让 RSS 退居幕后了。他以 Bob Dylan《永远年轻》中的一句歌词结束了文章。</p>
+<p>今天，RSS 并未消亡。但它也远没有了往日的辉煌。关于 RSS 为何失宠，众说纷纭。其中最有说服力的解释，或许正是 Gillmor 在 2009 年提出的那个。社交网络，和 RSS 一样，为用户提供了一个聚合互联网最新资讯的信息流。社交网络之所以能取而代之，仅仅因为它们是“更好”的信息流。同时，它们也为背后的公司带来了更多利益。例如，有人指责 Google 关闭 Reader 是为了将用户赶向自家的 Google+。Google 也许能从 Google+ 上找到变现模式，但这种模式在 Google Reader 上是绝无可能的。Instapaper 的创始人 Marco Arment 在 2013 年的博客中写道：</p>
+<blockquote>
+<p>Google Reader 不过是 Facebook 无意间挑起的那场战争的最新牺牲品：一场旨在‘拥有一切’的战争。虽然 Google 在技术上确实‘拥有’Reader，也能利用流经其中的海量新闻和用户关注度数据，但这与其更重要的 Google+ 战略发生了冲突。他们需要每个人都通过 Google+ 来阅读和分享一切，这样才能在广告定位数据、广告收入、用户增长和市场影响力上与 Facebook 抗衡。<sup id="fnref:32"><a href="#fn:32" class="footnote-ref" role="doc-noteref">32</a></sup></p>
+</blockquote>
+<p>所以，无论是用户还是科技公司，都发现从社交网络中获得的价值远超 RSS。</p>
+<p>另一种理论认为，RSS 对普通人来说，门槛一直太高，太过“极客化” (geeky)。即便是当年积极拥抱并向读者推广 RSS 的《纽约时报》，也在 2006 年抱怨说，RSS 是个由“电脑极客”发明的“不怎么用户友好”的缩写。<sup id="fnref:33"><a href="#fn:33" class="footnote-ref" role="doc-noteref">33</a></sup> 在 2004 年那个橙色的 RSS 图标诞生之前，《纽约时报》等网站用来链接其 RSS 源的，是一个标着“XML”的小方块，这足以吓退大部分普通用户。<sup id="fnref:34"><a href="#fn:34" class="footnote-ref" role="doc-noteref">34</a></sup> 不过这个标签倒是完全准确，因为在那个年代，点开链接，一个倒霉的用户看到的将是一整页天书般的 XML 代码。<a href="https://twitter.com/mgsiegler/status/311992206716203008">这条精彩的推文</a> 精辟地概括了这种观点。普通人从未对使用 RSS 感到自在；它从设计之初就不是面向消费者的技术，使用起来障碍重重；一旦有更好的替代品出现，人们便会毫不犹豫地“跳船”。</p>
+<p>如果能得到持续发展，RSS 或许本可以克服这些局限。也许 RSS 可以扩展出新功能，让订阅了同一频道的朋友们能互相分享对某篇文章的看法。也许浏览器能提供更好的原生支持。但是，当 Facebook 这样的公司能够“快速行动，打破常规” (move fast and break things) 时，RSS 的开发者社区却被困在寻求共识的泥潭里。当他们无法就统一标准达成一致时，本可用于改进 RSS 的精力，却被浪费在无休止的重复造轮子上。例如，Davis 告诉我，如果当初“整合”邮件列表的成员们能够妥协协作，Atom 本无诞生的必要，“所有那些整理完善的工作本可以投入到 RSS 中，使其变得更强大。” 所以，如果我们探究 RSS 为何不再流行，最直接的解释是社交网络取代了它。但如果我们再深究一层，问为什么社交网络能取代它，答案或许是：那些试图让 RSS 成功的人们，面临着一个比（比如说）打造一个 Facebook 要困难得多的问题。正如 Dornfest 曾一度在“整合”邮件列表里写道：“目前来看，真正复杂的远非技术实现，而是政治。”<sup id="fnref:35"><a href="#fn:35" class="footnote-ref" role="doc-noteref">35</a></sup></p>
+<p>于是，今天我们面对的是一个个信息被中心化平台分割的孤岛。即便如此，Werbach 在 1999 年预见的那种“整合网络”其实已经实现了，只是方式与他设想的大相径庭。毕竟，像 <em>The Onion</em> 这样的媒体，不正是依赖于通过 Facebook 和 Twitter 进行内容分发，就像经典美剧《宋飞正传》在首播结束后依靠电视联播大赚数亿美元一样吗？我问 Werbach 对此有何看法，他基本表示同意。他告诉我，从一个层面看，RSS 显然是失败了，因为它如今“并非博客圈、内容界或信息聚合领域的核心技术”。但从另一个层面看，“整个社交媒体革命，其核心之一就是聚合不同内容与资源的能力”，这与 RSS 的理念以及他最初对整合网络的构想遥相呼应。对 Werbach 而言，“这是 RSS 的遗产，即便它并非构建于 RSS 之上。”</p>
+<p>不幸的是，当今 Web 上的内容整合，依旧只能通过那几家巨头渠道进行，这意味着我们没有人能像 Werbach 想象的那样，“保留对我们在线角色的控制”。造成这一局面的原因之一，是司空见惯的商业贪婪——RSS 作为一个开放格式，无法给予科技公司售卖广告所需的数据和流量控制权，因此得不到它们的支持。但更平淡无奇的原因是，构建中心化的信息孤岛，远比设计一个通用的公共标准要容易。达成共识困难重重且耗时漫长，而一旦没有共识，被冷落的开发者便会出走，创造相互竞争的标准。这或许给我们的教训是：如果我们想要一个更好、更开放的 Web，我们必须学会如何更好地与彼此协作，而不是互相拆台。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Kevin Werbach, “The Web Goes into Syndication,” Release 1.0, July 22, 1999, 1, accessed September 14, 2018, <a href="http://cdn.oreillystatic.com/radar/r1/07-99.pdf">http://cdn.oreillystatic.com/radar/r1/07-99.pdf</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>ibid（同上）.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Werbach, 8.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Peter Wiggin, “RSS Delivers the XML Promise,” Web Review, October 29, 1999, accessed September 14, 2018, <a href="https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html">https://people.apache.org/~jim/NewArchitect/webrevu/1999/10_29/webauthors/10_29_99_2a.html</a>.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Ben Hammersley, RSS and Atom (O’Reilly), 8, accessed September 14, 2018, <a href="https://books.google.com/books?id=kwJVAgAAQBAJ">https://books.google.com/books?id=kwJVAgAAQBAJ</a>.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>“RSS 0.90 Specification,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-0">http://www.rssboard.org/rss-0-9-0</a>.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>“My Netscape Network Future Directions,” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/mnn-futures">http://www.rssboard.org/mnn-futures</a>.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>Tim Bray, “The RDF.net Challenge,” Ongoing by Tim Bray, May 21, 2003, accessed September 14, 2018, <a href="https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet">https://www.tbray.org/ongoing/When/200x/2003/05/21/RDFNet</a>.&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p>Dan Libby, “RSS: Introducing Myself,” August 24, 2000, RSS-DEV Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/239</a>.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p>Alexandra Krasne, “Browser Wars May Become Portal Wars,” CNN, accessed September 14, 2018, <a href="http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html">http://www.cnn.com/TECH/computing/9910/04/portal.war.idg/index.html</a>.&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11">
+<p>Dave Winer, “Scripting News in XML,” Scripting News, December 15, 1997, accessed September 14, 2018, <a href="http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html">http://scripting.com/davenet/1997/12/15/scriptingNewsInXML.html</a>.&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:12">
+<p>Joseph Reagle, “RSS History,” 2004, accessed September 14, 2018, <a href="https://reagle.org/joseph/2003/rss-history.html">https://reagle.org/joseph/2003/rss-history.html</a>.&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:13">
+<p>Dave Winer, “A Faceoff with Netscape,” Scripting News, June 16, 1999, accessed September 14, 2018, <a href="http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html">http://scripting.com/davenet/1999/06/16/aFaceOffWithNetscape.html</a>.&#160;<a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:14">
+<p>ibid.&#160;<a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:15">
+<p>Dan Libby, “RSS 0.91 Specification (Netscape),” RSS Advisory Board, accessed September 14, 2018, <a href="http://www.rssboard.org/rss-0-9-1-netscape">http://www.rssboard.org/rss-0-9-1-netscape</a>.&#160;<a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:16">
+<p>Dave Winer, “Scripting News: 7/28/1999,” Scripting News, July 28, 1999, accessed September 14, 2018, <a href="http://scripting.com/1999/07/28.html">http://scripting.com/1999/07/28.html</a>.&#160;<a href="#fnref:16" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:17">
+<p>Oliver Willis, “RSS Aggregators?” June 19, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/173</a>.&#160;<a href="#fnref:17" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:18">
+<p>Dave Winer, “Scripting News: 07/07/2000,” Scripting News, July 07, 2000, accessed September 14, 2018, <a href="http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss">http://essaysfromexodus.scripting.com/backissues/2000/06/07/#rss</a>.&#160;<a href="#fnref:18" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:19">
+<p>Dave Winer, “Re: RSS 0.91 Restarted,” June 9, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/132</a>.&#160;<a href="#fnref:19" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:20">
+<p>Leigh Dodds, “RSS Modularization,” XML.com, July 5, 2000, accessed September 14, 2018, <a href="http://www.xml.com/pub/a/2000/07/05/deviant/rss.html">http://www.xml.com/pub/a/2000/07/05/deviant/rss.html</a>.&#160;<a href="#fnref:20" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:21">
+<p>Ian Davis, “Re: [syndication] RSS Modularization Demonstration,” June 28, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/188</a>.&#160;<a href="#fnref:21" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:22">
+<p>“RDF Site Summary (RSS) 1.0,” December 09, 2000, accessed September 14, 2018, <a href="http://web.resource.org/rss/1.0/spec">http://web.resource.org/rss/1.0/spec</a>.&#160;<a href="#fnref:22" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:23">
+<p>Dave Winer, “Re: [syndication] Re: Thoughts, Questions, and Issues,” August 16, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410">https://groups.yahoo.com/neo/groups/syndication/conversations/topics/410</a>.&#160;<a href="#fnref:23" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:24">
+<p>Mark Pilgrim, “History of the RSS Fork,” Dive into Mark, September 5, 2002, accessed September 14, 2018, <a href="http://www.diveintomark.link/2002/history-of-the-rss-fork">http://www.diveintomark.link/2002/history-of-the-rss-fork</a>.&#160;<a href="#fnref:24" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:25">
+<p>Dan Brickley, “RSS-Classic, RSS 1.0 and a Historical Debt,” November 7, 2000, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136">https://groups.yahoo.com/neo/groups/rss-dev/conversations/topics/1136</a>.&#160;<a href="#fnref:25" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:26">
+<p>Tim O’Reilly, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021537.html">http://static.userland.com/userLandDiscussArchive/msg021537.html</a>.&#160;<a href="#fnref:26" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:27">
+<p>Dave Winer, “Re: Asking Tim,” UserLand, September 20, 2000, accessed September 14, 2018, <a href="http://static.userland.com/userLandDiscussArchive/msg021560.html">http://static.userland.com/userLandDiscussArchive/msg021560.html</a>.&#160;<a href="#fnref:27" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:28">
+<p>John Quain, “BASICS; Fine-Tuning Your Filter for Online Information,” The New York Times, 2004, accessed September 14, 2018, <a href="https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html">https://www.nytimes.com/2004/06/03/technology/basics-fine-tuning-your-filter-for-online-information.html</a>.&#160;<a href="#fnref:28" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:29">
+<p>John Schwartz, “Aaron Swartz, Internet Activist, Dies at 26,” The New York Times, January 12, 2013, accessed September 14, 2018, <a href="https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html">https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html</a>.&#160;<a href="#fnref:29" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:30">
+<p>“A Second Spring of Cleaning,” Official Google Blog, March 13, 2013, accessed September 14, 2018, <a href="https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html">https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html</a>.&#160;<a href="#fnref:30" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:31">
+<p>Steve Gillmor, “Rest in Peace, RSS,” TechCrunch, May 5, 2009, accessed September 14, 2018, <a href="https://techcrunch.com/2009/05/05/rest-in-peace-rss/">https://techcrunch.com/2009/05/05/rest-in-peace-rss/</a>.&#160;<a href="#fnref:31" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:32">
+<p>Marco Arment, “Lockdown,” Marco.org, July 3, 2013, accessed September 14, 2018, <a href="https://marco.org/2013/07/03/lockdown">https://marco.org/2013/07/03/lockdown</a>.&#160;<a href="#fnref:32" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:33">
+<p>Bob Tedeschi, “There’s a Popular New Code for Deals: RSS,” The New York Times, January 29, 2006, accessed September 14, 2018, <a href="https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html">https://www.nytimes.com/2006/01/29/travel/theres-a-popular-new-code-for-deals-rss.html</a>.&#160;<a href="#fnref:33" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:34">
+<p>“NYTimes.com RSS Feeds,” The New York Times, accessed September 14, 2018, <a href="https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html">https://web.archive.org/web/20050326065348/www.nytimes.com/services/xml/rss/index.html</a>.&#160;<a href="#fnref:34" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:35">
+<p>Rael Dornfest, “RE: Re: [syndication] RE: RFC: Clearing Confusion for RSS, Agreement for Forward Motion,” May 31, 2001, Syndication Mailing List, accessed September 14, 2018, <a href="https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717">https://groups.yahoo.com/neo/groups/syndication/conversations/messages/1717</a>.&#160;<a href="#fnref:35" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content></entry><entry><title type="html">十八愁绕口令</title><link href="https://blog.batkiz.com/posts/shi-ba-chou/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/shi-ba-chou/</id><published>2025-04-03T15:52:17+08:00</published><updated>2025-04-03T15:52:17+08:00</updated><content type="html"><![CDATA[<p>很早之前靠人工整理出来的，压制的视频在：<a href="https://www.bilibili.com/video/BV1At421j7NH">BV1At421j7NH</a>。
 现在把纯文字稿放出来，顺带去掉了很多气口词。</p>
 <p>另外推荐朋友做的 <a href="https://nianzi.site/">粘子</a>，整理收集了不少的曲艺文本。</p>
 <h2 id="玲珑塔">玲珑塔</h2>
@@ -2649,7 +2935,8 @@ ZERO -&gt; 0
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>上面的这份已被收入 <a href="https://github.com/lukesampson/scoop-extras/pull/1519">extras bucket</a> 中，不过上面的<a href="https://github.com/lukesampson/scoop-extras/pull/1519#issuecomment-447215864">检查更新的配置貌似还有点小问题</a>。</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">翻译 | Vim 的诞生</title><link href="https://blog.batkiz.com/posts/where-vim-came-from/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/using-wsl/?utm_source=atom_feed" rel="related" type="text/html" title="wsl 使用指北"/><link href="https://blog.batkiz.com/posts/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><id>https://blog.batkiz.com/posts/where-vim-came-from/</id><published>2018-10-23T12:55:18+00:00</published><updated>2018-10-23T12:55:18+00:00</updated><content type="html"><![CDATA[<blockquote>Vim 这奇怪的键位到底从何而来？</blockquote><p>原文：<a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html">Where Vim Came From</a></p>
+]]></content><category scheme="https://blog.batkiz.com/tags/windows" term="windows" label="windows"/></entry><entry><title type="html">翻译 | Vim 的诞生</title><link href="https://blog.batkiz.com/posts/where-vim-came-from/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/using-wsl/?utm_source=atom_feed" rel="related" type="text/html" title="wsl 使用指北"/><link href="https://blog.batkiz.com/posts/install-linux-in-upan/?utm_source=atom_feed" rel="related" type="text/html" title="将linux装入u盘之路"/><id>https://blog.batkiz.com/posts/where-vim-came-from/</id><published>2018-10-23T12:55:18+00:00</published><updated>2018-10-23T12:55:18+00:00</updated><content type="html"><![CDATA[<blockquote>Vim 这奇怪的键位到底从何而来？</blockquote><p>2025.7.5 补：<a href="/posts/ai-translation-the-rise-and-demise-of-rss/">借助 AI 能力翻译的新版本</a></p>
+<p>原文：<a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html">Where Vim Came From</a></p>
 <p>另投稿于 <a href="http://jandan.net/2018/10/22/vim.html">煎蛋</a></p>
 <blockquote>
 <p>translated by <a href="https://batkiz.github.io/">batkiz</a> &amp; <a href="https://ruinsyi.github.io">RUInsYi</a> @ <a href="https://github.com/par-tuner">Par-Tuner</a></p>
@@ -2750,7 +3037,9 @@ ZERO -&gt; 0
 </li>
 </ol>
 </div>
-]]></content><category scheme="https://blog.batkiz.com/tags/vim" term="vim" label="vim"/><category scheme="https://blog.batkiz.com/tags/linux" term="linux" label="linux"/></entry><entry><title type="html">翻译 | RSS 的兴起与衰落</title><link href="https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><id>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</id><published>2018-10-09T14:58:44+00:00</published><updated>2018-10-09T14:58:44+00:00</updated><content type="html"><![CDATA[<p>原文：<a href="https://twobithistory.org/2018/09/16/the-rise-and-demise-of-rss.html">The Rise and Demise of RSS</a></p>
+]]></content><category scheme="https://blog.batkiz.com/tags/vim" term="vim" label="vim"/><category scheme="https://blog.batkiz.com/tags/linux" term="linux" label="linux"/></entry><entry><title type="html">翻译 | RSS 的兴起与衰落</title><link href="https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/rss-is-best/?utm_source=atom_feed" rel="related" type="text/html" title="RSS，今日头条与信息爆炸"/><id>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</id><published>2018-10-09T14:58:44+00:00</published><updated>2018-10-09T14:58:44+00:00</updated><content type="html"><![CDATA[<p>2025.7.5 补：<a href="/posts/ai-translation-the-rise-and-demise-of-rss/">借助 AI 能力翻译的新版本</a></p>
+<hr>
+<p>原文：<a href="https://twobithistory.org/2018/09/16/the-rise-and-demise-of-rss.html">The Rise and Demise of RSS</a></p>
 <p>翻译：<a href="https://github.com/batkiz">batkiz</a>，校对：<a href="https://github.com/ruinsyi">RUInsYi</a></p>
 <p>这有两个故事。第一个故事是关于一个从未完全实现的对互联网未来的愿景。第二个故事，则讲述了改善一个流行标准的合作是如何演变为开源软件发展史上最富争议的问题之一。</p>
 <p>90 年代末，在那个网景公司 IPO 与互联网泡沫崩溃间的狂热年代，每个人都能预见到互联网行将变成更为庞大的产业，尽管没人确切知道它是如何如何做到的。一种观点认为 <strong>信息聚合</strong> 将席卷整个互联网产业。最初为了使两端——服务端，与从服务端抓取文档的客户端——间的简单交流成为可能而建立的互联网，将因一种在一系列频道中重新打包并分发所有网站的新标准而蜕变。Kevin Werbach，<em>Release 1.0</em>，90 年代一封在投资者中影响深远的通讯的作者，曾预测信息聚合“会演化为互联网生态的核心模式，在允许企业和个人享受大规模、大范围的益处同时，保留对他们网络形象的控制。”<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 他邀请他的读者一同想象这样的未来，剑术迷能够直接在他们最爱的网站上通过嵌入其中的网购插件买一把新的重剑，而非直接去“在线运动品商店”或“击剑设备零售商”。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 就如同电视世界中，大的网络提供商能够将他们的节目聚合到一个较小的地方电视台，网络上的信息聚合能使销售商和出版商通过大量的中间站点接触到消费者。这意味着，作为结论，消费者会在与销售商和出版商互动上，拥有天时地利人和的选择权。</p>
