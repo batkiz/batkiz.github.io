@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.139.4">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><updated>2025-07-05T16:11:06+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">Vim 的起源</title><link href="https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</id><published>2025-07-06T00:07:55+08:00</published><updated>2025-07-06T00:07:55+08:00</updated><content type="html"><![CDATA[<p>2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.139.4">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><updated>2025-07-08T08:09:16+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">twobithistory 内容翻译</title><link href="https://blog.batkiz.com/posts/translations-on-twobithistory/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/translations-on-twobithistory/</id><published>2025-07-08T16:00:15+08:00</published><updated>2025-07-08T16:00:15+08:00</updated><content type="html"><![CDATA[<p>首先非常感谢 <a href="https://twobithistory.org/">Two-Bit History</a> 的内容。</p>
+<p><a href="https://github.com/Par-Tuner/translations/tree/master/twobithistory">https://github.com/Par-Tuner/translations/tree/master/twobithistory</a></p>
+<p>在 GitHub Copilot 与 Google Gemini 的帮助下，写了两段小脚本，把 twobithistory 的文章都爬下来做了个归档，并且翻译了下。</p>
+<p>不过大模型输出的内容还没能完全让我满意：</p>
+<ul>
+<li>偶尔会莫名其妙缺些东西，比如脚注内容</li>
+<li>引用内容有些翻译了有些没翻</li>
+<li>有些 url 过了遍 LLM 后发生了改变……</li>
+<li>虽然写了代码块内的翻译规则，但是非常上古的冷门语言会识别出问题</li>
+</ul>
+<p>但是虽然有这些问题，Gemini 2.5 Flash 的翻译质量整体上还是很不错的，期待后续模型能力的进化，以及我琢磨琢磨提示词和流程修改。</p>
+<p>为了避免污染文章流，就不把所有文章都搬来了，只列几篇我比较推荐的内容：</p>
+<ul>
+<li><a href="https://github.com/Par-Tuner/translations/blob/master/twobithistory/rest.md">Roy Fielding 被“挪用”的 REST 博士论文</a>：补齐了些我对 REST 的历史认知，一个创建者在提出时候就反复强调“没有银弹”的设计，却在后续被无数人奉为圭臬，也是蛮幽默的。</li>
+<li><a href="https://github.com/Par-Tuner/translations/blob/master/twobithistory/cat.md">cat 命令的“身世之谜”</a>：cat 命令历史上主要实现的时间线，没想到竟然这么久都没什么实质改动了（也怪不得好些命令都被 RIIR 了</li>
+<li><a href="https://github.com/Par-Tuner/translations/blob/master/twobithistory/chaosnet.md">Chaosnet 的简短历史</a></li>
+<li><a href="https://github.com/Par-Tuner/translations/blob/master/twobithistory/readline.md">你可能不知道的 GNU Readline</a>：刚好和前面转发过 <a href="https://t.me/c/1459082815/848">灰哥的内容</a> 对应上，没想到 Ramey 还维护了 readline（好吧我承认之前没点进 Ramey 的主页看）</li>
+</ul>
+<blockquote>
+<p>Ramey 至今已在 Bash 和 Readline 上工作了十多年。他从未因其工作获得过报酬——他现在是，也一直是一名志愿者。Bash 和 Readline 仍在积极开发中，尽管 Ramey 表示 Readline 的变化比 Bash 慢得多。我问 Ramey 独自维护如此多人使用的软件是何感受。他说，数百万人可能在不知不觉中使用 Bash ( 因为每台 Apple 设备都运行 Bash )，这让他担心一个破坏性变更可能造成多大的干扰。但他已经慢慢习惯了有那么多人使用他的软件这个事实。他说他继续在 Bash 和 Readline 上工作，因为目前他投入很深，而且他只是喜欢向世界提供有用的软件。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/Par-Tuner/translations/blob/master/twobithistory/semantic-web.md">语义网 ( Semantic Web ) 究竟去哪儿了？</a>：第一部分恍然间我还以为在读什么 LLM、MCP……也算是某种螺旋上升吧</li>
+</ul>
+]]></content></entry><entry><title type="html">Vim 的起源</title><link href="https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</id><published>2025-07-06T00:07:55+08:00</published><updated>2025-07-06T00:07:55+08:00</updated><content type="html"><![CDATA[<p>2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。</p>
 <p>不过现在我们不止有了 GPT-2，我们还拥有着更先进的种种大模型（在此着重致谢各家的免费产品，尤其是 Gemini），在大模型以及恰当的提示词的帮助下，翻译文章这种事情变得非常简单了。因此，最近我借助大模型的能力，将之前的两篇文章重新翻译了下，姑且重置一下，也免得辣到不小心点进来的朋友们的眼睛。</p>
 <p>刚才也去 X (formerly Twitter) 看了眼，发现 Two Bit History 的动态也停止在了 2021 年 3 月，一晃眼也是好多年了。</p>
 <p>原文：<a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html">Where Vim Came From</a></p>
