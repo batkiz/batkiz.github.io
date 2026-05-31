@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.154.5">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><updated>2026-01-18T06:45:24+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">twobithistory 内容翻译</title><link href="https://blog.batkiz.com/posts/translations-on-twobithistory/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/translations-on-twobithistory/</id><published>2025-07-08T16:00:15+08:00</published><updated>2025-07-08T16:00:15+08:00</updated><content type="html"><![CDATA[<p>首先非常感谢 <a href="https://twobithistory.org/">Two-Bit History</a> 的内容。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://gohugo.io/" version="0.162.1">Hugo</generator><title type="html">not b@tk1z</title><link href="https://blog.batkiz.com/" rel="alternate" type="text/html" title="html"/><link href="https://blog.batkiz.com/atom.xml" rel="self" type="application/atom" title="atom"/><link href="https://blog.batkiz.com/index.xml" rel="alternate" type="application/rss+xml" title="rss"/><updated>2026-05-31T14:00:22+00:00</updated><rights>by Jinglue</rights><author><name>Jinglue</name><email>batkiz@outlook.com</email></author><id>https://blog.batkiz.com/</id><entry><title type="html">twobithistory 内容翻译</title><link href="https://blog.batkiz.com/posts/translations-on-twobithistory/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/translations-on-twobithistory/</id><published>2025-07-08T16:00:15+08:00</published><updated>2025-07-08T16:00:15+08:00</updated><content type="html"><![CDATA[<p>首先非常感谢 <a href="https://twobithistory.org/">Two-Bit History</a> 的内容。</p>
 <p><a href="https://github.com/Par-Tuner/translations/tree/master/twobithistory">https://github.com/Par-Tuner/translations/tree/master/twobithistory</a></p>
 <p>在 GitHub Copilot 与 Google Gemini 的帮助下，写了两段小脚本，把 twobithistory 的文章都爬下来做了个归档，并且翻译了下。</p>
 <p>不过大模型输出的内容还没能完全让我满意：</p>
@@ -38,7 +38,15 @@
 <p>这款编辑器被命名为 <code>ed</code>。它基于 QED，但并非简单的复刻。Thompson 决定砍掉 QED 的一些特性。正则表达式 的支持被削弱了，<code>ed</code> 只能理解比较简单的正则。QED 允许用户打开多个 缓冲区 (buffer) 来同时编辑多个文件，但 <code>ed</code> 一次只能处理一个缓冲区。此外，QED 可以执行一个包含命令的缓冲区，<code>ed</code> 则完全不支持这个功能。这些简化在当时或许是必要的。Dennis Ritchie 就曾说过，缺少 QED 的高级正则表达式“算不上什么大损失”。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 <p><code>ed</code> 现在已经是 POSIX 规范的一部分，所以只要你的系统遵循 POSIX 标准，你的电脑里就有它。<code>ed</code> 很值得把玩一番，因为它的许多命令如今已是 Vim 的一部分。例如，要把缓冲区内容写入磁盘，你得用 <code>w</code> 命令；要退出编辑器，就得用 <code>q</code> 命令。这两个命令可以写在同一行一次性执行——<code>wq</code> 就这么来了。和 Vim 一样，<code>ed</code> 也是一个 模态编辑器 (modal editor)；要从命令模式进入输入模式，你需要根据操作目的使用插入命令 (<code>i</code>)、追加命令 (<code>a</code>) 或修改命令 (<code>c</code>)。<code>ed</code> 还开创性地使用 <code>s/foo/bar/g</code> 这种语法来查找和替换文本。</p>
 <p>看到这么多相似之处，你可能会觉得 Vim 用户上手 <code>ed</code> 应该毫无压力。但在另一个关键方面，<code>ed</code> 和 Vim 天差地别。<code>ed</code> 是一个纯粹的 行编辑器 (line editor)。它诞生并风靡于电传打字机 (teletype printer) 的年代。当 Ken Thompson 和 Dennis Ritchie 奋力编写 Unix 时，他们的工作场景是这样的：</p>
-<p><img src="https://s2.loli.net/2024/04/13/Yzk6CW9PntxZilM.jpg" alt="Ken Thompson (坐) 和 Dennis Ritchie (站) 通过电传打字机与 PDP-11 交互。"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/04/13/Yzk6CW9PntxZilM.jpg" alt="Ken Thompson (坐) 和 Dennis Ritchie (站) 通过电传打字机与 PDP-11 交互。" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">Ken Thompson (坐) 和 Dennis Ritchie (站) 通过电传打字机与 PDP-11 交互。</figcaption>
+  
+</figure>
+</p>
 <p><code>ed</code> 不允许你在文件的多行文本中自由移动光标并就地编辑，因为每当你修改一处，<code>ed</code> 就必须把整个文件重新打印一遍。在 1969 年，<code>ed</code> 没有任何机制能“清空”屏幕，因为所谓的“屏幕”就是一张纸，打上去的内容都是白纸黑字，覆水难收。需要时，你可以用列表命令 (<code>l</code>) 让 <code>ed</code> 打印出某几行给你看，但大多数时候，你编辑的文本是你根本看不见的。因此，用 <code>ed</code> 的感觉，就好比拿着一盏快没电的手电筒，在一间漆黑的屋子里摸索。你一次只能照亮一小块地方，所以必须竭尽全力记住屋里的一切布局。</p>
 <p>下面是一个 <code>ed</code> 会话的示例。我在每行后面用 <code>#</code> 加了注释来解释其用途 (如果在真实的 <code>ed</code> 里输入这些注释，它会报错)：</p>
 <pre tabindex="0"><code>[sinclairtarget 09:49 ~]$ ed
@@ -70,7 +78,15 @@ Isn&#39;t it a terrible day?
 <p>1976 年，Coulouris 带着 <code>em</code> 来到加州大学伯克利分校，作为计算机科学系的访问学者在这里度过了一个夏天。这恰好是 Ken Thompson 离开伯克利前往贝尔实验室的十年之后。在伯克利，Coulouris 遇到了 Bill Joy，一位正在为 伯克利软件发行版 (Berkeley Software Distribution, BSD) 忙碌的研究生。Coulouris 向 Joy 展示了 <code>em</code>，Joy 则在 <code>em</code> 的源码基础上，开发出了一个更强大的 <code>ed</code> 改进版，取名为 <code>ex</code>，意为“extended <code>ed</code> (扩展版 <code>ed</code>)”。1978 年，<code>ex</code> 的 1.1 版本随第一版 BSD Unix 一同发布。<code>ex</code> 在很大程度上与 <code>ed</code> 兼容，但新增了两种模式：一种是“开放模式”，可以像 <code>em</code> 一样进行单行编辑；另一种是“可视模式”，这种模式会占据整个屏幕，实现我们今天所习惯的对整个文件进行实时编辑。</p>
 <p>在 1979 年的第二版 BSD 中，一个名为 <code>vi</code> 的可执行文件诞生了，它的功能很简单：直接在可视模式下启动 <code>ex</code>。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
 <p><code>ex</code>/<code>vi</code> (下文统称 <code>vi</code>) 奠定了我们今天所熟知的、除继承自 <code>ed</code> 之外的几乎所有 Vim 的传统。当年 Joy 使用的视频终端是 Lear Siegler ADM-3A，这款终端的键盘上没有方向键。作为替代，<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 这几个键上印着箭头，这便是 Joy 用这几个键在 <code>vi</code> 中移动光标的原因。此外，ADM-3A 键盘上的 <code>Esc</code> 键，正好在我们今天键盘上 <code>Tab</code> 键的位置，这就解释了为什么“退出模式”这么一个高频操作，会分配给一个如今看来如此“偏僻”的按键。命令前面的冒号 <code>:</code> 也源自 <code>vi</code>，它在普通模式 (也就是运行 <code>ex</code> 后进入的模式) 下，会用 <code>:</code> 作为提示符。这解决了 <code>ed</code> 长期以来为人诟病的一点——启动后一片死寂，毫无提示。在可视模式下，保存并退出需要输入经典的 <code>:wq</code>。“yanking (复制)” 和 “putting (粘贴)”，以及标记功能和用于设置选项的 <code>set</code> 命令，都源于最初的 <code>vi</code>。可以说，我们今天在 Vim 中进行基本文本编辑所用的功能，绝大部分都来自 <code>vi</code>。</p>
-<p><img src="https://s2.loli.net/2024/04/13/GnTOFa4NMpXo7di.jpg" alt="一台 Lear Siegler ADM-3A 终端的键盘。"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/04/13/GnTOFa4NMpXo7di.jpg" alt="一台 Lear Siegler ADM-3A 终端的键盘。" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">一台 Lear Siegler ADM-3A 终端的键盘。</figcaption>
+  
+</figure>
+</p>
 <p>在 BSD Unix 中，除了 <code>ed</code>，<code>vi</code> 是唯一捆绑的文本编辑器。在那个年代，Emacs 可能要花费数百美元 (当时 GNU Emacs 还未问世)，因此 <code>vi</code> 迅速流行起来。但 <code>vi</code> 是 <code>ed</code> 的直系后代，这意味着没有 AT&amp;T 的源码授权，谁也不能修改它的代码。这激励了许多人去创造 <code>vi</code> 的 开源 (open-source) 版本。STEVIE (ST Editor for VI Enthusiasts) 诞生于 1987 年，Elvis 诞生于 1990 年，<code>nvi</code> 则在 1994 年问世。这些克隆版中的一些还增加了额外功能，比如 语法高亮 (syntax highlighting) 和分屏。特别是 Elvis，它的许多特性后来都被整合进了 Vim，这很大程度上要归功于 Elvis 用户们的积极推动。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
 <h2 id="bram-moolenaar-创造-vim">Bram Moolenaar 创造 Vim</h2>
 <p>“Vim”，如今是“Vi Improved (Vi 改进版)”的缩写，但它最初的名字是“Vi Imitation (Vi 模仿版)”。和其它 <code>vi</code> 的克隆版一样，Vim 的诞生也是源于在一个无法使用 <code>vi</code> 的平台上复刻它的想法。Bram Moolenaar 是一位荷兰软件工程师，在荷兰芬洛的一家复印机公司工作。他想为自己全新的 Amiga 2000 电脑找一款像 <code>vi</code> 一样的工具。Moolenaar 在大学时早已习惯了在 Unix 系统上使用 <code>vi</code>，那套操作已经融入了他的指尖，形成了肌肉记忆。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> 于是，在 1988 年，Moolenaar 以当时已有的 <code>vi</code> 克隆版 STEVIE 为起点，开始打造 Vim。</p>
@@ -110,7 +126,7 @@ Isn&#39;t it a terrible day?
 <p>Sven Guckes, “VIM Wishlist,” Vmunix, May 15, 1995, accessed August 5, 2018, <a href="https://web.archive.org/web/20080520075925/http://www.vmunix.com/vim/wish.html">https://web.archive.org/web/20080520075925/http://www.vmunix.com/vim/wish.html</a>.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:10">
-<p>Bram Moolenaar, “Vim 25” (lecture, Zurich, November 2, 2016), December 13, 2016, accessed August 5, 2018, <a href="https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58">https://www.youtube.com/watch?v=ayc_qpB-93o&t=4m58</a>s&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Bram Moolenaar, “Vim 25” (lecture, Zurich, November 2, 2016), December 13, 2016, accessed August 5, 2018, <a href="https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58">https://www.youtube.com/watch?v=ayc_qpB-93o&amp;t=4m58</a>s&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:11">
 <p>ibid. (?t=6m15s)&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
@@ -143,13 +159,21 @@ Isn&#39;t it a terrible day?
 <p>要说清 RSS 的故事，我们得从两条线索讲起。第一条线索，是关于一个宏大却从未完全实现的Web未来构想。第二条线索，则是一场本想齐心协力改进流行标准的技术合作，最终如何演变成了开源软件开发史上最激烈的“路线之争”之一。</p>
 <p>时间回到上世纪 90 年代末，那是一个介于 Netscape 上市和互联网泡沫破灭之间的狂飙突进的年代。所有人都预感到，互联网将掀起比以往更巨大的浪潮，尽管没人能确切说出浪潮将涌向何方。当时有一种流行的理论：内容整合 (syndication) 将彻底改变整个 Web。最初，Web 的设计只是为了实现一次简单的双方交易——客户端从一台主机服务器上获取一份文档。但新的标准将打破这一模式，它允许人们将整个网站的内容重新打包，通过五花八门的渠道再次分发。Kevin Werbach 在当时极具投资者影响力的时事通讯 <em>Release 1.0</em> 中预言，内容整合“将演化为互联网经济的核心模型，让企业和个人既能掌控自己的线上形象，又能享受到巨大规模和范围带来的红利。”<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>他邀请读者想象这样一幅未来图景：一位击剑爱好者想买一把新重剑，他不必再访问“在线体育用品商店”或“击剑器材零售商”的网站，而是可以直接在他最喜欢的击剑主题网站上，通过嵌入的电子商务插件完成购买。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 这就像电视界的大型电视网将节目授权给地方小电视台播放一样，Web 上的内容整合能让商家和媒体通过无数个中间站点触达消费者。而这自然也意味着，消费者将获得前所未有的控制权，可以自由选择在何时、何地、以何种方式与商家或媒体互动。</p>
-<p>RSS，正是当年被寄予厚望、能够实现这一“整合未来”的标准之一。在 Werbach 看来，RSS 是“轻量级内容整合协议的杰出代表”。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> 同一时期的另一篇文章则称 RSS 是首个真正发挥出 XML 潜力的协议。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> 无论是普通用户还是内容聚合平台，都可以利用它，从浩如烟海的 Web 信息中打造出属于自己的个性化频道。然而二十年过去了，社交媒体巨头崛起，Google Reader 也被送进了坟墓，RSS 似乎成了一项 <a href="https://trends.google.com/trends/explore?date=all%5c&amp;geo=US%5c&amp;q=rss">日渐式微的技术</a>，如今只有播客作者、技术博主和少数记者还在使用它。当然，还是有一小撮人顽固地坚守着 RSS 阅读器。但在 2018 年的今天，给自己的博客加上 RSS 订阅选项，本身就是一种政治姿态。那个小小的橙色图标，已经成为一个怀旧的符号，象征着对那个由少数几家公司控制的中心化网络的无声反抗——这个网络，与 Werbach 当年想象的整合世界，早已判若云泥。</p>
+<p>RSS，正是当年被寄予厚望、能够实现这一“整合未来”的标准之一。在 Werbach 看来，RSS 是“轻量级内容整合协议的杰出代表”。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> 同一时期的另一篇文章则称 RSS 是首个真正发挥出 XML 潜力的协议。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> 无论是普通用户还是内容聚合平台，都可以利用它，从浩如烟海的 Web 信息中打造出属于自己的个性化频道。然而二十年过去了，社交媒体巨头崛起，Google Reader 也被送进了坟墓，RSS 似乎成了一项 <a href="https://trends.google.com/trends/explore?date=all&amp;geo=US&amp;q=rss">日渐式微的技术</a>，如今只有播客作者、技术博主和少数记者还在使用它。当然，还是有一小撮人顽固地坚守着 RSS 阅读器。但在 2018 年的今天，给自己的博客加上 RSS 订阅选项，本身就是一种政治姿态。那个小小的橙色图标，已经成为一个怀旧的符号，象征着对那个由少数几家公司控制的中心化网络的无声反抗——这个网络，与 Werbach 当年想象的整合世界，早已判若云泥。</p>
 <p>RSS 的未来曾一片光明。到底发生了什么？它的衰落是历史的必然，还是那场阻碍其标准统一的激烈内斗加速了它的灭亡？</p>
 <h2 id="浑水">浑水</h2>
 <p>RSS 其实被发明了两次。这意味着它从未有过一个明确的“主人”，这种权责不清的局面引发了无尽的争论和敌意。但这也恰恰说明，RSS 是一个顺应时代潮流的重要思想。</p>
 <p>1998 年，Netscape 正挣扎于生死存亡之秋，苦苦思索着公司的未来。它的旗舰产品——曾占据超过 80% 市场份额的 Netscape Navigator 浏览器——正被 Microsoft 的 Internet Explorer 迅速蚕食。于是，Netscape 决定开辟新战场。当年 5 月，公司集结了一个团队，启动了内部代号为“60号项目”的计划。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> 两个月后，Netscape 推出了名为“My Netscape”的门户网站，意图与 Yahoo、MSN 和 Excite 等当时的门户巨头一较高下。</p>
 <p>第二年三月，Netscape 为 My Netscape 门户网站增加了一项新功能，名为“My Netscape Network”。用户可以在自己的 My Netscape 页面上进行个性化定制，添加来自全网各大站点的“频道”，展示最新的头条新闻。只要你喜欢的网站按照 Netscape 的规定格式发布一个特殊文件，你就能把它添加到你的 My Netscape 页面上。通常，参与的网站会在页面上放置一个“添加频道”的按钮，用户点击一下，一个包含最新链接标题的小窗口就会出现在他们的门户页上。</p>
-<p><img src="https://s1.ax1x.com/2018/09/22/iupTPJ.gif" alt="一个 My Netscape Network 频道"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2018/09/22/iupTPJ.gif" alt="一个 My Netscape Network 频道" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">一个 My Netscape Network 频道</figcaption>
+  
+</figure>
+</p>
 <p><em>图注：一个 Mozilla.org 的 My Netscape Network 频道，在用户即将把它添加到 My Netscape 页面时大概就是这个样子。</em></p>
 <p>网站们需要发布的那个特殊文件，就是一个 RSS 文件。在 My Netscape Network 的发布公告中，Netscape 解释说 RSS 是“RDF 站点摘要” (RDF Site Summary) 的缩写。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 这个名字其实有点误导人。RDF，即资源描述框架 (Resource Description Framework)，本质上是一种用来描述任意资源属性的语法。(如果你对此很感兴趣，可以读读我那篇关于 <a href="/2018/05/27/semantic-web.html">语义网 (Semantic Web) 的文章</a>。) 1999 年，万维网联盟 (W3C)——Web 世界的主要标准制定机构——正在审议 RDF 的规范草案。尽管 RSS 号称基于 RDF，但 Netscape 发布的示例文件里却根本没用任何 RDF 标签。RSS 规范的作者之一 Dan Libby 在一份配套文档中解释说：“在 MNN 的这个版本里，Netscape 有意限制了 RSS 格式的复杂性。”<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 该规范的版本号被定为 0.90，言下之意是，后续版本会让 RSS 逐渐向 W3C 的 XML 规范和不断演进的 RDF 规范草案看齐。</p>
 <p>RSS 是由 Libby 和另外两位 Netscape 员工 Eckart Walther、Ramanathan Guha 共同创造的。根据 Guha 在邮件中的回忆，最初是他和 Walther 在 Libby 的一些建议下捣鼓出了 RSS 的雏形。1998 年 AOL 收购 Netscape 后，他和 Walther 相继离开，RSS 的后续发展就落到了 Libby 肩上。在加入 Netscape 之前，Guha 曾在 Apple 公司工作，并提出了一个名为“元内容框架” (Meta Content Framework, MCF) 的概念。MCF 是一种用来表示元数据 (metadata) 的格式，无论是网页还是本地文件，它都能描述。为了展示其威力，Guha 开发了一款名为 <a href="http://web.archive.org/web/19970703020212/http://mcf.research.apple.com:80/hs/screen_shot.html">HotSauce</a> 的应用，能将文件间的关系以三维空间中悬浮的节点网络形式可视化。离开 Apple 加入 Netscape 后，Guha 立即与一位名叫 Tim Bray 的顾问合作。Bray 在博客中提到，他和 Guha 最终做出了一个基于 XML 的 MCF 版本，而这个版本又成了 W3C 的 RDF 草案的基础。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup> 毫无疑问，Guha、Walther 和 Libby 都希望能延续 Guha 此前的工作，将 RDF 融入 RSS。但 Libby 后来写道，由于时间紧迫，加上当时普遍认为 RDF 对“普通用户”来说“太复杂”，最初那个基于 RDF 的宏大构想最终被打了折扣。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
@@ -454,41 +478,181 @@ Isn&#39;t it a terrible day?
 <p>从香港出发，坐HK Express。取票时，工作人员注意到我回国是坐春秋航空，问我两家哪个体验好一点，但我当时还没坐过春秋，便据实相告两家都没做过，后来想想该夸一夸HKE的。</p>
 <p>晚上落地关西国际机场，坐了 Haruka 去大阪。</p>
 <p>本着「上车饺子下车面」的准则，临行前我在国内吃了顿饺子，落地后自然要吃顿面，可惜到达后有点晚了，只能去吃了鸟贵族。恰巧发现鸟贵族的菜单里有酱油拉面，便点了一份。但里边竟然还加了橘皮，难吃。
-<img src="https://s2.loli.net/2024/12/10/XK6cuAY8pMmZxyk.jpg" alt="鸟贵族-酱油拉面"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/10/XK6cuAY8pMmZxyk.jpg" alt="鸟贵族-酱油拉面" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">鸟贵族-酱油拉面</figcaption>
+  
+</figure>
+</p>
 <h1 id="day-1-大阪">Day 1 大阪</h1>
 <p>day 1 主要是大阪市内闲逛，在小红书上找了个路线分享后便跟着走了走。</p>
 <p>先去了大阪城，可能是因为之前去过了名古屋城，感觉两边没啥大的不一样。没花钱上去看。</p>
 <p>在下面没看到太多打卡柯南的人。帮忙给一个白人拍了照片，不过看她表情似乎不太满意。
-<img src="https://s2.loli.net/2024/12/10/Zsn1FwExDmAk92L.jpg" alt="大阪城&amp;流萤"></p>
-<p><img src="https://s2.loli.net/2025/01/09/WATw5eo2icIDkmP.jpg" alt="大阪城内的树"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/10/Zsn1FwExDmAk92L.jpg" alt="大阪城&amp;流萤" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">大阪城&amp;流萤</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/WATw5eo2icIDkmP.jpg" alt="大阪城内的树" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">大阪城内的树</figcaption>
+  
+</figure>
+</p>
 <p>休息了一会后，便启程去了四天王寺。</p>
 <p>路上看到了很掉san的关西世博会吉祥物，后面也看到了不少相关纪念品，甚至差点在回国前买一些送朋友，不过那时没找到相关的店铺了，遗憾。
-<img src="https://s2.loli.net/2024/12/10/JSmauxzkYdObpLM.jpg" alt="井盖"></p>
-<p><img src="https://s2.loli.net/2024/12/10/SKQZ8w5Mn9m7Yyo.jpg" alt="天王寺区与关西世博会"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/10/JSmauxzkYdObpLM.jpg" alt="井盖" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">井盖</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/10/SKQZ8w5Mn9m7Yyo.jpg" alt="天王寺区与关西世博会" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">天王寺区与关西世博会</figcaption>
+  
+</figure>
+</p>
 <p>不知是四天王寺本身较为开放，还是当时恰逢其时，在四天王寺周围与寺内，遇到了规模盛大的跳蚤市场，市场上看到了一些老镜头、老游戏机等物件，还有二手书、工艺品、武士刀等，甚至还看到了联合国的义卖。只可惜二手淘起来过于耗费精力，草草走马观花逛了一圈便作罢了。</p>
-<p><img src="https://s2.loli.net/2024/12/11/QZnGRtKudF72qvC.jpg" alt="任天堂 super famicom">
-<img src="https://s2.loli.net/2024/12/11/Tw5ESrqHKB6itZ7.jpg" alt="PENTAX 100-300"></p>
-<p><img src="https://s2.loli.net/2025/01/09/H1AogScar7PQyZv.jpg" alt="what’s your superpower"></p>
-<p><img src="https://s2.loli.net/2025/01/09/H74TtWwSldmFnj1.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/2qhjF5VYnwUSHAl.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/11/QZnGRtKudF72qvC.jpg" alt="任天堂 super famicom" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">任天堂 super famicom</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/11/Tw5ESrqHKB6itZ7.jpg" alt="PENTAX 100-300" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">PENTAX 100-300</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/H1AogScar7PQyZv.jpg" alt="what&rsquo;s your superpower" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">what&#39;s your superpower</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/H74TtWwSldmFnj1.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/2qhjF5VYnwUSHAl.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>出来时拍了张多宝堂，非常喜欢这个味道，事后发现是之前EV+0.3忘了调回去……
-<img src="https://s2.loli.net/2025/01/09/ewmKDuCsXaJWhNL.jpg" alt="多宝堂"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/ewmKDuCsXaJWhNL.jpg" alt="多宝堂" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">多宝堂</figcaption>
+  
+</figure>
+</p>
 <p>之后去了通天阁，感觉没什么意思，下面的市场姑且可以一逛，看到了家 PRINGLES STORE展示了各种各样的logo，挺有意思。</p>
-<p><img src="https://s2.loli.net/2024/12/11/f2yImtwxCENbSJd.jpg" alt="通天阁&amp;流萤">
-<img src="https://s2.loli.net/2024/12/12/IVaK5eEP8d7ziGu.jpg" alt="品客薯片">
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/11/f2yImtwxCENbSJd.jpg" alt="通天阁&amp;流萤" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">通天阁&amp;流萤</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/12/IVaK5eEP8d7ziGu.jpg" alt="品客薯片" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">品客薯片</figcaption>
+  
+</figure>
+
 随后便直接去了梅田。</p>
 <p>梅田一带的商城确实错综复杂，很容易迷路。这里分享一个我的小窍门：迷路时先到达最近的开阔的地面位置，随后便可以通过当地的地标建筑或其他指示牌到达目的地。在室内（无论是地下通道还是楼层内）目之所及只能看到重复的店铺，而且视角与行动均会收到建筑本身的设计因素影响，很容易失去方向感，或是有了正确的方向感却受限于设计，无法直接到达。开阔的地面则不存在这个问题，大多数场景下也可以通过任意的道路组合抵达目的地。</p>
-<p>在梅田的 Bic Camera 看到了小米 14 Ultra 的广告和葬送的芙莉莲拼图。
-<img src="https://s2.loli.net/2024/12/12/rtIAsvwN6GeORKg.jpg" alt="Xiaomi 14 Ultra">
-<img src="https://s2.loli.net/2024/12/12/ZpeK9dluiJgwUfL.jpg" alt="葬送的芙莉莲">
-商场内还看到了 anker 的专柜，可惜没见酷态科。相机那边看到了中一、七工匠等国产镜头。</p>
+<p>在梅田的 Bic Camera 看到了小米 14 Ultra 的广告和葬送的芙莉莲拼图。</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/12/rtIAsvwN6GeORKg.jpg" alt="Xiaomi 14 Ultra" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">Xiaomi 14 Ultra</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/12/ZpeK9dluiJgwUfL.jpg" alt="葬送的芙莉莲" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">葬送的芙莉莲</figcaption>
+  
+</figure>
+</p>
+<p>商场内还看到了 anker 的专柜，可惜没见酷态科。相机那边看到了中一、七工匠等国产镜头。</p>
 <p>最后要吐槽下日本商场的工作时间，晚上关门非常之早，大多数晚上八点便停业了，作为游客、尤其是没太多时间的游客，体验非常之差。不过还是有类似于 Bic Camera 之类的店营业到晚上十点甚至更晚的，作为一个出门基本只进电子产品店或书店的人，要点个大大的赞。</p>
 <p>之后去了道顿堀，从地铁站到道顿堀经过了一条很繁华的商业街，包括道顿堀附近也摩肩接踵，在格力高广告牌前的桥上，看见两个漂亮妹妹拍照片、视频拍了起码二三十分钟。</p>
-<p><img src="https://s2.loli.net/2024/12/21/ckF8YeBoXnPLxGg.jpg" alt="道顿堀-格力高广告牌"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/21/ckF8YeBoXnPLxGg.jpg" alt="道顿堀-格力高广告牌" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">道顿堀-格力高广告牌</figcaption>
+  
+</figure>
+</p>
 <p>在道顿堀附近游荡了一圈，只感觉到了人挨人人挤人，便去了附近的一家咖喱店，吃了晚饭。店员竟然有个黑人姐们，在日本见惯了南亚、东南亚面孔的店员，黑人确实是第一次见。不过好消息是可以正常用英语点餐了。</p>
 <p>吃完后又去了附近的爱电王，看到了非常难绷的世博会吉祥物 x 其他IP的小玩偶，以及更难绷的全部无货公告。</p>
-<p><img src="https://s2.loli.net/2024/12/21/Mfj9rNpx6eZASU3.jpg" alt="库洛米"></p>
-<p><img src="https://s2.loli.net/2024/12/21/qIKB2wbnfdoTCH7.jpg" alt="没有"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/21/Mfj9rNpx6eZASU3.jpg" alt="库洛米" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">库洛米</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/21/qIKB2wbnfdoTCH7.jpg" alt="没有" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">没有</figcaption>
+  
+</figure>
+</p>
 <p>至此一天时间游览了大阪市内，后续的行程是整个关西到处跑了。</p>
 <h1 id="day-2-神户">Day 2 神户</h1>
 <p>原本的行程计划里是没有神户和奈良的，但因为 day 1 一天跑完了大阪，索性加上了这两个城市。</p>
@@ -498,93 +662,355 @@ Isn&#39;t it a terrible day?
 <p>由于没吃早饭，在三宫站下车后，先买了个华夫饼吃，味道还行，但是有点凉。去商业街的路上有魔爪的工作人员在发免费饮料，领了一罐 pipeline punch 味的。</p>
 <p>随后吃了午饭，牛肉饭加上熟成牛肉，似乎都是神户牛，不过我没感受到太多不同……还喝了rokko beer 下叫BAYALE的一款IPA，感觉也就是还行的水平。日本整个市场上还是朝日和麒麟比较多，其他品牌没怎么见过。希望以后去北海道时，能尝一尝新鲜的小樽果酿。</p>
 <p>之后偶然发现南京町有家蜜雪冰城，过去买了杯喝的，可惜没有我最喜欢的蜜桃四季春和柠檬水，只能单纯买了杯四季春，不过价钱确实算便宜。
-<img src="https://s2.loli.net/2025/01/09/UXyFRjuGJZNt6fv.jpg" alt="MIXUE"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/UXyFRjuGJZNt6fv.jpg" alt="MIXUE" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">MIXUE</figcaption>
+  
+</figure>
+</p>
 <p>回到西安（误）
-<img src="https://s2.loli.net/2025/01/09/gQzvyYD87KILcMq.jpg" alt="长安门">
-<img src="https://s2.loli.net/2025/01/09/T54n8S6NwQjEA2g.jpg" alt="西安门"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/gQzvyYD87KILcMq.jpg" alt="长安门" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">长安门</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/T54n8S6NwQjEA2g.jpg" alt="西安门" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">西安门</figcaption>
+  
+</figure>
+</p>
 <p>之后去了神户港塔，不得不说离这种很高的建筑物很近时，很难拍的好看。在塔下面的美利坚公园还看到了当地摩托车队的表演。说起来这阵子我也刷到了不少摩托车的视频，不过国内的大城市基本都在禁摩，等个几年再考虑买一辆吧。</p>
 <p>在美利坚公园消磨了些时间，坐在海边看了很久的海。还碰到了件很让人绷不住的事，<a href="https://www.bilibili.com/video/BV1HQBvYzEpb/">神户港塔下有大喇叭在播音乐，听到了 see you again</a>。临走前让旁边的大叔帮忙拍了照片，闲聊了几句，不过我日语不怎么样，只听出大叔似乎父辈去过上海/来自中国。</p>
-<p><img src="https://s2.loli.net/2025/01/09/5yF8TOed1RKmx6P.jpg" alt="神户港塔">
-<img src="https://s2.loli.net/2025/01/09/BjqVvbQtNxEl8nU.jpg" alt="神户港塔&amp;流萤"></p>
-<p><img src="https://s2.loli.net/2025/01/09/IFNskbE6QmlHDLi.jpg" alt="美利坚公园"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/5yF8TOed1RKmx6P.jpg" alt="神户港塔" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">神户港塔</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/BjqVvbQtNxEl8nU.jpg" alt="神户港塔&amp;流萤" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">神户港塔&amp;流萤</figcaption>
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/IFNskbE6QmlHDLi.jpg" alt="美利坚公园" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">美利坚公园</figcaption>
+  
+</figure>
+</p>
 <p>随后便去了须磨。须磨的海与沙滩都很好看，而且几乎没什么人。唯一不爽的是公厕太少了，中午由于喝过啤酒和蜜雪冰城，下午好几次都想找但附近没有，很难受。</p>
-<p><img src="https://s2.loli.net/2025/01/09/JaB61VGmCbokKUy.jpg" alt="两个颜色的一片海">
-<img src="https://s2.loli.net/2025/01/09/CMrpzwiAghIY1ZE.jpg" alt=""></p>
-<p><img src="https://s2.loli.net/2025/01/09/Rw81LcMGxJrgspz.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/JaB61VGmCbokKUy.jpg" alt="两个颜色的一片海" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">两个颜色的一片海</figcaption>
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/CMrpzwiAghIY1ZE.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/Rw81LcMGxJrgspz.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>闲逛时还去旁边的水族馆附近转了转，不过由于需要门票就没进去。</p>
-<p><img src="https://s2.loli.net/2025/01/09/4WuRtTsqlhwr2i6.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/MOK1FAmEhkWSwX6.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/N97V8zAQawWSPHC.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/4WuRtTsqlhwr2i6.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/MOK1FAmEhkWSwX6.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/N97V8zAQawWSPHC.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>在回JR站的路上，偶然看到了街边有家<a href="https://jiyukoh.jp/">自由港书店</a>，进去大概看了看。日语书是看不懂了，不过看到了些设计上很有意思的书，以及画集、摄影集。最后买了本みなはむ的<a href="https://www.amazon.co.jp/%E9%A2%A8%E3%81%AE%E4%B8%AD-%E3%81%BF%E3%81%AA%E3%81%AF%E3%82%80%E4%BD%9C%E5%93%81%E9%9B%86-%E3%81%BF%E3%81%AA%E3%81%AF%E3%82%80/dp/4756257658">《風の中》</a>，便启程去了舞子。</p>
-<p><img src="https://s2.loli.net/2025/01/09/k4OWT6doBmYFlj9.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/k4OWT6doBmYFlj9.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>在刷小红书时，看到了不少姐妹们称舞子比须磨好看的多，所以来之前我是有很高的期待的，尤其是我已经看过了须磨。只可惜舞子的景色撑不起如此高的期待。</p>
 <p>在舞子看了很久的夕阳，喜欢大海，也喜欢日落。附近还有孙中山纪念馆，不过我去的有点晚，所以没能进去看。</p>
-<p><img src="https://s2.loli.net/2025/01/09/7pDh5sFEz6PRX8Z.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/HyrSq1J7CKVmU8a.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/1nErQaztjZUiIST.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/7pDh5sFEz6PRX8Z.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/HyrSq1J7CKVmU8a.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/1nErQaztjZUiIST.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>看完夕阳后便回到了大阪，特意去吃了号称大阪第一的<a href="https://www.jinrui-minamenrui.com/">人類のみな麵類</a>，不过没觉得特别到离谱的棒的水平。一开始到的时候还以为门口没人排队，店员指了一下才发现队伍在店面远处的墙边，有点尴尬。在店本身是 cash only 的情况下，菜品的价格非常有零有整，让我拿到了旅途全程中最多的硬币，我要给个大大的差评。</p>
 <h1 id="day-3-奈良">Day 3 奈良</h1>
 <p>day 3奈良，依旧是小红书上看了看大概有什么景点。去之前和朋友聊时，就有人跟我讲没什么玩的，以及若草山鹿粪较多，所以我的期待整体是偏低的，但是没想到奈良能比我想象的更加无聊。</p>
 <p>到奈良后已经中午了，先去了汉国神社看了看，没人，除了招牌和供奉人之外，就是日本神社的典型样子。之后先是买了些甜点垫了垫肚子，不过还是饿，便去吃了顿 Mos Burger。</p>
-<p><img src="https://s2.loli.net/2025/01/09/OTCRGJ17LKY6Sca.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/OTCRGJ17LKY6Sca.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>汉堡的味道还不错，就是我不会日语、店员英语一般，我按惯例要求不加沙拉酱时，和店员花了点时间沟通。语言不通情况下，想做一些特殊要求确实麻烦。洋葱圈不如国内汉堡王。</p>
 <p>兴福寺没什么意思，五重塔因为在修缮，所以围了起来，没看到。</p>
-<p><img src="https://s2.loli.net/2025/01/09/MuXUGtLRiNK1sId.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/MuXUGtLRiNK1sId.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>随后去了奈良国立博物馆，新馆没开门，有些遗憾，只看了佛像馆和青铜器馆。</p>
 <p>佛像馆内的佛像、佛头非常令人大开眼界，只是能否拍照的标识非常随机，没想明白为啥有些可以，另外一些就不行。还看到了有人在佛像前练习素描，瞥了一眼画的很好，尊重他人隐私所以没拍照。</p>
 <p>青铜器馆内基本都是河南、陕西出土的，略有不爽。</p>
 <p>然后是东大寺。东大寺门外便有很多鹿，途中还见到了鹿之间打架、鹿顶人、鹿把不该吃的给抢了之类的事。东大寺进去还要门票，且排队队伍略长，考虑到本身也是重建 的，索性没有进去。</p>
-<p><img src="https://s2.loli.net/2025/01/09/sAG6djZfvcHy8mC.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/UpxdAQaPrRmJ4Ol.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/sAG6djZfvcHy8mC.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/UpxdAQaPrRmJ4Ol.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>春日大社进出都需要走很长一段路，而且没啥意思。出来时原本计划按谷歌地图导航坐公交，结果工作人员说公交当天停运了，很不爽。</p>
 <p>随后去了当天唯一有意思的地方：圣地巡礼。风略大，打了卡后便走了。
-<img src="https://s2.loli.net/2025/01/09/lIjshORUZ2x3NgY.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/lIjshORUZ2x3NgY.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>晚饭吃的饺子王将，煎饺不错，回锅肉完全不像回锅肉，反倒是甜口的，如果不叫回锅肉的话我对这道菜的评价会高很多。</p>
 <h1 id="day-4-京都">Day 4 京都</h1>
 <p>这一天的安排是进行 <a href="https://movie.douban.com/subject/30401194/">HELLO WORLD</a> 的圣地巡礼。</p>
 <p>中午先吃了顿<a href="https://maps.app.goo.gl/HzTVtpxAPM67o4Ay8">鲷白汤</a>，点的是招牌鲷白汤，里边姜或柠檬的味道很棒，但略浓，想喝汤的话还是建议点清汤。</p>
-<p><img src="https://s2.loli.net/2025/01/09/2u3qROBMrGhnfQ7.jpg" alt="鲷白汤拉面"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/2u3qROBMrGhnfQ7.jpg" alt="鲷白汤拉面" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">鲷白汤拉面</figcaption>
+  
+</figure>
+</p>
 <p>随后便前往了京都，JR京都站是真的大，在找大楼梯时迷路了一阵子。</p>
-<p><img src="https://s2.loli.net/2025/01/09/FvgJrQBYywf7t4i.jpg" alt="">
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/FvgJrQBYywf7t4i.jpg" alt="" loading="lazy">
+  
+</figure>
+
 随后是一些其他的圣地巡礼照片：</p>
-<p><img src="https://s2.loli.net/2025/01/09/XhIVSE5bPO1cRA4.jpg" alt=""></p>
-<p><img src="https://s2.loli.net/2025/01/09/jR9vpeKCY7Athbs.jpg" alt="">
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/XhIVSE5bPO1cRA4.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/jR9vpeKCY7Athbs.jpg" alt="" loading="lazy">
+  
+</figure>
+
 （这个场景在电影里是罗森，现实中是711）</p>
-<p><img src="https://s2.loli.net/2025/01/09/RjZrO2xCWXF6G5e.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/63qyFu2frTokgdY.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/RjZrO2xCWXF6G5e.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/63qyFu2frTokgdY.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>京都的公交车真的很贵。</p>
 <p>似乎是不多见的用像素字体的招牌
-<img src="https://s2.loli.net/2025/01/09/n6odx1DHryZQGuq.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/n6odx1DHryZQGuq.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>以及另外两个颇有意思的
-<img src="https://s2.loli.net/2025/01/09/Bs6SbEfivJUM2F9.jpg" alt=""></p>
-<p><img src="https://s2.loli.net/2025/01/09/MnlQvb5ZVkr3HcB.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/Bs6SbEfivJUM2F9.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/MnlQvb5ZVkr3HcB.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>在鸭川坐了好一会儿
-<img src="https://s2.loli.net/2025/01/09/BLu21iaQTmEed63.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/JU9LRHPEv61jpcG.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/BLu21iaQTmEed63.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/JU9LRHPEv61jpcG.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>晚上才到了伏见稻荷大社，但由于没什么特别的登顶理由且太晚了，爬了一点点便打道回府了。
-<img src="https://s2.loli.net/2025/01/09/atYCKGSNEI1mxny.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/atYCKGSNEI1mxny.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>在京都闲逛时，不知是我没去游客区还是什么原因，让我感觉京都非常的不旅游城市，游客相关的设施建设、本地特色小吃铺或纪念品店等都没怎么见到，走过一片又一片的街区时，甚至商铺都没见多少。</p>
 <h1 id="day-5-京都--宇治">Day 5 京都 &amp; 宇治</h1>
 <p>由于几个想去的地方都已经去过了，且昨天没有打卡完 HELLO WORLD，索性去了京都 &amp; 宇治闲逛。</p>
 <p>在新大阪出发时，发现平时总是排队很多人的道顿堀くくる章鱼小丸子没人在排队，买了一份。到了京都后，现在站外吃完了小丸子，感觉味道也就一般水平。</p>
 <p>随后去附近的 BIC Camera 转了转，在线下看到了不少难得见到的东西：</p>
-<p><img src="https://s2.loli.net/2025/01/09/dgb6tQAmj1h3Exp.jpg" alt="">
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/dgb6tQAmj1h3Exp.jpg" alt="" loading="lazy">
+  
+</figure>
+
 轨迹球+键盘，其他的轨迹球没拍照
-<img src="https://s2.loli.net/2025/01/09/6LESBxb21GjciQO.jpg" alt="">
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/6LESBxb21GjciQO.jpg" alt="" loading="lazy">
+  
+</figure>
+
 tourbox</p>
 <p>随后前往了东寺，由于基本还没吃饭，所以在路边找了家<a href="https://maps.app.goo.gl/AW7NGQRQSXbvSHcx8">店</a>吃饭，小店很传统，店员是父子两人，儿子会一点点英语，但菜单就别想了，导致我第一次迫不得已用上了翻译程序。吃了顿炸鸡饭，喝了杯啤酒，和两位略微聊了聊。</p>
-<p><img src="https://s2.loli.net/2025/01/09/mCxpLHIaDvGOhgq.jpg" alt=""></p>
-<p><img src="https://s2.loli.net/2025/01/09/TVUZqHGSpW2Ylg1.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/mCxpLHIaDvGOhgq.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/TVUZqHGSpW2Ylg1.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>随后前往了京都动画。</p>
-<p><img src="https://s2.loli.net/2025/01/09/6fITXh42buy5cBD.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/6fITXh42buy5cBD.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>之后在宇治转了转，打卡了朝雾桥。
-<img src="https://s2.loli.net/2025/01/09/sqxWrLOec6PhaYz.jpg" alt="">
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/sqxWrLOec6PhaYz.jpg" alt="" loading="lazy">
+  
+</figure>
+
 由于来的太晚，游客案内所刚好已经关门了，没能进去看 hello world 的立牌（不过可能里边也都没摆了）</p>
 <p>当地的抹茶冰淇淋不如蜜雪冰城。</p>
 <p>原来打算晚餐吃一顿萨莉亚的，结果由于回去时走了另一条路，没想起来这事。回到了京都站后去附近吃了顿大阪烧。这是我整趟行程中做的最错误的决定，也是吃到的最难吃的一顿饭。
-<img src="https://s2.loli.net/2025/01/09/XAOkKNt3jYTZvc5.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/XAOkKNt3jYTZvc5.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>不过在唐吉诃德买到了很可爱的卡比周边（就不拍自己的了）。</p>
-<p><img src="https://s2.loli.net/2025/01/09/bZdwPnRemAaLpxO.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/bZdwPnRemAaLpxO.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <h1 id="day-6-白滨">Day 6 白滨</h1>
 <p>这一天去了白滨，一路上其实没太多有意思的，而且天气很差，所以就不放照片了。</p>
 <p>中午先去了新大阪站内的大阪烧肉松屋，这次终于没迷路了。味道还不错，就是不知道和那个连锁的松屋是啥关系。</p>
@@ -594,32 +1020,106 @@ tourbox</p>
 <p>晚上去酒店的海景浴场泡了澡，只可惜都是黑的没看到什么。（凭直觉穿的浴衣，感觉像是哪里没搞对，有时候会往下掉）</p>
 <h1 id="day-7-和歌山">Day 7 和歌山</h1>
 <p>这天的天气不错，起床后在海滩拍了点照片。
-<img src="https://s2.loli.net/2025/01/09/LMy51HKEAopUx32.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/LMy51HKEAopUx32.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>从酒店回JR白滨站的路上，坐公交经过了とれとれ市場，这个中文翻译真的太棒了。
 （但你应该也能意识到英文翻译完全不可用，后面从和歌山去机场的路上，还经过了和歌山大学前/Wakayama-Daigakumae，嗯……）
-<img src="https://s2.loli.net/2025/01/09/inNFlUtkuP9dMG1.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/8tMCFuY2Q7faEBo.jpg" alt="NBA"></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/inNFlUtkuP9dMG1.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/8tMCFuY2Q7faEBo.jpg" alt="NBA" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">NBA</figcaption>
+  
+</figure>
+</p>
 <p>在白滨站前吃了顿汉堡，Google地图上的评分很高。汉堡很棒、薯条也不错，但是蛋形塑料杯里的可乐很一般。另外就是不知道日本人对于溏心蛋的执念到底有多强，里边的煎蛋边缘都有点焦黑了，但是蛋黄还是溏心的。
-<img src="https://s2.loli.net/2025/01/09/nFb79eUdrkKglpR.jpg" alt="">
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/nFb79eUdrkKglpR.jpg" alt="" loading="lazy">
+  
+</figure>
+
 随后便去了和歌山。
 到和歌山后，当时先想去坐电车换乘，但由于下一班要等太久了，于是想着出站坐公交，这时候还发现了日本电车系统一个问题，大多数轨道交通系统基本都是不支持同站进出的，不过国内一般是会扣一笔钱，但日本会直接拒绝掉。当时找工作人员处理费了好一番功夫。</p>
 <p>先去了和歌山城，感觉很千篇一律，我之前去过了名古屋城、大阪城，感觉可能不来更省时间。。。
-<img src="https://s2.loli.net/2025/01/09/2HC6ozQpbTFnxSB.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/2HC6ozQpbTFnxSB.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>但下面的和歌山城公园动物园很可爱，可惜当天临时休园了。</p>
-<p><img src="https://s2.loli.net/2025/01/09/LIVD68bhml3FBKp.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/dImksRSyVZ5JuEG.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/gW31Fh6qTGPcesH.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/LIVD68bhml3FBKp.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/dImksRSyVZ5JuEG.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/gW31Fh6qTGPcesH.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>这座城市又多了一个伤心的人。
-<img src="https://s2.loli.net/2025/01/09/BNnU8OScIwtTCFL.jpg" alt=""></p>
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/BNnU8OScIwtTCFL.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 <p>快落日时，回酒店去了顶楼的露天浴场，一边泡澡、一边看落日，非常惬意。（也没有照片）</p>
 <h1 id="day-8-和歌山--临空城--大阪-上海">Day 8 和歌山 &amp; 临空城 &amp; 大阪-&gt;上海</h1>
 <p>最后一天是返程了，不过飞机很晚才起飞，酒店退房又偏早，所以找了些地方消磨时间。</p>
 <p>先是在和歌山市民图书馆转了转，偶然走进了中国相关的馆内，拿起了本汉诗集读，其中巨势识人的《秋日别友》：林业翩翩秋日曛，行人独向边山云。<strong>唯余天际孤悬月，万里流光远送君。</strong> 非常喜欢，最近在找一些国内出版社的日本汉诗集子，期待后续有时间读一读。</p>
 <p>随后便乘坐JR去了临空城，打算在海边消磨些时间。谁成想到了后又遇到了狂风暴雨。在躲雨时候主动和旁边的韩国人聊了起来，两个人用凑合的英语和一点点翻译软件聊了很久，相谈甚欢。还发现了他用的充电宝竟然也是酷态科的。</p>
 <p>随后便去了KIX，T2航站楼不太行，春秋航空也是很不行，体验都很一般。在这里我要再次向香港快线的工作人员小姐姐道歉。</p>
-<p><img src="https://s2.loli.net/2025/01/10/m7pbWlVg4yDGnPA.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/lWqw7s5ATQB9kPy.jpg" alt="">
-<img src="https://s2.loli.net/2025/01/09/4mIuRFp3v1x5G92.jpg" alt=""></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/10/m7pbWlVg4yDGnPA.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/lWqw7s5ATQB9kPy.jpg" alt="" loading="lazy">
+  
+</figure>
+
+
+
+<figure>
+  <img src="https://s2.loli.net/2025/01/09/4mIuRFp3v1x5G92.jpg" alt="" loading="lazy">
+  
+</figure>
+</p>
 ]]></content></entry><entry><title type="html">读了《山月记》</title><link href="https://blog.batkiz.com/posts/san-getsu-ki/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/san-getsu-ki/</id><published>2024-12-16T01:26:10+08:00</published><updated>2024-12-16T01:26:10+08:00</updated><content type="html"><![CDATA[<p>最近靠睡前与在各种交通工具上的时间，断断续续地读完了《山月记》，<a href="https://book.douban.com/subject/30394154/">果麦出品的三秦出版社本</a>。</p>
 <h1 id="来自中国典籍的故事">来自中国典籍的故事</h1>
 <p>前面几篇基本都是中短篇，其中大部分更近乎寓言，读起来并无障碍，挑着讲一些。</p>
@@ -664,7 +1164,13 @@ tourbox</p>
 <p>写这篇文章时，去豆瓣查了些资料，这才发现中岛敦竟是《文豪野犬》漫画的主人公。大约七八年前曾看过一些章节，如今却丝毫没有记忆了，是否也该学一学中岛敦或是史蒂文森，多记录、多写作呢？</p>
 <hr>
 <p>编辑：最近逛书店发现了另一家出版社的版本，虽然是一样的名字，但少了《光·风·梦》、多了《妖氛录》。好在《妖氛录》一文不长，在店里用样书读完了。真的很不喜欢这种多个版本的中短篇选集共用一个名字，但是内容略有不同的情况，非常之混乱。相比之下，江苏凤凰文艺出版社出版的<a href="https://book.douban.com/subject/36028353/">忧梦集</a>一书，虽然也是选自费尔南多·佩索阿的惶然录系列手稿，但是选文与国内之前的几本《惶然录》有很大的不同，命名也做了区分，值得点赞。</p>
-]]></content><category scheme="https://blog.batkiz.com/tags/%E8%AF%BB%E4%B9%A6" term="%E8%AF%BB%E4%B9%A6" label="读书"/></entry><entry><title type="html">飞智八爪鱼 4 体验</title><link href="https://blog.batkiz.com/posts/flydigi-apex-4/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/flydigi-apex-4/</id><published>2024-12-10T17:16:00+08:00</published><updated>2024-12-10T17:16:00+08:00</updated><content type="html"><![CDATA[<blockquote>流萤手柄</blockquote><p><img src="https://s2.loli.net/2024/12/10/kJvIAjugaty13eT.webp" alt=""></p>
+]]></content><category scheme="https://blog.batkiz.com/tags/%E8%AF%BB%E4%B9%A6" term="%E8%AF%BB%E4%B9%A6" label="读书"/></entry><entry><title type="html">飞智八爪鱼 4 体验</title><link href="https://blog.batkiz.com/posts/flydigi-apex-4/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/flydigi-apex-4/</id><published>2024-12-10T17:16:00+08:00</published><updated>2024-12-10T17:16:00+08:00</updated><content type="html"><![CDATA[<blockquote>流萤手柄</blockquote><p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/12/10/kJvIAjugaty13eT.webp" alt="" loading="lazy">
+  
+</figure>
+</p>
 <h1 id="背景">背景</h1>
 <p>今年早些时候，无意间关注到了国产手柄突飞猛进的「进化」，便打算买一把来扩充装备库。</p>
 <p>当时的选择基于以下考虑：</p>
@@ -872,165 +1378,165 @@ tourbox</p>
 <hr>
 <p>下面给出两个版本的具体剧集安排：</p>
 <table>
-  <thead>
-      <tr>
-          <th>集数</th>
-          <th>30 集版</th>
-          <th>28 集版</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>整装待发</td>
-          <td>初战告捷</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>初战告捷</td>
-          <td>虎口脱险</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>虎口脱险</td>
-          <td>一条麻袋</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>一条麻袋</td>
-          <td>寻枪</td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>神机妙算（上）</td>
-          <td>神机妙算（上）</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>神机妙算（下）</td>
-          <td>神机妙算（下）</td>
-      </tr>
-      <tr>
-          <td>7</td>
-          <td>一箭双雕（上）</td>
-          <td>一箭双雕（上）</td>
-      </tr>
-      <tr>
-          <td>8</td>
-          <td>一箭双雕（下）</td>
-          <td>一箭双雕（下）</td>
-      </tr>
-      <tr>
-          <td>9</td>
-          <td>药到病除</td>
-          <td>药到病除</td>
-      </tr>
-      <tr>
-          <td>10</td>
-          <td>插翅难逃</td>
-          <td>火眼金睛</td>
-      </tr>
-      <tr>
-          <td>11</td>
-          <td>寻枪</td>
-          <td>第二战场（上）</td>
-      </tr>
-      <tr>
-          <td>12</td>
-          <td>火眼金睛</td>
-          <td>第二战场（下）</td>
-      </tr>
-      <tr>
-          <td>13</td>
-          <td>第二战场（上）</td>
-          <td>将计就计（上）</td>
-      </tr>
-      <tr>
-          <td>14</td>
-          <td>第二战场（下）</td>
-          <td>将计就计（下）</td>
-      </tr>
-      <tr>
-          <td>15</td>
-          <td>弃暗投明</td>
-          <td>插翅难逃</td>
-      </tr>
-      <tr>
-          <td>16</td>
-          <td>狗咬狗</td>
-          <td>抗日英雄</td>
-      </tr>
-      <tr>
-          <td>17</td>
-          <td>将计就计（上）</td>
-          <td>金蝉脱壳（上）</td>
-      </tr>
-      <tr>
-          <td>18</td>
-          <td>将计就计（下）</td>
-          <td>金蝉脱壳（下）</td>
-      </tr>
-      <tr>
-          <td>19</td>
-          <td>金蝉脱壳（上）</td>
-          <td>巧入敌阵（上）</td>
-      </tr>
-      <tr>
-          <td>20</td>
-          <td>金蝉脱壳（下）</td>
-          <td>巧入敌阵（下）</td>
-      </tr>
-      <tr>
-          <td>21</td>
-          <td>巧入敌阵（上）</td>
-          <td>走向光明（上）</td>
-      </tr>
-      <tr>
-          <td>22</td>
-          <td>巧入敌阵（下）</td>
-          <td>走向光明（下）</td>
-      </tr>
-      <tr>
-          <td>23</td>
-          <td>走向光明（上）</td>
-          <td>从天而降（上）</td>
-      </tr>
-      <tr>
-          <td>24</td>
-          <td>走向光明（下）</td>
-          <td>从天而降（下）</td>
-      </tr>
-      <tr>
-          <td>25</td>
-          <td>从天而降（上）</td>
-          <td>狗咬狗</td>
-      </tr>
-      <tr>
-          <td>26</td>
-          <td>从天而降（下）</td>
-          <td>夜袭</td>
-      </tr>
-      <tr>
-          <td>27</td>
-          <td>抗日英雄</td>
-          <td>罪有应得（上）</td>
-      </tr>
-      <tr>
-          <td>28</td>
-          <td>夜袭</td>
-          <td>罪有应得（下）</td>
-      </tr>
-      <tr>
-          <td>29</td>
-          <td>罪有应得（上）</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>30</td>
-          <td>罪有应得（下）</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>集数</th>
+					<th>30 集版</th>
+					<th>28 集版</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>整装待发</td>
+					<td>初战告捷</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>初战告捷</td>
+					<td>虎口脱险</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>虎口脱险</td>
+					<td>一条麻袋</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>一条麻袋</td>
+					<td>寻枪</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>神机妙算（上）</td>
+					<td>神机妙算（上）</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>神机妙算（下）</td>
+					<td>神机妙算（下）</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>一箭双雕（上）</td>
+					<td>一箭双雕（上）</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>一箭双雕（下）</td>
+					<td>一箭双雕（下）</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>药到病除</td>
+					<td>药到病除</td>
+			</tr>
+			<tr>
+					<td>10</td>
+					<td>插翅难逃</td>
+					<td>火眼金睛</td>
+			</tr>
+			<tr>
+					<td>11</td>
+					<td>寻枪</td>
+					<td>第二战场（上）</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>火眼金睛</td>
+					<td>第二战场（下）</td>
+			</tr>
+			<tr>
+					<td>13</td>
+					<td>第二战场（上）</td>
+					<td>将计就计（上）</td>
+			</tr>
+			<tr>
+					<td>14</td>
+					<td>第二战场（下）</td>
+					<td>将计就计（下）</td>
+			</tr>
+			<tr>
+					<td>15</td>
+					<td>弃暗投明</td>
+					<td>插翅难逃</td>
+			</tr>
+			<tr>
+					<td>16</td>
+					<td>狗咬狗</td>
+					<td>抗日英雄</td>
+			</tr>
+			<tr>
+					<td>17</td>
+					<td>将计就计（上）</td>
+					<td>金蝉脱壳（上）</td>
+			</tr>
+			<tr>
+					<td>18</td>
+					<td>将计就计（下）</td>
+					<td>金蝉脱壳（下）</td>
+			</tr>
+			<tr>
+					<td>19</td>
+					<td>金蝉脱壳（上）</td>
+					<td>巧入敌阵（上）</td>
+			</tr>
+			<tr>
+					<td>20</td>
+					<td>金蝉脱壳（下）</td>
+					<td>巧入敌阵（下）</td>
+			</tr>
+			<tr>
+					<td>21</td>
+					<td>巧入敌阵（上）</td>
+					<td>走向光明（上）</td>
+			</tr>
+			<tr>
+					<td>22</td>
+					<td>巧入敌阵（下）</td>
+					<td>走向光明（下）</td>
+			</tr>
+			<tr>
+					<td>23</td>
+					<td>走向光明（上）</td>
+					<td>从天而降（上）</td>
+			</tr>
+			<tr>
+					<td>24</td>
+					<td>走向光明（下）</td>
+					<td>从天而降（下）</td>
+			</tr>
+			<tr>
+					<td>25</td>
+					<td>从天而降（上）</td>
+					<td>狗咬狗</td>
+			</tr>
+			<tr>
+					<td>26</td>
+					<td>从天而降（下）</td>
+					<td>夜袭</td>
+			</tr>
+			<tr>
+					<td>27</td>
+					<td>抗日英雄</td>
+					<td>罪有应得（上）</td>
+			</tr>
+			<tr>
+					<td>28</td>
+					<td>夜袭</td>
+					<td>罪有应得（下）</td>
+			</tr>
+			<tr>
+					<td>29</td>
+					<td>罪有应得（上）</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>30</td>
+					<td>罪有应得（下）</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <p>地下交通站作为情景喜剧，虽然各集内容类似于单元剧，但部分剧集间是有着明确的前后关系的。如从天而降、罪有应得应在走向光明之后，因为剧情上白翻译为我方提供了助力。</p>
@@ -1095,7 +1601,7 @@ tourbox</p>
 <p>唯一的例外是，如果我们试图在客户端和服务器之间发送和接收文件。那么我们就需要处理文件响应，从客户端向服务器发送表单数据。但这就是另外一个话题了。</p>
 <p>我们还应该确保我们的端点（endpoint）能够返回 JSON 作为响应。许多服务器端框架都将此作为一个内置功能。</p>
 <p>让我们来看看一个接受 JSON payload 的 API 示例。这个例子将使用 Node.js 的 <a href="https://expressjs.com/">Express</a> 后端框架。我们可以使用 <a href="https://www.npmjs.com/package/body-parser"><code>body-parser</code> 中间件</a> 来解析 JSON 请求体，然后我们可以调用 <code>res.json</code> 方法，将我们想要返回的对象构造为 JSON 响应，如下所示。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1116,7 +1622,7 @@ tourbox</p>
 <p>GET 检索资源。POST 向服务器提交新数据。PUT 更新现有数据。DELETE 删除数据。这些动词映射到 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> 操作。</p>
 <p>考虑到我们上面讨论的两个原则，我们应该创建像 GET <code>/articles/</code> 这样的路由来获取新闻文章。同样，POST <code>/articles/</code> 用于添加新的文章，PUT <code>/articles/:id</code> 用于用给定的 id 更新文章。DELETE <code>/articles/:id</code> 用于删除给定 ID 的现有文章。</p>
 <p><code>/articles</code> 代表一个 REST API 资源。例如，我们可以使用 Express 添加以下端点来操作文章，如下所示。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1158,7 +1664,7 @@ tourbox</p>
 <p>我们必须确保我们考虑的嵌套资源与我们数据库表中的资源相匹配。否则会非常混乱。</p>
 <p>比如说，如果我们想要一个端点来获取一篇新闻文章的评论，我们应该将 <code>/comments</code> 追加到 <code>/articles</code> 路径的末尾。这假设了我们在数据库中把评论（<code>comments</code>）作为文章（<code>articles</code>）的一个子节点。</p>
 <p>例如，我们可以在 Express 中使用以下代码来实现。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1188,7 +1694,7 @@ tourbox</p>
 <li>503 Service Unavailable - 这表示在服务器端发生了一些意想不到的事情（可能是任何事情，比如服务器过载，系统的某些部分失效，等等）。</li>
 </ul>
 <p>我们抛出的错误应该与我们的应用所遇到的问题相对应。例如，如果我们想拒绝请求 payload 中的数据，那么我们应该在 Express API 中返回一个 400 响应，如下所示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1217,7 +1723,7 @@ tourbox</p>
 <p>我们还需要对数据进行分页的方法，这样我们就能一次只返回几个结果。我们不希望因为一个请求，而占用资源太长时间。</p>
 <p>过滤和分页都可以通过减少服务器资源的使用来提高性能。随着数据库中积累的数据越多，这些功能就越发重要。</p>
 <p>这里有一个小例子，API 可以接受一个带有各种查询参数的查询字符串，让我们通过字段过滤出项目：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1254,7 +1760,7 @@ tourbox</p>
 <p>一旦我们完成了这些工作，我们就将 <code>results</code> 作为响应返回。因此，当我们用查询字符串向以下路径发出 GET 请求时</p>
 <pre tabindex="0"><code>/employees?lastName=Smith&amp;age=30
 </code></pre><p>我们得到</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
 </span></span><span style="display:flex;"><span>  {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;firstName&#34;</span>: <span style="color:#e6db74">&#34;John&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;lastName&#34;</span>: <span style="color:#e6db74">&#34;Smith&#34;</span>,
@@ -1277,7 +1783,7 @@ tourbox</p>
 <p>我们可以添加缓存，从本地内存缓存中返回数据，而不是每次要检索用户请求的一些数据时，都要查询数据库。缓存的好处是，用户可以更快的获得数据。但是，用户得到的数据可能是过时的。这也可能导致在生产环境中调试时出现问题，因为我们一直看到旧的数据。</p>
 <p>缓存解决方案有很多种，比如 <a href="https://redis.io/">Redis</a>、内存缓存等等。我们可以随着需求的变化，改变数据的缓存方式。</p>
 <p>例如，Express 有 <a href="https://www.npmjs.com/package/apicache">apicache</a> 中间件，不需要太多的配置就可以为我们的应用添加缓存功能。我们可以像这样在服务器中添加一个简单的内存缓存。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">apicache</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;apicache&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
@@ -1300,14 +1806,14 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>, () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;server started&#34;</span>));
 </span></span></code></pre></div><p>上面的代码只是用 <code>apicache.middleware</code> 来引用 <code>apicache</code> 中间件，然后我们用:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cache</span>(<span style="color:#e6db74">&#34;5 minutes&#34;</span>));
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cache</span>(<span style="color:#e6db74">&#34;5 minutes&#34;</span>));
 </span></span></code></pre></div><p>来将缓存应用于整个应用。比如说，我们将结果缓存 5 分钟。我们可以根据自己的需要调整。</p>
 <h2 id="版本化我们的-api">版本化我们的 API</h2>
 <p>如果我们要对 API 进行任何可能破坏客户端的修改，我们便应有不同的版本。版本划分可以像现在大多数应用一样，根据语义版本进行（例如，2.0.6 表示主要版本 2 和第 6 个补丁）。</p>
 <p>这样一来，我们可以逐步淘汰旧的端点，而不是强迫大家同时转移到新的 API 上。v1 端点可以为那些不想改变的人保持活跃，而 v2 则可以凭借其闪亮的新功能为那些准备升级的人服务。如果我们的 API 是公开的，这一点尤其重要。我们应该对它们进行版本调整，这样就不会破坏使用我们 API 的第三方应用。</p>
 <p>版本化通常是在 API 路径的开头加上 <code>/v1/</code>、<code>/v2/</code> 等。</p>
 <p>例如，我们可以对 Express 进行如下操作。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;body-parser&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>());
@@ -1333,7 +1839,7 @@ tourbox</p>
 ]]></content><category scheme="https://blog.batkiz.com/tags/%E7%BF%BB%E8%AF%91" term="%E7%BF%BB%E8%AF%91" label="翻译"/><category scheme="https://blog.batkiz.com/tags/stackoverflow" term="stackoverflow" label="stackoverflow"/></entry><entry><title type="html">博客主题新功能：repl 代码集成</title><link href="https://blog.batkiz.com/posts/theme-new-feat-repl-embed/?utm_source=atom_feed" rel="alternate" type="text/html"/><id>https://blog.batkiz.com/posts/theme-new-feat-repl-embed/</id><published>2020-09-06T13:30:29+08:00</published><updated>2020-09-06T13:30:29+08:00</updated><content type="html"><![CDATA[<p>由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。</p>
 <h2 id="效果测试">效果测试</h2>
 <h2 id="使用方法">使用方法</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>{{&lt; repl &#34;batkiz/hello-repl&#34; &gt;}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>{{&lt; repl &#34;batkiz/hello-repl&#34; &gt;}}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>/*
 </span></span><span style="display:flex;"><span>batkiz -&gt; username(不带 `@`)
@@ -1343,7 +1849,7 @@ tourbox</p>
 <hr>
 <p>2021/05 更新：</p>
 <p><a href="https://replit.com/talk/ask/My-share-button-is-missing/138229">repl 已不提供 iframe 嵌入形式的分享选项</a>，不过所幸还没被 ban 掉，官方提供的 iframe 嵌入代码如下所示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embed repl&#34;</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embed repl&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">iframe</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;repl&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;400px&#34;</span>
@@ -1361,7 +1867,7 @@ tourbox</p>
 ]]></content></entry><entry><title type="html">一些 powershell 脚本 | 其二</title><link href="https://blog.batkiz.com/posts/some-pwsh-scripts-2/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/?utm_source=atom_feed" rel="related" type="text/html" title="powershell, headers 与乱码"/><link href="https://blog.batkiz.com/posts/some-pwsh-scripts/?utm_source=atom_feed" rel="related" type="text/html" title="一些 powershell 脚本"/><link href="https://blog.batkiz.com/posts/oh-my-powershell/?utm_source=atom_feed" rel="related" type="text/html" title="oh my powershell"/><id>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</id><published>2020-08-31T12:57:22+08:00</published><updated>2020-08-31T12:57:22+08:00</updated><content type="html"><![CDATA[<p>承接<a href="/posts/2020/some-pwsh-scripts/">前文</a>，这里是另一些可能有点用的 pwsh 脚本。</p>
 <h2 id="命令行代理">命令行代理</h2>
 <p>让命令行应用走代理，用法是 <code>socks app command</code>。也可以把 <code>Set-CliProxy</code> 与 <code>Clear-CliProxy</code> 单独拿出来用。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> socks {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> socks {
 </span></span><span style="display:flex;"><span>    $Command = <span style="color:#e6db74">&#34;</span>$args<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    Set-CliProxy
@@ -1383,7 +1889,7 @@ tourbox</p>
 </span></span></code></pre></div><h2 id="time">time</h2>
 <p>为命令行应用计时，大概类似于 <em>*nix</em> 中的 <code>time</code>。用法是 <code>time app command</code>。</p>
 <p>仅仅计时的话可以用 <code>Measure-Command</code> 命令，但它没有输出，只有时间信息，所以写了个 function 封装一下。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> time {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> time {
 </span></span><span style="display:flex;"><span>    $Command = <span style="color:#e6db74">&#34;</span>$args<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    $time = Measure-Command { Invoke-Expression $Command <span style="color:#ae81ff">2</span>&gt;&amp;<span style="color:#ae81ff">1</span> | out-default }
@@ -1394,13 +1900,13 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="get-size">Get-Size</h2>
 <p>命令行里查看文件夹、文件的大小，按 M 显示。用法是 <code>Get-Size folder/file</code>。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Get-Size {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Get-Size {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span>([<span style="color:#66d9ef">string</span>]$pth)
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;{0:n2}&#34;</span> <span style="color:#f92672">-f</span> ((Get-ChildItem -path $pth -recurse | measure-object -property length -sum).sum / <span style="color:#ae81ff">1</span>mb) + <span style="color:#e6db74">&#34; M&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="翻译">翻译</h2>
 <p>命令行里的翻译程序，其实之前是想用 go 写一个的，但不如直接写个 pwsh 脚本简便。由于 api key 是扒的别人的，所以就在源码里删去了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> fy {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> fy {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($args.Length <span style="color:#f92672">-eq</span> <span style="color:#ae81ff">0</span> ) {
 </span></span><span style="display:flex;"><span>        Write-Output <span style="color:#e6db74">&#39;this is a cli translator, try `fy hello world`.&#39;</span>
 </span></span><span style="display:flex;"><span>    }
@@ -1437,7 +1943,7 @@ tourbox</p>
 <h2 id="完整步骤">完整步骤</h2>
 <h3 id="新建-workers">新建 workers</h3>
 <p>workers 即 Cloudflare 推出的 serverless 云函数。在 <a href="https://dash.cloudflare.com/">主页</a> 直接点击 workers 新建一个，名字随意，代码如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleRequest</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleRequest</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Response</span>.<span style="color:#a6e22e">redirect</span>(<span style="color:#a6e22e">someURLToRedirectTo</span>, <span style="color:#a6e22e">code</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;fetch&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">event</span>) =&gt; {
@@ -1468,7 +1974,15 @@ tourbox</p>
 <p>正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 <a href="http://nlp.xmu.edu.cn/">厦门大学自然语言处理实验室</a> 提供的 <a href="http://nmt.xmu.edu.cn/">云译 CloudTranslation</a> 的公开 <a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html">API</a>。</p>
 <h2 id="解决过程">解决过程</h2>
 <p>就当我读完短短的 API Doc 后准备开始写段小脚本时，悲剧发生了：它竟然乱码了！</p>
-<p><img src="https://s1.ax1x.com/2020/06/27/NckFpV.png" alt="图中的 Content 与 RawContent 都是乱码的"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2020/06/27/NckFpV.png" alt="图中的 Content 与 RawContent 都是乱码的" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">图中的 Content 与 RawContent 都是乱码的</figcaption>
+  
+</figure>
+</p>
 <p>然后我也很不能相信，于是又回去读了读文档，看到<a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html#_4">其中</a>清楚地写着：</p>
 <blockquote>
 <p>返回格式： UTF-8 编码纯文本</p>
@@ -1476,10 +1990,26 @@ tourbox</p>
 <p>WHAT THE F@XK? 我的 Windows 系统一直都是默认 unicode 的，而当前 pwsh 的活动代码页也是 <code>65001</code>。换言之，这个接口的返回值乱码绝对不是本地是 gbk/gb2312 这种低级错误。那问题出在哪呢？</p>
 <p>为了确定它返回的编码确实是 utf-8，我看了看它的 headers，以防出现他本身发送的是 gbk/gb2312 这种乌龙。</p>
 <p><em>通过 <a href="http://www.mytju.com/classCode/tools/messyCodeRecover.asp">乱码恢复</a> 确定了乱码文字现在的编码是 iso-8859-1，其本身确实是 utf-8 的。</em></p>
-<p><img src="https://s1.ax1x.com/2020/06/27/NcARqe.png" alt="看起来并没有问题"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2020/06/27/NcARqe.png" alt="看起来并没有问题" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">看起来并没有问题</figcaption>
+  
+</figure>
+</p>
 <p>打眼一看确实没啥问题，但我注意到了其中并没有指定 charset/encoding 信息。</p>
 <p>以防万一，我又在 wsl 中用 curl 对比执行了一下：</p>
-<p><img src="https://s1.ax1x.com/2020/06/27/NcAYvT.png" alt="完 全 正 常"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2020/06/27/NcAYvT.png" alt="完 全 正 常" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">完 全 正 常</figcaption>
+  
+</figure>
+</p>
 <p>此时我已经基本确定，乱码是因为 headers 中缺了东西导致的，但为什么会导致这种问题呢？我想让他不乱码难道就只能通过 wsl 来调用 API 了么？</p>
 <p>然后通过我<del>西安市 top3 的信息检索能力</del>的 Google 技术，找到了这个 StackOverflow 回答：</p>
 <blockquote>
@@ -1504,7 +2034,15 @@ tourbox</p>
 <h3 id="人手过少与软件过多">人手过少与软件过多</h3>
 <p>ScoopInstaller 组织里公开显示的有 8 个人<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>，而足够活跃的仅仅有 <a href="https://github.com/r15ch13">@r15ch13</a> 与 <a href="https://github.com/Ash258">@Ash258</a> 两个人<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>，scoop 并非一个有盈利的项目，这两位也都不是全职维护 scoop，这两人除了自己的本职工作外，能有多少时间投入进来呢？</p>
 <p>而仅 main 与 extras 两个 bucket 的软件数量，就已经达到了 1786 个，虽然有社区的力量，但每天 review PR 都够累死的。</p>
-<p><img src="https://s1.ax1x.com/2020/05/21/Yb13Mq.png" alt="main 与 extras 包含的 manifest 数量。2020/05/21 15:14"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2020/05/21/Yb13Mq.png" alt="main 与 extras 包含的 manifest 数量。2020/05/21 15:14" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">main 与 extras 包含的 manifest 数量。2020/05/21 15:14</figcaption>
+  
+</figure>
+</p>
 <p>当一个 bucket 只有 20 个软件时（指我的 backit），维护者完全有精力隔三岔五地看一眼整个的 checkver 的 log，但当一个 bucket 有 200 个时，就完全不一样了。就比如现在的 main bucket 经常会出现更新滞后的情况，毕竟更新脚本跑起来也是需要时间的。（有兴趣的可以比较一下 <a href="https://github.com/batkiz/backit">batkiz/backit</a> 与 <a href="https://github.com/ScoopInstaller/Main">ScoopInstaller/Main</a> 里 ffsend 的更新时间。）</p>
 <h3 id="功能停滞">功能停滞</h3>
 <p>人手过少带来的另一个问题就是 scoop 本身的功能更新几乎停滞，今年以来在 master 分支上仅仅有两个 commit<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>，还都是 fix。新功能的添加也是如此，<code>scoop download</code> 命令<a href="https://github.com/lukesampson/scoop/issues/1804">早在 2017 年就被 issue 提出</a>，而 2019/12/06 的 #3782 PR 为 scoop 添加了此功能，一直未被合并，今年 5 月又被离奇关闭<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>。让人不得不担心 scoop 项目的发展。</p>
@@ -1543,7 +2081,7 @@ tourbox</p>
 <hr>
 <ol>
 <li id="fn:1">
-<p><a href="#ZgotmplZ">初探 Scoop</a>，2018/12/31&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="ttps://blog.batkiz.com/posts/2018/using-scoop/">初探 Scoop</a>，2018/12/31&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
 <p><a href="https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0">https://github.com/lukesampson/scoop-extras/commit/063694cae5019119e117fae5458219d8e32397d0</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
@@ -1578,7 +2116,7 @@ tourbox</p>
 <p>由于主要是为了满足个人使用，所以没怎么做错误处理之类的。</p>
 <h2 id="在-pwsh-中使用-wsl-中的-nvim">在 pwsh 中使用 wsl 中的 nvim</h2>
 <p><code>dos2nix</code> 是将 windows 风格的路径转换为 wsl 中的路径。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> dos2nix {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> dos2nix {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span>($dosPath)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    $path = $dosPath.Replace(<span style="color:#e6db74">&#39;\&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>)
@@ -1612,7 +2150,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="which">which</h2>
 <p>获取某个可执行文件的路径。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> which {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> which {
 </span></span><span style="display:flex;"><span>    $results = New-Object System.Collections.Generic.List[<span style="color:#66d9ef">System.Object</span>];
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> ($command <span style="color:#66d9ef">in</span> $args) {
 </span></span><span style="display:flex;"><span>        $path = (Get-Command $command).Source
@@ -1624,7 +2162,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="ls">ls</h2>
 <p>*nix 中的 <code>ls</code> 样式，可惜没搞出来着色。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> ListDirectory {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> ListDirectory {
 </span></span><span style="display:flex;"><span>    Get-ChildItem $args | Format-Wide Name -AutoSize
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -1635,7 +2173,7 @@ tourbox</p>
 <h2 id="nali">nali</h2>
 <p>接收一个域名或 ip（<code>-Query</code>），返回其 ip 和地理位置信息。</p>
 <p>默认是获取本地的 ip 和位置，语言可以切换英文或中文（默认是中文）。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> nali {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> nali {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
 </span></span><span style="display:flex;"><span>        $Query = <span style="color:#e6db74">&#39;&#39;</span>,
 </span></span><span style="display:flex;"><span>        [Alias(<span style="color:#e6db74">&#39;l&#39;</span>)]
@@ -1674,11 +2212,11 @@ tourbox</p>
 <p>在一个无限大的棋盘上，我们以 <code>1</code> 代表存活的生命，以 <code>0</code> 代表死去的生命或 <code>无</code>。</p>
 <p>其上的生命遵循上面的四条规则存活、死去、或是产生下一代。</p>
 <h2 id="思路">思路</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] GetGeneration(<span style="color:#66d9ef">int</span>[,] cells, <span style="color:#66d9ef">int</span> generation)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] GetGeneration(<span style="color:#66d9ef">int</span>[,] cells, <span style="color:#66d9ef">int</span> generation)
 </span></span></code></pre></div><p>可以看到函数接收了二维数组与一个整数，分别代表了其上的生命与要演化的代数。</p>
 <p>首先我们要认识清楚，棋盘的大小是<strong>无限的</strong>，而不仅仅是接收的二维数组的大小。当然，题中也给出了计算邻居的规则，我们在处理时，要将接收到的数组扩大一圈。</p>
 <p>新建一个长宽各自 +2 的矩形，再把目前的矩形放在其正中间，最后返回这个矩形。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] NewBoard(<span style="color:#66d9ef">int</span>[,] cells)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] NewBoard(<span style="color:#66d9ef">int</span>[,] cells)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
@@ -1705,7 +2243,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>相应的，在返回最终的结果时，棋盘除了有生命存在的一个矩形之外，也要裁剪掉多出的全为 0 的行与列。</p>
 <p>这里是分别从上下、左右遍历了数组，获取了其存在 1 的最外层的坐标，然后把它裁剪了下来，返回了最精简的数组。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] cropped(<span style="color:#66d9ef">int</span>[,] cells)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>[,] cropped(<span style="color:#66d9ef">int</span>[,] cells)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
@@ -1782,7 +2320,7 @@ tourbox</p>
 </span></span></code></pre></div><p>确定了最先与最后的步骤，就要处理中间的过程了。</p>
 <p>为了确定某一个坐标下的生物在下一轮中是死是活，只需要获取它有多少存活的邻居，再用给出的四条规则来判定就能得出了。</p>
 <p>首先是获取某一特定坐标的生物有多少活着的邻居，仅需遍历它八个邻居的位置并确定是否存活即可。值得注意的是，对于最外层、邻居不足八个的生物要做特殊的处理，以防数组越界。由于我懒得确定是否越界，就用了一个邪道玩法，如果出现了数组越界的 Exception 就忽略掉它继续访问下一个地址。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetLiveNeighbors(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span>[,] ceil)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetLiveNeighbors(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span>[,] ceil)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> val = <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>[] neighbors = { <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, -<span style="color:#ae81ff">1</span> };
@@ -1815,7 +2353,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> val;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>下面则是确定某一坐标下的生物在下一轮中是死是活。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> hang = cells.GetLength(<span style="color:#ae81ff">0</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> lie = cells.GetLength(<span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> newGen = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[hang + <span style="color:#ae81ff">2</span>, lie + <span style="color:#ae81ff">2</span>];
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> biggerCells = NewBoard(cells);
@@ -1834,7 +2372,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> result = cropped(newGen);
 </span></span></code></pre></div><p>至于代数，一个递归就能解决问题了。在此不作赘述。</p>
 <h2 id="完整代码">完整代码</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Linq;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConwayLife</span>
@@ -2008,7 +2546,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>]]></content><category scheme="https://blog.batkiz.com/tags/codewars" term="codewars" label="codewars"/><category scheme="https://blog.batkiz.com/tags/csharp" term="csharp" label="csharp"/></entry><entry><title type="html">Hugo 自动化 CI V2</title><link href="https://blog.batkiz.com/posts/hugo-ci-v2/?utm_source=atom_feed" rel="alternate" type="text/html"/><link href="https://blog.batkiz.com/posts/set-hugo-aliases-with-csharp/?utm_source=atom_feed" rel="related" type="text/html" title="用 C# 设置 Hugo Aliases"/><link href="https://blog.batkiz.com/posts/migrate-to-hugo-and-automation/?utm_source=atom_feed" rel="related" type="text/html" title="博客迁移至 Hugo 并实现自动化"/><id>https://blog.batkiz.com/posts/hugo-ci-v2/</id><published>2020-04-13T11:19:09+08:00</published><updated>2020-04-13T11:19:09+08:00</updated><content type="html"><![CDATA[<p>改进了一下自动化发布博客的 CI，代码在下面。</p>
 <p>如果想拿去用的话只需要修改 env 下的值就行了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">blog</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">blog</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push]</span>
 </span></span><span style="display:flex;"><span>
@@ -2113,11 +2651,11 @@ tourbox</p>
 <p>通过观察，所添加的 Aliases 项应被添加在 frontmatter 中，其主要依赖了文章的日期即 date 项。我最开始的想法是，将每篇文章的 frontmatter （在我的文章中用的是 yaml）序列化，对序列化后的项进行修改，最后再反序列化，保存至文章。</p>
 <p>但是由于我并没有找到一个可用性较高的解析 markdown 文件 yaml frontmatter 的库，此想法只好作罢。</p>
 <p>经过我的进一步观察，每篇文章的 date 项均处在第三行，且格式为</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">date</span>: <span style="color:#ae81ff">yyyy-mm-dd time</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">date</span>: <span style="color:#ae81ff">yyyy-mm-dd time</span>
 </span></span></code></pre></div><p>事情就好办了起来。</p>
 <p>核心思想即：读入文本，将位于第三行的日期解析出来-&gt;生成 Aliases 项-&gt;写入文本。</p>
 <p>下面是代码（C# 8, dotnet core 3.1），由于时间匆忙，且需求简单，因此未做过多的处理。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Linq;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Linq;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.IO;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System;
 </span></span><span style="display:flex;"><span>
@@ -2187,7 +2725,7 @@ tourbox</p>
 </ul>
 <h2 id="解决方案">解决方案</h2>
 <p>话不多说，来看代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> vim {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> vim {
 </span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">param</span>($fileName = <span style="color:#e6db74">&#39;.&#39;</span>)
 </span></span><span style="display:flex;"><span>   wsl -e nvim $filename.Replace(<span style="color:#e6db74">&#39;\&#39;</span>,<span style="color:#e6db74">&#39;/&#39;</span>).Replace(<span style="color:#e6db74">&#39;C:&#39;</span>,<span style="color:#e6db74">&#39;/mnt/c&#39;</span>)
 </span></span><span style="display:flex;"><span>}
@@ -2226,7 +2764,7 @@ tourbox</p>
 <p>但真正吊诡则是，在我最初试用 hyper-v 时并未出现这个情况，开始使用 wsl2 后才发生……</p>
 <p>此外，wsl2 与 windows 之间存在着网络隔离，虽然 wsl 团队已全力优化但还存在着一些可能会影响体验的问题。如在 windows 中可用 <code>localhost</code> 直接访问 wsl2 的 <code>localhost</code>，但反之则不行。</p>
 <p>如果想要在 wsl 中利用 windows 本身的代理，可以在 <code>~/.zshrc</code> 或 <code>~/.bashrc</code> 中写入以下配置（我并不熟悉 fish 所以请 fish 用户自己改改吧）：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># wsl 2 中请启用下面这一行</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># wsl 2 中请启用下面这一行</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># export hostip=$(cat /etc/resolv.conf | grep -oP &#39;(?&lt;=nameserver\ ).*&#39;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># wsl 1 中请启用下面这一行</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># export hostip=&#34;127.0.0.1&#34;</span>
@@ -2254,7 +2792,7 @@ tourbox</p>
 </ul>
 <h2 id="开发过程">开发过程</h2>
 <p>这里记录一些写 go 语言时的小技巧</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// TODO</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// TODO</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// （其实大家都知道 TODO 列表里的事情永远都不会办的对吧</span>
 </span></span></code></pre></div><p>事实上这个在闲暇之余写的小软件已经完全地满足了我自己的需求，我甚至有点就此封存、甩手不干的冲动。</p>
 <p>但说实话，这个小软件还有很多缺点：</p>
@@ -2302,7 +2840,7 @@ tourbox</p>
 <h3 id="rss">RSS</h3>
 <p>之前在 hexo 之上构建时，我采用的 hexo 插件是生成出 <code>atom.xml</code> 文件的，而在新的主题下生成的则是 <code>index.xml</code>。</p>
 <p>解决方法：在 <code>config.toml</code> 中加入下列内容</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">outputs</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">outputs</span>]
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">home</span> = [<span style="color:#e6db74">&#34;Atom&#34;</span>, <span style="color:#e6db74">&#34;HTML&#34;</span>]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">outputFormats</span>.<span style="color:#a6e22e">Atom</span>]
@@ -2318,7 +2856,7 @@ tourbox</p>
 <p>接下来仍然是 Google。</p>
 <p>感谢 <a href="http://weibo.com/u/2837672545">匿蟒</a>，我在 <a href="https://note.qidong.name/2018/03/hugo-mathjax/">在 Hugo 中使用 MathJax</a> 一文中找到了解决方案，即下述方法：</p>
 <p>在添加 <a href="https://www.mathjax.org/">MathJax</a> 时，把所有修改写成了一个 <code>layouts/partials/mathjax.html</code> 文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">async</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;</span>
@@ -2349,11 +2887,11 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
 </span></span></code></pre></div><p>这里，把官网的三处修改合并成一个 partial。 此外，还把 <a href="https://www.mathjax.org/">MathJax</a> 的 CDN 从 <code>cdnjs.cloudflare.com</code> 替换成了 <code>cdn.bootcss.com</code>，更好地支持国内。</p>
 <p>把这个 partial 模板添加到 <code>&lt;head&gt;</code> 中，即可正常工作。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{partial &#34;mathjax.html&#34; .}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{partial &#34;mathjax.html&#34; .}}
 </span></span></code></pre></div><h3 id="frontmatter">frontmatter</h3>
 <p>Hugo 支持 toml, yml 与 json 格式的 frontmatter，但与 Hexo 的 yml frontmatter 又有所不同。</p>
 <p>Hugo 中的 tags 的形式应为</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">hello</span>
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">world</span>
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">etc</span>
@@ -2381,7 +2919,7 @@ tourbox</p>
 <h3 id="自动化">自动化</h3>
 <p>Hugo 的无依赖特性、配置都写在根目录下的 config.toml 文件中的功能与 GitHub Actions 的出现，使得文章自动部署变得极为简单。毫不夸张的说，在最初的配置之后，我们可以专注于文章的内容，本地甚至不需要有 Hugo 的存在。</p>
 <p>下面是 GitHub Actions 的 workflow，详情请看注释。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">blog</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">blog</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push]</span>
 </span></span><span style="display:flex;"><span>
@@ -2463,7 +3001,7 @@ tourbox</p>
 <h2 id="使用">使用</h2>
 <p>于任意路径新建 <code>tmp</code> 文件夹，使用 VS Code 打开。</p>
 <p>新建 <code>hello.c</code> 文件，并写入下列内容</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 </span></span><span style="display:flex;"><span>{
@@ -2472,7 +3010,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>保存后按下 <code>F1</code> 键，输入 <code>tcc</code>，找到 <code>TCC: Run</code> 项，回车，可看到下面的 terminal 被唤起，并输出下列信息</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Hello World.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Hello World.
 </span></span><span style="display:flex;"><span>你好世界。
 </span></span></code></pre></div><p>如此，基本的开发环境便配置完成，enjoy!</p>
 <h2 id="疑难解答">疑难解答</h2>
@@ -2494,17 +3032,17 @@ tourbox</p>
 <li><a href="scoop.sh">scoop</a></li>
 </ul>
 <h2 id="installation">installation</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Install-Module</span> <span style="color:#a6e22e">posh-git</span> <span style="color:#a6e22e">-Scope</span> <span style="color:#a6e22e">CurrentUser</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Install-Module</span> <span style="color:#a6e22e">posh-git</span> <span style="color:#a6e22e">-Scope</span> <span style="color:#a6e22e">CurrentUser</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">Install-Module</span> <span style="color:#a6e22e">oh-my-posh</span> <span style="color:#a6e22e">-Scope</span> <span style="color:#a6e22e">CurrentUser</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
 </span></span></code></pre></div><p>亦可均由 scoop 安装，即</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">scoop-completion</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">oh-my-posh</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">posh-git</span>
 </span></span></code></pre></div><h2 id="配置">配置</h2>
 <p>配置文件为 <code>~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code>，若不存在请自行创建。</p>
 <p>写入下列内容并保存：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Import-Module</span> <span style="color:#a6e22e">posh-git</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Import-Module</span> <span style="color:#a6e22e">posh-git</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">Import-Module</span> <span style="color:#a6e22e">oh-my-posh</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">Set-Theme</span> <span style="color:#a6e22e">PowerLine</span>
 </span></span></code></pre></div><h2 id="more-things">more things</h2>
@@ -2545,7 +3083,7 @@ tourbox</p>
 <h2 id="操作">操作</h2>
 <p>首先确保本地已开启 ss 或 ssr。
 而后命令行执行如下命令。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global http.proxy <span style="color:#e6db74">&#39;http://127.0.0.1:1080&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global http.proxy <span style="color:#e6db74">&#39;http://127.0.0.1:1080&#39;</span>
 </span></span><span style="display:flex;"><span>git config --global https.proxy <span style="color:#e6db74">&#39;http://127.0.0.1:1080&#39;</span>
 </span></span></code></pre></div><h2 id="原理">原理</h2>
 <p>在大多数 git 代理相关文章中，均配置的是 <code>socks5://127.0.0.1:1080</code> 进行代理。这样虽然速度确实增加了，但由于 协议并不支持 socks5 协议，每次 git push 操作时还需要手动输入账户密码，不能通过 ssh key 来登录，非常影响体验。</p>
@@ -2579,7 +3117,7 @@ tourbox</p>
 <p>刚开始我试着仅仅浏览 Twitter 上的时间线并复制文本。但显然，当一个讨论贴达到了一定规模时，Twitter 限制了你能看到的推文数。所以从数据集中我仅能得到 285 个回复。</p>
 <p>接下来是使用 Twitter 开发者 API，虽然被限制严重，但允许更多的搜索粒度。</p>
 <p>通过 Python 和 Tweepy 及请求间的 5 分钟睡眠，我能够从请求中得到 763 条直接回复于我的推文。这花了 <strong>362 分钟</strong>，或言 <strong>6 个小时</strong>。更短的睡眠时间可能也行，但我睡后留下它自己跑，所以也没多大关系。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tweepy<span style="color:#f92672">.</span>Cursor(api<span style="color:#f92672">.</span>search, q<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;to:olafurw&#34;</span>, since_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1087438169585434624&#39;</span>, tweet_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;extended&#39;</span>)<span style="color:#f92672">.</span>pages():
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tweepy<span style="color:#f92672">.</span>Cursor(api<span style="color:#f92672">.</span>search, q<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;to:olafurw&#34;</span>, since_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1087438169585434624&#39;</span>, tweet_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;extended&#39;</span>)<span style="color:#f92672">.</span>pages():
 </span></span><span style="display:flex;"><span>  repliesFile <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;replies.txt&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> tweet <span style="color:#f92672">in</span> page:
@@ -2720,7 +3258,7 @@ tourbox</p>
 <h2 id="web">WEB</h2>
 <h3 id="你能读到-flag-吗">你能读到 flag 吗</h3>
 <p>题目：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span> <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span> <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">show_source</span>(<span style="color:#66d9ef">__FILE__</span>);
 </span></span><span style="display:flex;"><span>
@@ -2729,7 +3267,7 @@ tourbox</p>
 </span></span></span></code></pre></div><p><del>谷歌之，原题，直接复制提交。</del></p>
 <p>使用 <code>file_get_contents()</code> 方法获得 flag</p>
 <p>python 代码如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>s<span style="color:#f92672">=</span>requests<span style="color:#f92672">.</span>session()
 </span></span><span style="display:flex;"><span>body <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;hello&#34;</span>:<span style="color:#e6db74">&#34;file_get_contents(&#39;flag.php&#39;)&#34;</span>}
@@ -2738,7 +3276,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>print(r<span style="color:#f92672">.</span>content)
 </span></span></code></pre></div><h3 id="phpdecode">phpdecode</h3>
 <p><del>直接搜 <code>1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=</code> 找到了别人的 wp，flag 获得。</del></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ae81ff">1</span><span style="color:#a6e22e">wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY</span><span style="color:#f92672">=</span> <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ae81ff">1</span><span style="color:#a6e22e">wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY</span><span style="color:#f92672">=</span> <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">require</span> <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/lib.php&#39;</span>;
@@ -2747,7 +3285,7 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><p>可知加密为 <code>base64_encode(hex2bin(strrev(bin2hex($flag))))</code>，一层一层解密，python 脚本如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b64decode
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b64decode
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> binascii <span style="color:#f92672">import</span> hexlify, unhexlify
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&#34;</span>
@@ -2758,7 +3296,7 @@ tourbox</p>
 <p>直接 nc 连接即可获得 flag</p>
 <h3 id="ls1">ls1</h3>
 <p>ls as a service，将输入的字符传递为 ls 的 args，多试几次即可得出文件目录结构，精简后的如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>├── bin
 </span></span><span style="display:flex;"><span>│   ├── cat
 </span></span><span style="display:flex;"><span>│   ├── ls
@@ -2766,11 +3304,27 @@ tourbox</p>
 </span></span><span style="display:flex;"><span>├── flag
 </span></span><span style="display:flex;"><span>└── ls1
 </span></span></code></pre></div><p>传入 <code>; cat flag</code> 即可读到
-<img src="https://s2.ax1x.com/2019/04/19/E92wlT.png" alt="ls1"></p>
+
+
+<figure>
+  <img src="https://s2.ax1x.com/2019/04/19/E92wlT.png" alt="ls1" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">ls1</figcaption>
+  
+</figure>
+</p>
 <h3 id="ls2">ls2</h3>
 <p>ls as a service v2，限制了传入 args 的字符数为 3，无法直接 <code>cat flag</code>。
 由于 <code>bin</code> 下存在 <code>sh</code>，通过 <code>;sh</code> 唤起 shell，读取 flag。</p>
-<p><img src="https://s2.ax1x.com/2019/04/19/E9206U.png" alt="ls2"></p>
+<p>
+
+<figure>
+  <img src="https://s2.ax1x.com/2019/04/19/E9206U.png" alt="ls2" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">ls2</figcaption>
+  
+</figure>
+</p>
 <h2 id="crypto">CRYPTO</h2>
 <h3 id="dididi">dididi</h3>
 <p><code>..-. .-.. .- --. ..-. -.. ....- .---- . .---- ..--- -.. ----- ...-- .---- -.-. ..--- . -.. -.... -.-. ..-. ---.. ---.. ---.. -.... ...-- ---.. . -.... -.... -... . ....- -.. .</code></p>
@@ -2779,7 +3333,7 @@ tourbox</p>
 <p><code>kqfl{Hfjxfw_hnumjw_1x_xt_xnruqj}</code></p>
 <p>凯撒加密</p>
 <h3 id="rc4">rc4</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>cipher:wRTwnbjEAf6T22dYzyKgtBzQ/ydMmNqmf3WeW9E=
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>cipher:wRTwnbjEAf6T22dYzyKgtBzQ/ydMmNqmf3WeW9E=
 </span></span><span style="display:flex;"><span>key:eGF0dXNlYw==
 </span></span></code></pre></div><p><a href="http://ctf.ssleye.com/rc4.html">rc4 加密</a>，唯一需要注意的是 key 可能需要经过一次 base64 解密。</p>
 <h3 id="datababy">Datababy</h3>
@@ -2793,7 +3347,7 @@ ZERO -&gt; 0
 得到一长长长长长长长长长长长长长长长长长长长长长串 0 和 1。</p>
 <p>每八位二进制转 ASCII 即可获得 flag。</p>
 <h3 id="easy-rsa">easy RSA</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>n = 9637828843823500407917687664441327784714605952794831018467094508166140790258515855681653788687192363262499178812675284846293988948568322307302995971433129
 </span></span><span style="display:flex;"><span>e = 65537
 </span></span><span style="display:flex;"><span>c = 1736476276571471518318904802453151397043836796931780608028216447791913603812271065838523639504410549594365173220377575243217983329182149750696526310732151
 </span></span></code></pre></div><p><a href="https://github.com/3summer/CTF-RSA-tool">https://github.com/3summer/CTF-RSA-tool</a></p>
@@ -2802,7 +3356,7 @@ ZERO -&gt; 0
 <p>一个压缩了几千层的 zip 包，可以直接上十六进制查看器(winhex, hxd, 010 editor 等)打开，Ctrl + F flag 即可得到。</p>
 <p>据写脚本解压的小伙伴称他们跑了一个多小时（</p>
 <p>压缩脚本如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>name1<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>cat /dev/urandom | sed <span style="color:#e6db74">&#39;s/[^a-zA-Z0-9]//g&#39;</span> | strings -n <span style="color:#ae81ff">6</span> | head -n 1<span style="color:#e6db74">`</span>
 </span></span><span style="display:flex;"><span>name2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.zip&#34;</span>
@@ -2821,7 +3375,7 @@ ZERO -&gt; 0
 <p>求斐波那契数列第 1234 项，然后 md5(hex(Fibs(1234)))，（转小写后）即为 flag。</p>
 <p>看到这个题……肯定不能自己现场写算法，否则会被跑炸内存的。直接谷歌斐波那契数列快速求第 N 项，得到 O(log N) 的算法后写脚本求项。</p>
 <p>脚本如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Fibonacci_recursion_fast</span>(n):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Fibonacci_recursion_fast</span>(n):
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
@@ -2838,7 +3392,7 @@ ZERO -&gt; 0
 <p>贪吃蛇，玩到 70 分就出 flag</p>
 <h3 id="sstas-python-教室">ssta&rsquo;s Python 教室</h3>
 <p>给的是一个 pyc 文件，在线反编译，得到的代码如下。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># encoding: utf-8</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># encoding: utf-8</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32encode
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> codecs
@@ -2868,7 +3422,7 @@ ZERO -&gt; 0
 </span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;FLAG is right here. Can you get it?&#39;</span>, ffllaagg)
 </span></span></code></pre></div><p>重点是 <code>cipher = reverse(b32(rot13(reverseSomeByte(flag))))</code>，与 phpencode 相似，自己写脚本一层一层解密即可。
 自己写的不完善的脚本如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># -*- encoding: utf-8 -*-</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b32decode
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> codecs
 </span></span><span style="display:flex;"><span>
@@ -2895,16 +3449,16 @@ ZERO -&gt; 0
 <p>让我们把视线转到 Linux 平台，apt 等包管理器自动进行了软件的依赖分析与解压、配置的过程。Windows 系统之上与之理念相似的便是所谓“绿色软件”——解压即可使用。这也正是 scoop 所做的，利用所写的 mainfest，将解压、配置环境变量等自动化处理。另一方面，Windows 之上大多数软件并无所谓依赖的东西，最多便是一个 VC runtime，这也使得 scoop 的工作量更少了。</p>
 <h2 id="使用">使用</h2>
 <p>Scoop 默认是安装在你的用户文件夹下的，这样自然有着许多好处，例如不需要管理员权限。但如果你想要将其改变，可以在安装之前更改掉 scoop path</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">environment</span>]::setEnvironmentVariable(<span style="color:#e6db74">&#39;SCOOP&#39;</span>,<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>,<span style="color:#e6db74">&#39;User&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">environment</span>]::setEnvironmentVariable(<span style="color:#e6db74">&#39;SCOOP&#39;</span>,<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>,<span style="color:#e6db74">&#39;User&#39;</span>)
 </span></span><span style="display:flex;"><span>$env:SCOOP=<span style="color:#e6db74">&#39;C:\soft\Scoop&#39;</span>
 </span></span></code></pre></div><p>其中的 <code>C:\soft\Scoop</code> 自然可以换成你想要的路径。
 而后便是执行官网之上的那一行命令</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>iex (new-object net.webclient).downloadstring(<span style="color:#e6db74">&#39;https://get.scoop.sh&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>iex (new-object net.webclient).downloadstring(<span style="color:#e6db74">&#39;https://get.scoop.sh&#39;</span>)
 </span></span></code></pre></div><p>——若是报错，便将 execution policy 更改一下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 </span></span></code></pre></div><p>而后再添加上 extras, versions 之类的 bucket，便可愉快的使用了。</p>
 <p>个人推荐先</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">sudo</span> <span style="color:#a6e22e">7zip</span> <span style="color:#a6e22e">aria2</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">scoop</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">sudo</span> <span style="color:#a6e22e">7zip</span> <span style="color:#a6e22e">aria2</span>
 </span></span></code></pre></div><p>来获得更好的体验。</p>
 <p>其后的使用无非便是 <code>scoop help</code> 中所列举的东西了</p>
 <h2 id="mainfest">mainfest</h2>
@@ -2913,7 +3467,7 @@ ZERO -&gt; 0
 <p>放弃自然也是不行的，那么不如自己动手丰衣足食，来自己写一个 mainfest 吧！</p>
 <p>Scoop 的 mainfest 是一个 json 文件，好处很明显，这样一来其应用描述非常简洁。但坏处也肯定是有的，比如说，不支持注释。好在还有着官方的文档供我们查阅。</p>
 <p>下面是一份我写的 mainfest，附上注释，希望能给人点方便。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;homepage&#34;</span>: <span style="color:#e6db74">&#34;https://oldj.github.io/SwitchHosts/&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 此处为软件主页
 </span></span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;3.3.12.5349&#34;</span>,
@@ -2976,10 +3530,18 @@ ZERO -&gt; 0
 <p>这个编辑器会被叫做 <code>ed</code>。它基于 QED 但并不是一个确切的重实现。Thompson 决定抛弃一些 QED 功能。正则表达式的支持被削减，所以只有相对简单的正则表达式才会被理解。QED 通过打开多个缓冲区允许用户同时编辑几个文件，但 <code>ed</code> 一次只能对一个缓冲区工作。尽管 QED 能执行一个包含命令的缓冲区，<code>ed</code> 却不能这么做。这些简化也许是被要求的。Dennis Ritchie 曾说没有 QED 的高级正则表达式是“不大的损失”。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 <p><code>ed</code> 现在是 POSIX 标准的一部分，所以如果你有一个 POSIX 兼容的系统，它已经安装在你的电脑上了。它值得一玩，因为 <code>ed</code> 的许多命令现在是 Vim 的一部分。例如，为了将缓冲区写入磁盘，你需要使用 <code>w</code> 命令。为了退出编辑器，你需要使用 <code>q</code> 命令。这两个命令能在一行中同时被指定——也就是 <code>wq</code>。正如同 Vim，<code>ed</code> 是一个模式编辑器；为了从命令模式进入输入模式你需要使用插入命令(<code>i</code>)，附加命令(<code>a</code>)，或是更改命令(<code>c</code>)，这取决于你想对文本做些什么。<code>ed</code> 同样引进了 <code>s/foo/bar/g</code> 格式来查找与替换，或称“取代”文本。</p>
 <p>鉴于这些相似之处，你可能会认为普通的 Vim 用户使用 <code>ed</code> 没有任何问题。但在另一个重要的方面，<code>ed</code> 与 Vim 不尽相同。<code>ed</code> 是一个真正的行编辑器。它在电传打字机时代被写下并被广泛使用。当 Ken Thompson 与 Dennis Ritchie 正忙碌于 Unix 时，他们看起来像是这样：</p>
-<p><img src="https://s2.loli.net/2024/04/13/Yzk6CW9PntxZilM.jpg" alt="Ken_Thompson_(sitting)and_(2876612463).jpg"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/04/13/Yzk6CW9PntxZilM.jpg" alt="Ken_Thompson_(sitting)and_Dennis_Ritchie_at_PDP-11(2876612463).jpg" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">Ken_Thompson_(sitting)_and_Dennis_Ritchie_at_PDP-11_(2876612463).jpg</figcaption>
+  
+</figure>
+</p>
 <p><code>ed</code> 不允许你在打开的缓冲区里的其他行中编辑恰当的行，或者是移动光标，因为每当你改变了文件，<code>ed</code> 会必须重印整个文件。1969 年并没有让 <code>ed</code>“清除”屏幕上内容的机制，因为屏幕其实仅仅是一张纸，输出的所有东西都已经被墨水印到了纸上。如有必要，你可以使用列出命令(<code>l</code>)让 <code>ed</code> 为你打印出一行行内容，但大多数时间你都在操控着你不能看见的文本。因此使用 <code>ed</code> 就像是在一个昏暗的房子里用着一个几乎没电的手电筒，尝试着找对路。你一次能看到如此多东西，所以你必须尽你所能来记住一切都在哪里。</p>
 <p>下面是一个 <code>ed</code> 会话的例子。我已经添加了注释（在 <code>#</code> 标记之后）来解释每行的用途，尽管 <code>ed</code> 并不会将输入的这些识别为注释且会报错：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>sinclairtarget 09:49 ~<span style="color:#f92672">]</span>$ ed
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>sinclairtarget 09:49 ~<span style="color:#f92672">]</span>$ ed
 </span></span><span style="display:flex;"><span>i                           <span style="color:#75715e"># 进入输入模式</span>
 </span></span><span style="display:flex;"><span>Hello world!
 </span></span><span style="display:flex;"><span>
@@ -3008,7 +3570,15 @@ ZERO -&gt; 0
 <p>1976 年，Coulouris 带着 <code>em</code> 到了加州大学伯克利分校，他在那里作为计算机科学系的访问者待了一整个夏天。这刚好是在 Ken Thompson 离开伯克利前往贝尔实验室的十年之后。在伯克利，Coulouris 见到了 Bill Joy，一个正在工作于伯克利软件套件(BSD)的研究生。Coulouris 给 Joy 展示了 <code>em</code>，Joy 便在 Coulouris 的源代码上开始构建 <code>ed</code> 的一个改进版本，称之为 <code>ex</code>，即&quot;extended <code>ed</code>（扩展版 <code>ed</code>）&quot;。1978 年，<code>ex</code> 的 1.1 版本与 BSD 的首个发布版本捆绑释出。<code>ex</code> 很大程度上与 <code>ed</code> 兼容，但添加了两个模式：一个“打开”模式，启用与 <code>em</code> 上相似的单行编辑；一个“可视”模式，接管整个屏幕并允许我们像今天那样实时编辑整个文件。</p>
 <p>在 1979 年 BSD 的第二个发布版本中，一个名为 <code>vi</code> 的可执行程序被引进，它能比可视模式的 <code>ex</code> 做的稍多一些。</p>
 <p><code>ex</code>/<code>vi</code>(自此以后便是 <code>vi</code>)确立了很多不是 <code>ed</code> 一部分但我们现在在用的大部分约定。Joy 使用的视频终端是一台 Lear Siegler ADM-3A，其键盘上没有方向键。作为替代，箭头被印在 <code>h</code>, <code>j</code>, <code>k</code> 与 <code>l</code> 键上，这便是为何 Joy 使用这些按键作为 <code>vi</code> 中的光标移动。ADM-3A 键盘上的 ESC 键则位于如今的 Tab 键的位置上，这解释了为何一个极其难按到的按键会被分配为常用到的退出一个模式的操作。使用 <code>:</code> 字符作为命令前缀也是来自 <code>vi</code>，在正常模式（也就是运行 <code>ex</code> 进入的模式）中使用 <code>:</code> 作为提示。这解决了 <code>ed</code> 中存在已久的一个抱怨，即，一旦启动，用户只会得到彻底的沉默。在可视模式，保存并退出现在是键入经典的 <code>:wq</code>。&ldquo;Yanking&rdquo; 与 &ldquo;putting&rdquo;（译注：即复制与粘贴）出现了，且 <code>set</code> 命令打开设置选项都是最初的 <code>vi</code> 的一部分。我们现在在 Vim 中使用的基本的文本编辑功能大部分都是 <code>vi</code> 的功能。</p>
-<p><img src="https://s2.loli.net/2024/04/13/GnTOFa4NMpXo7di.jpg" alt="LSI-ADM3A-full-keyboard.jpg"></p>
+<p>
+
+<figure>
+  <img src="https://s2.loli.net/2024/04/13/GnTOFa4NMpXo7di.jpg" alt="LSI-ADM3A-full-keyboard.jpg" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">LSI-ADM3A-full-keyboard.jpg</figcaption>
+  
+</figure>
+</p>
 <p><code>vi</code> 是 BSD 上除了 <code>ed</code> 唯一捆绑安装的文本编辑器。在那时，Emacs 需要花费数百美元（这是在 GNU Emacs 出现之前），所以 <code>vi</code> 变得极其流行。但 <code>vi</code> 是 <code>ed</code> 的直接后代，这意味着如果没有 AT&amp;T 的源代码许可，源代码不能被改动。这使几个人创造了 <code>vi</code> 的开源版本。1987 年 STEVIE (ST Editor for VI Enthusiasts)（为 vi 爱好者的 ST 编辑器）出现了，Elvis 出现在 1990 年，<code>nvi</code> 则在 1994 年出现。这些克隆中的某些添加了额外的功能，例如语法高亮显示与分割窗口。因为很多 Elvis 用户的推动，Elvis 的许多功能被合并进了 Vim。</p>
 <h2 id="bram-moolenaar-与-vim">Bram Moolenaar 与 Vim</h2>
 <p>Vim，现在是&quot;Vi Improved&quot;的缩写，最初却意味着&quot;Vi Imitation&quot;（Vi 的模仿）。如同许多其他的 <code>vi</code> 克隆，Vim 最初是一个 <code>vi</code> 不能工作的平台上的移植。Bram Moolenaar，一个在荷兰芬洛的一个复印机公司工作的荷兰工程师，想要在他全新的 Amiga 2000 上拥有一个像 <code>vi</code> 一样的东西。Moolenaar 在大学时代已习惯于在 Unix 系统上使用 <code>vi</code>，且它现在“了如指掌”。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 所以在 1988 年，以已存在的 <code>vi</code> 克隆 STEVIE 作为起点，Moolenaar 开始着手于 Vim。</p>
@@ -3073,7 +3643,15 @@ ZERO -&gt; 0
 <p>RSS 曾两度被发明。这意味着，它从未有过一个明白无误的拥有者，一系列的事务又催生了无止境的争吵与辩论。但这也同时表明，作为一个重要想法， RSS 的时代已经到来。</p>
 <p>1998 年，网景正竭力想象自己的未来。它的旗舰产品，曾一度被 80% 的互联网用户所选择的网景浏览器，正在 IE 浏览器前迅速失去份额。所以网景决定在一个全新的领域竞争。五月份，一个小组被组建起来，开始了后来被内部称为“Project 60”的项目。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> 两个月后，网景宣布了“My Netscape”，一个与其他互联网门户如雅虎，MSN 及 Excite 相竞争的互联网门户。</p>
 <p>第二年三月，网景宣布了一个叫&quot;My Netscape Network&quot;的 My Netscape 门户扩展。My Netscape 用户现在可以自定义他们的 My Netscape 页面所以它包含了名为“channels&quot;的功能，汇集网络上最近的头条新闻。只要你最爱的网站发布了一个由网景规定格式的特殊文件，一般只需点击网站在其界面提供的“Add Channel”按键，你就能把这个网站添加到你的 My Netscape 页面。如此，一个包含着一列相关头条的小盒子就会出现。</p>
-<p><img src="https://s1.ax1x.com/2018/09/22/iupTPJ.gif" alt="mnn-channel"></p>
+<p>
+
+<figure>
+  <img src="https://s1.ax1x.com/2018/09/22/iupTPJ.gif" alt="mnn-channel" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">mnn-channel</figcaption>
+  
+</figure>
+</p>
 <p>这个参与网站必须发布的特殊文件就是一个 RSS 文件。在 My Netscape Network 的声明中，网景解释称 RSS 代表着”RDF Site Summary“。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 这多少有几分用词不当。RDF，全称 Resource Description Framework，主要是一个描述各种资源属性的语法（如果感兴趣的话，看 <a href="https://twobithistory.org/2018/05/27/semantic-web.html">我的关于语义网的这篇文章</a>。1999 年，W3C 组织开始考虑 RDF 的规范草案。尽管 RSS 应该是基于 RDF 的，网景释出的示例 RSS 文件却没有用任何 RDF 标签，即使它声明了 RDF XML 命名空间。在一份与网景 RSS 规范一同释出的文件中，规范作者之一的 Dan Libby 解释称“在 MNN 的发布中，网景曾有意的限制了 RSS 格式的复杂性”。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> 这份规范的版本号是 0.90，因为他们相信在 W3C 的 XML 规范与新的 RDF 标准下，RSS 接下来的版本会更加完善。</p>
 <p>RSS 曾被 Libby 与 Ramanathan Guha，另一个网景雇员一同定义。Guha 之前在苹果公司工作，并在那里提出了 Meta Content Framework。MCF 是一个意图描述从网页到本地文件等一切的表示元数据格式。Guha 为证明其力量，开发了一个名为 <a href="http://web.archive.org/web/19970703020212/http://mcf.research.apple.com:80/hs/screen_shot.html">HotSauce</a> 的程序，能在 3D 空间中以节点网络的形式可视化显示文件间关系。在离开苹果加入网景后，Guha 与 Tim Bray，一个网景顾问，一同为制作一个基于 XML 版本的 MCF 而工作，而这成为了 W3C 的 RDF 草案的基础。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup> 之后，不出意外的，Guha 与 Libby 急于将 RDF 合并进 RSS。但 Libby 后来写道，由于时间限制及 RDF “对于‘一般用户’太‘过于复杂’”，基于 RDF 的 RSS 比之最初的设想，削减了很多。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
 <p>正当网景努力在后来被称为“门户大战”的竞争中夺人眼球时，一种闻名为“博客”的现象正在互联网的其他地方悄然登场。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> Dave Winery 正是那些先驱者之一，他是一家叫 UserLand Software 的公司的 CEO，这家公司开发了早期的内容管理系统，能让非技术娴熟的人更容易地书写博客。Winer 经营着他名为 <a href="http://scripting.com/">Scripting News</a> 的个人博客，这也是网上现存的最古老的博客之一。在 1997 年的 12 月 15 日，网景宣布 My Netscape Network 一年多以前，Winer 发布了一篇文章宣布博客现在已能通过 XML 与 HTML 一同获得。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup></p>
@@ -3319,11 +3897,11 @@ ZERO -&gt; 0
 在 cmder 中，无论英文还是中文，输入的光标变宽或者多一个字符。</p>
 <h2 id="解决方法">解决方法</h2>
 <p>进入 <code>%CMDER_ROOT%\vendor</code> 文件夹，编辑 <code>profile.ps1</code>，寻找下列信息(<code>Ctrl + F</code>)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Microsoft.PowerShell.Utility\Write-Host</span> <span style="color:#a6e22e">&#34;`nλ</span> <span style="color:#a6e22e">&#34;</span> <span style="color:#a6e22e">-NoNewLine</span> <span style="color:#a6e22e">-ForegroundColor</span> <span style="color:#a6e22e">&#34;DarkGray&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ps" data-lang="ps"><span style="display:flex;"><span><span style="color:#a6e22e">Microsoft.PowerShell.Utility\Write-Host</span> <span style="color:#a6e22e">&#34;`nλ</span> <span style="color:#a6e22e">&#34;</span> <span style="color:#a6e22e">-NoNewLine</span> <span style="color:#a6e22e">-ForegroundColor</span> <span style="color:#a6e22e">&#34;DarkGray&#34;</span>
 </span></span></code></pre></div><p>将其中的 <code>λ</code> 改为 <code>#</code> 或其它字符即可。</p>
 <hr>
 <p>如果使用的是 cmd，则编辑 <code>clink.lua</code>，寻找</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> env <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> env <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;λ&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>    lambda <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;(&#34;</span><span style="color:#f92672">..</span>env<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;) λ&#34;</span>
@@ -3345,7 +3923,7 @@ ZERO -&gt; 0
 <p><code>$</code> 表示行内公式：</p>
 <p>质能守恒方程 $E=mc^2$ 可以写作 <code>$E=mc^2$</code>。</p>
 <p><code>$$</code> 表示整行公式，如</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#e6db74">$$</span>\sum_{i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>}^n a_i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#e6db74">$$</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#e6db74">$$</span>\sum_{i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>}^n a_i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#e6db74">$$</span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">$$</span>f<span style="color:#f92672">(</span>x_<span style="color:#ae81ff">1</span>,x_x,\ldots,x_n<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> x_<span style="color:#ae81ff">1</span>^<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> x_<span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> \cdots <span style="color:#f92672">+</span> x_n^<span style="color:#ae81ff">2</span> <span style="color:#e6db74">$$</span>
 </span></span></code></pre></div><p>会被渲染为</p>
 <p>$$
@@ -3457,7 +4035,15 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 <p>同上，你可以在<a href="https://nodejs.org/">nodejs 官网</a>或包管理工具中安装 nodejs。值得一提的是，apt 仓库中的 nodejs 版本过老，不推荐通过 apt 安装。</p>
 <h3 id="github-账号">Github 账号</h3>
 <p><del>全球最大的同性交友网站上线啦，性感开发者在线发源码</del>
-<img src="http://pic4.zhimg.com/80/7c9d3403bf922b1663f56975869c829b_hd.jpg" alt="没毛病"></p>
+
+
+<figure>
+  <img src="http://pic4.zhimg.com/80/7c9d3403bf922b1663f56975869c829b_hd.jpg" alt="没毛病" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">没毛病</figcaption>
+  
+</figure>
+</p>
 <p>hexo 博客使用的是 Github 提供的 GitHub pages 服务，因此一个 GitHub 账号必不可少<del>当然你也可以选择 gitee 或者 coding.net</del></p>
 <h2 id="开始">开始</h2>
 <p>打开 terminal(*nux 下)或者 cmd(Windows 下，记得使用管理员权限打开)。
@@ -3465,7 +4051,7 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 下面按照 hexo 官方文档执行<code>npm install -g hexo-cli</code>。
 <strong>*unix 下请使用<code>root</code>权限执行，否则会出现错误。</strong>
 而后执行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hexo init &lt;folder&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hexo init &lt;folder&gt;
 </span></span><span style="display:flex;"><span>cd &lt;folder&gt;
 </span></span><span style="display:flex;"><span>npm install
 </span></span></code></pre></div><p><code>&lt;folder&gt;</code>为文件夹的名字，可以随意。
@@ -3479,7 +4065,7 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 <li>由于我们使用的是 GitHub 的服务，因此<code>url</code>项应该是<code>https://username.github.io</code>，<code>username</code>是你自己的 GitHub 用户名，需要注意的是**<code>https</code>**。</li>
 <li><code>deploy</code>项应形如</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">deploy</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">deploy</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">git</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">repo</span>: <span style="color:#ae81ff">&lt;git-source&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">master</span>
@@ -3522,7 +4108,15 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 前几天有个群里有人想把 Windows 装入 u 盘，加之起了一个“做个系统随身带着岂不是美滋滋”的想法，今天早上着手制作。</p>
 <h2 id="过程">过程</h2>
 <h3 id="linuxlive-usb-creater">LinuxLive USB Creater</h3>
-<p><img src="http://www.linuxliveusb.com/images/stories/logos/LogoText.png" alt="LiLi">
+<p>
+
+<figure>
+  <img src="http://www.linuxliveusb.com/images/stories/logos/LogoText.png" alt="LiLi" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">LiLi</figcaption>
+  
+</figure>
+
 这么一个不好做的事，当然是事先找了很多资料的~
 于是在一个知乎回答里看到推荐了<a href="http://www.linuxliveusb.com/">LinuxLive USB Creater</a>，便去试了试，打开官网，按捺住吐槽这炫目的 Logo、古老的界面的冲动，先试了试。
 过程不外乎选择镜像文件、u 盘之类。值得一提的是如果你勾选的话，其会自动下载一个 vbox portable 到你的 u 盘中。
@@ -3546,7 +4140,15 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 <p>在下载<em>deepin boot maker</em>时看到了这个，本着“装个 deepin 也不是不可以”的心态下载了它。
 然后发现…………这货只能把系统装进 C 盘！<del>玩蛋去吧！</del></p>
 <h3 id="arch-anywhere">arch-anywhere</h3>
-<p><img src="https://arch-anywhere.org//images/anarchy-linux-icon.png" alt="anarchy linux">
+<p>
+
+<figure>
+  <img src="https://arch-anywhere.org//images/anarchy-linux-icon.png" alt="anarchy linux" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">anarchy linux</figcaption>
+  
+</figure>
+
 又名<code>anarchy linux</code>，logo 还挺好看。
 <a href="https://arch-anywhere.org/">这个玩意</a>，arch 也是一个我非常想尝试的发行版，因此寻思着装个 arch 也不是不可以，除了有点担心太久不用 u 盘的系统更新会滚挂之外，我还是持乐观态度的。
 然而…………烧录进 u 盘后设置电脑从 u 盘启动</p>
@@ -3564,7 +4166,15 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 <p>网址就不贴了，界面有上古遗风，论坛之类的看起来也很久没人维护了。
 简易尝试之后果断放弃。</p>
 <h3 id="slax-linux">Slax linux</h3>
-<p><img src="http://www.slax.org/en/images/clover.png" alt="Slax linux">
+<p>
+
+<figure>
+  <img src="http://www.slax.org/en/images/clover.png" alt="Slax linux" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">Slax linux</figcaption>
+  
+</figure>
+
 界面和 win8 有点像，安装方式与众不同（直接从 iso 文件解压然后运行批处理文件）。
 目测好像不能在 efi 下启动，改天在旧电脑上试试。</p>
 <h2 id="结语">结语</h2>
@@ -3585,7 +4195,15 @@ RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢�
 我一直在使用的浏览器，美观简洁，十分好用，标签组功能非常赞
 chromium 内核，支持扩展~~(没用过就是了)~~
 2018-3-2 update: 添加了云同步的功能，完美！
-<img src="https://s1.ax1x.com/2017/12/14/qolUe.png" alt="qolUe.png"></p>
+
+
+<figure>
+  <img src="https://s1.ax1x.com/2017/12/14/qolUe.png" alt="qolUe.png" loading="lazy">
+  
+    <figcaption class="marginnote figure-caption">qolUe.png</figcaption>
+  
+</figure>
+</p>
 <h3 id="chrome">Chrome</h3>
 <p>Google 出品，掌握特殊上网姿势后云同步十分好用</p>
 <h3 id="edge">Edge</h3>
@@ -3698,7 +4316,7 @@ telegram 的第三方客户端，1520 上在用，电脑上没怎么用</p>
 <h2 id="编程相关">编程相关</h2>
 <h3 id="open-wsl">open-wsl</h3>
 <p>用来代替自带的 ubuntu 终端~</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                           ./+o+-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                           ./+o+-
 </span></span><span style="display:flex;"><span>                   yyyyy- -yyyyyy+
 </span></span><span style="display:flex;"><span>                ://+//////-yyyyyyo
 </span></span><span style="display:flex;"><span>            .++ .:/++++++/-.+sss/<span style="color:#e6db74">`</span>
