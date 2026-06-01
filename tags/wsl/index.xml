@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/tags/wsl/</link><description>一帘新语随风去，半山明月踏江来。</description><generator>Hugo 0.162.1</generator><language>zh</language><managingEditor>Jinglue (batkiz@outlook.com)</managingEditor><webMaster>Jinglue (batkiz@outlook.com)</webMaster><lastBuildDate>Sun, 31 May 2026 14:00:22 +0000</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/wsl/" rel="self" type="application/rss+xml"/><item><title>twobithistory 内容翻译</title><link>https://blog.batkiz.com/posts/translations-on-twobithistory/</link><pubDate>Tue, 08 Jul 2025 16:00:15 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/translations-on-twobithistory/</guid><description>&lt;p&gt;首先非常感谢 &lt;a href="https://twobithistory.org/"&gt;Two-Bit History&lt;/a&gt; 的内容。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/Par-Tuner/translations/tree/master/twobithistory"&gt;https://github.com/Par-Tuner/translations/tree/master/twobithistory&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>not b@tk1z</title><link>https://blog.batkiz.com/tags/wsl/</link><description>一帘新语随风去，半山明月踏江来。</description><generator>Hugo 0.162.1</generator><language>zh</language><managingEditor>Jinglue (batkiz@outlook.com)</managingEditor><webMaster>Jinglue (batkiz@outlook.com)</webMaster><lastBuildDate>Mon, 01 Jun 2026 15:00:49 +0000</lastBuildDate><atom:link href="https://blog.batkiz.com/tags/wsl/" rel="self" type="application/rss+xml"/><item><title>twobithistory 内容翻译</title><link>https://blog.batkiz.com/posts/translations-on-twobithistory/</link><pubDate>Tue, 08 Jul 2025 16:00:15 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/translations-on-twobithistory/</guid><description>&lt;p&gt;首先非常感谢 &lt;a href="https://twobithistory.org/" target="_blank" rel="noopener noreferrer"&gt;Two-Bit History&lt;/a&gt;
+ 的内容。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/Par-Tuner/translations/tree/master/twobithistory" target="_blank" rel="noopener noreferrer"&gt;https://github.com/Par-Tuner/translations/tree/master/twobithistory&lt;/a&gt;
+&lt;/p&gt;
 &lt;p&gt;在 GitHub Copilot 与 Google Gemini 的帮助下，写了两段小脚本，把 twobithistory 的文章都爬下来做了个归档，并且翻译了下。&lt;/p&gt;
-&lt;p&gt;不过大模型输出的内容还没能完全让我满意：&lt;/p&gt;</description></item><item><title>Vim 的起源</title><link>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</link><pubDate>Sun, 06 Jul 2025 00:07:55 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</guid><description>&lt;p&gt;2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。&lt;/p&gt;</description></item><item><title>RSS 的兴起与消亡</title><link>https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/</link><pubDate>Sat, 05 Jul 2025 22:58:53 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/</guid><description>&lt;p&gt;2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。&lt;/p&gt;</description></item><item><title>十八愁绕口令</title><link>https://blog.batkiz.com/posts/shi-ba-chou/</link><pubDate>Thu, 03 Apr 2025 15:52:17 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/shi-ba-chou/</guid><description>&lt;p&gt;很早之前靠人工整理出来的，压制的视频在：&lt;a href="https://www.bilibili.com/video/BV1At421j7NH"&gt;BV1At421j7NH&lt;/a&gt;。
+&lt;p&gt;不过大模型输出的内容还没能完全让我满意：&lt;/p&gt;</description></item><item><title>Vim 的起源</title><link>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</link><pubDate>Sun, 06 Jul 2025 00:07:55 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/ai-translation-where-vim-came-from/</guid><description>&lt;p&gt;2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。&lt;/p&gt;</description></item><item><title>RSS 的兴起与消亡</title><link>https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/</link><pubDate>Sat, 05 Jul 2025 22:58:53 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/</guid><description>&lt;p&gt;2018 年，那个 GPT-2 都还未出现的年代，我在网上偶然看到了 Two Bit History 的数篇博文，其内容对于刚刚大学入学、接触计算机的我带来了非常多的震撼，各种各样的历史、发展、相关人士信手拈来，在当时也极大激发了我的热情。在当时这种热情的激发下，我花了几个晚上的时间翻译了其两篇文章，甚至还投稿去了煎蛋。不过说实话我的翻译水平确实很烂，当时在煎蛋上就看到了几个类似的评价，现在读来也确实觉得很不通顺。&lt;/p&gt;</description></item><item><title>十八愁绕口令</title><link>https://blog.batkiz.com/posts/shi-ba-chou/</link><pubDate>Thu, 03 Apr 2025 15:52:17 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/shi-ba-chou/</guid><description>&lt;p&gt;很早之前靠人工整理出来的，压制的视频在：&lt;a href="https://www.bilibili.com/video/BV1At421j7NH" target="_blank" rel="noopener noreferrer"&gt;BV1At421j7NH&lt;/a&gt;
+。
 现在把纯文字稿放出来，顺带去掉了很多气口词。&lt;/p&gt;
-&lt;p&gt;另外推荐朋友做的 &lt;a href="https://nianzi.site/"&gt;粘子&lt;/a&gt;，整理收集了不少的曲艺文本。&lt;/p&gt;
-&lt;h2 id="玲珑塔"&gt;玲珑塔&lt;/h2&gt;
-&lt;p&gt;高高山上有一老僧，身披着衲头几千层。&lt;/p&gt;
-&lt;p&gt;您若问老僧年高迈，曾记得黄河九澄清。&lt;/p&gt;</description></item><item><title>读了《水浒传》、《水浒传：虚构中的史实 》</title><link>https://blog.batkiz.com/posts/shui-hu/</link><pubDate>Tue, 18 Mar 2025 14:40:27 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/shui-hu/</guid><description>&lt;p&gt;这两本书都已经读完很久了，原来是打算等《译余偶拾》读完后，一起写一篇，但是近两天发现《译余偶拾》是很难快速读完了，索性先把这两本书的读后感写一写。&lt;/p&gt;</description></item><item><title>读了《酉阳杂俎》</title><link>https://blog.batkiz.com/posts/you-yang-za-zu/</link><pubDate>Tue, 14 Jan 2025 21:47:46 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/you-yang-za-zu/</guid><description>&lt;p&gt;&lt;a href="https://book.douban.com/subject/27066229/"&gt;中华书局张仲裁点校本&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;去年九月间有朋友贴了相关的段落，觉得不错便开始读，直到最近几天忙里偷闲，加快进度把最后 10% 读完了。整个大概花了 10 个小时，靠的全都是睡前时间。&lt;/p&gt;
-&lt;p&gt;《酉阳杂俎》读起来颇像是百科全书与微型小说集的混合。志怪之事有股奇怪的奇妙之感，像是在读《搜神记》。百科全书的部分有些条目惊叹于观察之细致、与当代只注解几无差异，有些却又像是志怪，非常之神奇。&lt;/p&gt;</description></item><item><title>关西之旅</title><link>https://blog.batkiz.com/posts/kansai-journey/</link><pubDate>Fri, 10 Jan 2025 00:20:00 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/kansai-journey/</guid><description>&lt;p&gt;前些日子去了趟大阪，并在周边玩了一圈，记一篇流水账。憋了很久才写完，多图杀猫。&lt;/p&gt;
-&lt;p&gt;下文中的图片均为 Nikon Z5 + Nikkor Z 50mm f/1.8 S 及小米 15 拍摄。其中小米15一般带有徕卡水印；尼康拍的照片仅通过尼康工坊直接导出 jpeg，未做后期处理。&lt;/p&gt;</description></item><item><title>读了《山月记》</title><link>https://blog.batkiz.com/posts/san-getsu-ki/</link><pubDate>Mon, 16 Dec 2024 01:26:10 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/san-getsu-ki/</guid><description>&lt;p&gt;最近靠睡前与在各种交通工具上的时间，断断续续地读完了《山月记》，&lt;a href="https://book.douban.com/subject/30394154/"&gt;果麦出品的三秦出版社本&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;另外推荐朋友做的 &lt;a href="https://nianzi.site/" target="_blank" rel="noopener noreferrer"&gt;粘子&lt;/a&gt;
+，整理收集了不少的曲艺文本。&lt;/p&gt;</description></item><item><title>读了《水浒传》、《水浒传：虚构中的史实 》</title><link>https://blog.batkiz.com/posts/shui-hu/</link><pubDate>Tue, 18 Mar 2025 14:40:27 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/shui-hu/</guid><description>&lt;p&gt;这两本书都已经读完很久了，原来是打算等《译余偶拾》读完后，一起写一篇，但是近两天发现《译余偶拾》是很难快速读完了，索性先把这两本书的读后感写一写。&lt;/p&gt;</description></item><item><title>读了《酉阳杂俎》</title><link>https://blog.batkiz.com/posts/you-yang-za-zu/</link><pubDate>Tue, 14 Jan 2025 21:47:46 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/you-yang-za-zu/</guid><description>&lt;p&gt;&lt;a href="https://book.douban.com/subject/27066229/" target="_blank" rel="noopener noreferrer"&gt;中华书局张仲裁点校本&lt;/a&gt;
+。&lt;/p&gt;
+&lt;p&gt;去年九月间有朋友贴了相关的段落，觉得不错便开始读，直到最近几天忙里偷闲，加快进度把最后 10% 读完了。整个大概花了 10 个小时，靠的全都是睡前时间。&lt;/p&gt;</description></item><item><title>关西之旅</title><link>https://blog.batkiz.com/posts/kansai-journey/</link><pubDate>Fri, 10 Jan 2025 00:20:00 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/kansai-journey/</guid><description>&lt;p&gt;前些日子去了趟大阪，并在周边玩了一圈，记一篇流水账。憋了很久才写完，多图杀猫。&lt;/p&gt;
+&lt;p&gt;下文中的图片均为 Nikon Z5 + Nikkor Z 50mm f/1.8 S 及小米 15 拍摄。其中小米15一般带有徕卡水印；尼康拍的照片仅通过尼康工坊直接导出 jpeg，未做后期处理。&lt;/p&gt;</description></item><item><title>读了《山月记》</title><link>https://blog.batkiz.com/posts/san-getsu-ki/</link><pubDate>Mon, 16 Dec 2024 01:26:10 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/san-getsu-ki/</guid><description>&lt;p&gt;最近靠睡前与在各种交通工具上的时间，断断续续地读完了《山月记》，&lt;a href="https://book.douban.com/subject/30394154/" target="_blank" rel="noopener noreferrer"&gt;果麦出品的三秦出版社本&lt;/a&gt;
+。&lt;/p&gt;
 &lt;h1 id="来自中国典籍的故事"&gt;来自中国典籍的故事&lt;/h1&gt;
-&lt;p&gt;前面几篇基本都是中短篇，其中大部分更近乎寓言，读起来并无障碍，挑着讲一些。&lt;/p&gt;
-&lt;h2 id="名人传"&gt;名人传&lt;/h2&gt;
-&lt;p&gt;取之于《列子》中「纪昌学射」一节，中岛敦扩写了不少心中感悟，整体与通行版本并无不同，唯独最后的「奇闻」，颇有大音希声或心无挂碍，究竟涅槃之意。&lt;/p&gt;</description></item><item><title>飞智八爪鱼 4 体验</title><link>https://blog.batkiz.com/posts/flydigi-apex-4/</link><pubDate>Tue, 10 Dec 2024 17:16:00 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/flydigi-apex-4/</guid><description>&lt;p&gt;
+&lt;p&gt;前面几篇基本都是中短篇，其中大部分更近乎寓言，读起来并无障碍，挑着讲一些。&lt;/p&gt;</description></item><item><title>飞智八爪鱼 4 体验</title><link>https://blog.batkiz.com/posts/flydigi-apex-4/</link><pubDate>Tue, 10 Dec 2024 17:16:00 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/flydigi-apex-4/</guid><description>&lt;p&gt;
 
 &lt;figure&gt;
- &lt;img src="https://s2.loli.net/2024/12/10/kJvIAjugaty13eT.webp" alt="" loading="lazy"&gt;
+ &lt;img src="https://s2.loli.net/2024/12/10/kJvIAjugaty13eT.webp" alt="" loading="lazy" decoding="async"&gt;
  
 &lt;/figure&gt;
 &lt;/p&gt;
@@ -34,9 +34,12 @@
 &lt;p&gt;之前在用小米 10s，某天曲面屏意外爆掉了，考虑到更换屏幕总成的价格已经几乎是手机购入价的一半，所以没考虑太久就去小米之家以旧换新成了小米 13。&lt;/p&gt;</description></item><item><title>关于地下交通站的一些闲言碎语</title><link>https://blog.batkiz.com/posts/dixiajiaotongzhan/</link><pubDate>Sat, 13 Jan 2024 11:56:02 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/dixiajiaotongzhan/</guid><description>&lt;p&gt;原本是计划写一篇关于地下交通站的考据的，不过考虑到一则本人的水平属于半瓶子晃荡，就不出来丢人了；二则有些内容也不能算是考据。因此就想到哪写到哪算哪吧。&lt;/p&gt;</description></item><item><title>Bye 2021</title><link>https://blog.batkiz.com/posts/bye-2021/</link><pubDate>Fri, 31 Dec 2021 19:38:07 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/bye-2021/</guid><description>&lt;p&gt;Hi 亲爱的朋友们，新年快乐！&lt;/p&gt;
 &lt;p&gt;今年从三月后没有再更新过文章，先在这里道一声歉。&lt;/p&gt;
 &lt;p&gt;2021 年对我来说是非常特殊的一年。&lt;/p&gt;
-&lt;p&gt;年初的考研，成绩不出我所料没有考上；上半年时花了点时间，面试了许多家公司，最终选择了腾讯；之后顺利从大学毕业，来到了广州。&lt;/p&gt;</description></item><item><title>翻译|REST API 设计最佳实践</title><link>https://blog.batkiz.com/posts/best-practices-for-rest-api-design/</link><pubDate>Thu, 18 Mar 2021 18:51:25 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/best-practices-for-rest-api-design/</guid><description>&lt;p&gt;原文链接：&lt;a href="https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/"&gt;Best practices for REST API design&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 &lt;a href="https://docs.microsoft.com/zh-cn/azure/architecture/best-practices/api-design"&gt;Web API 设计&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;声明：本文的完成亦有 &lt;a href="https://www.deepl.com/"&gt;DeepL&lt;/a&gt; 的帮助。&lt;/p&gt;
+&lt;p&gt;年初的考研，成绩不出我所料没有考上；上半年时花了点时间，面试了许多家公司，最终选择了腾讯；之后顺利从大学毕业，来到了广州。&lt;/p&gt;</description></item><item><title>翻译|REST API 设计最佳实践</title><link>https://blog.batkiz.com/posts/best-practices-for-rest-api-design/</link><pubDate>Thu, 18 Mar 2021 18:51:25 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/best-practices-for-rest-api-design/</guid><description>&lt;p&gt;原文链接：&lt;a href="https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/" target="_blank" rel="noopener noreferrer"&gt;Best practices for REST API design&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;译者按：关于 REST API 的介绍与最佳实践，亦可参见微软 &lt;a href="https://docs.microsoft.com/zh-cn/azure/architecture/best-practices/api-design" target="_blank" rel="noopener noreferrer"&gt;Web API 设计&lt;/a&gt;
+。&lt;/p&gt;
+&lt;p&gt;声明：本文的完成亦有 &lt;a href="https://www.deepl.com/" target="_blank" rel="noopener noreferrer"&gt;DeepL&lt;/a&gt;
+ 的帮助。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;REST API 是现今最常见的网络服务之一。它允许包括浏览器在内的多种客户端通过 REST API 与服务器进行通信。&lt;/p&gt;</description></item><item><title>博客主题新功能：repl 代码集成</title><link>https://blog.batkiz.com/posts/theme-new-feat-repl-embed/</link><pubDate>Sun, 06 Sep 2020 13:30:29 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/theme-new-feat-repl-embed/</guid><description>&lt;p&gt;由于 hugo 自 v0.60 之后默认忽略 raw html，所以为了便捷地使用 repl 的 embed code share 功能，我就写了个 shortcode。&lt;/p&gt;
 &lt;h2 id="效果测试"&gt;效果测试&lt;/h2&gt;
@@ -47,7 +50,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;batkiz -&amp;gt; username(不带 `@`)
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;hello-repl -&amp;gt; repl name
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;*/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;具体的代码则可以去我主题的代码仓库瞅一眼（毕竟非常简单）&lt;/p&gt;</description></item><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</guid><description>&lt;p&gt;承接&lt;a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/"&gt;前文&lt;/a&gt;，这里是另一些可能有点用的 pwsh 脚本。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;具体的代码则可以去我主题的代码仓库瞅一眼（毕竟非常简单）&lt;/p&gt;</description></item><item><title>一些 powershell 脚本 | 其二</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</link><pubDate>Mon, 31 Aug 2020 12:57:22 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts-2/</guid><description>&lt;p&gt;承接&lt;a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/"&gt;前文&lt;/a&gt;
+，这里是另一些可能有点用的 pwsh 脚本。&lt;/p&gt;
 &lt;h2 id="命令行代理"&gt;命令行代理&lt;/h2&gt;
 &lt;p&gt;让命令行应用走代理，用法是 &lt;code&gt;socks app command&lt;/code&gt;。也可以把 &lt;code&gt;Set-CliProxy&lt;/code&gt; 与 &lt;code&gt;Clear-CliProxy&lt;/code&gt; 单独拿出来用。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;function&lt;/span&gt; socks {
@@ -75,9 +79,15 @@
 &lt;p&gt;下面是通过 Cloudflare 白嫖的教程。&lt;/p&gt;
 &lt;h2 id="完整步骤"&gt;完整步骤&lt;/h2&gt;
 &lt;h3 id="新建-workers"&gt;新建 workers&lt;/h3&gt;
-&lt;p&gt;workers 即 Cloudflare 推出的 serverless 云函数。在 &lt;a href="https://dash.cloudflare.com/"&gt;主页&lt;/a&gt; 直接点击 workers 新建一个，名字随意，代码如下：&lt;/p&gt;</description></item><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</guid><description>&lt;h2 id="问题起源"&gt;问题起源&lt;/h2&gt;
-&lt;p&gt;在几天之前，我的&lt;a href="https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123"&gt;命令行翻译程序&lt;/a&gt;挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。&lt;/p&gt;
-&lt;p&gt;正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 &lt;a href="http://nlp.xmu.edu.cn/"&gt;厦门大学自然语言处理实验室&lt;/a&gt; 提供的 &lt;a href="http://nmt.xmu.edu.cn/"&gt;云译 CloudTranslation&lt;/a&gt; 的公开 &lt;a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html"&gt;API&lt;/a&gt;。&lt;/p&gt;</description></item><item><title>在 winget 到来之际，再谈谈 scoop</title><link>https://blog.batkiz.com/posts/talk-about-scoop/</link><pubDate>Thu, 21 May 2020 15:56:06 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/talk-about-scoop/</guid><description>&lt;p&gt;Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的常规更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多说：Windows 终于迎来了受官方支持的命令行安装工具。此前虽然有 choco, scoop 等，但都只是第三方工具而已，如今微软第一方下场，无疑给开发者们带来了极大的鼓舞。&lt;/p&gt;</description></item><item><title>一些 powershell 脚本</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts/</link><pubDate>Wed, 13 May 2020 21:34:09 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts/</guid><description>&lt;p&gt;近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 &lt;a href="https://github.com/batkiz/dotfiles"&gt;batkiz/dotfiles&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;workers 即 Cloudflare 推出的 serverless 云函数。在 &lt;a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer"&gt;主页&lt;/a&gt;
+ 直接点击 workers 新建一个，名字随意，代码如下：&lt;/p&gt;</description></item><item><title>powershell, headers 与乱码</title><link>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</link><pubDate>Sat, 27 Jun 2020 20:58:36 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/pwsh-headers-and-messy-code/</guid><description>&lt;h2 id="问题起源"&gt;问题起源&lt;/h2&gt;
+&lt;p&gt;在几天之前，我的&lt;a href="https://github.com/batkiz/dotfiles/blob/3497c735909dda8b95c62da5ffaffc34cb0b09ee/pwsh/Microsoft.PowerShell_profile.ps1#L123" target="_blank" rel="noopener noreferrer"&gt;命令行翻译程序&lt;/a&gt;
+挂掉了，不过由于平时用的也少，所以就没太管，昨天才想起来再找个 API 用。&lt;/p&gt;
+&lt;p&gt;正如前文所述，我极少用到这个，所以我就懒得去申请腾讯、彩云或是 bing 的 API，毕竟太麻烦了。因此我决定找一个直接提供公用接口的 API，次数限制啥的只要不是太离谱就行。功夫不负有心人，在 Google 上翻了两页之后，我找到了由 &lt;a href="http://nlp.xmu.edu.cn/" target="_blank" rel="noopener noreferrer"&gt;厦门大学自然语言处理实验室&lt;/a&gt;
+ 提供的 &lt;a href="http://nmt.xmu.edu.cn/" target="_blank" rel="noopener noreferrer"&gt;云译 CloudTranslation&lt;/a&gt;
+ 的公开 &lt;a href="http://nmt.xmu.edu.cn/static/api_zh-cn.html" target="_blank" rel="noopener noreferrer"&gt;API&lt;/a&gt;
+。&lt;/p&gt;</description></item><item><title>在 winget 到来之际，再谈谈 scoop</title><link>https://blog.batkiz.com/posts/talk-about-scoop/</link><pubDate>Thu, 21 May 2020 15:56:06 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/talk-about-scoop/</guid><description>&lt;p&gt;Microsoft Build 2020 开发者大会在几天前召开了，除了 .NET, C# 等的常规更新之外，微软也发布了全新的、官方支持的命令行安装工具 winget。winget 出现的意义不用多说：Windows 终于迎来了受官方支持的命令行安装工具。此前虽然有 choco, scoop 等，但都只是第三方工具而已，如今微软第一方下场，无疑给开发者们带来了极大的鼓舞。&lt;/p&gt;</description></item><item><title>一些 powershell 脚本</title><link>https://blog.batkiz.com/posts/some-pwsh-scripts/</link><pubDate>Wed, 13 May 2020 21:34:09 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/some-pwsh-scripts/</guid><description>&lt;p&gt;近期写的、收集的一些 pwsh 脚本，我完整的 pwsh 配置可看 &lt;a href="https://github.com/batkiz/dotfiles" target="_blank" rel="noopener noreferrer"&gt;batkiz/dotfiles&lt;/a&gt;
+。&lt;/p&gt;
 &lt;p&gt;由于主要是为了满足个人使用，所以没怎么做错误处理之类的。&lt;/p&gt;
 &lt;h2 id="在-pwsh-中使用-wsl-中的-nvim"&gt;在 pwsh 中使用 wsl 中的 nvim&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;dos2nix&lt;/code&gt; 是将 windows 风格的路径转换为 wsl 中的路径。&lt;/p&gt;</description></item><item><title>Conway's Game of Life</title><link>https://blog.batkiz.com/posts/conways-game-of-life/</link><pubDate>Fri, 17 Apr 2020 20:55:58 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/conways-game-of-life/</guid><description>&lt;p&gt;R.I.P John Conway.&lt;/p&gt;
@@ -152,22 +162,28 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; git add .
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; git commit -m &amp;#34;Auto Update: `date +&amp;#39;%Y-%m-%d %H:%M:%S&amp;#39;`&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; git push &amp;#34;https://$USER:$GH_TOKEN@github.com/$USER_NAME/$USER_NAME.github.io.git&amp;#34; master:master&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;附赠本人用于存放 blog 内容仓库的 gitignore&lt;/p&gt;</description></item><item><title>翻译 | SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/how-seo-ruined-the-internet/</guid><description>&lt;p&gt;原文： &lt;a href="https://www.superhighway98.com/seo"&gt;How SEO Ruined the Internet&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;翻译：&lt;a href="https://github.com/batkiz"&gt;batkiz&lt;/a&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;附赠本人用于存放 blog 内容仓库的 gitignore&lt;/p&gt;</description></item><item><title>翻译 | SEO 是如何毁掉互联网的</title><link>https://blog.batkiz.com/posts/how-seo-ruined-the-internet/</link><pubDate>Thu, 09 Apr 2020 22:49:16 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/how-seo-ruined-the-internet/</guid><description>&lt;p&gt;原文： &lt;a href="https://www.superhighway98.com/seo" target="_blank" rel="noopener noreferrer"&gt;How SEO Ruined the Internet&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;翻译：&lt;a href="https://github.com/batkiz" target="_blank" rel="noopener noreferrer"&gt;batkiz&lt;/a&gt;
+&lt;/p&gt;
 &lt;p&gt;译者按：SEO，即搜索引擎优化（search engine optimization），指通过了解搜索引擎的运作规则来调整网站，以提高网站在有关搜索引擎内排名的方式。&lt;/p&gt;</description></item><item><title>用 C# 设置 Hugo Aliases</title><link>https://blog.batkiz.com/posts/set-hugo-aliases-with-csharp/</link><pubDate>Sun, 05 Jan 2020 00:53:07 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/set-hugo-aliases-with-csharp/</guid><description>&lt;p&gt;2020 年新年好！&lt;/p&gt;
 &lt;p&gt;相信细心的读者已经注意到了，本博客的文章链接已经全部从 &lt;code&gt;blog.batkiz.com/:year/:month/:day/:filename/&lt;/code&gt; 调整为了 &lt;code&gt;blog.batkiz.com/posts/:year/:filename/&lt;/code&gt; 的 url 格式。主要的原因是 url 的可读性：一则我个人认为让完整的日期出现在文章的 url 中对“人”非常之不友好。比如我曾想直接输入文章链接访问文章时，日期极大地为我原本就不太好的记忆力增加了负担。另一方面，具体而完整的时间对于读者也是不必要的，几乎没有人会关注文章是在几月几号几点写的，作为读者，更关注的点在于内容，在 url 中隐藏掉具体的时间，只给出一个年份，在我看来是某种程度上的平衡。&lt;/p&gt;</description></item><item><title>在 powershell 中无缝调用 wsl 中的 neovim</title><link>https://blog.batkiz.com/posts/using-wsl-nvim-in-powershell/</link><pubDate>Sat, 30 Nov 2019 16:04:34 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/using-wsl-nvim-in-powershell/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;注 1：neovim 亦可换为 vim&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;注 2：最新版本的 pwsh 脚本请&lt;a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/"&gt;点此获取&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注 2：最新版本的 pwsh 脚本请&lt;a href="https://blog.batkiz.com/posts/2020/some-pwsh-scripts/" target="_blank" rel="noopener noreferrer"&gt;点此获取&lt;/a&gt;
+&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;在如今的 Windows 中，wsl 无疑能够极大提升我的开发体验。vim 则是任何人都绕不开的 TUI 编辑器。&lt;/p&gt;</description></item><item><title>滚进 wsl2</title><link>https://blog.batkiz.com/posts/lets-roll-to-wsl2/</link><pubDate>Wed, 06 Nov 2019 23:23:42 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/lets-roll-to-wsl2/</guid><description>&lt;p&gt;本文已于 2020/05/26 更新，过时的信息已用删除线标注。&lt;/p&gt;
 &lt;p&gt;&lt;del&gt;我是真没想到这都快过半年了 20H1 还没释出稳定版&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;早在今年上半年的 Build 2019 上，微软&lt;a href="https://devblogs.microsoft.com/commandline/announcing-wsl-2/"&gt;宣布了 wsl2&lt;/a&gt;，使得 wsl 不再只是 system call 的翻译，而是切切实实跑在一个&lt;strong&gt;真正的&lt;/strong&gt; Linux 内核之上。这样一来，wsl 将不再受内核的局限，能够运行 docker 等与 Linux kernel 密切相关的软件。&lt;/p&gt;</description></item><item><title>写在 hosts-tool-go 0.1.0 之际</title><link>https://blog.batkiz.com/posts/sth-about-hosts-tool-2/</link><pubDate>Thu, 24 Oct 2019 23:59:34 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/sth-about-hosts-tool-2/</guid><description>&lt;p&gt;不知不觉，自 &lt;a href="https://github.com/batkiz/hosts-tool-go/commit/e460d9ce228172e33f8504960a1bb917d5b311a9"&gt;第一个 commit&lt;/a&gt; 算起，时间已经过去了四个多月。实际的开始开发时间自然要更早一些。host-tool-go 也慢慢变得更加可用，版本号也刷到了 0.1.0。&lt;/p&gt;
-&lt;p&gt;到现在，在 &lt;a href="https://blog.batkiz.com/2019/06/17/sth-about-hosts-tool/"&gt;上一篇文章&lt;/a&gt; 中所计划的三个功能也已一一实现：&lt;/p&gt;</description></item><item><title>博客迁移至 Hugo 并实现自动化</title><link>https://blog.batkiz.com/posts/migrate-to-hugo-and-automation/</link><pubDate>Sun, 20 Oct 2019 22:01:44 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/migrate-to-hugo-and-automation/</guid><description>&lt;p&gt;好久不见！&lt;/p&gt;
-&lt;p&gt;自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 &lt;a href="https://www.v2ex.com/t/611063"&gt;hexo 释出 4.0 版本&lt;/a&gt; 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。&lt;/p&gt;</description></item><item><title>使用 VS Code 与 TinyCC 学习 C 语言</title><link>https://blog.batkiz.com/posts/c-using-vscode-and-tcc/</link><pubDate>Sun, 06 Oct 2019 15:56:43 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/c-using-vscode-and-tcc/</guid><description>&lt;p&gt;本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。&lt;/p&gt;
+&lt;p&gt;早在今年上半年的 Build 2019 上，微软&lt;a href="https://devblogs.microsoft.com/commandline/announcing-wsl-2/" target="_blank" rel="noopener noreferrer"&gt;宣布了 wsl2&lt;/a&gt;
+，使得 wsl 不再只是 system call 的翻译，而是切切实实跑在一个&lt;strong&gt;真正的&lt;/strong&gt; Linux 内核之上。这样一来，wsl 将不再受内核的局限，能够运行 docker 等与 Linux kernel 密切相关的软件。&lt;/p&gt;</description></item><item><title>写在 hosts-tool-go 0.1.0 之际</title><link>https://blog.batkiz.com/posts/sth-about-hosts-tool-2/</link><pubDate>Thu, 24 Oct 2019 23:59:34 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/sth-about-hosts-tool-2/</guid><description>&lt;p&gt;不知不觉，自 &lt;a href="https://github.com/batkiz/hosts-tool-go/commit/e460d9ce228172e33f8504960a1bb917d5b311a9" target="_blank" rel="noopener noreferrer"&gt;第一个 commit&lt;/a&gt;
+ 算起，时间已经过去了四个多月。实际的开始开发时间自然要更早一些。host-tool-go 也慢慢变得更加可用，版本号也刷到了 0.1.0。&lt;/p&gt;</description></item><item><title>博客迁移至 Hugo 并实现自动化</title><link>https://blog.batkiz.com/posts/migrate-to-hugo-and-automation/</link><pubDate>Sun, 20 Oct 2019 22:01:44 +0800</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/migrate-to-hugo-and-automation/</guid><description>&lt;p&gt;好久不见！&lt;/p&gt;
+&lt;p&gt;自 6 月以来，本人虽然没什么产出，但怎奈没动力写博客，至今只写了两篇不疼不痒的综述文章。但今天（2019/10/20）偶然在 v2ex 上看到了 &lt;a href="https://www.v2ex.com/t/611063" target="_blank" rel="noopener noreferrer"&gt;hexo 释出 4.0 版本&lt;/a&gt;
+ 的消息，而后想到自己曾数次想要脱离贵前端生态圈，摆脱令人脑壳痛的依赖问题，实现博客自动化等等等等事情。&lt;/p&gt;</description></item><item><title>使用 VS Code 与 TinyCC 学习 C 语言</title><link>https://blog.batkiz.com/posts/c-using-vscode-and-tcc/</link><pubDate>Sun, 06 Oct 2019 15:56:43 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/c-using-vscode-and-tcc/</guid><description>&lt;p&gt;本文不对其他 C 语言的 (editor || IDE || compiler) 作评价，仅分享一个方案。&lt;/p&gt;
 &lt;h2 id="vs-code"&gt;VS Code&lt;/h2&gt;
-&lt;p&gt;下载安装 &lt;a href="https://code.visualstudio.com/"&gt;VS Code&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下载安装 &lt;a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"&gt;VS Code&lt;/a&gt;
+。&lt;/p&gt;
 &lt;p&gt;安装下列扩展&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;C/C++ &lt;code&gt;ms-vscode.cpptools&lt;/code&gt;&lt;/li&gt;
@@ -180,7 +196,8 @@
 &lt;h2 id="requirements"&gt;requirements&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;set-executionpolicy remotesigned&lt;/code&gt; 执行策略更改，以执行脚本、安装应用&lt;/li&gt;
-&lt;li&gt;&lt;a href="scoop.sh"&gt;scoop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="scoop.sh"&gt;scoop&lt;/a&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="installation"&gt;installation&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-ps" data-lang="ps"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;Install-Module&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;posh-git&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;-Scope&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;CurrentUser&lt;/span&gt;
@@ -192,15 +209,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;scoop&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;install&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;posh-git&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="配置"&gt;配置&lt;/h2&gt;
 &lt;p&gt;配置文件为 &lt;code&gt;~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&lt;/code&gt;，若不存在请自行创建。&lt;/p&gt;</description></item><item><title>关于 hosts-tool 的一些事</title><link>https://blog.batkiz.com/posts/sth-about-hosts-tool/</link><pubDate>Mon, 17 Jun 2019 19:10:57 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/sth-about-hosts-tool/</guid><description>&lt;h2 id="前置"&gt;前置&lt;/h2&gt;
-&lt;p&gt;由于平时有些修改 hosts 文件的需求（屏蔽广告啦），所以之前一直在用 &lt;a href="https://github.com/oldj/SwitchHosts/"&gt;SwitchHosts!&lt;/a&gt; 来自动下载远程 hosts 文件。&lt;/p&gt;
+&lt;p&gt;由于平时有些修改 hosts 文件的需求（屏蔽广告啦），所以之前一直在用 &lt;a href="https://github.com/oldj/SwitchHosts/" target="_blank" rel="noopener noreferrer"&gt;SwitchHosts!&lt;/a&gt;
+ 来自动下载远程 hosts 文件。&lt;/p&gt;
 &lt;p&gt;但 SwitchHosts! 还是有几点不尽如人意的地方：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;由 Electron 与 JavaScript 开发&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/oldj/SwitchHosts/issues/334"&gt;每次开启均会使用一个一个名为 SnoreToast 的软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/oldj/SwitchHosts/issues/334" target="_blank" rel="noopener noreferrer"&gt;每次开启均会使用一个一个名为 SnoreToast 的软件&lt;/a&gt;
+&lt;/li&gt;
 &lt;li&gt;不能做到随用随开，用完就关，需要手动在托盘处关闭后台&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;上面这些其实都在能忍受的范围内，毕竟 &lt;em&gt;又不是不能用&lt;/em&gt; ，而且也没有其他合适的轮子，将就着也还能用。
-但是！近期（也都两三个月了）直接不能用了。直接不能从远端下载更新 hosts 文件了，加上我瞅着&lt;a href="https://github.com/oldj/SwitchHosts/commits/master"&gt;作者也不活跃开发了&lt;/a&gt;，迫不得已，只好自己造轮子。&lt;/p&gt;</description></item><item><title>为 Git 配置代理</title><link>https://blog.batkiz.com/posts/git-behind-proxy/</link><pubDate>Sun, 26 May 2019 16:39:16 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/git-behind-proxy/</guid><description>&lt;p&gt;加速境外 git 服务托管网站速度。&lt;/p&gt;
+但是！近期（也都两三个月了）直接不能用了。直接不能从远端下载更新 hosts 文件了，加上我瞅着&lt;a href="https://github.com/oldj/SwitchHosts/commits/master" target="_blank" rel="noopener noreferrer"&gt;作者也不活跃开发了&lt;/a&gt;
+，迫不得已，只好自己造轮子。&lt;/p&gt;</description></item><item><title>为 Git 配置代理</title><link>https://blog.batkiz.com/posts/git-behind-proxy/</link><pubDate>Sun, 26 May 2019 16:39:16 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/git-behind-proxy/</guid><description>&lt;p&gt;加速境外 git 服务托管网站速度。&lt;/p&gt;
 &lt;h2 id="操作"&gt;操作&lt;/h2&gt;
 &lt;p&gt;首先确保本地已开启 ss 或 ssr。
 而后命令行执行如下命令。&lt;/p&gt;
@@ -209,10 +229,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="原理"&gt;原理&lt;/h2&gt;
 &lt;p&gt;在大多数 git 代理相关文章中，均配置的是 &lt;code&gt;socks5://127.0.0.1:1080&lt;/code&gt; 进行代理。这样虽然速度确实增加了，但由于 协议并不支持 socks5 协议，每次 git push 操作时还需要手动输入账户密码，不能通过 ssh key 来登录，非常影响体验。&lt;/p&gt;</description></item><item><title>翻译 | 给新手程序员们的建议</title><link>https://blog.batkiz.com/posts/advice-to-new-programmers/</link><pubDate>Sun, 28 Apr 2019 21:17:56 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/advice-to-new-programmers/</guid><description>&lt;p&gt;&lt;del&gt;这篇都是过年前翻译的了，但一直懒得放上来=。=&lt;/del&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;原文：&lt;a href="http://olafurw.com/2019-01-27-programmer-advice/"&gt;Advice to new Programmers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href="http://olafurw.com/2019-01-27-programmer-advice/" target="_blank" rel="noopener noreferrer"&gt;Advice to new Programmers&lt;/a&gt;
+&lt;/p&gt;
 &lt;p&gt;并不是每天都有学生向 709 个软件开发者寻求建议的机会的。&lt;/p&gt;
 &lt;h2 id="综述"&gt;综述&lt;/h2&gt;
-&lt;p&gt;在瑞典马尔摩有一所学校叫做 &lt;a href="https://www.thegameassembly.com/"&gt;The Game Assembly&lt;/a&gt;。这所学校专注于游戏制作教学。编程、艺术及设计，无所不包。有一个最后一年在游戏工作室度过的三年项目。&lt;/p&gt;</description></item><item><title>xatuctf2019 校赛 writeup</title><link>https://blog.batkiz.com/posts/xatuctf2019-wp/</link><pubDate>Fri, 19 Apr 2019 21:57:00 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/xatuctf2019-wp/</guid><description>&lt;p&gt;2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水 23333&lt;/p&gt;
+&lt;p&gt;在瑞典马尔摩有一所学校叫做 &lt;a href="https://www.thegameassembly.com/" target="_blank" rel="noopener noreferrer"&gt;The Game Assembly&lt;/a&gt;
+。这所学校专注于游戏制作教学。编程、艺术及设计，无所不包。有一个最后一年在游戏工作室度过的三年项目。&lt;/p&gt;</description></item><item><title>xatuctf2019 校赛 writeup</title><link>https://blog.batkiz.com/posts/xatuctf2019-wp/</link><pubDate>Fri, 19 Apr 2019 21:57:00 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/xatuctf2019-wp/</guid><description>&lt;p&gt;2019.4.14 校赛，由于之前没办萌新赛，所以这次的题有点水 23333&lt;/p&gt;
 &lt;h2 id="web"&gt;WEB&lt;/h2&gt;
 &lt;h3 id="你能读到-flag-吗"&gt;你能读到 flag 吗&lt;/h3&gt;
 &lt;p&gt;题目：&lt;/p&gt;
@@ -235,16 +257,26 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="phpdecode"&gt;phpdecode&lt;/h3&gt;
 &lt;p&gt;&lt;del&gt;直接搜 &lt;code&gt;1wMDEyY2U2YTY0M2NgMTEyZDQyMjAzNWczYjZgMWI4NTt3YWxmY=&lt;/code&gt; 找到了别人的 wp，flag 获得。&lt;/del&gt;&lt;/p&gt;</description></item><item><title>初探 Scoop</title><link>https://blog.batkiz.com/posts/using-scoop/</link><pubDate>Mon, 31 Dec 2018 00:23:27 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/using-scoop/</guid><description>&lt;h2 id="缘起"&gt;缘起&lt;/h2&gt;
 &lt;p&gt;Linux 用的多了，不免会觉得有一个靠谱好用的包管理器是一件令人身心愉悦的事。许多人也便顺理成章地想要在 Windows 系统上来一个包管理器。&lt;/p&gt;
-&lt;p&gt;只是一方面微软已然在大力推介其 Microsoft Store，另一方面命令行形式的包管理器对于大多数人也是极为不友好的。如此这般，一个官方的包管理器自然无望。&lt;/p&gt;</description></item><item><title>翻译 | Vim 的诞生</title><link>https://blog.batkiz.com/posts/where-vim-came-from/</link><pubDate>Tue, 23 Oct 2018 12:55:18 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/where-vim-came-from/</guid><description>&lt;p&gt;2025.7.5 补：&lt;a href="https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/"&gt;借助 AI 能力翻译的新版本&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;原文：&lt;a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html"&gt;Where Vim Came From&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;另投稿于 &lt;a href="http://jandan.net/2018/10/22/vim.html"&gt;煎蛋&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;只是一方面微软已然在大力推介其 Microsoft Store，另一方面命令行形式的包管理器对于大多数人也是极为不友好的。如此这般，一个官方的包管理器自然无望。&lt;/p&gt;</description></item><item><title>翻译 | Vim 的诞生</title><link>https://blog.batkiz.com/posts/where-vim-came-from/</link><pubDate>Tue, 23 Oct 2018 12:55:18 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/where-vim-came-from/</guid><description>&lt;p&gt;2025.7.5 补：&lt;a href="https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/"&gt;借助 AI 能力翻译的新版本&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href="https://twobithistory.org/2018/08/05/where-vim-came-from.html" target="_blank" rel="noopener noreferrer"&gt;Where Vim Came From&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;另投稿于 &lt;a href="http://jandan.net/2018/10/22/vim.html" target="_blank" rel="noopener noreferrer"&gt;煎蛋&lt;/a&gt;
+&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;translated by &lt;a href="https://batkiz.github.io/"&gt;batkiz&lt;/a&gt; &amp;amp; &lt;a href="https://ruinsyi.github.io"&gt;RUInsYi&lt;/a&gt; @ &lt;a href="https://github.com/par-tuner"&gt;Par-Tuner&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;translated by &lt;a href="https://batkiz.github.io/" target="_blank" rel="noopener noreferrer"&gt;batkiz&lt;/a&gt;
+ &amp;amp; &lt;a href="https://ruinsyi.github.io" target="_blank" rel="noopener noreferrer"&gt;RUInsYi&lt;/a&gt;
+ @ &lt;a href="https://github.com/par-tuner" target="_blank" rel="noopener noreferrer"&gt;Par-Tuner&lt;/a&gt;
+&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;我最近偶然发现了一个名为 Intel HEX 的文件格式。据我所了解，Intel HEX 文件（使用 &lt;code&gt;.hex&lt;/code&gt; 扩展名），将二值图像编码为一行一行的十六进制数字，为了使它们更透明。显然它们被应用于单片机编程或将数据烧录进 ROM。无论如何，当我第一次在 Vim 中打开一个 HEX 文件时，我发现了一些令人震惊的事。这个文件格式——至少对我来说——非常难懂，但 Vim 已经知道了有关它的一切。HEX 文件的每一行都是一个被分为不同字段的记录——Vim 已经先我一步为每一字段着了色。我敬畏地问道，&lt;code&gt;set ft?&lt;/code&gt;。&lt;code&gt;filetype=hex&lt;/code&gt;，Vim 得意洋洋地回答。&lt;/p&gt;</description></item><item><title>翻译 | RSS 的兴起与衰落</title><link>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</link><pubDate>Tue, 09 Oct 2018 14:58:44 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</guid><description>&lt;p&gt;2025.7.5 补：&lt;a href="https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/"&gt;借助 AI 能力翻译的新版本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我最近偶然发现了一个名为 Intel HEX 的文件格式。据我所了解，Intel HEX 文件（使用 &lt;code&gt;.hex&lt;/code&gt; 扩展名），将二值图像编码为一行一行的十六进制数字，为了使它们更透明。显然它们被应用于单片机编程或将数据烧录进 ROM。无论如何，当我第一次在 Vim 中打开一个 HEX 文件时，我发现了一些令人震惊的事。这个文件格式——至少对我来说——非常难懂，但 Vim 已经知道了有关它的一切。HEX 文件的每一行都是一个被分为不同字段的记录——Vim 已经先我一步为每一字段着了色。我敬畏地问道，&lt;code&gt;set ft?&lt;/code&gt;。&lt;code&gt;filetype=hex&lt;/code&gt;，Vim 得意洋洋地回答。&lt;/p&gt;</description></item><item><title>翻译 | RSS 的兴起与衰落</title><link>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</link><pubDate>Tue, 09 Oct 2018 14:58:44 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/translation-the-rise-and-demise-of-rss/</guid><description>&lt;p&gt;2025.7.5 补：&lt;a href="https://blog.batkiz.com/posts/ai-translation-the-rise-and-demise-of-rss/"&gt;借助 AI 能力翻译的新版本&lt;/a&gt;
+&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;原文：&lt;a href="https://twobithistory.org/2018/09/16/the-rise-and-demise-of-rss.html"&gt;The Rise and Demise of RSS&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;翻译：&lt;a href="https://github.com/batkiz"&gt;batkiz&lt;/a&gt;，校对：&lt;a href="https://github.com/ruinsyi"&gt;RUInsYi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href="https://twobithistory.org/2018/09/16/the-rise-and-demise-of-rss.html" target="_blank" rel="noopener noreferrer"&gt;The Rise and Demise of RSS&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;翻译：&lt;a href="https://github.com/batkiz" target="_blank" rel="noopener noreferrer"&gt;batkiz&lt;/a&gt;
+，校对：&lt;a href="https://github.com/ruinsyi" target="_blank" rel="noopener noreferrer"&gt;RUInsYi&lt;/a&gt;
+&lt;/p&gt;
 &lt;p&gt;这有两个故事。第一个故事是关于一个从未完全实现的对互联网未来的愿景。第二个故事，则讲述了改善一个流行标准的合作是如何演变为开源软件发展史上最富争议的问题之一。&lt;/p&gt;</description></item><item><title>wsl 使用指北</title><link>https://blog.batkiz.com/posts/using-wsl/</link><pubDate>Sat, 06 Oct 2018 16:59:37 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/using-wsl/</guid><description>&lt;p&gt;经由多个版本更新，现在 wsl 对于普通开发工作已基本没啥问题了，已可基本抛弃虚拟机（&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注：由于 wsl 实现方式是自己实现了一遍 Linux Kernel&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，因此涉及 Linux 底层（内核、hack 等）的东西基本还是不行的。。&lt;/p&gt;</description></item><item><title>telegram bots 推荐</title><link>https://blog.batkiz.com/posts/useful-telegram-bots/</link><pubDate>Mon, 30 Jul 2018 14:46:56 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/useful-telegram-bots/</guid><description>&lt;p&gt;telegram 作为一个新兴的 IM 软件，开源、安全等诸多特性都在吸引着人们来使用 telegram。
@@ -255,28 +287,39 @@
 &lt;h2 id="解决方法"&gt;解决方法&lt;/h2&gt;
 &lt;p&gt;进入 &lt;code&gt;%CMDER_ROOT%\vendor&lt;/code&gt; 文件夹，编辑 &lt;code&gt;profile.ps1&lt;/code&gt;，寻找下列信息(&lt;code&gt;Ctrl + F&lt;/code&gt;)&lt;/p&gt;</description></item><item><title>a-short-introduction-to-markdown</title><link>https://blog.batkiz.com/posts/a-short-introduction-to-markdown/</link><pubDate>Thu, 29 Mar 2018 21:14:10 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/a-short-introduction-to-markdown/</guid><description>&lt;h2 id="markdown-是什么"&gt;markdown 是什么&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Markdown&lt;/strong&gt; 是一种 &lt;a href="https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80" title="轻量级标记语言"&gt;轻量级标记语言&lt;/a&gt;，创始人为 &lt;a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E6%A0%BC%E9%AD%AF%E4%BC%AF" title="约翰·格鲁伯"&gt;约翰·格鲁伯&lt;/a&gt;（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的 &lt;a href="https://zh.wikipedia.org/wiki/XHTML" title="XHTML"&gt;XHTML&lt;/a&gt;（或者 &lt;a href="https://zh.wikipedia.org/wiki/HTML" title="HTML"&gt;HTML&lt;/a&gt;）文档”。&lt;a href="https://zh.wikipedia.org/wiki/Markdown#cite_note-md-4"&gt;[4]&lt;/a&gt; 这种语言吸收了很多在 &lt;a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6" title="电子邮件"&gt;电子邮件&lt;/a&gt; 中已有的纯文本标记的特性。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;以上内容引自维基百科。&lt;/p&gt;</description></item><item><title>如何使用Xbox手柄玩Minecraft</title><link>https://blog.batkiz.com/posts/how-to-play-minecrafet-with-xbox-controller/</link><pubDate>Tue, 06 Mar 2018 15:23:26 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/how-to-play-minecrafet-with-xbox-controller/</guid><description>&lt;p&gt;前几天入手了一个 Xbox one 手柄，拿来 van ♂ 游戏，育碧的刺客信条原生滋瓷手柄，感觉不错。
+&lt;p&gt;&lt;strong&gt;Markdown&lt;/strong&gt; 是一种 &lt;a href="https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80" title="轻量级标记语言" target="_blank" rel="noopener noreferrer"&gt;轻量级标记语言&lt;/a&gt;
+，创始人为 &lt;a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E6%A0%BC%E9%AD%AF%E4%BC%AF" title="约翰·格鲁伯" target="_blank" rel="noopener noreferrer"&gt;约翰·格鲁伯&lt;/a&gt;
+（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的 &lt;a href="https://zh.wikipedia.org/wiki/XHTML" title="XHTML" target="_blank" rel="noopener noreferrer"&gt;XHTML&lt;/a&gt;
+（或者 &lt;a href="https://zh.wikipedia.org/wiki/HTML" title="HTML" target="_blank" rel="noopener noreferrer"&gt;HTML&lt;/a&gt;
+）文档”。&lt;a href="https://zh.wikipedia.org/wiki/Markdown#cite_note-md-4" target="_blank" rel="noopener noreferrer"&gt;[4]&lt;/a&gt;
+ 这种语言吸收了很多在 &lt;a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6" title="电子邮件" target="_blank" rel="noopener noreferrer"&gt;电子邮件&lt;/a&gt;
+ 中已有的纯文本标记的特性。&lt;/p&gt;</description></item><item><title>如何使用Xbox手柄玩Minecraft</title><link>https://blog.batkiz.com/posts/how-to-play-minecrafet-with-xbox-controller/</link><pubDate>Tue, 06 Mar 2018 15:23:26 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/how-to-play-minecrafet-with-xbox-controller/</guid><description>&lt;p&gt;前几天入手了一个 Xbox one 手柄，拿来 van ♂ 游戏，育碧的刺客信条原生滋瓷手柄，感觉不错。
 &lt;strong&gt;但&lt;/strong&gt; Java 版 Minecraft 却并未支持手柄，虽然 Minecraft for Windows 10 对手柄原生支持，但可惜我要玩的是我们自行搭建的 mod 服。因此只好寻求其他方法。&lt;/p&gt;</description></item><item><title>RSS，今日头条与信息爆炸</title><link>https://blog.batkiz.com/posts/rss-is-best/</link><pubDate>Sun, 04 Mar 2018 19:31:44 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/rss-is-best/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;献给 Aaron Swartz
 本文具有极其严重的个人主观性&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;在知乎上一个关于 RSS 的&lt;a href="https://www.zhihu.com/question/19580096/answer/20490041"&gt;回答&lt;/a&gt;上，回答者写道：“支持 RSS 是一种美德”。
+&lt;p&gt;在知乎上一个关于 RSS 的&lt;a href="https://www.zhihu.com/question/19580096/answer/20490041" target="_blank" rel="noopener noreferrer"&gt;回答&lt;/a&gt;
+上，回答者写道：“支持 RSS 是一种美德”。
 RSS 是什么在此不再赘述。那么，为何支持 RSS 是一种美德呢？
 &lt;del&gt;吹 RSS 警告&lt;/del&gt;&lt;/p&gt;</description></item><item><title>hexo blog</title><link>https://blog.batkiz.com/posts/hexo-blog/</link><pubDate>Sat, 10 Feb 2018 20:46:23 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/hexo-blog/</guid><description>&lt;p&gt;本文为在 Manjaro 系统下对 hexo 博客搭建的复现。
-另，由于文章存在时效性，本文只作为参考，实际应以&lt;a href="https://hexo.io/zh-cn/docs/index.html"&gt;Hexo 官方文档&lt;/a&gt;为准。&lt;del&gt;这也正是我写这篇文章的原因=。=&lt;/del&gt;&lt;/p&gt;
+另，由于文章存在时效性，本文只作为参考，实际应以&lt;a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener noreferrer"&gt;Hexo 官方文档&lt;/a&gt;
+为准。&lt;del&gt;这也正是我写这篇文章的原因=。=&lt;/del&gt;&lt;/p&gt;
 &lt;h2 id="准备工作"&gt;准备工作&lt;/h2&gt;
 &lt;h3 id="git"&gt;Git&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;git&lt;/strong&gt; 是一个&lt;a href="https://zh.wikipedia.org/wiki/%E5%88%86%E6%95%A3%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" title="分布式版本控制"&gt;分布式版本控制&lt;/a&gt;软件，最初由&lt;a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" title="林纳斯·托瓦兹"&gt;林纳斯·托瓦兹&lt;/a&gt;（Linus Torvalds）创作，于 2005 年以&lt;a href="https://zh.wikipedia.org/wiki/GPL" title="GPL"&gt;GPL&lt;/a&gt;发布。最初目的是为更好地管理&lt;a href="https://zh.wikipedia.org/wiki/Linux%E5%86%85%E6%A0%B8" title="Linux内核"&gt;Linux 内核&lt;/a&gt;开发而设计。&lt;/p&gt;</description></item><item><title>将linux装入u盘之路</title><link>https://blog.batkiz.com/posts/install-linux-in-upan/</link><pubDate>Thu, 21 Dec 2017 20:11:01 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/install-linux-in-upan/</guid><description>&lt;p&gt;&lt;del&gt;别名：a day wasted&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;git&lt;/strong&gt; 是一个&lt;a href="https://zh.wikipedia.org/wiki/%E5%88%86%E6%95%A3%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" title="分布式版本控制" target="_blank" rel="noopener noreferrer"&gt;分布式版本控制&lt;/a&gt;
+软件，最初由&lt;a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" title="林纳斯·托瓦兹" target="_blank" rel="noopener noreferrer"&gt;林纳斯·托瓦兹&lt;/a&gt;
+（Linus Torvalds）创作，于 2005 年以&lt;a href="https://zh.wikipedia.org/wiki/GPL" title="GPL" target="_blank" rel="noopener noreferrer"&gt;GPL&lt;/a&gt;
+发布。最初目的是为更好地管理&lt;a href="https://zh.wikipedia.org/wiki/Linux%E5%86%85%E6%A0%B8" title="Linux内核" target="_blank" rel="noopener noreferrer"&gt;Linux 内核&lt;/a&gt;
+开发而设计。&lt;/p&gt;</description></item><item><title>将linux装入u盘之路</title><link>https://blog.batkiz.com/posts/install-linux-in-upan/</link><pubDate>Thu, 21 Dec 2017 20:11:01 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/install-linux-in-upan/</guid><description>&lt;p&gt;&lt;del&gt;别名：a day wasted&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;因为这事浪费了我一天时间，我觉得还是有必要写篇文章警醒后来人的（&lt;/p&gt;
 &lt;h2 id="起因"&gt;起因&lt;/h2&gt;
 &lt;p&gt;&lt;del&gt;一时兴起啊&lt;/del&gt;
 前几天有个群里有人想把 Windows 装入 u 盘，加之起了一个“做个系统随身带着岂不是美滋滋”的想法，今天早上着手制作。&lt;/p&gt;</description></item><item><title>我的电脑软件</title><link>https://blog.batkiz.com/posts/software-on-my-computer/</link><pubDate>Wed, 01 Nov 2017 07:40:44 +0000</pubDate><author>Jinglue (batkiz@outlook.com)</author><guid>https://blog.batkiz.com/posts/software-on-my-computer/</guid><description>&lt;p&gt;时隔多时，我终于要从 Linux 平台回归 Windows，回想一番，把自己将要用的软件于此汇总一下。&lt;/p&gt;
 &lt;p&gt;也算是给自己一个备份归档。&lt;/p&gt;
 &lt;h2 id="浏览器"&gt;浏览器&lt;/h2&gt;
-&lt;h3 id="vivaldi"&gt;&lt;a href="https://vivaldi.com"&gt;Vivaldi&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="vivaldi"&gt;&lt;a href="https://vivaldi.com" target="_blank" rel="noopener noreferrer"&gt;Vivaldi&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;一款来自 opera 浏览器创始人的浏览器
 我一直在使用的浏览器，美观简洁，十分好用，标签组功能非常赞
 chromium 内核，支持扩展~~(没用过就是了)~~
@@ -284,7 +327,7 @@ chromium 内核，支持扩展~~(没用过就是了)~~
 
 
 &lt;figure&gt;
- &lt;img src="https://s1.ax1x.com/2017/12/14/qolUe.png" alt="qolUe.png" loading="lazy"&gt;
+ &lt;img src="https://s1.ax1x.com/2017/12/14/qolUe.png" alt="qolUe.png" loading="lazy" decoding="async"&gt;
  
  &lt;figcaption class="marginnote figure-caption"&gt;qolUe.png&lt;/figcaption&gt;
  
